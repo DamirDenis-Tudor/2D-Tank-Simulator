@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tank dim="128" rotationX ="64" rotationY ="74" >
+	<body>
+		<tileset type = "Type1" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body1/Hull_01.png" />
+		</tileset>
+		<tileset type = "Type2" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body1/Hull_02.png" />
+		</tileset>
+		<tileset type = "Type3" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body1/Hull_03.png" />
+		</tileset>
+		<tileset type = "Type4" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body1/Hull_04.png" />
+		</tileset>
+		<tileset type = "Type5" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body1/Hull_05.png" />
+		</tileset>
+		<tileset type = "Type6" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body1/Hull_06.png" />
+		</tileset>
+		<tileset type = "Type7" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body1/Hull_07.png" />
+		</tileset>
+		<tileset type = "Type8" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body1/Hull_08.png" />
+		</tileset>
+		<tileset type = "Type1" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body2/Hull_01.png" />
+		</tileset>
+		<tileset type = "Type2" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body2/Hull_02.png" />
+		</tileset>
+		<tileset type = "Type3" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body2/Hull_03.png" />
+		</tileset>
+		<tileset type = "Type4" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body2/Hull_04.png" />
+		</tileset>
+		<tileset type = "Type5" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body2/Hull_05.png" />
+		</tileset>
+		<tileset type = "Type6" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body2/Hull_06.png" />
+		</tileset>
+		<tileset type = "Type7" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body2/Hull_07.png" />
+		</tileset>
+		<tileset type = "Type8" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body2/Hull_08.png" />
+		</tileset>
+		<tileset type = "Type1" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body3/Hull_01.png" />
+		</tileset>
+		<tileset type = "Type2" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body3/Hull_02.png" />
+		</tileset>
+		<tileset type = "Type3" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body3/Hull_03.png" />
+		</tileset>
+		<tileset type = "Type4" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body3/Hull_04.png" />
+		</tileset>
+		<tileset type = "Type5" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body3/Hull_05.png" />
+		</tileset>
+		<tileset type = "Type6" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body3/Hull_06.png" />
+		</tileset>
+		<tileset type = "Type7" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body3/Hull_07.png" />
+		</tileset>
+		<tileset type = "Type8" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body3/Hull_08.png" />
+		</tileset>
+		<tileset type = "Type1" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body4/Hull_01.png" />
+		</tileset>
+		<tileset type = "Type2" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body4/Hull_02.png" />
+		</tileset>
+		<tileset type = "Type3" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body4/Hull_03.png" />
+		</tileset>
+		<tileset type = "Type4" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body4/Hull_04.png" />
+		</tileset>
+		<tileset type = "Type5" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body4/Hull_05.png" />
+		</tileset>
+		<tileset type = "Type6" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body4/Hull_06.png"/>
+		</tileset>
+		<tileset type = "Type7" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body4/Hull_07.png" />
+		</tileset>
+		<tileset type = "Type8" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/body/body4/Hull_08.png" />
+		</tileset>
+		<tileset></tileset>	
+	</body>
+
+	<cannon>
+		<target>
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/targetScaled.png" width="64" height="64"/>
+		</target>
+
+		<tileset type = "Type1" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon1/Gun_01.png" />
+		</tileset>
+		<tileset type = "Type2" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon1/Gun_02.png" />
+		</tileset>
+		<tileset type = "Type3" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon1/Gun_03.png" />
+		</tileset>
+		<tileset type = "Type4" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon1/Gun_04.png" />
+		</tileset>
+		<tileset type = "Type5" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon1/Gun_05.png" />
+		</tileset>
+		<tileset type = "Type6" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon1/Gun_06.png" />
+		</tileset>
+		<tileset type = "Type7" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon1/Gun_07.png" />
+		</tileset>
+		<tileset type = "Type8" color = "ColorA" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon1/Gun_08.png" />
+		</tileset>
+		<tileset type = "Type1" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon2/Gun_01.png" />
+		</tileset>
+		<tileset type = "Type2" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon2/Gun_02.png" />
+		</tileset>
+		<tileset type = "Type3" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon2/Gun_03.png" />
+		</tileset>
+		<tileset type = "Type4" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon2/Gun_04.png" />
+		</tileset>
+		<tileset type = "Type5" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon2/Gun_05.png" />
+		</tileset>
+		<tileset type = "Type6" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon2/Gun_06.png" />
+		</tileset>
+		<tileset type = "Type7" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon2/Gun_07.png" />
+		</tileset>
+		<tileset type = "Type8" color = "ColorB" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon2/Gun_08.png" />
+		</tileset>
+		<tileset type = "Type1" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon3/Gun_01.png" />
+		</tileset>
+		<tileset type = "Type2" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon3/Gun_02.png" />
+		</tileset>
+		<tileset type = "Type3" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon3/Gun_03.png" />
+		</tileset>
+		<tileset type = "Type4" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon3/Gun_04.png" />
+		</tileset>
+		<tileset type = "Type5" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon3/Gun_05.png" />
+		</tileset>
+		<tileset type = "Type6" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon3/Gun_06.png" />
+		</tileset>
+		<tileset type = "Type7" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon3/Gun_07.png" />
+		</tileset>
+		<tileset type = "Type8" color = "ColorC" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon3/Gun_08.png" />
+		</tileset>
+		<tileset type = "Type1" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon4/Gun_01.png" />
+		</tileset>
+		<tileset type = "Type2" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon4/Gun_02.png" />
+		</tileset>
+		<tileset type = "Type3" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon4/Gun_03.png" />
+		</tileset>
+		<tileset type = "Type4" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon4/Gun_04.png" />
+		</tileset>
+		<tileset type = "Type5" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon4/Gun_05.png" />
+		</tileset>
+		<tileset type = "Type6" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon4/Gun_06.png" />
+		</tileset>
+		<tileset type = "Type7" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon4/Gun_07.png" />
+		</tileset>
+		<tileset type = "Type8" color = "ColorD" >
+			<image source="assets/sTanks/tanksScaled0.5/cannnon/cannon4/Gun_08.png" />
+		</tileset>
+		<tileset></tileset>
+	</cannon>
+
+
+	<bullet>
+		<tileset type = "Type1" color = " " tilewidth="22" tileheight="42" >
+			<image source="assets/sTanks/tanksScaled0.5/bullet/bullets/Granade_Shell.png" />
+		</tileset>
+		<tileset type = "Type2" color = " " tilewidth="25" tileheight="83" >
+			<image source="assets/sTanks/tanksScaled0.5/bullet/bullets/Laser.png" />
+		</tileset>
+		<tileset type = "Type3" color = " " tilewidth="25" tileheight="45" >
+			<image source="assets/sTanks/tanksScaled0.5/bullet/bullets/Medium_Shell.png"/>
+		</tileset>
+		<tileset type = "Type4" color = " " tilewidth="24" tileheight="60" >
+			<image source="assets/sTanks/tanksScaled0.5/bullet/bullets/Sniper_Shell.png"/>
+		</tileset>
+		<tileset type = "Type5" color = " " tilewidth="26" tileheight="82" >
+			<image source="assets/sTanks/tanksScaled0.5/bullet/bullets/Plasma.png"/>
+		</tileset>
+		<tileset type = "Type6" color = " " tilewidth="60" tileheight="40" >
+			<image source="assets/sTanks/tanksScaled0.5/bullet/bullets/Shotgun_Shells.png"/>
+		</tileset>
+		<tileset type = "Type7" color = " " tilewidth="25" tileheight="65" >
+			<image source="assets/sTanks/tanksScaled0.5/bullet/bullets/Heavy_Shell.png"/>
+		</tileset>
+		<tileset type = "Type8" color = " " tilewidth="20" tileheight="46" >
+			<image source="assets/sTanks/tanksScaled0.5/bullet/bullets/Exhaust_Fire.png"/>
+		</tileset>
+		<tileset></tileset>
+	</bullet>
+	
+
+	<track>
+
+	</track>
+
+
+
+</tank>
