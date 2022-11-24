@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\ManagerHeaders">
+      <UniqueIdentifier>{e3c14e95-1178-4136-b6ab-a5721a905d2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UtilitiesHeaders">
+      <UniqueIdentifier>{74be3fe8-4845-4e86-81e2-44f76b3bf2e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ManagersSources">
+      <UniqueIdentifier>{c441dc3c-dc74-448e-9c4d-923cd650f172}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ExternalHeaders">
+      <UniqueIdentifier>{bef1ea4e-4076-48aa-b5a9-f05ff9eba072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ExternalSources">
+      <UniqueIdentifier>{576d8f2b-1958-4518-9614-774a8be3d778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjectsSources">
+      <UniqueIdentifier>{b7415156-fa56-47c4-b540-e91ec29850f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjectsHeaders">
+      <UniqueIdentifier>{f89f4ebc-550e-4855-88e3-18105a5397bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjectsHeaders\Components">
+      <UniqueIdentifier>{c66476da-aadf-4dbf-8cee-5ea4267d2d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Movement">
+      <UniqueIdentifier>{14b4c42b-aaf7-4769-9bce-21376a3fb1bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Builders">
+      <UniqueIdentifier>{cef0f700-362c-4b66-a724-813320a33282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Builder">
+      <UniqueIdentifier>{5d79aef1-52c8-4b5b-98cd-e72eae6ade67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Movement">
+      <UniqueIdentifier>{517223b4-c474-4fc9-b707-552c486028c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RendererManager.cpp">
+      <Filter>Source Files\ManagersSources</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Source Files\ExternalSources</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>Source Files\GameObjectsSources</Filter>
+    </ClCompile>
+    <ClCompile Include="InputMovement.cpp">
+      <Filter>Source Files\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="AiMovement.cpp">
+      <Filter>Source Files\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBuilder.cpp">
+      <Filter>Source Files\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBuilder.cpp">
+      <Filter>Source Files\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Builder.cpp">
+      <Filter>Source Files\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Director.cpp">
+      <Filter>Source Files\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetsStorage.cpp">
+      <Filter>Source Files\ManagersSources</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\GameObjectsSources</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Source Files\ManagersSources</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>Source Files\ManagersSources</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\ManagersSources</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>Source Files\ManagersSources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RendererManager.h">
+      <Filter>Header Files\ManagerHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Header Files\UtilitiesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Header Files\ExternalHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorPrinter.h">
+      <Filter>Header Files\UtilitiesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2i.h">
+      <Filter>Header Files\UtilitiesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Body.h">
+      <Filter>Header Files\GameObjectsHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannon.h">
+      <Filter>Header Files\GameObjectsHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="InputMovement.h">
+      <Filter>Header Files\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="AiMovement.h">
+      <Filter>Header Files\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files\GameObjectsHeaders\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>Header Files\GameObjectsHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Header Files\GameObjectsHeaders\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>Header Files\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="Builder.h">
+      <Filter>Header Files\Builders</Filter>
+    </ClInclude>
+    <ClInclude Include="Director.h">
+      <Filter>Header Files\Builders</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBuilder.h">
+      <Filter>Header Files\Builders</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBuilder.h">
+      <Filter>Header Files\Builders</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetsStorage.h">
+      <Filter>Header Files\ManagerHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionManager.h">
+      <Filter>Header Files\ManagerHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\GameObjectsHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>Header Files\ManagerHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\ManagerHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>Header Files\ManagerHeaders</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
