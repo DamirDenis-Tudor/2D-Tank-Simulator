@@ -138,7 +138,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AiMovement.cpp" />
     <ClCompile Include="AssetsStorage.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CameraManager.cpp" />
@@ -148,7 +147,6 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="InputMovement.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="PlayerBuilder.cpp" />
     <ClCompile Include="RendererManager.cpp" />
@@ -164,7 +162,6 @@
     <ClInclude Include="AssetsStorage.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CameraManager.h" />
-    <ClInclude Include="Circle.h" />
     <ClInclude Include="ColisionManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="EnemyBuilder.h" />

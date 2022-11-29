@@ -37,9 +37,6 @@
     <Filter Include="Header Files\GameObjectsHeaders\Components">
       <UniqueIdentifier>{c66476da-aadf-4dbf-8cee-5ea4267d2d1a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Movement">
-      <UniqueIdentifier>{14b4c42b-aaf7-4769-9bce-21376a3fb1bd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Builders">
       <UniqueIdentifier>{cef0f700-362c-4b66-a724-813320a33282}</UniqueIdentifier>
     </Filter>
@@ -68,12 +65,6 @@
     </ClCompile>
     <ClCompile Include="Tank.cpp">
       <Filter>Source Files\GameObjectsSources</Filter>
-    </ClCompile>
-    <ClCompile Include="InputMovement.cpp">
-      <Filter>Source Files\Movement</Filter>
-    </ClCompile>
-    <ClCompile Include="AiMovement.cpp">
-      <Filter>Source Files\Movement</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBuilder.cpp">
       <Filter>Source Files\Builder</Filter>
@@ -118,9 +109,6 @@
     </ClInclude>
     <ClInclude Include="RendererManager.h">
       <Filter>Header Files\ManagerHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Circle.h">
-      <Filter>Header Files\UtilitiesHeaders</Filter>
     </ClInclude>
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files\ExternalHeaders</Filter>
