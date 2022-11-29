@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level1scaled2.tmx",
+    "activeFile": "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx",
     "expandedProjectPaths": [
         ".",
         "tiles"
@@ -11,7 +11,7 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 1
+            "scaleInDock": 3
         },
         "Assets.tsx": {
             "dynamicWrapping": true,
@@ -353,6 +353,89 @@
             "scaleInDock": 1
         },
         "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/BattleOfTanks/BattleOfTanks/GameEngine/assets/sTanks/tanksXML'S/untitled.tmx#Sniper_Shell": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 0.5,
+                "y": 0
+            }
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Effects_Explosion_000": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Effects_Explosion_001": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Effects_Explosion_002": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Effects_Explosion_003": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Effects_Explosion_004": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Effects_Explosion_005": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Effects_Explosion_006": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Effects_Explosion_007": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Effects_Explosion_008": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Impact_A_000": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Impact_A_001": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Impact_A_002": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Impact_A_003": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Impact_B_000": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Impact_B_001": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Impact_B_002": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Impact_B_003": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Shot_A_000": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Shot_A_001": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Shot_A_002": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Shot_A_003": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Shot_B_000": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Shot_B_001": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Shot_B_002": {
+            "scaleInDock": 1
+        },
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx#Sprite_Fire_Shots_Shot_B_003": {
             "scaleInDock": 1
         },
         "Flag_A.tsx": {
@@ -1259,11 +1342,11 @@
             "scaleInEditor": 1
         },
         "untitled.tmx": {
-            "scale": 1,
+            "scale": 0.0625,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 0.5,
-                "y": 0
+                "x": 5032,
+                "y": 5712
             }
         },
         "untitled.tmx#Exhaust_Fire": {
@@ -1299,11 +1382,13 @@
     "map.tileWidth": 128,
     "map.width": 40,
     "openFiles": [
-        "level1scaled2.tmx"
+        "level1scaled2.tmx",
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx"
     ],
     "project": "BattleOfTanksLevels.tiled-project",
     "recentFiles": [
         "level1scaled2.tmx",
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx",
         "untitled.tmx",
         "level1.tmx",
         "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/BattleOfTanks/BattleOfTanks/GameEngine/assets/sTanks/tanksXML'S/untitled.tmx",
@@ -1313,15 +1398,14 @@
         "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/BattleOfTanks/BattleOfTanks/GameEngine/assets/sTanks/tanksScaled0.5/tanks/tank4.tmx",
         "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/BattleOfTanks/BattleOfTanks/GameEngine/assets/sTanks/tanksScaled0.5/tanks/tank3.tmx",
         "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/BattleOfTanks/BattleOfTanks/GameEngine/assets/sTanks/tanksScaled0.5/tanks/tank2.tmx",
-        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/BattleOfTanks/BattleOfTanks/GameEngine/assets/sTanks/tanksScaled0.5/tanks/tank1.tmx",
-        "level1scaled.tmx"
+        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/BattleOfTanks/BattleOfTanks/GameEngine/assets/sTanks/tanksScaled0.5/tanks/tank1.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx",
     "tileset.spacing": 0,
     "tileset.tileSize": {
-        "height": 60,
-        "width": 24
+        "height": 128,
+        "width": 128
     },
     "tileset.type": 0
 }

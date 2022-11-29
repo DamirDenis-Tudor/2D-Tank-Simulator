@@ -16,7 +16,7 @@ public:
 	static bool _right;
 
 	static bool clicked;
-	static Vector2T<float> mousePos;
+	static Vector2T<int> mousePos;
 
 private:
 	InputManager() {}
@@ -38,11 +38,7 @@ public:
 		_left = _keys[SDLK_a];
 		_right = _keys[SDLK_d];
 
-		int posx;
-		int posy;
-		SDL_GetMouseState(&posx, &posy);
-		mousePos.setX(posx);
-		mousePos.setY(posy);
+		SDL_GetMouseState(&mousePos._x, &mousePos._y);
 	}
 
 	~InputManager()

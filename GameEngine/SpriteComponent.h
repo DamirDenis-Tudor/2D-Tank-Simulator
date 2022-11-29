@@ -4,10 +4,6 @@
 #include"SDL.h"
 #include<iostream>
 
-/*
-	Despite of TileComponent, rotaton with an angle is possible
-*/
-
 #include "RendererManager.h"
 #include "CameraManager.h"
 
@@ -16,6 +12,7 @@ class SpriteComponent : public Component
 	friend class AssetsStorage;
 	friend class Map;
 	friend class Tank;
+	friend class Bullet;
 
 private:
 
@@ -65,7 +62,6 @@ public:
 	{
 		_dest->x = position.getX();
 		_dest->y = position.getY();
-		//std::cout << "rect:: " << _dest->x << " " << _dest->y << '\n';
 	}
 
 	void draw() override
@@ -73,7 +69,7 @@ public:
 		if (_active)
 		{
 			SDL_RenderCopyEx(RendererManager::_renderer, _texture, _src, _dest ,_angle , &center , SDL_FLIP_NONE);
-			//SDL_RenderDrawRect(RendererManager::_renderer, _dest);
+		//	SDL_RenderDrawRect(RendererManager::_renderer, _dest);
 		}
 	}
 

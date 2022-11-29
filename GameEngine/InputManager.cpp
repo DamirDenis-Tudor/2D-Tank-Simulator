@@ -7,5 +7,5 @@ bool InputManager::_up = false;
 bool InputManager::_left = false;
 bool InputManager::_right = false;
 bool InputManager::_escape = false;
-Vector2T<float> InputManager::mousePos = { 0 , 0 };
+Vector2T<int> InputManager::mousePos = { 0 , 0 };
 bool * InputManager::_keys = new bool[256];

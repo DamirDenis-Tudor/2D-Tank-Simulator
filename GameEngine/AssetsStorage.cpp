@@ -140,7 +140,7 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 
 
 		_movebles.insert(pair < set <string >, SpriteComponent* >
-			({ "bullet" ,i->FindAttribute("type")->Value() , i->FindAttribute("color")->Value() }, sprite));
+			({ "bullet" ,i->FindAttribute("type")->Value() }, sprite));
 
 	}
 }

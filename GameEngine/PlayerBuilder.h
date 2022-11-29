@@ -4,11 +4,11 @@
 
 class PlayerBuilder : public Builder
 {
-	Movement* getMovement() override
+	Behavior* getBehavior() override
 	{
-		InputMovement* movement = new InputMovement();
+		InputBehavior* behavior = new InputBehavior();
 
-		return movement;
+		return behavior;
 	}
 public:
 	PlayerBuilder()

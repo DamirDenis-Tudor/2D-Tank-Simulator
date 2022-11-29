@@ -10,9 +10,9 @@
 class EnemyBuilder : public Builder
 {
 
-	Movement* getMovement() override
+	Behavior* getBehavior() override
 	{
-		AiMovement* movement = new AiMovement();
+		AiBehavior* movement = new AiBehavior();
 
 		return movement;
 	}

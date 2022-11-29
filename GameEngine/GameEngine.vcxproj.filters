@@ -49,6 +49,9 @@
     <Filter Include="Header Files\Movement">
       <UniqueIdentifier>{517223b4-c474-4fc9-b707-552c486028c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameObjectsSources\Componets">
+      <UniqueIdentifier>{fd28c46c-f5ac-469c-b1bc-d430c0fbd979}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -102,6 +105,12 @@
     <ClCompile Include="CameraManager.cpp">
       <Filter>Source Files\ManagersSources</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files\GameObjectsSources</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files\GameObjectsSources\Componets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -122,10 +131,10 @@
     <ClInclude Include="Vector2i.h">
       <Filter>Header Files\UtilitiesHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="InputMovement.h">
+    <ClInclude Include="InputBehavior.h">
       <Filter>Header Files\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="AiMovement.h">
+    <ClInclude Include="AiBehavior.h">
       <Filter>Header Files\Movement</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
@@ -137,7 +146,7 @@
     <ClInclude Include="SpriteComponent.h">
       <Filter>Header Files\GameObjectsHeaders\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Movement.h">
+    <ClInclude Include="Behavior.h">
       <Filter>Header Files\Movement</Filter>
     </ClInclude>
     <ClInclude Include="Builder.h">
@@ -169,6 +178,12 @@
     </ClInclude>
     <ClInclude Include="CameraManager.h">
       <Filter>Header Files\ManagerHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Header Files\GameObjectsHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\GameObjectsHeaders\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

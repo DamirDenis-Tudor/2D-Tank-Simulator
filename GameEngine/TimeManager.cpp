@@ -1,6 +1,5 @@
 #include"TimeManager.h"
 
-double TimeManager::_deltaTime = 0;
-float TimeManager::_lastFrame = 0;
-float TimeManager::_reachTime = 0;
-float TimeManager::_startTime = 0;
+float TimeManager::_deltaTime = 0;
+map<int, Timer*> TimeManager::_timers = {};
+float Timer::_deltaTime = 0;

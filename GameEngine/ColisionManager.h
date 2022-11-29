@@ -13,6 +13,6 @@ private:
 public:
 	~CollisionManager() {};
 	
-	static bool mapCollision(Vector2T<float>& potentialPos);
-
+	static bool circleCollision(Vector2T<float>& potentialPos);
+	static bool pointCollision(Vector2T<float>& potentialPos);
 };

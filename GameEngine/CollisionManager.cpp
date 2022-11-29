@@ -1,6 +1,6 @@
 #include"ColisionManager.h"
 
-bool CollisionManager::mapCollision(Vector2T<float>& potentialPos)
+bool CollisionManager::circleCollision(Vector2T<float>& potentialPos)
 {
 	bool colision = false;
 	//spatiul de detectare a coliziunilor => 2 X 2
@@ -71,4 +71,13 @@ bool CollisionManager::mapCollision(Vector2T<float>& potentialPos)
 		}
 	}
 	return colision;
+}
+
+bool CollisionManager::pointCollision(Vector2T<float>& potentialPos)
+{
+	if (AssetsStorage::_mapLayers["colidble"][static_cast<int>(potentialPos._y / AssetsStorage::_mapTileDim) ][static_cast<int>(potentialPos._x / AssetsStorage::_mapTileDim)] != 0)
+	{
+		return true;
+	}
+	return false;
 }

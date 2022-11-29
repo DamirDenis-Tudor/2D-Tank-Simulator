@@ -42,14 +42,4 @@ public:
 
 	static void loadTiles(const char* sourceFile);
 	static void convertInToMatrix(const char* buffer, std::vector<std::vector<int>>& mapLayer);
-
-
-	//static AssetsStorage* getInstance()
-	//{
-	//	if (_instance == nullptr)
-	//	{
-	//		_instance = new AssetsStorage;
-	//	}
-	//	return _instance;
-	//}
 };

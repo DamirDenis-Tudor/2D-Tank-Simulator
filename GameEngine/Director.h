@@ -15,11 +15,11 @@ public:
 		_builder = builder;
 	}
 
-	Tank* getTank(Vector2T<int> position , Vector2T<float> velocity)
+	Tank* getTank(Vector2T<int> position , Vector2T<float> velocity ,float shotingTime)
 	{
-		Tank* tank = new Tank(_builder->getBody(), _builder->getCannon() , position , velocity);
+		Tank* tank = new Tank(_builder->getBody(), _builder->getCannon() , position , velocity , shotingTime);
 
-		tank->setMovement(_builder->getMovement());
+		tank->setBehavior(_builder->getBehavior());
 
 		return tank;
 	}

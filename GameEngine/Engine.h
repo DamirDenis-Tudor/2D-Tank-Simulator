@@ -24,20 +24,7 @@ class Engine : public Component
 	float _framerate = 0;
 
 public:
-	Engine(const char * name , int width ,int height , bool fullscreen , float framerate ) : _framerate(framerate)
-	{
-		RendererManager::setRenderer(name, width, height, fullscreen);
-		InputManager::initInput();
-		AssetsStorage::loadTiles("levels/level1scaled2.tmx");
-		AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
-
-		initComponets();
-	}
-
-	~Engine() {}
-
 	void initComponets();
-
 	void run();
 
 	void draw() override
@@ -50,13 +37,27 @@ public:
 
 	void update() override
 	{
-
 		InputManager::update();
 		for (auto& i : _componets)
 		{
 			i->update();
 		}
-
-
 	}
+
+	Engine(const char * name , int width ,int height , bool fullscreen , float framerate ) : _framerate(framerate)
+	{
+		RendererManager::setRenderer(name, width, height, fullscreen);
+		InputManager::initInput();
+		AssetsStorage::loadTiles("levels/level1scaled2.tmx");
+		AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
+
+		initComponets();
+	}
+
+	~Engine() 
+	{
+		_componets.clear();
+	}
+
+
 };

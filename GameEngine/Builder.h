@@ -1,9 +1,7 @@
 #pragma once
 
 #include"Tank.h"
-#include"Body.h"
-#include"Cannon.h"
-#include"Movement.h"
+#include"Behavior.h"
 #include"AssetsStorage.h"
 #include"Vector2i.h"
 
@@ -59,6 +57,6 @@ public:
 
 	
 
-	virtual Movement* getMovement() = 0;
+	virtual Behavior* getBehavior() = 0;
 };
 

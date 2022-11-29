@@ -1,61 +1,101 @@
 #pragma once
 
-#include"Body.h"
-#include"Cannon.h"
 #include"Component.h"
-#include"InputMovement.h"
-#include"AiMovement.h"
-#include"Movement.h"
+#include"InputBehavior.h"
+#include"AiBehavior.h"
+#include"Behavior.h"
+#include"Bullet.h"
 
 class Tank : public Component
 {
+	SpriteComponent* tracks = nullptr;
 	SpriteComponent* _body = nullptr;
 	SpriteComponent* _cannon = nullptr;
-	Movement* _movement = nullptr;
+
+	vector<Component*> _componets;
+
+	Behavior* _behavior = nullptr;
 
 	Vector2T<int> _position = { 0 , 0 };
 	Vector2T<float> _velocity = { 0 , 0 };
 
 
 public:
-	Tank(SpriteComponent* body, SpriteComponent* cannon , Vector2T<int> position , Vector2T<float> velocity)
-		:_body(body), _cannon(cannon), _position(position) , _velocity(velocity) {}
+	Tank(SpriteComponent* body, SpriteComponent* cannon, Vector2T<int> position, Vector2T<float> velocity , float shotingTime)
+		:_body(body), _cannon(cannon), _position(position), _velocity(velocity)
+
+	{
+		TimeManager::createTimer(_id, shotingTime);
+		_componets.push_back(_body);
+		_componets.push_back(_cannon);
+	}
 
 	~Tank()
 	{
 		delete _body;
 		delete _cannon;
-		delete _movement;
+		delete _behavior;
+		_componets.clear();
 	}
 
-	void setMovement(Movement* movement)
+	void setBehavior(Behavior* behavior)
 	{
-		_movement = movement;
+		_behavior = behavior;
 	}
 
 	void draw() override
 	{
-		_body->draw();
-		_cannon->draw();
+		for (auto& i : _componets)
+		{
+			i->draw();
+		}
 	}
 
 	void update() override
 	{
-		_movement->move(_position , _velocity);
+		_behavior->movement(_position, _velocity);
+		_behavior->rotationC(_position, _cannon->_angle);
+		_behavior->rotationB(_body->_angle);
+
 		syncMovement();
-		
-		_movement->rotationC(_position ,_cannon->_angle);
-		_movement->rotationB(_body->_angle);
 
-		_body->update();
-		_cannon->update();
+		checkForBullets();
 
+		for (int i = 0; i < size(_componets); i++)
+		{
+			_componets[i]->update();
+
+			if (!_componets[i]->isActive())
+			{
+				delete _componets[i];
+				_componets.erase(_componets.begin() + i);
+			}
+		}
 	}
 
 	void syncMovement()
 	{
-		_body->setPosition(_position - CameraManager::offset  );
-		_cannon->setPosition(_position - CameraManager::offset  );
+		_body->setPosition(_position - CameraManager::offset);
+		_cannon->setPosition(_position - CameraManager::offset);
+	}
+
+	void checkForBullets()
+	{
+		//std::cout << "is lauching : " << _behavior->isLaunchingBullet() << '\n';
+		//std::cout << " timer stop: " << !TimeManager::_timers[_id].isTimerWorking() << "\n\n";
+
+ 		if (!TimeManager::_timers[_id]->isTimerWorking() && _behavior->isLaunchingBullet())
+		{
+			TimeManager::_timers[_id]->resetTimer();
+
+			Vector2T<int> circumference =
+			{
+				static_cast<int>(SDL_cos((_cannon->_angle - 90) * M_PI / 180) * _cannon->_dest->w / 2) ,
+				static_cast<int>(SDL_sin((_cannon->_angle - 90) * M_PI / 180) * _cannon->_dest->w / 2)
+			};
+
+			_componets.push_back(new Bullet("Type1", _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
+		}
 	}
 };
 
