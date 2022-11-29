@@ -1,47 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <effects dim ="128">
 	<BigExplosion type ="BigExplosion">
-		<image source="tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_000.png" />
-		<image source="tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_001.png" />
-		<image source="tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_002.png"/>
-		<image source="tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_003.png" />
-		<image source="tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_004.png"/>
-		<image source="tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_005.png" />
-		<image source="tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_006.png" />
-		<image source="tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_007.png" />
-		<image source="tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_008.png"/>
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_000.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_001.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_002.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_003.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_004.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_005.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_006.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_007.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_008.png" />
+		<image></image>
 	</BigExplosion>
 
 	<Shot type = "Shot1">
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_000.png" />
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_001.png"/>
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_002.png" />
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_003.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_000.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_001.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_002.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_003.png" />
+		<image></image>
 	</Shot>
-	
+
 	<Shot type = "Shot2">
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_000.png" />
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_001.png" />
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_002.png" />
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_003.png"/>
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_000.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_001.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_002.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_003.png" />
+		<image></image>
+
 	</Shot>
 
 	<Shot></Shot>
 
 	<Impact ype = "Impact1">
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_000.png" />
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_001.png" />
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_002.png" />
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_003.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_000.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_001.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_002.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_003.png" />
+		<image></image>
+
 	</Impact>
 
 	<Impact ype = "Impact2">
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_000.png"/>
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_001.png" />
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_002.png" />
-		<image source="tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_003.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_000.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_001.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_002.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_003.png" />
+		<image></image>
+
 	</Impact>
-	
+
 	<Impact></Impact>
 
 

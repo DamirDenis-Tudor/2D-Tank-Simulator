@@ -1,7 +1,7 @@
 #include "AssetsStorage.h"
 
-//AssetsStorage* AssetsStorage::_instance = nullptr;
 int AssetsStorage::_mapTileDim = 0;
+
 map<set< string >, SpriteComponent* > AssetsStorage::_movebles = {};
 vector<SpriteComponent* > AssetsStorage::_tiles = {};
 int AssetsStorage::_layerWidth = 0;
@@ -10,6 +10,8 @@ int AssetsStorage::_layerHeight = 0;
 SDL_Point* AssetsStorage::_rotCenter = new SDL_Point;
 
 map<string, vector<vector<int>> > AssetsStorage::_mapLayers = {};
+
+map<string, vector<SpriteComponent*>> AssetsStorage::_effects = {};
 
 /*
 	* tank (root) -> bodies		 |
@@ -287,5 +289,50 @@ void AssetsStorage::convertInToMatrix(const char* buffer, std::vector<std::vecto
 		}
 		buffer++;
 	}
+
+}
+
+void AssetsStorage::loadEffects(const char* sourceFile)
+{
+	XMLDocument document;
+
+	document.LoadFile(sourceFile);
+
+
+	if (document.Error())
+	{
+		//error printer
+	}
+
+
+	XMLElement* root = document.RootElement();
+
+	int dim = atoi(root->FindAttribute("dim")->Value());
+
+	XMLElement* bigExplosion = root->FirstChildElement("BigExplosion");
+	string type = bigExplosion->FindAttribute("type")->Value();
+	vector<SpriteComponent*> effect;
+	
+	for (auto i = bigExplosion->FirstChildElement("image");
+		i != bigExplosion->LastChildElement(); i = i->NextSiblingElement())
+	{
+		const char* name = i->FindAttribute("source")->Value();
+		SpriteComponent* sprite = new SpriteComponent(name);
+
+		sprite->_src->x = 0;
+		sprite->_src->y = 0;
+		sprite->_src->w = dim;
+		sprite->_src->h = dim;
+
+		sprite->_dest->x = 0;
+		sprite->_dest->y = 0;
+		sprite->_dest->w = dim;
+		sprite->_dest->h = dim;
+
+		effect.push_back(sprite);
+	}
+
+	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
+
 
 }

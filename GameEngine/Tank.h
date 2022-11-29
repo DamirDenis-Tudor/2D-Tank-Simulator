@@ -5,6 +5,7 @@
 #include"AiBehavior.h"
 #include"Behavior.h"
 #include"Bullet.h"
+#include"Animation.h"
 
 class Tank : public Component
 {
@@ -13,6 +14,7 @@ class Tank : public Component
 	SpriteComponent* _cannon = nullptr;
 
 	vector<Component*> _componets;
+	vector<Bullet*> _bullets;
 
 	Behavior* _behavior = nullptr;
 
@@ -49,6 +51,12 @@ public:
 		{
 			i->draw();
 		}
+
+		for (auto& i : _bullets)
+		{
+			i->draw();
+		}
+
 	}
 
 	void update() override
@@ -64,11 +72,24 @@ public:
 		for (int i = 0; i < size(_componets); i++)
 		{
 			_componets[i]->update();
-
 			if (!_componets[i]->isActive())
 			{
-				delete _componets[i];
+				// make a sitem for animation deletion
+				TimeManager::removeTimer(_componets[i]->_id);
 				_componets.erase(_componets.begin() + i);
+			}
+		}
+
+		for (int i = 0; i < size(_bullets); i++)
+		{
+			_bullets[i]->update();
+
+			if (!_bullets[i]->isActive())
+			{
+				_componets.push_back(new Animation("BigExplosion", _bullets[i]->_position ));
+
+				delete _bullets[i];
+				_bullets.erase(_bullets.begin() + i);
 			}
 		}
 	}
@@ -94,7 +115,7 @@ public:
 				static_cast<int>(SDL_sin((_cannon->_angle - 90) * M_PI / 180) * _cannon->_dest->w / 2)
 			};
 
-			_componets.push_back(new Bullet("Type1", _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
+			_bullets.push_back(new Bullet("Type1", _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
 		}
 	}
 };

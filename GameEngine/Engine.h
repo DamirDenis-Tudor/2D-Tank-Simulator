@@ -50,6 +50,7 @@ public:
 		InputManager::initInput();
 		AssetsStorage::loadTiles("levels/level1scaled2.tmx");
 		AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
+		AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
 
 		initComponets();
 	}

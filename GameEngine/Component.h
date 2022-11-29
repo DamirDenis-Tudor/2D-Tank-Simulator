@@ -15,8 +15,8 @@ protected:
 	bool _active = true;
 
 	static int _counter;
-	int _id;
 public:
+	int _id;
 
 	Component()
 	{

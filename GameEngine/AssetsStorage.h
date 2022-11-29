@@ -37,9 +37,13 @@ public:
 	static int _layerHeight;
 	static map<string, vector<vector<int>> > _mapLayers;
 
+	static map<string, vector<SpriteComponent*>> _effects;
+
 	static void loadMovebles(const char* sourceFile);
 	static SDL_Point* _rotCenter;
 
 	static void loadTiles(const char* sourceFile);
 	static void convertInToMatrix(const char* buffer, std::vector<std::vector<int>>& mapLayer);
+
+	static void loadEffects(const char* sourceFile);
 };

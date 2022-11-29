@@ -8,6 +8,7 @@ using namespace std;
 
 class Bullet : public Component
 {
+	friend class Tank;
 private:
 	SpriteComponent* _sprite = nullptr;
 	Vector2T<int> _position;

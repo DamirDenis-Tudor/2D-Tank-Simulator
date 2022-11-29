@@ -13,6 +13,7 @@ class SpriteComponent : public Component
 	friend class Map;
 	friend class Tank;
 	friend class Bullet;
+	friend class Animation;
 
 private:
 
@@ -69,7 +70,7 @@ public:
 		if (_active)
 		{
 			SDL_RenderCopyEx(RendererManager::_renderer, _texture, _src, _dest ,_angle , &center , SDL_FLIP_NONE);
-		//	SDL_RenderDrawRect(RendererManager::_renderer, _dest);
+			SDL_RenderDrawRect(RendererManager::_renderer, _dest);
 		}
 	}
 
