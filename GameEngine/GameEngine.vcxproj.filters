@@ -122,12 +122,6 @@
     <ClInclude Include="Vector2i.h">
       <Filter>Header Files\UtilitiesHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="Body.h">
-      <Filter>Header Files\GameObjectsHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Cannon.h">
-      <Filter>Header Files\GameObjectsHeaders</Filter>
-    </ClInclude>
     <ClInclude Include="InputMovement.h">
       <Filter>Header Files\Movement</Filter>
     </ClInclude>

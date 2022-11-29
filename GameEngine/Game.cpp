@@ -1,7 +1,11 @@
 #include"Engine.h"
 /*
-	TODO :
-		EFFICIENT MAP DRAWING -> implent enable disable 
+	RETODO :
+		-> time manager
+		-> modify movement classes
+		-> add buulet class
+		-> animation class
+		-> add again animation
 */
 
 int main(int argc, char* argv[])

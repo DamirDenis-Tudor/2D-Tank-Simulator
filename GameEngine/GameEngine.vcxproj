@@ -159,9 +159,7 @@
   <ItemGroup>
     <ClInclude Include="AiMovement.h" />
     <ClInclude Include="AssetsStorage.h" />
-    <ClInclude Include="Body.h" />
     <ClInclude Include="CameraManager.h" />
-    <ClInclude Include="Cannon.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="ColisionManager.h" />
     <ClInclude Include="Component.h" />

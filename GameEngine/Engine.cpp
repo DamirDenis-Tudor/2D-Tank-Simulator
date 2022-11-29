@@ -49,7 +49,6 @@ void Engine::initComponets()
 	Tank* tank7 = director.getTank({ 1024 + 128 ,  256 + 64 }, { 0.4 , 0.4 });
 	_componets.push_back(tank7);
 
-	AssetsStorage::_mapTileDim = 32;
 }
 
 
