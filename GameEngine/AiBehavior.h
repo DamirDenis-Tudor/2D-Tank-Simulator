@@ -56,6 +56,9 @@ public:
 
 		SyncMoves();
 
+		_moves._down = true;;
+		_isShooting = true;
+
 		move(position, velocity);
 	}
 

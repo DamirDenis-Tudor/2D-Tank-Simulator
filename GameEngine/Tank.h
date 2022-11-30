@@ -7,6 +7,8 @@
 #include"Bullet.h"
 #include"Animation.h"
 
+#include "Mediator.h"
+
 /*
 	Descrierea clasei:
 
@@ -30,13 +32,14 @@ class Tank : public Component
 
 	const char* bulletType;
 
-
 public:
-	Tank(SpriteComponent* tracks , SpriteComponent* body, SpriteComponent* cannon, Vector2T<int> position, Vector2T<float> velocity , float shotingTime , const char* type)
-		:_tracks(tracks), _body(body), _cannon(cannon), _position(position), _velocity(velocity), bulletType(type)
-
+	Tank(SpriteComponent* tracks , SpriteComponent* body, SpriteComponent* cannon , Behavior * behavior, Vector2T<int> position, Vector2T<float> velocity , float shotingTime , const char* type)
+		:_tracks(tracks), _body(body), _cannon(cannon), _position(position), _behavior(behavior) , _velocity(velocity), bulletType(type)
 	{
 		TimeManager::createTimer(_id, shotingTime);
+
+		// behaviorul va fi particular tank-ului
+		_behavior->setId(_id);
 	}
 
 	~Tank()
@@ -44,11 +47,6 @@ public:
 		delete _body;
 		delete _cannon;
 		delete _behavior;
-	}
-
-	void setBehavior(Behavior* behavior)
-	{
-		_behavior = behavior;
 	}
 
 	void draw() override
@@ -72,6 +70,8 @@ public:
 		_behavior->movement(_position, _velocity);
 		_behavior->rotationC(_position, _cannon->_angle);
 		_behavior->rotationB(_body->_angle , _tracks->_angle);
+
+		Mediator::notifyTanksPosition(_position, _id);
 
 		syncMovement();
 
@@ -115,6 +115,8 @@ public:
 
 	void checkForBullets()
 	{
+		// daca timerul nu este in functiune inseamna ca
+		// glotul va fi lansat daca este data "comanda"
  		if (!TimeManager::_timers[_id]->isTimerWorking() && _behavior->isLaunchingBullet())
 		{
 			TimeManager::_timers[_id]->resetTimer();

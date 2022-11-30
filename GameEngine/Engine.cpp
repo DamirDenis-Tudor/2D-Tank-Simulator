@@ -12,27 +12,27 @@ void Engine::initComponets()
 	builder->setAtributtes("ColorB", "Type5" );
 	director.setBuilder(builder);
 
-	Tank* tank = director.getTank( { 256 , 256 }, { 0.4 , 0.4 }  , 0.1);
+	Tank* tank = director.getTank( { 256 , 1080 }, { 0.3 , 0.3 }  , 0.1);
 	_componets.push_back(tank);
 
 	EnemyBuilder* builder1 = new EnemyBuilder();
 	director.setBuilder(builder1);
 	
 	builder1->setAtributtes("ColorC", "Type6");
-	Tank* tank1 = director.getTank( { 256 + 128 , 256 + 64 }, { 0.4 , 0.4 } , 0.5 );
-	//_componets.push_back(tank1);
+	Tank* tank1 = director.getTank( { 256 + 128 , 256 + 64 }, { 0.1 , 0.1 } , 0.5 );
+	_componets.push_back(tank1);
 
 	builder1->setAtributtes("ColorA", "Type1");
-	Tank* tank2 = director.getTank({ 256 + 256 , 256 + 64 }, { 0.4 , 0.4 } , 0.3);
-	//_componets.push_back(tank2);
+	Tank* tank2 = director.getTank({ 256 + 256 + 128 , 256  }, { 0.1 , 0.1 } , 0.3);
+	_componets.push_back(tank2);
 
 	builder1->setAtributtes("ColorD", "Type2");
-	Tank* tank3 = director.getTank({ 512+128 , 256 + 64}, { 0.4 , 0.4 } , 0.6);
-	//_componets.push_back(tank3);
+	Tank* tank3 = director.getTank({ 512+256 + 128 , 256 + 64}, { 0.1 , 0.1 } , 0.6);
+	_componets.push_back(tank3);
 
 	builder1->setAtributtes("ColorB", "Type5");
-	Tank* tank4 = director.getTank({ 512 + 256 ,  256 + 64 }, { 0.4 , 0.4 } , 0.6);
-	//_componets.push_back(tank4);
+	Tank* tank4 = director.getTank({ 512 + 256 + 256 ,  256  }, { 0.1 , 0.1 } , 0.6);
+	_componets.push_back(tank4);
 
 }
 
@@ -76,6 +76,8 @@ void Engine::run()
 		}
 
 		SDL_RenderClear(RendererManager::_renderer);
+
+		InputManager::update();
 
 		update();
 

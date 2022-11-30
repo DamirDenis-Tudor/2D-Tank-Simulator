@@ -3,6 +3,7 @@
 #include "Vector2i.h"
 #include "ColisionManager.h"
 #include"TimeManager.h"
+#include"Mediator.h"
 
 /*
 	Descriere clasa:
@@ -25,6 +26,8 @@ struct Moves
 class Behavior
 {
 protected:
+	int _id = 0;
+
 	Moves _moves;
 	bool _isShooting = false;
 
@@ -36,6 +39,11 @@ protected:
 
 public:
 	virtual void movement(Vector2T<int>& position, Vector2T<float> velocity) = 0;
+
+	void setId(int id)
+	{
+		_id = id;
+	}
 
 	void move(Vector2T<int>& position, Vector2T<float> velocity)
 	{
@@ -64,20 +72,29 @@ public:
 		{
 			direction.setX(-1);
 			potentialPos._x += 1;
-		}
-		//am adaugat 1 la stanga si sus deoarece se realizeaza truchiere
+		}	//am adaugat 1 la stanga si sus deoarece se realizeaza truchiere
 
 		// normalizam viteza pe diagonala
 		if (abs(direction._x) != 0 && abs(direction._y) != 0)
 		{
 			velocity *= sqrt(velocity._x + velocity._x);
-
 		}
 
 		potentialPos += velocity * direction * TimeManager::getDeltaTime();
 
+		int value = 0;
 
+		for(auto &i : Mediator::recieveTanksPosition(_id) )
+		{
+			CollisionManager::circleRectagleCollision(potentialPos, i, 2 * AssetsStorage::_mapTileDim);
+		}
 		CollisionManager::mapCollision(potentialPos);
+
+		//for ( auto &i : Mediator::recieveTanksPosition(_id))
+		//{
+		//	std::cout << _id << " : " << i << '\n';
+		//}
+		//std::cout << "\n\n";
 
 		position._x = static_cast <int>(potentialPos._x) - AssetsStorage::_mapTileDim;
 		position._y = static_cast <int>(potentialPos._y) - AssetsStorage::_mapTileDim;
@@ -255,5 +272,6 @@ public:
 
 		angle = (SDL_atan2(posY, posX) * 180 / M_PI) + 90;
 	}
+
 };
 

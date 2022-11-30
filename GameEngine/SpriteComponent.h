@@ -17,6 +17,7 @@
 		-> contructor de copiere : 
 			- folosit la crearea mapei (fac o copie din memorie a sprite-ului)
 			- sau la Animatii si posibil si in alte locuri
+			- sunt smecher
 			
 			!!!Nota : ALOC MEMORIE DOAR PENTRU _DEST PENTRU CA ESTE NECESAR,
 					  IAR PENTRU TEXTURA, _SRC "DOAR" POINTEZ CATRE LOCATIA DIN AssetsStorage
@@ -25,7 +26,7 @@
 
 		->indetificator pentru obiectul urmarit de camera (default este player-ul)
 			- ma mai gandesc daca o sa dau posibiliatea de a centra camera pe ce obiect vreau
-				
+			- iuhu!			
 */
 
 class SpriteComponent : public Component
@@ -33,8 +34,8 @@ class SpriteComponent : public Component
 	friend class AssetsStorage;
 	friend class Map;
 	friend class Tank;
-	friend class Bullet;
-	friend class Animation;
+	friend class Bullet;	//glont
+	friend class Animation; // animatie
 
 private:
 
@@ -83,7 +84,8 @@ public:
 		_dest->x = position.getX();
 		_dest->y = position.getY();
 	}
-
+	//foarte frumos din partea ta gen esti un baiat de treba care aresi o pula devis
+	//@I@ >>>>>>>>>>>>>>>>>>
 	void draw() override
 	{
 		if (isActive())

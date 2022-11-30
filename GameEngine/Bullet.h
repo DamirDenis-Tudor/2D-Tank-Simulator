@@ -4,6 +4,8 @@
 #include"TimeManager.h"
 #include"ColisionManager.h"
 #include<string>
+#include"Mediator.h"
+
 using namespace std;
 
 /*

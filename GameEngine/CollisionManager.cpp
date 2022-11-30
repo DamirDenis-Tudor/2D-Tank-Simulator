@@ -1,6 +1,6 @@
 #include"ColisionManager.h"
 
-bool CollisionManager::mapCollision(Vector2T<float>& potentialPos)
+void CollisionManager::mapCollision(Vector2T<float>& potentialPos)
 {
 	/*
 	* ->pentru coliziune verific doar 4 tile-uri
@@ -20,7 +20,6 @@ bool CollisionManager::mapCollision(Vector2T<float>& potentialPos)
 			 -> normalizam vectorul 
 			 => pozitie  = pozitie - normVect * overlap
 	*/
-	bool colision = false;
 
 	int startCellX = std::max(0, (int)(potentialPos.getX()) / AssetsStorage:: _mapTileDim - 1);
 	int endCellX = std::min(AssetsStorage::_layerWidth - 1, (int)(potentialPos.getX()) / AssetsStorage::_mapTileDim + 1);
@@ -34,49 +33,54 @@ bool CollisionManager::mapCollision(Vector2T<float>& potentialPos)
 		{
 			if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 			{
-
-
-				Vector2T<float> nearestPoint;
-				nearestPoint.setX(std::max(float(j * AssetsStorage::_mapTileDim),
-					std::min(float( potentialPos.getX() ), float((j + 1) * AssetsStorage::_mapTileDim))));
+				Vector2T<int> rectPos = { j * AssetsStorage::_mapTileDim , i * AssetsStorage::_mapTileDim };
 				
-				nearestPoint.setY(std::max(float(i * AssetsStorage::_mapTileDim),
-					std::min(float(potentialPos.getY()), float((i + 1) * AssetsStorage::_mapTileDim))));
-
-
-				// calculam punctul de inceput
-				// al diferentei de lungime 
-
-				Vector2T<float> rayToNearest = nearestPoint - potentialPos;
-
-				//calculam distanta pana
-				//la cel mai apropiat punct 
-
-				float nearestPointDistance = rayToNearest.mag();
-
-				// "comparam" distanta cu raza cercului
-
-				float fOverlap = AssetsStorage::_mapTileDim - nearestPointDistance;
-
-				if (std::isnan(fOverlap))
-				{
-					fOverlap = 0;
-				}
-
-				//daca overlap-ul este mai mare s-a produs coliziunea => trebuie corectat;
-
-				if (fOverlap > 0)
-				{
-					Vector2T<float> normToNearest = rayToNearest / nearestPointDistance;
-					
-					//recalibram obiectul 
-					potentialPos = potentialPos - normToNearest * fOverlap;
-					colision = true;
-				}
-
+				circleRectagleCollision(potentialPos, rectPos, AssetsStorage::_mapTileDim);
 			}
 		}
 	}
+}
+
+bool CollisionManager::circleRectagleCollision(Vector2T<float>& potentialPos, Vector2T<int> rectaglePos , int rectagleDim)
+{
+	int colision = false;
+	Vector2T<float> nearestPoint;
+	nearestPoint.setX(std::max(float(rectaglePos._x),
+		std::min(float(potentialPos._x), float( rectaglePos._x + rectagleDim))));
+
+	nearestPoint.setY(std::max(float(rectaglePos._y),
+		std::min(float(potentialPos._y), float(rectaglePos._y + rectagleDim))));
+
+	// calculam punctul de inceput
+	// al diferentei de lungime 
+
+	Vector2T<float> rayToNearest = nearestPoint - potentialPos;
+
+	//calculam distanta pana
+	//la cel mai apropiat punct 
+
+	float nearestPointDistance = rayToNearest.mag();
+
+	// "comparam" distanta cu raza cercului
+
+	float fOverlap = AssetsStorage::_mapTileDim - nearestPointDistance;
+
+	if (std::isnan(fOverlap))
+	{
+		fOverlap = 0;
+	}
+
+	//daca overlap-ul este mai mare s-a produs coliziunea => trebuie corectat;
+
+	if (fOverlap > 0)
+	{
+		Vector2T<float> normToNearest = rayToNearest / nearestPointDistance;
+
+		//recalibram obiectul 
+		potentialPos = potentialPos - normToNearest * fOverlap;
+		colision = true;
+	}
+
 	return colision;
 }
 

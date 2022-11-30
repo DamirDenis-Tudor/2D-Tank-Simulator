@@ -146,6 +146,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Mediator.cpp" />
     <ClCompile Include="PlayerBuilder.cpp" />
     <ClCompile Include="RendererManager.cpp" />
     <ClCompile Include="Builder.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="InputBehavior.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Behavior.h" />
+    <ClInclude Include="Mediator.h" />
     <ClInclude Include="PlayerBuilder.h" />
     <ClInclude Include="RendererManager.h" />
     <ClInclude Include="SoundManager.h" />

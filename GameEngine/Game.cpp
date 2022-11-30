@@ -1,11 +1,8 @@
 #include"Engine.h"
 /*
-	RETODO :
-		-> time manager
-		-> modify movement classes
-		-> add buulet class
-		-> animation class
-		-> add again animation
+	Todo::
+		->animationManager -> deseneaza-le in engine
+		asa vor aparea peste celelalte tank-uri;
 */
 
 int main(int argc, char* argv[])

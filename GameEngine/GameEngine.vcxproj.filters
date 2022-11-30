@@ -49,6 +49,12 @@
     <Filter Include="Source Files\GameObjectsSources\Componets">
       <UniqueIdentifier>{fd28c46c-f5ac-469c-b1bc-d430c0fbd979}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Mediator">
+      <UniqueIdentifier>{c83c2a8a-248e-45d0-9621-525ab78056c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mediator">
+      <UniqueIdentifier>{d55ac278-b43e-4871-92ed-cccba3610748}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -92,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\GameObjectsSources\Componets</Filter>
+    </ClCompile>
+    <ClCompile Include="Mediator.cpp">
+      <Filter>Source Files\Mediator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>Header Files\ManagerHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator.h">
+      <Filter>Header Files\Mediator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

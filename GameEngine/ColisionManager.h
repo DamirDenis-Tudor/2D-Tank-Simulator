@@ -17,7 +17,7 @@ private:
 public:
 	~CollisionManager() {};
 	
-	static bool mapCollision(Vector2T<float>& potentialPos);
-	static bool circleCircleCollision(Vector2T<float>& potentialPos );
+	static void mapCollision(Vector2T<float>& potentialPos);
 	static bool pointCollision(Vector2T<float>& potentialPos);
+	static bool circleRectagleCollision(Vector2T<float>& circlePotentialPos, Vector2T<int> rectaglePos , int rectagleDim);
 };

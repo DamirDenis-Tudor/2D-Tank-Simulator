@@ -41,7 +41,6 @@ public:
 
 	void update() override
 	{
-		InputManager::update();
 		for (auto& i : _componets)
 		{
 			i->update();
