@@ -7,6 +7,27 @@
 #include "RendererManager.h"
 #include "CameraManager.h"
 
+/*
+	Descriere clasa:
+
+		-> constructori cu parametri:
+			- folosit la incarcarea in memorie a sprite-urilor
+			   (folosit doar in AssetsStorage)
+		
+		-> contructor de copiere : 
+			- folosit la crearea mapei (fac o copie din memorie a sprite-ului)
+			- sau la Animatii si posibil si in alte locuri
+			
+			!!!Nota : ALOC MEMORIE DOAR PENTRU _DEST PENTRU CA ESTE NECESAR,
+					  IAR PENTRU TEXTURA, _SRC "DOAR" POINTEZ CATRE LOCATIA LOR
+
+		-> desenez sprite-ul doar daca este in cadrul camerei
+
+		->indetificator pentru obiectul urmarit de camera (default este player-ul)
+			- ma mai gandesc daca o sa dau posibiliatea de a centra camera pe ce obiect vreau
+				
+*/
+
 class SpriteComponent : public Component
 {
 	friend class AssetsStorage;
@@ -24,7 +45,7 @@ private:
 	float _angle = 0;
 
 public:
-	bool _isGod = false;
+	bool _isOnCameraFocus = false;
 	bool _isAi = false;
 	SpriteComponent(const char* source)
 	{
@@ -39,9 +60,7 @@ public:
 
 	SpriteComponent(SpriteComponent*& sprite)
 	{
-
-		_src = new SDL_Rect;
-		*_src = *sprite->_dest;
+		_src = sprite->_dest;
 
 		_dest = new SDL_Rect;
 		*_dest = *sprite->_dest;
@@ -67,7 +86,7 @@ public:
 
 	void draw() override
 	{
-		if (_active)
+		if (isActive())
 		{
 			SDL_RenderCopyEx(RendererManager::_renderer, _texture, _src, _dest ,_angle , &center , SDL_FLIP_NONE);
 		//	SDL_RenderDrawRect(RendererManager::_renderer, _dest);
@@ -76,7 +95,7 @@ public:
 
 	void update() override
 	{
-		if (!_isGod )
+		if (!_isOnCameraFocus )
 		{
 			isOnCamera();
 

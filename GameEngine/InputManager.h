@@ -3,6 +3,11 @@
 #include"SDL.h"
 #include"Vector2i.h"
 
+/*
+	Descriere clasa:
+		-> 
+*/
+
 class InputManager
 {
 private:

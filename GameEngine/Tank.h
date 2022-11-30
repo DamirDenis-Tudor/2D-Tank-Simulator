@@ -7,6 +7,13 @@
 #include"Bullet.h"
 #include"Animation.h"
 
+/*
+	Descrierea clasei:
+
+		-> behavior partiularizat in funtie de tipul tank-ului
+		   (Player sau Enemy) vezi clasele Director si builder
+*/
+
 class Tank : public Component
 {
 	SpriteComponent* _tracks = nullptr;
@@ -64,7 +71,6 @@ public:
 	{
 		_behavior->movement(_position, _velocity);
 		_behavior->rotationC(_position, _cannon->_angle);
-
 		_behavior->rotationB(_body->_angle , _tracks->_angle);
 
 		syncMovement();
@@ -81,7 +87,7 @@ public:
 
 			if (!_bullets[i]->isActive())
 			{
-				_animations.push_back(new Animation("Impact1", _bullets[i]->_position , _cannon->_angle));
+				_animations.push_back(new Animation("BigExplosion", _bullets[i]->_position , _cannon->_angle));
 
 				delete _bullets[i];
 				_bullets.erase(_bullets.begin() + i);
@@ -119,7 +125,13 @@ public:
 				static_cast<int>(SDL_sin((_cannon->_angle - 90) * M_PI / 180) * _cannon->_dest->w / 2)
 			};
 
+			/*
+				circumference -> pozitia de inceput a bulletului va fi
+				de pe contului certului dormat de rotatia cannonului
+				avand acelasi unghi; 
+			*/
 			_bullets.push_back(new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
+
 			_animations.push_back(new Animation("Shot1", _position + circumference + _cannon->_dest->w / 2 , _cannon->_angle));
 
 		}

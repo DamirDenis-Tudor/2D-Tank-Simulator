@@ -6,6 +6,16 @@
 #include<string>
 using namespace std;
 
+/*
+* Descrierea clasei:
+*	
+	-> pentru coliziunea obiectului de tip bullet se 
+	   considera punctul de mijloc al acestuia
+
+	Nota* -> desenarea sprite-ul este relativa la camera insa 
+			 pozitia fizica nu este (trebuie tinut cont de Camera offset)
+*/
+
 class Bullet : public Component
 {
 	friend class Tank;
@@ -40,6 +50,7 @@ public:
 		{
 			_position._x = static_cast<int>(potentialPos._x);
 			_position._y = static_cast<int>(potentialPos._y);
+
 			_sprite->setPosition(_position - CameraManager::offset - _sprite->_dest->w/2);
 		}
 

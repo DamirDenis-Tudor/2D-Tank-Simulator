@@ -14,16 +14,68 @@ using namespace std;
 using namespace tinyxml2;
 
 /*
-*	sprites : bodies , cannons , bullet 
-	Sprites are loaded to a map via an id = [ {"Body" , "Color" , "Type" } ]  => bodySprite.
-	For bullet Color is empty .
+	Descriere clasa:
+
+		-> foloseste libraria tinyxml2, aceasta trasforma fisirul intr-un arbore;
+		-> aplicatia Tiled genereaza o mapa cu un numar de matrici
+		   corespunzatoare numarului de layere + locatiile si carateristicile 
+		   sprite-urilor
+
+		-> format :
+
+	*
+	* <tank ....
+	*
+	*	<body - atributes
+	*		<tileset - atributes ..
+	*			<image - atributes
+	*			.
+	*			.
+	*			.
+	*			.
+	*	<cannons - atributes
+	*		<tileset - atributes
+	*			<image - atributes
+	*			.
+	*			.
+	*			.
+	*			.
+	*	<bullets - atributes
+	*		<tileset - atributes
+	*			<image - atributes
+	*			.
+	*			.
+	*			.
+	*			.
+	* 	<tracks - atributes
+	*			<image - atributes
+	*
+	* <tank/>
+	*
+	* 
+	
+	-> exemplu : 
+	 -	_movebles = map cu id-ul o multime si continutul un sprite
+			> acces bullet : _movebles[{"Type1" , "bullet"}];
+			> acces body : _movebles[{"ColorA" , "Type1" , "bullet"}];
+			etc.
+	- _mapLayers = map cu id-ul layerului ca indetificator si continul o matrice
+			> layer = _mapLayers["ground"]
+	- _effets = map cu id-ul effectului ca indetificator si continutul un vector de Sprite-uri
+			> effect = _effects["BigExplosion"]
+
+	Nota: 
+		Tipurile au formatul : "Type1" , ... , "Type8"
+		Culorile au formatul : "ColorA" , ... , "ColorD"
+		Layerele au formatul : "ground" , "decor" , "colidble"
+		Effectele au formaul : "BigExplosion" , "Shot1" , "Impact1"
+		
 */
 
 class AssetsStorage
 {
 private:
 
-	//static AssetsStorage* _instance;
 	AssetsStorage(){}
 
 public:
@@ -38,9 +90,9 @@ public:
 	static map<string, vector<vector<int>> > _mapLayers;
 
 	static map<string, vector<SpriteComponent*>> _effects;
+	static SDL_Point* _rotCenter;
 
 	static void loadMovebles(const char* sourceFile);
-	static SDL_Point* _rotCenter;
 
 	static void loadTiles(const char* sourceFile);
 	static void convertInToMatrix(const char* buffer, std::vector<std::vector<int>>& mapLayer);

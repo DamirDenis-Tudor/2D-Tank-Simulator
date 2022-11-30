@@ -13,7 +13,7 @@ class PlayerBuilder : public Builder
 public:
 	PlayerBuilder()
 	{
-		godComponent = true;
+		_cameraFocus = true;
 	}
 
 };

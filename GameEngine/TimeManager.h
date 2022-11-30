@@ -5,6 +5,21 @@
 #include<iostream>
 using namespace std;
 
+
+/*
+	Descrire clase:
+		-> clasa de baza TimeManager are metode ce-i permit
+		   sa creeze , elimine timere pe baza unui id
+			- aceasta are Timerii stocati int-o mapa deoarece _id-ul componentei
+			  creatoare poate sa varieze;
+			EXEMPLU:
+				->dupa incarcare tuturor tile-urilor + copiile afferente, la creearea
+				unui componete de tip tank, _id acestuia va fi 1500+ (de exmplu)
+				->la fel pentru animatii
+				
+		!Nota : deltaTime-ul este in ms
+*/
+
 class Timer
 {
 private:
@@ -20,9 +35,6 @@ public:
 
 	bool isTimerWorking()
 	{
-		// std::cout << "Start : " << _startTime << " " << "EndTime: " << _reachTime << "\n";
-	//	std::cout << "startTime :: " << _startTime  <<" reach : "<< _reachTime << "\n\n";
-
 		if (_startTime >= _reachTime)
 		{
 			_startTime = 0;

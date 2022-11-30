@@ -4,15 +4,34 @@
 #include "ColisionManager.h"
 #include"TimeManager.h"
 
-class Behavior
+/*
+	Descriere clasa:
+
+		-> clasa abstracta de descrie compotamentul unui tank:
+			> rotatii de doua feluri , miscare 
+
+		Nota: in clasei mostenitoare metoda vrtuala pura movement permite
+			  implementarea unui movemnt particular fara a modifica clasa tank
+*/
+
+struct Moves
 {
-protected:
 	bool _up = false;
 	bool _down = false;
 	bool _right = false;
 	bool _left = false;
-	bool _clicked = false;
+};
+
+class Behavior
+{
+protected:
+	Moves _moves;
+	bool _isShooting = false;
+
+	//mouse-ul sau un alt tank pentru Ai
 	Vector2T<int> _target = { 0 , 0 };
+
+	// daca este PlayerBehavior _offset-ul va fi cel al camerei
 	Vector2T<int> _offset = { 0 , 0 };
 
 public:
@@ -23,30 +42,32 @@ public:
 		Vector2T<float> direction(0, 0);
 
 		Vector2T<float> potentialPos;
+		//adaug _mapTileDim deoarece vreau punctul de mijloc 
 		potentialPos._x = (position._x + AssetsStorage::_mapTileDim);
 		potentialPos._y = (position._y + AssetsStorage::_mapTileDim);
 
 
-		if (_up)
+		if (_moves._up)
 		{
 			direction.setY(-1);
 			potentialPos._y += 1;
 		}
-		if (_down)
+		if (_moves._down)
 		{
 			direction.setY(1);
 		}
-		if (_right)
+		if (_moves._right)
 		{
 			direction.setX(1);
 		}
-		if (_left)
+		if (_moves._left)
 		{
 			direction.setX(-1);
 			potentialPos._x += 1;
 		}
+		//am adaugat 1 la stanga si sus deoarece se realizeaza truchiere
 
-		//normalazi velocity vector when moove diagonally
+		// normalizam viteza pe diagonala
 		if (abs(direction._x) != 0 && abs(direction._y) != 0)
 		{
 			velocity *= sqrt(velocity._x + velocity._x);
@@ -56,7 +77,7 @@ public:
 		potentialPos += velocity * direction * TimeManager::getDeltaTime();
 
 
-		CollisionManager::circleCollision(potentialPos);
+		CollisionManager::mapCollision(potentialPos);
 
 		position._x = static_cast <int>(potentialPos._x) - AssetsStorage::_mapTileDim;
 		position._y = static_cast <int>(potentialPos._y) - AssetsStorage::_mapTileDim;
@@ -65,7 +86,7 @@ public:
 
 	bool isLaunchingBullet()
 	{
-		if (_clicked)
+		if (_isShooting)
 		{
 			return true;
 		}
@@ -82,7 +103,7 @@ public:
 	*/
 		bool oneKeyPressed = true;
 		//directie individuala
-		if (_up && !_right && !_left && _angle != 0)
+		if (_moves._up && !_moves._right && !_moves._left && _angle != 0)
 		{
 
 			if ((_angle >= 0 && _angle <= 180) || _angle < -180)
@@ -95,7 +116,7 @@ public:
 			}
 
 		}
-		if (_right && !_up && !_down && _angle != 90)
+		if (_moves._right && !_moves._up && !_moves._down && _angle != 90)
 		{
 			if (_angle <= -180 || (_angle <= 180 && _angle >= 90) || _angle <= -90)
 			{
@@ -106,7 +127,7 @@ public:
 				_angle += 5;
 			}
 		}
-		if (_left && !_up && !_down && _angle != -90)
+		if (_moves._left && !_moves._up && !_moves._down && _angle != -90)
 		{
 			if (_angle >= 180 || (_angle >= -180 && _angle <= -90) || _angle >= 90)
 			{
@@ -117,7 +138,7 @@ public:
 				_angle -= 5;
 			}
 		}
-		if (_down && !_right && !_left && (_angle != 180 && _angle != -180))
+		if (_moves._down && !_moves._right && !_moves._left && (_angle != 180 && _angle != -180))
 		{
 			if (_angle >= 90 || (_angle >= 0 && _angle < 90))
 			{
@@ -131,7 +152,7 @@ public:
 
 		//directie comuna
 
-		if (_up && _left && _angle != -45 && _angle != 360 - 45)
+		if (_moves._up && _moves._left && _angle != -45 && _angle != 360 - 45)
 		{
 			oneKeyPressed = false;
 			if ((_angle >= 180 && _angle >= 45) || (_angle <= 0 && _angle <= -45))
@@ -144,7 +165,7 @@ public:
 			}
 
 		}
-		else if (_up && _right && _angle != 45 && _angle != 45 - 360)
+		else if (_moves._up && _moves._right && _angle != 45 && _angle != 45 - 360)
 		{
 			oneKeyPressed = false;
 			if (_angle > -180 && _angle > 180 || (_angle >= 0 && _angle <= 45))
@@ -158,7 +179,7 @@ public:
 
 		}
 
-		if (_down && _left && _angle != -135 && _angle != 360 - 135)
+		if (_moves._down && _moves._left && _angle != -135 && _angle != 360 - 135)
 		{
 			oneKeyPressed = false;
 			if (_angle <= 0 && _angle >= -135)
@@ -170,7 +191,7 @@ public:
 				_angle += 5;
 			}
 		}
-		else if (_down && _right && _angle != 135 && _angle != 135 - 360)
+		else if (_moves._down && _moves._right && _angle != 135 && _angle != 135 - 360)
 		{
 			if (_angle >= 0 && _angle <= 135)
 			{
@@ -202,7 +223,7 @@ public:
 
 		if (!oneKeyPressed)
 		{
-			if (_up)
+			if (_moves._up)
 			{
 				if (_angle == 45 - 360)
 				{

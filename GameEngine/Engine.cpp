@@ -12,7 +12,7 @@ void Engine::initComponets()
 	builder->setAtributtes("ColorB", "Type2" );
 	director.setBuilder(builder);
 
-	Tank* tank = director.getTank( { 256 , 256 }, { 0.4 , 0.4 }  , 0.2);
+	Tank* tank = director.getTank( { 256 , 256 }, { 0.4 , 0.4 }  , 1);
 	_componets.push_back(tank);
 
 	EnemyBuilder* builder1 = new EnemyBuilder();
@@ -20,19 +20,19 @@ void Engine::initComponets()
 	
 	builder1->setAtributtes("ColorC", "Type6");
 	Tank* tank1 = director.getTank( { 256 + 128 , 256 + 64 }, { 0.4 , 0.4 } , 0.5 );
-	_componets.push_back(tank1);
+	//_componets.push_back(tank1);
 
 	builder1->setAtributtes("ColorA", "Type1");
 	Tank* tank2 = director.getTank({ 256 + 256 , 256 + 64 }, { 0.4 , 0.4 } , 0.3);
-	_componets.push_back(tank2);
+	//_componets.push_back(tank2);
 
 	builder1->setAtributtes("ColorD", "Type2");
 	Tank* tank3 = director.getTank({ 512+128 , 256 + 64}, { 0.4 , 0.4 } , 0.6);
-	_componets.push_back(tank3);
+	//_componets.push_back(tank3);
 
 	builder1->setAtributtes("ColorB", "Type5");
 	Tank* tank4 = director.getTank({ 512 + 256 ,  256 + 64 }, { 0.4 , 0.4 } , 0.6);
-	_componets.push_back(tank4);
+	//_componets.push_back(tank4);
 
 }
 

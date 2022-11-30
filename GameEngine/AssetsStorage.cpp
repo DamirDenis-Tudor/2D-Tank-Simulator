@@ -1,62 +1,14 @@
 #include "AssetsStorage.h"
 
 int AssetsStorage::_mapTileDim = 0;
-
 map<set< string >, SpriteComponent* > AssetsStorage::_movebles = {};
 vector<SpriteComponent* > AssetsStorage::_tiles = {};
 int AssetsStorage::_layerWidth = 0;
 int AssetsStorage::_layerHeight = 0;
-
 SDL_Point* AssetsStorage::_rotCenter = new SDL_Point;
-
 map<string, vector<vector<int>> > AssetsStorage::_mapLayers = {};
-
 map<string, vector<SpriteComponent*>> AssetsStorage::_effects = {};
 
-/*
-	* tank (root) -> bodies		 |
-	*			  -> cannons	 |
-	*			  -> bullets	 |
-	*			  -> tracks      |
-	*			  -> effects     |
-	*
-	* <tank ....
-	*
-	*	<body - atributes
-	*		<tileset - atributes ..
-	*			<image - atributes
-	*			.
-	*			.
-	*			.
-	*			.
-	*	<cannons - atributes
-	*		<tileset - atributes
-	*			<image - atributes
-	*			.
-	*			.
-	*			.
-	*			.
-	*	<bullets - atributes
-	*		<tileset - atributes
-	*			<image - atributes
-	*			.
-	*			.
-	*			.
-	*			.
-	* 	<tracks - atributes
-	*		<tileset - atributes
-	*			<image - atributes
-	*			.
-	*			.
-	*			.
-	*			.
-	* 	<effects - atributes
-	*		<tileset - atributes
-	*			<image - atributes
-	*
-	*
-	* <tank/>
-	*/
 
 void AssetsStorage::loadMovebles(const char* sourceFile)
 {
@@ -74,9 +26,13 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 	tinyxml2::XMLElement* root = document.RootElement();
 
 	int dim = atoi(root->FindAttribute("dim")->Value());
-
+	
+	//centrul de rotatie al cannon-ului
 	_rotCenter->x = (atoi(root->FindAttribute("rotationX")->Value()));
 	_rotCenter->y = (atoi(root->FindAttribute("rotationY")->Value()));
+	
+
+	//incarcare sprite-uri bodies
 
 	tinyxml2::XMLElement* body = root->FirstChildElement("body");
 
@@ -101,6 +57,8 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 
 	}
 
+	//incarcare sprite-uri cannons
+
 	tinyxml2::XMLElement* cannon = root->FirstChildElement("cannon");
 
 	for (auto i = cannon->FirstChildElement("tileset"); i != cannon->LastChildElement(); i = i->NextSiblingElement())
@@ -123,6 +81,7 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 
 	}
 
+	//incarcare sprite-uri bullets
 	tinyxml2::XMLElement* bullet = root->FirstChildElement("bullet");
 
 	for (auto i = bullet->FirstChildElement(); i != bullet->LastChildElement(); i = i->NextSiblingElement())
@@ -145,6 +104,8 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 			({ "bullet" ,i->FindAttribute("type")->Value() }, sprite));
 
 	}
+
+	//incarcare sprite-uri tracks
 
 	tinyxml2::XMLElement* tracks = root->FirstChildElement("tracks");
 	SpriteComponent* sprite = new SpriteComponent(tracks->FirstChildElement()->FindAttribute("source")->Value());
@@ -183,8 +144,10 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 
 	tinyxml2::XMLElement* child = root->FirstChildElement("tileset");
 
-	// data interes
 	const char* source = nullptr;
+
+	//daca am sprite-uri mai mare de dimesiunea unui tile 
+	//trebuie sa le incarc in memorie segmentate
 	int tileWidth = 0;
 	int tileHeight = 0;
 	int tileCount = 0;
@@ -274,7 +237,7 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 
 void AssetsStorage::convertInToMatrix(const char* buffer, std::vector<std::vector<int>>& mapLayer)
 {
-
+	//functia are in vedere faptul ca id-ul unui sprite nu poate depasi 999
 	buffer++; //first is \n
 
 	std::vector<int> line;

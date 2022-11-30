@@ -1,6 +1,6 @@
 #include"ColisionManager.h"
 
-bool CollisionManager::circleCollision(Vector2T<float>& potentialPos)
+bool CollisionManager::mapCollision(Vector2T<float>& potentialPos)
 {
 	bool colision = false;
 	//spatiul de detectare a coliziunilor => 2 X 2

@@ -4,6 +4,16 @@
 #include "CameraManager.h"
 #include "InputManager.h"
 
+/*
+	Descriere clasa:
+		-> 
+*/
+
+/*
+	TODO:
+		->implement syncCamera in Camera Manager
+*/
+
 class InputBehavior : public Behavior
 {
 	void cameraSync(Vector2T<int>& position)
@@ -40,11 +50,11 @@ class InputBehavior : public Behavior
 
 	void syncInput()
 	{
-		_down = InputManager::_down;
-		_up = InputManager::_up;
-		_left = InputManager::_left;
-		_right = InputManager::_right;
-		_clicked = InputManager::clicked;
+		_moves._down = InputManager::_down;
+		_moves._up = InputManager::_up;
+		_moves._left = InputManager::_left;
+		_moves._right = InputManager::_right;
+		_isShooting = InputManager::clicked;
 		_target = InputManager::mousePos;
 	}
 

@@ -63,9 +63,6 @@
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Source Files\ExternalSources</Filter>
     </ClCompile>
-    <ClCompile Include="Tank.cpp">
-      <Filter>Source Files\GameObjectsSources</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerBuilder.cpp">
       <Filter>Source Files\Builder</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
     <ClCompile Include="AssetsStorage.cpp">
       <Filter>Source Files\ManagersSources</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files\GameObjectsSources</Filter>
-    </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Source Files\ManagersSources</Filter>
     </ClCompile>
@@ -95,9 +89,6 @@
     </ClCompile>
     <ClCompile Include="CameraManager.cpp">
       <Filter>Source Files\ManagersSources</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Source Files\GameObjectsSources</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\GameObjectsSources\Componets</Filter>

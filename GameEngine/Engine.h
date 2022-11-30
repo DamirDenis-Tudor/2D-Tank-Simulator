@@ -15,7 +15,11 @@
 #include"InputManager.h"
 
 /*
-	Make clear functions for managers
+	Clasa responsabila pentru :
+
+		-> initializarea managerilor(daca este cazul)
+		-> gameloop
+		-> apelul funtiilor de draw , update pentru celelalte componente
 */
 
 class Engine : public Component

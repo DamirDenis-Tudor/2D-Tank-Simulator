@@ -6,6 +6,13 @@
 #include"Vector2i.h"
 
 /*
+* Descrierea clasei :
+*	
+*	-> are rolul de a crea componentele necesare
+*	   pentru obiectul cerut de Director;
+*	
+*	Nota : este clasa abstracta => EnemyBuilder , PlayerBuilder
+*
 */
 
 class Builder 
@@ -17,8 +24,8 @@ protected:
 	const char* _type = nullptr;
 
 public:
-	bool godComponent = false;
-	bool aiComponent = false;
+	bool _cameraFocus = false;
+	bool _isAi = false;
 
 	void setAtributtes(const char* color, const char* type)
 	{
@@ -29,8 +36,8 @@ public:
 	{
 		SpriteComponent* body = new SpriteComponent( AssetsStorage::_movebles[{_color , _type , "body"}] );
 
-		body->_isGod = godComponent;
-		body->_isAi = aiComponent;
+		body->_isOnCameraFocus = _cameraFocus;
+		body->_isAi = _isAi;
 
 		return body;
 	}
@@ -39,8 +46,8 @@ public:
 	{
 		SpriteComponent* cannon = new SpriteComponent(AssetsStorage::_movebles[{_color , _type , "cannon"}]);
 
-		cannon->_isGod = godComponent;
-		cannon->_isAi = aiComponent;
+		cannon->_isOnCameraFocus = _cameraFocus;
+		cannon->_isAi = _isAi;
 
 		return cannon;
 	}
@@ -49,8 +56,8 @@ public:
 	{
 		SpriteComponent* tracks = new SpriteComponent(AssetsStorage::_movebles[{"tracks"}]);
 
-		tracks->_isGod = godComponent;
-		tracks->_isAi = aiComponent;
+		tracks->_isOnCameraFocus = _cameraFocus;
+		tracks->_isAi = _isAi;
 
 		return tracks;
 	}

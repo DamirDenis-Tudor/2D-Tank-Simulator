@@ -4,6 +4,17 @@
 #include"AssetsStorage.h"
 #include"TimeManager.h"
 
+/*
+	Descrierea clasei:
+		
+		-> face o copie frame-urilor animatiei din AssetsStorage;
+		-> are un timer default de afisare a frame-urilor;
+
+		!NOTA: Animatia este relativa la camera => actualizarea 
+			   la fiecare desenare a pozitie, astfel daca player-ul se 
+			   misca animatia "ramane pe loc" cum este firesc;
+*/
+
 class Animation : public Component
 {
 private:

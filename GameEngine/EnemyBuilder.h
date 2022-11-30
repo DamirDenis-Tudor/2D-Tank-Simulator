@@ -2,11 +2,6 @@
 
 #include"Builder.h"
 
-/*
-	TODO:
-		-> add more aspects in enemy builder
-*/
-
 class EnemyBuilder : public Builder
 {
 
@@ -20,7 +15,7 @@ class EnemyBuilder : public Builder
 public:
 	EnemyBuilder()
 	{
-		aiComponent = true;
+		_isAi = true;
 	}
 };
 

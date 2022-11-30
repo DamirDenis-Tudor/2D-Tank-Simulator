@@ -139,7 +139,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetsStorage.cpp" />
-    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -147,10 +146,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="PlayerBuilder.cpp" />
     <ClCompile Include="RendererManager.cpp" />
-    <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Builder.cpp" />
     <ClCompile Include="Director.cpp" />
     <ClCompile Include="TimeManager.cpp" />
