@@ -364,4 +364,8 @@ void AssetsStorage::loadEffects(const char* sourceFile)
 	}
 
 	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
+	
+	//optimization -> reset couter
+	SpriteComponent c;
+	c.resetCouter();
 }

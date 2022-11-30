@@ -70,6 +70,10 @@ public:
 
 			}
 		}
+
+		//optimization -> reset couter
+		SpriteComponent c;
+		c.resetCouter();
 	}
 
 	void draw()  override

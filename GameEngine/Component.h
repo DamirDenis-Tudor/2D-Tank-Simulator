@@ -33,6 +33,7 @@ public:
 	Component()
 	{
 		_id = _counter;
+		std::cout << _counter << "\n";
 		_counter++;
 	}
 
@@ -52,6 +53,11 @@ public:
 	bool isActive()
 	{
 		return _active;
+	}
+
+	void resetCouter()
+	{
+		_counter = 0;
 	}
 
 };

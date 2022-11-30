@@ -18,6 +18,7 @@ public:
 	~CollisionManager() {};
 	
 	static void mapCollision(Vector2T<float>& potentialPos);
-	static bool pointCollision(Vector2T<float>& potentialPos);
+	static bool pointCollisionMap(Vector2T<float>& potentialPos);
+	static bool pointCollisionRectagle(Vector2T<float>& potentialPos , Vector2T<int> rectPos , int rectDim);
 	static bool circleRectagleCollision(Vector2T<float>& circlePotentialPos, Vector2T<int> rectaglePos , int rectagleDim);
 };

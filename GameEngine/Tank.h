@@ -91,6 +91,7 @@ public:
 
 				delete _bullets[i];
 				_bullets.erase(_bullets.begin() + i);
+				_counter--;
 			}
 		}
 
@@ -102,6 +103,7 @@ public:
 			{
 				TimeManager::removeTimer(_animations[i]->_id);
 				_animations.erase(_animations.begin() + i);
+				_counter--;
 			}
 		}
 	}
@@ -132,7 +134,9 @@ public:
 				de pe contului cercului format de rotatia cannonului
 				-> are acelasi unghi cu al cannon-ului; 
 			*/
-			_bullets.push_back(new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
+
+			Bullet* bullet = new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle , _id);
+			_bullets.push_back(bullet);
 
 			_animations.push_back(new Animation("Shot1", _position + circumference + _cannon->_dest->w / 2 , _cannon->_angle));
 

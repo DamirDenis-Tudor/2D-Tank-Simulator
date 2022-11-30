@@ -40,6 +40,7 @@ public:
 	~Animation()
 	{
 		TimeManager::removeTimer(_id);
+		_counter -= _frames;
 		_anim.clear();
 	}
 

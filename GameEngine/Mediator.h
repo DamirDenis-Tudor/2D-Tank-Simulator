@@ -6,6 +6,10 @@
 
 using namespace std;
 
+//ai grija sa scoti tank-urile daca sunt disable
+
+//daca nu vrea collisiuni bullets bullets scot bullets
+
 class Mediator
 {
 	static map<int, Vector2T<int> > _tanks;
@@ -15,15 +19,17 @@ public:
 
 	static vector<Vector2T<int>> recieveBulletsPosition(int tankId, int bulletId)
 	{
-		//vector<Vector2T<int>> enemyBullets;
+		vector<Vector2T<int>> enemyBullets;
 
-		//for (auto& i : _bullets)
-		//{
-		//	if (i.first != pair<int, int>(tankId, bulletId))
-		//	{
-		//		enemyBullets.push_back(i.second);
-		//	}
-		//}
+		pair<int, int> idPair = { tankId , bulletId };
+		for (auto& i : _bullets)
+		{
+			if (i.first != idPair)
+			{
+				enemyBullets.push_back(i.second);
+			}
+		}
+		return enemyBullets;
 	}
 
 	static vector<Vector2T<int>> recieveTanksPosition(int tankId)
@@ -37,7 +43,6 @@ public:
 				enemyTanks.push_back(i.second);
 			}
 		}
-
 		return enemyTanks;
 	}
 
@@ -53,9 +58,29 @@ public:
 		}
 	}
 
-	static 	void notifyBulletsPosition(Vector2T<int> pos, int id)
+	static 	void notifyBulletsPosition(Vector2T<int> pos, int tankId , int bulletId)
 	{
+		pair<int, int> idPair = {tankId , bulletId};
+		if (_bullets.count( idPair ) == 0) //daca nu a mai fost inregistrat
+		{
+			_bullets.insert(pair<pair<int , int>, Vector2T<int> >(idPair , pos));
+		}
+		else //daca da doar modifcam pozitia
+		{
+			_bullets[idPair] = pos;
+		}
+	}
 
+	static void removeBulletsPosition(int tankId, int bulletId)
+	{
+		pair<int , int> pairId = { tankId , bulletId };
+
+		_bullets.erase(pairId);
+	}
+
+	static void removeTanksPosition(int tankId)
+	{
+		_tanks.erase(tankId);
 	}
 };
 
