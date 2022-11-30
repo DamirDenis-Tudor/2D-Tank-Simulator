@@ -18,6 +18,9 @@
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_001.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_002.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_003.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Exhaust_01_000.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Exhaust_01_001.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Exhaust_01_002.png" />
 		<image></image>
 	</Shot>
 
@@ -32,7 +35,7 @@
 
 	<Shot></Shot>
 
-	<Impact ype = "Impact1">
+	<Impact type = "Impact1">
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_000.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_001.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_002.png" />
@@ -41,7 +44,7 @@
 
 	</Impact>
 
-	<Impact ype = "Impact2">
+	<Impact type = "Impact2">
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_000.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_001.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_002.png" />

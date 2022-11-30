@@ -13,10 +13,10 @@ protected:
 	bool _left = false;
 	bool _clicked = false;
 	Vector2T<int> _target = { 0 , 0 };
+	Vector2T<int> _offset = { 0 , 0 };
 
 public:
 	virtual void movement(Vector2T<int>& position, Vector2T<float> velocity) = 0;
-	virtual void rotationC(Vector2T<int>& position, float& angle) = 0;
 
 	void move(Vector2T<int>& position, Vector2T<float> velocity)
 	{
@@ -72,7 +72,7 @@ public:
 		return false;
 	}
 
-	void rotationB(float& _angle)
+	void rotationB(float& _angle , float& _angle1)
 	{
 		/*
 		rotatiile au fost strise pe cazuri
@@ -221,8 +221,18 @@ public:
 			_angle = 0;
 		}
 
+		_angle1 = _angle;
 	}
 
+	void rotationC(Vector2T<int>& position, float& angle)
+	{
+		double posY = static_cast<double>(_target._y) + static_cast<double>(_offset._y)
+			- (static_cast<double>(position._y) + static_cast<double>(AssetsStorage::_rotCenter->y));
 
+		double posX = static_cast<double>(_target._x) + static_cast<double>(_offset._x)
+			- (static_cast<double>(position._x) + static_cast<double>(AssetsStorage::_rotCenter->x));
+
+		angle = (SDL_atan2(posY, posX) * 180 / M_PI) + 90;
+	}
 };
 

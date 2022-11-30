@@ -14,7 +14,7 @@ private:
 	Vector2T<int> _position;
 
 public:
-	Animation(string _type , Vector2T<int> position):_position(position)
+	Animation(string _type , Vector2T<int> position , float angle):_position(position)
 	{
 		TimeManager::createTimer(_id, animationSpeed);
 		_frames = size(AssetsStorage::_effects[_type]);
@@ -22,8 +22,8 @@ public:
 		{
 			_anim.push_back(new SpriteComponent(AssetsStorage::_effects[_type][i]));
 			_anim[i]->setPosition(position);
+			_anim[i]->setAngle(angle);
 		}
-		std::cout << "done\n";
 	}
 
 	~Animation()

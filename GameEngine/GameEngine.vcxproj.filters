@@ -173,5 +173,8 @@
     <ClInclude Include="Animation.h">
       <Filter>Header Files\GameObjectsHeaders\Components</Filter>
     </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Header Files\ManagerHeaders</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -17,7 +17,7 @@ private:
 public:
 	Bullet(string type, Vector2T<int> position , float angle ) : _position(position)
 	{
-		_sprite = new SpriteComponent(AssetsStorage::_movebles[{"Type1", "bullet"}]);
+		_sprite = new SpriteComponent(AssetsStorage::_movebles[{type, "bullet"}]);
 		_sprite->setPosition(position - _sprite->_dest->w / 2);
 		_sprite->_angle = angle;
 

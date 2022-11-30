@@ -9,11 +9,11 @@
 
 class Tank : public Component
 {
-	SpriteComponent* tracks = nullptr;
+	SpriteComponent* _tracks = nullptr;
 	SpriteComponent* _body = nullptr;
 	SpriteComponent* _cannon = nullptr;
 
-	vector<Component*> _componets;
+	vector<Component*> _animations;
 	vector<Bullet*> _bullets;
 
 	Behavior* _behavior = nullptr;
@@ -21,15 +21,15 @@ class Tank : public Component
 	Vector2T<int> _position = { 0 , 0 };
 	Vector2T<float> _velocity = { 0 , 0 };
 
+	const char* bulletType;
+
 
 public:
-	Tank(SpriteComponent* body, SpriteComponent* cannon, Vector2T<int> position, Vector2T<float> velocity , float shotingTime)
-		:_body(body), _cannon(cannon), _position(position), _velocity(velocity)
+	Tank(SpriteComponent* tracks , SpriteComponent* body, SpriteComponent* cannon, Vector2T<int> position, Vector2T<float> velocity , float shotingTime , const char* type)
+		:_tracks(tracks), _body(body), _cannon(cannon), _position(position), _velocity(velocity), bulletType(type)
 
 	{
 		TimeManager::createTimer(_id, shotingTime);
-		_componets.push_back(_body);
-		_componets.push_back(_cannon);
 	}
 
 	~Tank()
@@ -37,7 +37,6 @@ public:
 		delete _body;
 		delete _cannon;
 		delete _behavior;
-		_componets.clear();
 	}
 
 	void setBehavior(Behavior* behavior)
@@ -47,38 +46,34 @@ public:
 
 	void draw() override
 	{
-		for (auto& i : _componets)
-		{
-			i->draw();
-		}
+		_tracks->draw();
+		_body->draw();
+		_cannon->draw();
 
 		for (auto& i : _bullets)
 		{
 			i->draw();
 		}
-
+		for (auto& i : _animations)
+		{
+			i->draw();
+		}
 	}
 
 	void update() override
 	{
 		_behavior->movement(_position, _velocity);
 		_behavior->rotationC(_position, _cannon->_angle);
-		_behavior->rotationB(_body->_angle);
+
+		_behavior->rotationB(_body->_angle , _tracks->_angle);
 
 		syncMovement();
 
 		checkForBullets();
 
-		for (int i = 0; i < size(_componets); i++)
-		{
-			_componets[i]->update();
-			if (!_componets[i]->isActive())
-			{
-				// make a sitem for animation deletion
-				TimeManager::removeTimer(_componets[i]->_id);
-				_componets.erase(_componets.begin() + i);
-			}
-		}
+		_tracks->update();
+		_body->update();
+		_cannon->update();
 
 		for (int i = 0; i < size(_bullets); i++)
 		{
@@ -86,25 +81,34 @@ public:
 
 			if (!_bullets[i]->isActive())
 			{
-				_componets.push_back(new Animation("BigExplosion", _bullets[i]->_position ));
+				_animations.push_back(new Animation("Impact1", _bullets[i]->_position , _cannon->_angle));
 
 				delete _bullets[i];
 				_bullets.erase(_bullets.begin() + i);
+			}
+		}
+
+		for (int i = 0; i < size(_animations); i++)
+		{
+			_animations[i]->update();
+
+			if (!_animations[i]->isActive())
+			{
+				TimeManager::removeTimer(_animations[i]->_id);
+				_animations.erase(_animations.begin() + i);
 			}
 		}
 	}
 
 	void syncMovement()
 	{
+		_tracks->setPosition(_position - CameraManager::offset);
 		_body->setPosition(_position - CameraManager::offset);
 		_cannon->setPosition(_position - CameraManager::offset);
 	}
 
 	void checkForBullets()
 	{
-		//std::cout << "is lauching : " << _behavior->isLaunchingBullet() << '\n';
-		//std::cout << " timer stop: " << !TimeManager::_timers[_id].isTimerWorking() << "\n\n";
-
  		if (!TimeManager::_timers[_id]->isTimerWorking() && _behavior->isLaunchingBullet())
 		{
 			TimeManager::_timers[_id]->resetTimer();
@@ -115,7 +119,9 @@ public:
 				static_cast<int>(SDL_sin((_cannon->_angle - 90) * M_PI / 180) * _cannon->_dest->w / 2)
 			};
 
-			_bullets.push_back(new Bullet("Type1", _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
+			_bullets.push_back(new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
+			_animations.push_back(new Animation("Shot1", _position + circumference + _cannon->_dest->w / 2 , _cannon->_angle));
+
 		}
 	}
 };

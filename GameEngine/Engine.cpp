@@ -9,7 +9,7 @@ void Engine::initComponets()
 	
 	PlayerBuilder* builder = new PlayerBuilder();
 
-	builder->setAtributtes("ColorB", "Type7" );
+	builder->setAtributtes("ColorB", "Type2" );
 	director.setBuilder(builder);
 
 	Tank* tank = director.getTank( { 256 , 256 }, { 0.4 , 0.4 }  , 0.2);
@@ -33,18 +33,6 @@ void Engine::initComponets()
 	builder1->setAtributtes("ColorB", "Type5");
 	Tank* tank4 = director.getTank({ 512 + 256 ,  256 + 64 }, { 0.4 , 0.4 } , 0.6);
 	_componets.push_back(tank4);
-
-	builder1->setAtributtes("ColorA", "Type4");
-	Tank* tank5 = director.getTank({ 512 + 256+128 ,  256 + 64 }, { 0.4 , 0.4 } , 1);
-	_componets.push_back(tank5);
-
-	builder1->setAtributtes("ColorD", "Type3");
-	Tank* tank6 = director.getTank({ 1024  , 256 + 64 }, { 0.4 , 0.4 } , 1.2);
-	_componets.push_back(tank6);
-
-	builder1->setAtributtes("ColorC", "Type8");
-	Tank* tank7 = director.getTank({ 1024 + 128 ,  256 + 64 }, { 0.4 , 0.4 } , 1.3);
-	_componets.push_back(tank7);
 
 }
 

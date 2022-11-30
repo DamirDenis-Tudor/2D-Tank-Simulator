@@ -234,9 +234,9 @@
 	</bullet>
 	
 
-	<track>
-
-	</track>
+	<tracks>
+		<image source="assets/sTanks/tanksScaled0.5/tracks/tracks1.png"/>
+	</tracks>
 
 
 

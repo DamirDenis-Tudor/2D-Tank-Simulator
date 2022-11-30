@@ -145,6 +145,23 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 			({ "bullet" ,i->FindAttribute("type")->Value() }, sprite));
 
 	}
+
+	tinyxml2::XMLElement* tracks = root->FirstChildElement("tracks");
+	SpriteComponent* sprite = new SpriteComponent(tracks->FirstChildElement()->FindAttribute("source")->Value());
+
+	sprite->_src->x = 0;
+	sprite->_src->y = 0;
+	sprite->_src->w = dim;
+	sprite->_src->h = dim;
+
+	sprite->_dest->x = 0;
+	sprite->_dest->y = 0;
+	sprite->_dest->w = dim;
+	sprite->_dest->h = dim;
+
+
+	_movebles.insert(pair < set <string >, SpriteComponent* > ({ "tracks" }, sprite));
+
 }
 
 void AssetsStorage::loadTiles(const char* sourceFile)
@@ -333,6 +350,55 @@ void AssetsStorage::loadEffects(const char* sourceFile)
 	}
 
 	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
+	effect.clear();
 
+	XMLElement* impact = root->FirstChildElement("Impact");
+	type = impact->FindAttribute("type")->Value();
 
+	for (auto i = impact->FirstChildElement("image");
+		i != impact->LastChildElement(); i = i->NextSiblingElement())
+	{
+		const char* name = i->FindAttribute("source")->Value();
+		SpriteComponent* sprite = new SpriteComponent(name);
+
+		sprite->_src->x = 0;
+		sprite->_src->y = 0;
+		sprite->_src->w = dim;
+		sprite->_src->h = dim;
+
+		sprite->_dest->x = 0;
+		sprite->_dest->y = 0;
+		sprite->_dest->w = dim;
+		sprite->_dest->h = dim;
+
+		effect.push_back(sprite);
+	}
+
+	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
+
+	effect.clear();
+
+	XMLElement* shot = root->FirstChildElement("Shot");
+	type = shot->FindAttribute("type")->Value();
+
+	for (auto i = shot->FirstChildElement("image");
+		i != shot->LastChildElement(); i = i->NextSiblingElement())
+	{
+		const char* name = i->FindAttribute("source")->Value();
+		SpriteComponent* sprite = new SpriteComponent(name);
+
+		sprite->_src->x = 0;
+		sprite->_src->y = 0;
+		sprite->_src->w = dim;
+		sprite->_src->h = dim;
+
+		sprite->_dest->x = 0;
+		sprite->_dest->y = 0;
+		sprite->_dest->w = dim;
+		sprite->_dest->h = dim;
+
+		effect.push_back(sprite);
+	}
+
+	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
 }

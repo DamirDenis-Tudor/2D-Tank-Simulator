@@ -47,7 +47,7 @@ public:
 
 	SpriteComponent* getTracks()
 	{
-		SpriteComponent* tracks = new SpriteComponent(AssetsStorage::_movebles[{" ", _type, "tracks"}]);
+		SpriteComponent* tracks = new SpriteComponent(AssetsStorage::_movebles[{"tracks"}]);
 
 		tracks->_isGod = godComponent;
 		tracks->_isAi = aiComponent;

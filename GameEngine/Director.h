@@ -17,7 +17,7 @@ public:
 
 	Tank* getTank(Vector2T<int> position , Vector2T<float> velocity ,float shotingTime)
 	{
-		Tank* tank = new Tank(_builder->getBody(), _builder->getCannon() , position , velocity , shotingTime);
+		Tank* tank = new Tank(_builder->getTracks(), _builder->getBody(), _builder->getCannon(), position, velocity, shotingTime, _builder->_type);
 
 		tank->setBehavior(_builder->getBehavior());
 

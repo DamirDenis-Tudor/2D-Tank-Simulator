@@ -34,6 +34,8 @@ class InputBehavior : public Behavior
 		}
 
 		CameraManager::tileOffset = CameraManager::offset - CameraManager::pastOffset;
+
+		_offset = CameraManager::offset;
 	}
 
 	void syncInput()
@@ -55,16 +57,7 @@ class InputBehavior : public Behavior
 		cameraSync(position);
 	}
 
-	void rotationC(Vector2T<int>& position, float& angle) 
-	{
-		double posY = static_cast<double>(_target._y) + static_cast<double>(CameraManager::offset._y)
-			- (static_cast<double>(position._y) + static_cast<double>(AssetsStorage::_rotCenter->y));
-
-		double posX = static_cast<double>(_target._x) + static_cast<double>(CameraManager::offset._x)
-			- (static_cast<double>(position._x) + static_cast<double>(AssetsStorage::_rotCenter->x));
-
-		angle = (SDL_atan2(posY, posX) * 180 / M_PI) + 90;
-	}
+	
 
 	
 };

@@ -3,10 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx",
+    "activeFile": "level1scaled2.tmx",
     "expandedProjectPaths": [
-        ".",
-        "tiles"
+        "tiles",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -1382,8 +1382,7 @@
     "map.tileWidth": 128,
     "map.width": 40,
     "openFiles": [
-        "level1scaled2.tmx",
-        "D:/Facultate an II/Semestrul 1/Programre Orientata Obiect/tank++/GameEngine/assets/sTanks/effects.tmx"
+        "level1scaled2.tmx"
     ],
     "project": "BattleOfTanksLevels.tiled-project",
     "recentFiles": [

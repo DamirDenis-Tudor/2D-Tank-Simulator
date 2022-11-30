@@ -173,6 +173,7 @@
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="PlayerBuilder.h" />
     <ClInclude Include="RendererManager.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="Builder.h" />
