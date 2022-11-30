@@ -372,7 +372,14 @@ GameEngine/tinyxml2.h
 GameEngine/GameEngine.vcxproj
 GameEngine/GameEngine.vcxproj.filters
 GameEngine/GameEngine.vcxproj.user
-GameEngine/assets/sTanks/craftpix-net-840730-free-animated-explosion-sprite-pack
+GameEngine/assets/sTanks/anim
+GameEngine/assets/sTanks/PNG
+GameEngine/assets/sTanks/tanksScaled0.5
+GameEngine/assets/sounds
+GameEngine/assets/maps
+GameEngine/x64
+
+
 
 
 
