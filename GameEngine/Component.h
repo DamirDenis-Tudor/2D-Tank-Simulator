@@ -33,7 +33,7 @@ public:
 	Component()
 	{
 		_id = _counter;
-		std::cout << _counter << "\n";
+	//	std::cout << _counter << "\n";
 		_counter++;
 	}
 

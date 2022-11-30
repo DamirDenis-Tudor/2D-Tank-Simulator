@@ -84,8 +84,7 @@ public:
 		_dest->x = position.getX();
 		_dest->y = position.getY();
 	}
-	//foarte frumos din partea ta gen esti un baiat de treba care aresi o pula devis
-	//@I@ >>>>>>>>>>>>>>>>>>
+
 	void draw() override
 	{
 		if (isActive())
