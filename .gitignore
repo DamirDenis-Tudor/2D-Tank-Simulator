@@ -364,9 +364,9 @@ FodyWeavers.xsd
 
 #SDL
 
-.SDL_img/
-.SDLbin/
-.test/
+SDL_img
+SDLbin
+test
 .GameEngine/SDL2.dll
 .GameEngine/SDL2_image.dll
 .GameEngine/tinyxml2.cpp
