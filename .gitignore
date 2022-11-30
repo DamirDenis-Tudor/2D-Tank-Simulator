@@ -363,14 +363,15 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #SDL
-**/SDLbin/
-**/GameEngine/SDL2.dll
-**/GameEngine/SDL2_image.dll
-**/GameEngine/tinyxml2.cpp
-**/GameEngine/tinyxml2.h
-**/GameEngine/GameEngine.vcxproj
-**/GameEngine/GameEngine.vcxproj.filters
-**/GameEngine/GameEngine.vcxproj.user
+SDLbin/
+SDL_image/
+GameEngine/SDL2.dll
+GameEngine/SDL2_image.dll
+GameEngine/tinyxml2.cpp
+GameEngine/tinyxml2.h
+GameEngine/GameEngine.vcxproj
+GameEngine/GameEngine.vcxproj.filters
+GameEngine/GameEngine.vcxproj.user
 
 
 

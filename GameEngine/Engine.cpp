@@ -9,10 +9,10 @@ void Engine::initComponets()
 	
 	PlayerBuilder* builder = new PlayerBuilder();
 
-	builder->setAtributtes("ColorB", "Type2" );
+	builder->setAtributtes("ColorB", "Type5" );
 	director.setBuilder(builder);
 
-	Tank* tank = director.getTank( { 256 , 256 }, { 0.4 , 0.4 }  , 1);
+	Tank* tank = director.getTank( { 256 , 256 }, { 0.4 , 0.4 }  , 0.1);
 	_componets.push_back(tank);
 
 	EnemyBuilder* builder1 = new EnemyBuilder();

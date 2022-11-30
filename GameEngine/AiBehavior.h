@@ -21,8 +21,15 @@ class AiBehavior : public Behavior
 	queue<Moves> _movingOrder;
 	bool _isActivated = false;
 
-	void patrol();
-	void follow();
+public:
+	void patrol()
+	{
+	}
+
+	void follow()
+	{
+
+	}
 
 	void BrainAi()
 	{
