@@ -6,4 +6,4 @@
 - [ ] Camera zoom in  , out
 - [ ] Mediator class for messages transmission between game objects
 - [ ] Animation Manager
-- [ ] Collision between game Objects 
+- [X] Collision between game Objects 
