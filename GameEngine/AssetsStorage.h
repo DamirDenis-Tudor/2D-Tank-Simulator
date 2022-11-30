@@ -54,7 +54,7 @@ using namespace tinyxml2;
 	*
 	* 
 	
-	-> exemplu : 
+	-> exemplu de acesare dupa citirea din fisier: 
 	 -	_movebles = map cu id-ul o multime si continutul un sprite
 			> acces bullet : _movebles[{"Type1" , "bullet"}];
 			> acces body : _movebles[{"ColorA" , "Type1" , "bullet"}];

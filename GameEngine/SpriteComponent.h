@@ -19,7 +19,7 @@
 			- sau la Animatii si posibil si in alte locuri
 			
 			!!!Nota : ALOC MEMORIE DOAR PENTRU _DEST PENTRU CA ESTE NECESAR,
-					  IAR PENTRU TEXTURA, _SRC "DOAR" POINTEZ CATRE LOCATIA LOR
+					  IAR PENTRU TEXTURA, _SRC "DOAR" POINTEZ CATRE LOCATIA DIN AssetsStorage
 
 		-> desenez sprite-ul doar daca este in cadrul camerei
 

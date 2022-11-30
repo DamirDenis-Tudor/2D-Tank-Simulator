@@ -127,8 +127,8 @@ public:
 
 			/*
 				circumference -> pozitia de inceput a bulletului va fi
-				de pe contului certului dormat de rotatia cannonului
-				avand acelasi unghi; 
+				de pe contului cercului format de rotatia cannonului
+				-> are acelasi unghi cu al cannon-ului; 
 			*/
 			_bullets.push_back(new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
 

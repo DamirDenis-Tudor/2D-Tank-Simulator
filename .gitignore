@@ -364,15 +364,15 @@ FodyWeavers.xsd
 
 #SDL
 
-SDL_img/
-SDLbin/
-test/
-GameEngine/SDL2.dll
-GameEngine/SDL2_image.dll
-GameEngine/tinyxml2.cpp
-GameEngine/tinyxml2.h
-GameEngine/GameEngine.vcxproj
-GameEngine/GameEngine.vcxproj.filters
-GameEngine/GameEngine.vcxproj.user
+.SDL_img/
+.SDLbin/
+.test/
+.GameEngine/SDL2.dll
+.GameEngine/SDL2_image.dll
+.GameEngine/tinyxml2.cpp
+.GameEngine/tinyxml2.h
+.GameEngine/GameEngine.vcxproj
+.GameEngine/GameEngine.vcxproj.filters
+.GameEngine/GameEngine.vcxproj.user
 
 
