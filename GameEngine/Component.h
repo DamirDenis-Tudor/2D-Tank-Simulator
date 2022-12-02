@@ -6,6 +6,7 @@
 #include<list>
 #include<map>
 #include<vector>
+#include<iterator>
 using namespace std;
 
 /*
@@ -33,12 +34,15 @@ public:
 	Component()
 	{
 		_id = _counter;
-	//	std::cout << _counter << "\n";
 		_counter++;
 	}
 
+	//fiecare clasa care mosteneste va implementa 
+	//aceasta medota pentru dealocare
+	
 	virtual void draw() = 0;
 	virtual void update() = 0;
+	virtual void clear() = 0; 
 
 	void enable()
 	{

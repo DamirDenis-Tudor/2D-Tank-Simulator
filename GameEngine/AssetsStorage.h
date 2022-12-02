@@ -80,6 +80,42 @@ private:
 
 public:
 
+	static void clear()
+	{
+		for (auto& x : _movebles)
+		{
+			_movebles[{x.first}]->finalClear();
+			_movebles[{x.first}]->clear();
+			_movebles[{x.first}] = 0;
+			_movebles.erase(x.first);
+		}
+		_movebles.clear();
+
+		for (int i = 0; i < size(_tiles) ; i++)
+		{
+			_tiles[i]->finalClear();
+			_tiles[i]->clear();
+			_tiles[i] = 0;
+			_tiles.erase(_tiles.begin() + i);
+		}
+		_tiles.clear();
+
+		for (auto& x : _effects)
+		{
+			for (int i = 0; i < size(_effects[x.first] ); i++)
+			{
+				_effects[x.first][i]->finalClear();
+				_effects[x.first][i]->clear();
+				_effects[x.first][i] = 0;
+				_effects[x.first].erase(_effects[x.first].begin() + i);
+			}
+			_effects[x.first].clear();
+		}
+		_effects.clear();
+
+		delete _rotCenter;
+	}
+
 	static map<set< string >, SpriteComponent* > _movebles; 
 	
 	static int _mapTileDim ;
@@ -90,12 +126,12 @@ public:
 	static map<string, vector<vector<int>> > _mapLayers;
 
 	static map<string, vector<SpriteComponent*>> _effects;
-	static SDL_Point* _rotCenter;
+	static SDL_Point* _rotCenter ;
 
 	static void loadMovebles(const char* sourceFile);
 
 	static void loadTiles(const char* sourceFile);
-	static void convertInToMatrix(const char* buffer, std::vector<std::vector<int>>& mapLayer);
+	static void convertInToMatrix(const char* buffer, vector<vector<int>>& mapLayer);
 
 	static void loadEffects(const char* sourceFile);
 };

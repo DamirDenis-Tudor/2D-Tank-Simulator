@@ -6,7 +6,7 @@
 #include"Behavior.h"
 #include"Bullet.h"
 #include"Animation.h"
-
+#include"AnimationsHandler.h"
 #include "Mediator.h"
 
 /*
@@ -21,8 +21,6 @@ class Tank : public Component
 	SpriteComponent* _tracks = nullptr;
 	SpriteComponent* _body = nullptr;
 	SpriteComponent* _cannon = nullptr;
-
-	vector<Component*> _animations;
 	vector<Bullet*> _bullets;
 
 	Behavior* _behavior = nullptr;
@@ -42,77 +40,17 @@ public:
 		_behavior->setId(_id);
 	}
 
-	~Tank()
+	void syncMovement()
 	{
-		delete _body;
-		delete _cannon;
-		delete _behavior;
-	}
-
-	void draw() override
-	{
-		_tracks->draw();
-		_body->draw();
-		_cannon->draw();
-
-		for (auto& i : _bullets)
-		{
-			i->draw();
-		}
-		for (auto& i : _animations)
-		{
-			i->draw();
-		}
-	}
-
-	void update() override
-	{
-		_behavior->movement(_position, _velocity);
-		_behavior->rotationC(_position, _cannon->_angle);
-		_behavior->rotationB(_body->_angle , _tracks->_angle);
-
 		Mediator::notifyTanksPosition(_position, _id);
 
-		syncMovement();
-
-		checkForBullets();
+		_tracks->setPosition(_position - CameraManager::offset);
+		_body->setPosition(_position - CameraManager::offset);
+		_cannon->setPosition(_position - CameraManager::offset);
 
 		_tracks->update();
 		_body->update();
 		_cannon->update();
-
-		for (int i = 0; i < size(_bullets); i++)
-		{
-			_bullets[i]->update();
-
-			if (!_bullets[i]->isActive())
-			{
-				_animations.push_back(new Animation("BigExplosion", _bullets[i]->_position , _cannon->_angle));
-
-				delete _bullets[i];
-				_bullets.erase(_bullets.begin() + i);
-				_counter--;
-			}
-		}
-
-		for (int i = 0; i < size(_animations); i++)
-		{
-			_animations[i]->update();
-
-			if (!_animations[i]->isActive())
-			{
-				TimeManager::removeTimer(_animations[i]->_id);
-				_animations.erase(_animations.begin() + i);
-				_counter--;
-			}
-		}
-	}
-
-	void syncMovement()
-	{
-		_tracks->setPosition(_position - CameraManager::offset);
-		_body->setPosition(_position - CameraManager::offset);
-		_cannon->setPosition(_position - CameraManager::offset);
 	}
 
 	void checkForBullets()
@@ -137,10 +75,73 @@ public:
 
 			Bullet* bullet = new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle , _id);
 			_bullets.push_back(bullet);
+			bullet = nullptr;
 
-			_animations.push_back(new Animation("Shot1", _position + circumference + _cannon->_dest->w / 2 , _cannon->_angle));
-
+			Animation* anim = new Animation("Shot1", _position + circumference + _cannon->_dest->w / 2, _cannon->_angle);
+			AnimationsHandler::addAnimation(anim);
+			anim = nullptr;
 		}
+	}
+	void draw() override
+	{
+		_tracks->draw();
+		_body->draw();
+		_cannon->draw();
+
+		for (auto& i : _bullets)
+		{
+			i->draw();
+		}
+	}
+
+	void update() override
+	{
+		_behavior->movement(_position, _velocity);
+		_behavior->rotationC(_position, _cannon->_angle);
+		_behavior->rotationB(_body->_angle, _tracks->_angle);
+
+		syncMovement();
+
+		checkForBullets();
+
+		for (int i = 0; i < _bullets.size(); i++)
+		{
+			_bullets[i]->update();
+
+			if (!_bullets[i]->isActive())
+			{
+				Animation* anim = new Animation("BigExplosion", _bullets[i]->_position, _cannon->_angle);
+				AnimationsHandler::addAnimation(anim);
+				anim = nullptr;
+				
+				_bullets[i]->clear();
+				delete _bullets[i];
+				_bullets[i] = 0;
+				_bullets.erase(_bullets.begin() + i);
+				i--;
+			}
+			
+		}
+	}
+
+	void clear() override
+	{
+		_tracks->clear();
+		_body->clear();
+		_cannon->clear();
+		delete _behavior;
+
+
+		for (int i = 0; i < _bullets.size(); i++)
+		{
+			_bullets[i]->clear();
+			_bullets[i] = nullptr;
+			_bullets.erase(_bullets.begin() + i);
+			i--;
+		}
+
+
+		_bullets.clear();
 	}
 };
 

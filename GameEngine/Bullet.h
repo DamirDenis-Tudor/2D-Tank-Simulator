@@ -35,7 +35,6 @@ public:
 		_sprite->_angle = angle;
 
 		Mediator::notifyBulletsPosition(_position, _tankId, _id);
-
 	}
 
 	void update() override
@@ -54,19 +53,24 @@ public:
 			hasCollision = true;
 		}
 
+		int rectDim = 2 * AssetsStorage::_mapTileDim - 25;
 		for (auto& i : Mediator::recieveTanksPosition(_tankId))
 		{
-			//pentru collisiunile bullet bullet
-			//if (CollisionManager::pointCollisionRectagle(potentialPos , i , AssetsStorage::_mapTileDim))
-			//{
-			//	hasCollision = true;
-			//}
-
-			if (CollisionManager::pointCollisionRectagle(potentialPos, i, 2*AssetsStorage::_mapTileDim))
+			Vector2T<int> rectPos = i + 25;
+			if (CollisionManager::pointCollisionRectagle(potentialPos, rectPos, rectDim ))
 			{
 				hasCollision = true;
 			}
 
+		}
+
+		for (auto& i : Mediator::recieveBulletsPosition(_tankId, _id))
+		{
+		//	pentru collisiunile bullet bullet check here
+		//	if (CollisionManager::pointCollisionRectagle(potentialPos , i , 2*AssetsStorage::_mapTileDim ))
+			{
+			//	hasCollision = true;
+			}
 		}
 
 		if (hasCollision)
@@ -87,6 +91,15 @@ public:
 	void draw() override
 	{
 		_sprite->draw();
+	}
+
+	void clear() override
+	{
+		_sprite->clear();
+		_sprite = nullptr;
+		_position = { 0 ,0 };
+		_velocity = { 0, 0 };
+		_tankId = 0;
 	}
 };
 

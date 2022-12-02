@@ -24,7 +24,7 @@ class Map :public Component
 {
 private:
 
-	list<Component*> _drawbles;
+	vector<Component*> _drawbles;
 
 public:
 	Map()
@@ -39,6 +39,8 @@ public:
 					tile->setPosition(Vector2T<int>(j * AssetsStorage::_mapTileDim, i * AssetsStorage::_mapTileDim));
 
 					_drawbles.push_back(tile);
+
+					tile = nullptr;
 				}
 			}
 		}
@@ -52,6 +54,7 @@ public:
 					SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["decor"][i][j] - 1]);
 					tile->setPosition(Vector2T<int>(j * AssetsStorage::_mapTileDim, i * AssetsStorage::_mapTileDim));
 					_drawbles.push_back(tile);
+					tile = nullptr;
 				}
 			}
 		}
@@ -66,6 +69,7 @@ public:
 					SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1]);
 					tile->setPosition(Vector2T<int>(j * AssetsStorage::_mapTileDim, i * AssetsStorage::_mapTileDim));
 					_drawbles.push_back(tile);
+					tile = nullptr;
 				}
 
 			}
@@ -91,5 +95,17 @@ public:
 			i->update();
 		}
 	}
+
+	void clear() override
+	{
+		for (int i = 0; i < size(_drawbles); i++)
+		{
+			_drawbles[i]->clear();
+			_drawbles[i] = 0;
+			_drawbles.erase(_drawbles.begin() + i);
+		}
+		_drawbles.clear();
+	}
+
 
 };

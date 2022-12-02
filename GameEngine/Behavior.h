@@ -84,9 +84,10 @@ public:
 
 		int value = 0;
 
+		int rectDim = 2 * AssetsStorage::_mapTileDim;
 		for(auto &i : Mediator::recieveTanksPosition(_id) )
 		{
-			CollisionManager::circleRectagleCollision(potentialPos, i, 2 * AssetsStorage::_mapTileDim);
+			CollisionManager::circleRectagleCollision(potentialPos, i, rectDim);
 		}
 		CollisionManager::mapCollision(potentialPos);
 
@@ -99,7 +100,6 @@ public:
 		position._x = static_cast <int>(potentialPos._x) - AssetsStorage::_mapTileDim;
 		position._y = static_cast <int>(potentialPos._y) - AssetsStorage::_mapTileDim;
 	}
-
 
 	bool isLaunchingBullet()
 	{

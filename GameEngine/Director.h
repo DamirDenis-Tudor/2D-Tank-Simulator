@@ -22,6 +22,14 @@ private:
 
 public:
 
+	Director() {}
+
+	~Director()
+	{
+		delete _builder;
+		_builder = nullptr;
+	}
+
 	void setBuilder(Builder* builder)
 	{
 		_builder = builder;
@@ -29,7 +37,8 @@ public:
 
 	Tank* getTank(Vector2T<int> position , Vector2T<float> velocity ,float shotingTime)
 	{
-		Tank* tank = new Tank(_builder->getTracks(), _builder->getBody(), _builder->getCannon() , _builder->getBehavior() , position, velocity, shotingTime, _builder->_type);
+		Tank* tank = new Tank(_builder->getTracks(), _builder->getBody(), _builder->getCannon() ,
+			_builder->getBehavior() , position, velocity, shotingTime, _builder->_type);
 
 		return tank;
 	}

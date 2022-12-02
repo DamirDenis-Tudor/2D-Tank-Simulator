@@ -22,6 +22,7 @@ class AiBehavior : public Behavior
 	bool _isActivated = false;
 
 public:
+
 	void patrol()
 	{
 	}
@@ -48,15 +49,13 @@ public:
 
 	}
 
-
-
 	void movement(Vector2T<int>& position, Vector2T<float> velocity) override
 	{
 		BrainAi();
 
 		SyncMoves();
 
-		_moves._down = true;;
+	//	_moves._down = true;
 		_isShooting = true;
 
 		move(position, velocity);

@@ -7,15 +7,15 @@
 
 /*
 * Descrierea clasei :
-*	
+*
 *	-> are rolul de a crea componentele necesare
 *	   pentru obiectul cerut de Director;
-*	
+*
 *	Nota : este clasa abstracta => EnemyBuilder , PlayerBuilder
 *
 */
 
-class Builder 
+class Builder
 {
 	friend class Director;
 
@@ -27,14 +27,21 @@ public:
 	bool _cameraFocus = false;
 	bool _isAi = false;
 
+	Builder() {}
+	~Builder()
+	{
+		_color = nullptr;
+		_type = nullptr;
+	}
+
 	void setAtributtes(const char* color, const char* type)
 	{
 		_color = color;
 		_type = type;
 	}
-	SpriteComponent* getBody() 
+	SpriteComponent* getBody()
 	{
-		SpriteComponent* body = new SpriteComponent( AssetsStorage::_movebles[{_color , _type , "body"}] );
+		SpriteComponent* body = new SpriteComponent(AssetsStorage::_movebles[{_color, _type, "body"}]);
 
 		body->_isOnCameraFocus = _cameraFocus;
 		body->_isAi = _isAi;
@@ -44,7 +51,7 @@ public:
 
 	SpriteComponent* getCannon()
 	{
-		SpriteComponent* cannon = new SpriteComponent(AssetsStorage::_movebles[{_color , _type , "cannon"}]);
+		SpriteComponent* cannon = new SpriteComponent(AssetsStorage::_movebles[{_color, _type, "cannon"}]);
 
 		cannon->_isOnCameraFocus = _cameraFocus;
 		cannon->_isAi = _isAi;
@@ -61,8 +68,6 @@ public:
 
 		return tracks;
 	}
-
-	
 
 	virtual Behavior* getBehavior() = 0;
 };

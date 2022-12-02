@@ -74,7 +74,6 @@ public:
 	static void removeBulletsPosition(int tankId, int bulletId)
 	{
 		pair<int , int> pairId = { tankId , bulletId };
-
 		_bullets.erase(pairId);
 	}
 

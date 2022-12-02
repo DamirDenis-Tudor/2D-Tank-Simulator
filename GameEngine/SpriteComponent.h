@@ -34,8 +34,8 @@ class SpriteComponent : public Component
 	friend class AssetsStorage;
 	friend class Map;
 	friend class Tank;
-	friend class Bullet;	//glont
-	friend class Animation; // animatie
+	friend class Bullet;	
+	friend class Animation; 
 
 private:
 
@@ -61,7 +61,7 @@ public:
 
 	SpriteComponent(SpriteComponent*& sprite)
 	{
-		_src = sprite->_dest;
+		_src = sprite->_src;
 
 		_dest = new SDL_Rect;
 		*_dest = *sprite->_dest;
@@ -71,7 +71,39 @@ public:
 
 	~SpriteComponent()
 	{
+	
+		
+	}
+	void clear() override
+	{
+		//ATENTIE : in cazul instantierilor create prin
+		// constructorul de copiere
+		// doar pentru _dest am alocat
+		// memorie => pentru src si texture setam nullptr
 
+		//	Nota : pentru dealocarea _src si _texture se va utiliza suplimetar
+		//  in constructorul din clasa AssetsStorage functia de finalClear
+
+		// Exemplu : daca avem un bullet si este distrus nu vream sa
+		// dealocam _textura si _src, deoarec pentru urmatorul bullet
+		// poiterii _src si _texture voi pointa catre NULL
+
+		_src = nullptr;
+		free( _dest);
+		_dest = nullptr;
+		_texture = nullptr;
+		center = { 0 , 0 };
+		_angle = 0;
+		_id = 0;
+	}
+
+	void finalClear()
+	{
+		//In Assets manager metoda va fi apelata inainte de delete!!
+		delete _src;
+		_src = nullptr;
+		SDL_DestroyTexture(_texture);
+		_texture = nullptr;
 	}
 
 	void setAngle(float angle)
@@ -90,7 +122,7 @@ public:
 		if (isActive())
 		{
 			SDL_RenderCopyEx(RendererManager::_renderer, _texture, _src, _dest ,_angle , &center , SDL_FLIP_NONE);
-			SDL_RenderDrawRect(RendererManager::_renderer, _dest);
+			//SDL_RenderDrawRect(RendererManager::_renderer, _dest);
 		}
 	}
 

@@ -27,6 +27,12 @@ private:
 	InputManager() {}
 
 public:
+	static void clear()
+	{
+		delete _keys;
+		_keys = 0;
+	}
+
 	static void initInput()
 	{
 		for (int i = 0; i < 256; i++)

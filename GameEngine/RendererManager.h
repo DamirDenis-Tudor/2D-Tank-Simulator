@@ -15,10 +15,10 @@ public:
 	static SDL_Renderer* _renderer ;
 	static int _width ;
 	static int _heigth ;
-
-	~RendererManager() 
+	
+	static void clear()
 	{
-		
+		SDL_DestroyRenderer(_renderer);
 	}
 
 	static void setRenderer(const char* name , const int& width, const int& height , bool fullscreen)

@@ -179,6 +179,8 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 			sprite->_dest->h = tileHeight;
 
 			_tiles.push_back(sprite);
+
+			sprite = nullptr;
 		}
 		else //caz 2
 		{
@@ -199,6 +201,8 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 					sprite->_dest->h = _mapTileDim;
 
 					_tiles.push_back(sprite);
+
+					sprite = nullptr;
 				}
 			}
 		}
@@ -224,6 +228,8 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 											 // printr-un sir de caractere continad
 											// ',' , '\n' , indexi cu pana la 3 cifre
 		_mapLayers.insert(pair<string, vector< vector<int> > > (name, mapLayer));
+
+		mapLayer.clear();
 
 		if (child == root->LastChildElement("layer"))
 		{
@@ -310,6 +316,8 @@ void AssetsStorage::loadEffects(const char* sourceFile)
 		sprite->_dest->h = dim;
 
 		effect.push_back(sprite);
+
+		sprite = nullptr;
 	}
 
 	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
@@ -335,6 +343,8 @@ void AssetsStorage::loadEffects(const char* sourceFile)
 		sprite->_dest->h = dim;
 
 		effect.push_back(sprite);
+
+		sprite = nullptr;
 	}
 
 	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
@@ -361,6 +371,8 @@ void AssetsStorage::loadEffects(const char* sourceFile)
 		sprite->_dest->h = dim;
 
 		effect.push_back(sprite);
+
+		sprite = nullptr;
 	}
 
 	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
@@ -368,4 +380,6 @@ void AssetsStorage::loadEffects(const char* sourceFile)
 	//optimization -> reset couter
 	SpriteComponent c;
 	c.resetCouter();
+
+	document.Clear();
 }

@@ -1,5 +1,7 @@
 #include "Engine.h"
 
+Map* Engine::memoryleak = nullptr;
+
 void Engine::initComponets()
 {
 	Map* _map = new Map;
@@ -12,8 +14,9 @@ void Engine::initComponets()
 	builder->setAtributtes("ColorB", "Type5" );
 	director.setBuilder(builder);
 
-	Tank* tank = director.getTank( { 256 , 1080 }, { 0.3 , 0.3 }  , 0.1);
+	Tank* tank = director.getTank( { 256 , 1080 }, { 0.3 , 0.3 }  , 1);
 	_componets.push_back(tank);
+	memoryleak = _map;
 
 	EnemyBuilder* builder1 = new EnemyBuilder();
 	director.setBuilder(builder1);
@@ -23,17 +26,21 @@ void Engine::initComponets()
 	_componets.push_back(tank1);
 
 	builder1->setAtributtes("ColorA", "Type1");
-	Tank* tank2 = director.getTank({ 256 + 256 + 128 , 256  }, { 0.1 , 0.1 } , 0.3);
-	_componets.push_back(tank2);
+	Tank* tank2 = director.getTank({ 256 + 256 + 128 , 256  }, { 0.1 , 0.1 } , 0.7);
+	//_componets.push_back(tank2);
 
 	builder1->setAtributtes("ColorD", "Type2");
-	Tank* tank3 = director.getTank({ 512+256 + 128 , 256 + 64}, { 0.1 , 0.1 } , 0.6);
-	_componets.push_back(tank3);
+	Tank* tank3 = director.getTank({ 512+256 + 128 , 256 + 64}, { 0.1 , 0.1 } , 0.5);
+	//_componets.push_back(tank3);
 
 	builder1->setAtributtes("ColorB", "Type5");
-	Tank* tank4 = director.getTank({ 512 + 256 + 256 ,  256  }, { 0.1 , 0.1 } , 0.6);
-	_componets.push_back(tank4);
+	Tank* tank4 = director.getTank({ 512 + 256 + 256 ,  256  }, { 0.1 , 0.1 } , 0.9);
+	//_componets.push_back(tank4);
 
+	// animatiile vor fi desenate ultimele, deoarece se doreste
+	// suprapunerea lor peste toate obiectele de pe mapa
+
+	_componets.push_back(new AnimationsHandler);
 }
 
 void Engine::run()
@@ -93,6 +100,8 @@ void Engine::run()
 		{
 			delay = 0;
 		}
+
+	//	std::cout << "Delay:: " << delay << "\n";
 
 		SDL_Delay(delay);
 

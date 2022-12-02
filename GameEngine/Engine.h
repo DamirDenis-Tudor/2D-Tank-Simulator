@@ -13,6 +13,7 @@
 #include"Map.h"
 #include"TimeManager.h"
 #include"InputManager.h"
+#include"AnimationsHandler.h"
 
 /*
 	Clasa responsabila pentru :
@@ -24,7 +25,8 @@
 
 class Engine : public Component
 {
-	list<Component*> _componets;
+	static Map* memoryleak;
+	vector<Component*> _componets;
 	float _framerate = 0;
 
 public:
@@ -58,9 +60,18 @@ public:
 		initComponets();
 	}
 
-	~Engine() 
+	void clear() override
 	{
+		for (int i = 0; i < size(_componets); i++)
+		{
+			_componets[i]->clear();
+			_componets[i] = 0;
+			_componets.erase(_componets.begin() + i);
+			i--;
+		}
 		_componets.clear();
+
+		//AssetsStorage::clear();
 	}
 
 

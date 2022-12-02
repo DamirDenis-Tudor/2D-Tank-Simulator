@@ -66,9 +66,6 @@ class InputBehavior : public Behavior
 
 		cameraSync(position);
 	}
-
-	
-
 	
 };
 

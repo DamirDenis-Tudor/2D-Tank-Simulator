@@ -41,7 +41,7 @@ void CollisionManager::mapCollision(Vector2T<float>& potentialPos)
 	}
 }
 
-bool CollisionManager::circleRectagleCollision(Vector2T<float>& potentialPos, Vector2T<int> rectaglePos, int rectagleDim)
+bool CollisionManager::circleRectagleCollision(Vector2T<float>& potentialPos, Vector2T<int>& rectaglePos, int& rectagleDim)
 {
 	int colision = false;
 	Vector2T<float> nearestPoint;
@@ -93,7 +93,7 @@ bool CollisionManager::pointCollisionMap(Vector2T<float>& potentialPos)
 	return false;
 }
 
-bool CollisionManager::pointCollisionRectagle(Vector2T<float>& potentialPos, Vector2T<int> rectPos, int rectDim)
+bool CollisionManager::pointCollisionRectagle(Vector2T<float>& potentialPos, Vector2T<int>& rectPos, int &rectDim)
 {
 	if (potentialPos._x > rectPos._x && potentialPos._y > rectPos._y &&
 		potentialPos._x < rectPos._x + rectDim  && potentialPos._y < rectPos._y + rectDim)

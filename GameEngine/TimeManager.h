@@ -88,6 +88,8 @@ public:
 
 	static void removeTimer(int& id)
 	{
+		delete _timers[id];
+		_timers[id] = 0;
 		_timers.erase(id);
 	}
 
