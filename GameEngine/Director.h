@@ -32,6 +32,11 @@ public:
 
 	void setBuilder(Builder* builder)
 	{
+		if (_builder != nullptr)
+		{
+			delete _builder;
+			_builder = nullptr;
+		}
 		_builder = builder;
 	}
 

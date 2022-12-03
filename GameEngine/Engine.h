@@ -25,8 +25,9 @@
 
 class Engine : public Component
 {
-	static Map* memoryleak;
-	vector<Component*> _componets;
+	Map* _map = nullptr;
+	vector<Tank*> _tanks;
+	AnimationsHandler* _animHndl;
 	float _framerate = 0;
 
 public:
@@ -35,44 +36,90 @@ public:
 
 	void draw() override
 	{
-		for (auto& i : _componets)
+		_map->draw();
+		for (auto& i : _tanks)
 		{
 			i->draw();
 		}
+		_animHndl->draw();
 	}
 
 	void update() override
 	{
-		for (auto& i : _componets)
+		_map->update();
+		for (auto& i : _tanks)
 		{
 			i->update();
 		}
+		_animHndl->update();
 	}
 
 	Engine(const char * name , int width ,int height , bool fullscreen , float framerate ) : _framerate(framerate)
 	{
 		RendererManager::setRenderer(name, width, height, fullscreen);
 		InputManager::initInput();
-		AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
+
 		AssetsStorage::loadTiles("levels/level1scaled2.tmx");
+		AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
 		AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
 
-		initComponets();
+		_map = new Map;
+
+		Director * director = new Director;
+
+		PlayerBuilder* builder = new PlayerBuilder();
+
+		builder->setAtributtes("ColorB", "Type5");
+		director->setBuilder(builder);
+
+		Tank* tank = director->getTank({ 256 , 1080 }, { 0.3 , 0.3 }, 0.6);
+		Mediator::setPlayerId(tank->_id);
+		_tanks.push_back(tank);
+
+		EnemyBuilder* builder1 = new EnemyBuilder();
+		director->setBuilder(builder1);
+
+		builder1->setAtributtes("ColorC", "Type6");
+		Tank* tank1 = director->getTank({ 256 + 128 , 256 + 64 }, { 0.1 , 0.1 }, 3.5);
+		_tanks.push_back(tank1);
+
+		builder1->setAtributtes("ColorA", "Type1");
+		Tank* tank2 = director->getTank({ 256 + 256 + 128 , 256 }, { 0.1 , 0.1 }, 3);
+		_tanks.push_back(tank2);
+
+		builder1->setAtributtes("ColorD", "Type2");
+		Tank* tank3 = director->getTank({ 512+256 + 128 , 256 + 64}, { 0.1 , 0.1 } , 2);
+		_tanks.push_back(tank3);
+
+		builder1->setAtributtes("ColorB", "Type5");
+		Tank* tank4 = director->getTank({ 512 + 256 + 256 ,  256  }, { 0.1 , 0.1 } , 2);
+		_tanks.emplace_back(tank4);
+
+		_animHndl = new AnimationsHandler;
+
+		delete director;
+		director = nullptr;
 	}
 
-	void clear() override
+	~Engine()
 	{
-		for (int i = 0; i < _componets.size(); i++)
-		{
-			_componets[i]->clear();
-			_componets[i] = 0;
-		}
-		_componets.clear();
 
+		RendererManager::clear();
 		InputManager::clear();
 		AssetsStorage::clear();
 		TimeManager::clear();
+		
+		delete _map;
+		_map = nullptr;
+		for (auto& i : _tanks)
+		{
+			delete i;
+			i = nullptr;
+		}
+		_tanks.clear();
+
+		delete _animHndl;
+		_animHndl = nullptr;
+
 	}
-
-
 };

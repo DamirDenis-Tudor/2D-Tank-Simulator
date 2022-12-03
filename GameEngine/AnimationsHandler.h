@@ -6,9 +6,18 @@
 
 class AnimationsHandler : public Component
 {
-	static vector<Component*> _animations;
+	static vector<Animation*> _animations;
 public:
 	AnimationsHandler () {}
+
+	~AnimationsHandler()
+	{
+		for (auto& i : _animations)
+		{
+			delete i;
+			i = nullptr;
+		}
+	}
 
 	static void addAnimation(Animation*& animation)
 	{
@@ -24,7 +33,6 @@ public:
 			{
 				TimeManager::removeTimer(_animations[i]->_id);
 				
-				_animations[i]->clear();
 				delete _animations[i];
 				_animations[i] = nullptr;
 				_animations.erase(_animations.begin() + i);
@@ -39,18 +47,6 @@ public:
 		{
 			_animations[i]->draw();
 		}
-	}
-
-	void clear() override
-	{
-		for (int i = 0; i < size(_animations); i++)
-		{
-			_animations[i]->clear();
-			_animations[i] = nullptr;
-			_animations.erase(_animations.begin() + i);
-			i--;
-		}
-		_animations.clear();
 	}
 };
 

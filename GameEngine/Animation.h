@@ -41,6 +41,18 @@ public:
 		}
 	}
 
+	~Animation()
+	{
+		for(auto &i :_anim) 
+		{
+			i->setNullPointers();
+			delete i;
+			i = nullptr;
+			TimeManager::removeTimer(_id);
+		}
+		_anim.clear();
+	}
+
 	void draw() override
 	{
 		_anim[_frameID]->setPosition(_position - CameraManager::offset - _anim[_frameID]->_dest->w/2);
@@ -58,19 +70,5 @@ public:
 			}
 			TimeManager::_timers[_id]->resetTimer();
 		}
-	}
-
-	void clear() override
-	{
-		TimeManager::removeTimer(_id);
-
-		for (int i = 0; i < _anim.size(); i++)
-		{
-			_anim[i]->clear();
-			_anim[i] = nullptr;
-			_anim.erase(_anim.begin() + i);
-			i--;
-		}
-		_anim.clear();
 	}
 };

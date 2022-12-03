@@ -37,7 +37,6 @@ class SpriteComponent : public Component
 	friend class Animation; 
 
 private:
-
 	SDL_Rect* _src = nullptr;
 	SDL_Rect* _dest = nullptr;
 	SDL_Texture* _texture = nullptr;
@@ -70,38 +69,26 @@ public:
 
 	~SpriteComponent()
 	{
-	
-		
-	}
-	void clear() override
-	{
-		//ATENTIE : in cazul instantierilor create prin
-		// constructorul de copiere
-		// doar pentru _dest am alocat
-		// memorie => pentru src si texture setam nullptr
-
-		//	Nota : pentru dealocarea _src si _texture se va utiliza suplimetar
-		//  in constructorul din clasa AssetsStorage functia de finalClear
-
-		// Exemplu : daca avem un bullet si este distrus nu vream sa
-		// dealocam _textura si _src, deoarec pentru urmatorul bullet
-		// poiterii _src si _texture voi pointa catre NULL
-
-		_src = nullptr;
-		free( _dest);
-		_dest = nullptr;
-		_texture = nullptr;
-		center = { 0 , 0 };
-		_angle = 0;
-		_id = 0;
+		if (_src != nullptr)
+		{
+			delete(_src);
+			_src = nullptr;
+		}
+		if (_dest != nullptr)
+		{
+			delete(_dest);
+			_dest = nullptr;
+		}	
+		if (_texture != nullptr)
+		{
+			SDL_DestroyTexture(_texture);
+			_texture = nullptr;
+		}	
 	}
 
-	void finalClear()
+	void setNullPointers()
 	{
-		//In Assets manager metoda va fi apelata inainte de delete!!
-		delete _src;
 		_src = nullptr;
-		SDL_DestroyTexture(_texture);
 		_texture = nullptr;
 	}
 
@@ -116,12 +103,24 @@ public:
 		_dest->y = position.getY();
 	}
 
+	void isOnCamera()
+	{
+		if (_dest->x + _dest->w  < -64 ||
+			_dest->y + _dest->h  < -64 ||
+			_dest->x  > RendererManager::_width + 64 ||
+			_dest->y  > RendererManager::_heigth + 64)
+		{
+			disable();
+		}
+		enable();
+	}
+
 	void draw() override
 	{
 		if (isActive())
 		{
 			SDL_RenderCopyEx(RendererManager::_renderer, _texture, _src, _dest ,_angle , &center , SDL_FLIP_NONE);
-			//SDL_RenderDrawRect(RendererManager::_renderer, _dest);
+			SDL_RenderDrawRect(RendererManager::_renderer, _dest);
 		}
 	}
 
@@ -143,17 +142,7 @@ public:
 			}
 		}
 	}
-	void isOnCamera()
-	{
-		if (_dest->x + _dest->w  < -64 ||
-			_dest->y + _dest->h  < -64 ||
-			_dest->x  > RendererManager::_width  + 64 ||
-			_dest->y  > RendererManager::_heigth + 64)
-		{
-			disable();
-		}
-		enable();
-	}
+
 };
 
 

@@ -1,3 +1,3 @@
 #include "AnimationsHandler.h"
 
-vector<Component*> AnimationsHandler::_animations = {};
+vector<Animation*> AnimationsHandler::_animations = {};

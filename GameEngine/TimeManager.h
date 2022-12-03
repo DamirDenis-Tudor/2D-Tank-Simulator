@@ -5,7 +5,6 @@
 #include<iostream>
 using namespace std;
 
-
 /*
 	Descrire clase:
 		-> clasa de baza TimeManager are metode ce-i permit
@@ -89,16 +88,17 @@ public:
 	static void removeTimer(int& id)
 	{
 		delete _timers[id];
-		_timers[id] = 0;
+		_timers[id] = nullptr;
 		_timers.erase(id);
 	}
 
 	static void clear()
 	{
-		for (int i = 0; i < _timers.size(); i++)
+		for(auto &i : _timers)
 		{
-			delete _timers[i];
-			_timers[i] = 0;
+			delete i.second;
+			i.second = nullptr;
 		}
+		_timers.clear();
 	}
 };

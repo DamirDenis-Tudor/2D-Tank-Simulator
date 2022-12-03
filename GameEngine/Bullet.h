@@ -24,7 +24,7 @@ class Bullet : public Component
 private:
 	SpriteComponent* _sprite = nullptr;
 	Vector2T<int> _position;
-	Vector2T<float> _velocity = { 1, 1 };
+	Vector2T<float> _velocity = { 0.7, 0.7 };
 	int _tankId = 0;
 
 public:
@@ -35,6 +35,13 @@ public:
 		_sprite->_angle = angle;
 
 		Mediator::notifyBulletsPosition(_position, _tankId, _id);
+	}
+
+	~Bullet()
+	{
+		_sprite->setNullPointers();
+		delete _sprite;
+		_sprite = nullptr;
 	}
 
 	void update() override
@@ -64,14 +71,14 @@ public:
 
 		}
 
-		for (auto& i : Mediator::recieveBulletsPosition(_tankId, _id))
-		{
-		//	pentru collisiunile bullet bullet check here
-		//	if (CollisionManager::pointCollisionRectagle(potentialPos , i , 2*AssetsStorage::_mapTileDim ))
-			{
-			//	hasCollision = true;
-			}
-		}
+		//for (auto& i : Mediator::recieveBulletsPosition(_tankId, _id))
+		//{
+		////	pentru collisiunile bullet bullet check here
+		//	if (CollisionManager::pointCollisionRectagle(potentialPos , i , rectDim ))
+		//	{
+		//		hasCollision = true;
+		//	}
+		//}
 
 		if (hasCollision)
 		{
@@ -91,15 +98,6 @@ public:
 	void draw() override
 	{
 		_sprite->draw();
-	}
-
-	void clear() override
-	{
-		_sprite->clear();
-		_sprite = nullptr;
-		_position = { 0 ,0 };
-		_velocity = { 0, 0 };
-		_tankId = 0;
 	}
 };
 

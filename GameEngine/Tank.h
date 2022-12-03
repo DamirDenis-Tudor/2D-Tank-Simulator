@@ -40,6 +40,30 @@ public:
 		_behavior->setId(_id);
 	}
 
+	~Tank()
+	{
+
+		_tracks->setNullPointers();
+		delete _tracks; _tracks = nullptr;
+		
+		_body->setNullPointers();
+		delete _body; _body = nullptr;
+
+		_cannon->setNullPointers();
+		delete _cannon; _cannon = nullptr;
+
+		delete _behavior; _behavior = nullptr;
+
+		for (auto& i : _bullets)
+		{
+			delete i;
+			i = nullptr;
+		}
+		_bullets.clear();
+
+		TimeManager::removeTimer(_id);
+	}
+
 	void syncMovement()
 	{
 		Mediator::notifyTanksPosition(_position, _id);
@@ -72,10 +96,6 @@ public:
 				de pe contului cercului format de rotatia cannonului
 				-> are acelasi unghi cu al cannon-ului; 
 			*/
-
-
-			// AICI 
-			// Ma gandesc ca de la o pratica de genul al aparea memory leakeage
 
 			Bullet* bullet = new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id);
 			_bullets.emplace_back(bullet);
@@ -119,33 +139,12 @@ public:
 				anim = nullptr;
 				
 				//Aici fac dealocarea
-				_bullets[i]->clear();
-				_bullets[i] = 0;
+				delete _bullets[i];
+				_bullets[i] = nullptr;
 				_bullets.erase(_bullets.begin() + i);
 				i--;
 			}
-			
 		}
-	}
-
-	void clear() override
-	{
-		_tracks->clear();
-		_body->clear();
-		_cannon->clear();
-		delete _behavior;
-
-
-		for (int i = 0; i < _bullets.size(); i++)
-		{
-			_bullets[i]->clear();
-			_bullets[i] = nullptr;
-			_bullets.erase(_bullets.begin() + i);
-			i--;
-		}
-
-
-		_bullets.clear();
 	}
 };
 

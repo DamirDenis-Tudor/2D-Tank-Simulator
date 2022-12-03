@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+
+
 #include<map>
 #include<vector>
 #include<list>
@@ -12,6 +14,20 @@
 
 using namespace std;
 using namespace tinyxml2;
+
+#ifdef _DEBUG
+#define new DEBUG_CLIENTBLOCK
+#endif
+
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
+#ifdef _DEBUG
+#define DEBUG_CLIENTBLOCK new( _CLIENT_BLOCK, __FILE__, __LINE__)
+#else
+#define DEBUG_CLIENTBLOCK
+#endif
 
 /*
 	Descriere clasa:
@@ -84,19 +100,15 @@ public:
 	{
 		for (auto x = _movebles.begin();  x != _movebles.end() ; x++)
 		{
-			x->second->finalClear();
-			x->second->clear();
+			delete x->second;
 			x->second = 0;
 		}
 		_movebles.clear();
 
 		for (int i = 0; i < _tiles.size(); i++)
 		{
-			_tiles[i]->finalClear();
-			_tiles[i]->clear();
+			delete _tiles[i];
 			_tiles[i] = 0;
-			//i--;
-			//_tiles.erase(_tiles.begin() + i);
 		}
 		_tiles.clear();
 
@@ -104,8 +116,7 @@ public:
 		{
 			for (int i = 0; i < size(_effects[x.first] ); i++)
 			{
-				_effects[x.first][i]->finalClear();
-				_effects[x.first][i]->clear();
+				delete _effects[x.first][i];
 				_effects[x.first][i] = 0;
 			}
 			_effects[x.first].clear();
@@ -114,7 +125,6 @@ public:
 
 		delete _rotCenter;
 
-		_mapLayers.clear();
 	}
 
 	static map<set< string >, SpriteComponent* > _movebles; 

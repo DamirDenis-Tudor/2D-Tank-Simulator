@@ -30,7 +30,7 @@ public:
 	static void clear()
 	{
 		delete _keys;
-		_keys = 0;
+		_keys = nullptr;
 	}
 
 	static void initInput()

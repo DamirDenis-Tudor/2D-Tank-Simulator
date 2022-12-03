@@ -24,7 +24,7 @@ class Map :public Component
 {
 private:
 
-	vector<Component*> _drawbles;
+	vector<SpriteComponent*> _drawbles;
 
 public:
 	Map()
@@ -76,8 +76,19 @@ public:
 		}
 
 		//optimization -> reset couter
-		SpriteComponent c;
-		c.resetCouter();
+		//SpriteComponent c;
+		//c.resetCouter();
+	}
+
+	~Map()
+	{
+		for (auto& i : _drawbles)
+		{
+			i->setNullPointers();
+			delete i;
+			i = 0;
+		}
+		_drawbles.clear();
 	}
 
 	void draw()  override
@@ -95,17 +106,4 @@ public:
 			i->update();
 		}
 	}
-
-	void clear() override
-	{
-		for (int i = 0; i < size(_drawbles); i++)
-		{
-			_drawbles[i]->clear();
-			_drawbles[i] = 0;
-			_drawbles.erase(_drawbles.begin() + i);
-		}
-		_drawbles.clear();
-	}
-
-
 };

@@ -12,6 +12,7 @@ using namespace std;
 
 class Mediator
 {
+	static int _targetId;
 	static map<int, Vector2T<int> > _tanks;
 	static map<  pair<int, int>, Vector2T<int> > _bullets;
 
@@ -24,7 +25,7 @@ public:
 		pair<int, int> idPair = { tankId , bulletId };
 		for (auto& i : _bullets)
 		{
-			if (i.first != idPair)
+			if (idPair.first != i.first.first)
 			{
 				enemyBullets.push_back(i.second);
 			}
@@ -80,6 +81,16 @@ public:
 	static void removeTanksPosition(int tankId)
 	{
 		_tanks.erase(tankId);
+	}
+
+	static void setPlayerId(int id)
+	{
+		_targetId = id;
+	}
+
+	static Vector2T<int> getTargetPosition()
+	{
+		return _tanks[_targetId];
 	}
 };
 

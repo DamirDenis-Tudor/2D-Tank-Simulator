@@ -18,16 +18,16 @@ public:
 	
 	static void clear()
 	{
-		SDL_DestroyRenderer(_renderer);
+	//	SDL_DestroyRenderer(_renderer);
+	//	_renderer = nullptr;
 	}
 
-	static void setRenderer(const char* name , const int& width, const int& height , bool fullscreen)
+	static void setRenderer(const char*& name , const int& width, const int& height , bool fullscreen)
 	{
 		_width = width;
 		_heigth = height;
 
-		SDL_Window* window = nullptr;
-		window = SDL_CreateWindow(name, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, fullscreen);
+		SDL_Window * window = SDL_CreateWindow(name, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, fullscreen);
 		
 		if (window == nullptr)
 		{

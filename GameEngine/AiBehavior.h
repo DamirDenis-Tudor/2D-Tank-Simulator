@@ -18,7 +18,7 @@
 
 class AiBehavior : public Behavior
 {
-	queue<Moves> _movingOrder;
+	//queue<Moves> _movingOrder;
 	bool _isActivated = false;
 
 public:
@@ -34,6 +34,8 @@ public:
 
 	void BrainAi()
 	{
+		_target = Mediator::getTargetPosition() + AssetsStorage::_mapTileDim;
+
 		if (_isActivated)
 		{
 			follow();
@@ -55,7 +57,7 @@ public:
 
 		SyncMoves();
 
-	//	_moves._down = true;
+		_moves._down = true;
 		_isShooting = true;
 
 		move(position, velocity);
