@@ -78,7 +78,7 @@ public:
 			// Ma gandesc ca de la o pratica de genul al aparea memory leakeage
 
 			Bullet* bullet = new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id);
-			_bullets.emplace_back(new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id));
+			_bullets.emplace_back(bullet);
 			bullet = nullptr;
 
 			Animation* anim = new Animation("Shot1", _position + circumference + _cannon->_dest->w / 2, _cannon->_angle);
