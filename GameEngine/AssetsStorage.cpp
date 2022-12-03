@@ -56,6 +56,7 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 			( { "body" ,i->FindAttribute("type")->Value() , i->FindAttribute("color")->Value() } , sprite));
 
 	}
+	body = nullptr;
 
 	//incarcare sprite-uri cannons
 
@@ -80,6 +81,8 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 			({ "cannon" ,i->FindAttribute("type")->Value() , i->FindAttribute("color")->Value() }, sprite));
 
 	}
+
+	cannon = nullptr;
 
 	//incarcare sprite-uri bullets
 	tinyxml2::XMLElement* bullet = root->FirstChildElement("bullet");
@@ -122,6 +125,12 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 
 
 	_movebles.insert(pair < set <string >, SpriteComponent* > ({ "tracks" }, sprite));
+
+	tracks = nullptr;
+
+	root = nullptr;
+
+	document.Clear();
 
 }
 
@@ -237,6 +246,7 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 		}
 	}
 
+	child = nullptr;
 
 	document.Clear();
 }
@@ -380,6 +390,10 @@ void AssetsStorage::loadEffects(const char* sourceFile)
 	//optimization -> reset couter
 	SpriteComponent c;
 	c.resetCouter();
+
+	shot = nullptr;
+	impact = nullptr;
+	bigExplosion = nullptr;
 
 	document.Clear();
 }

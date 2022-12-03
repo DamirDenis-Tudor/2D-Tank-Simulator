@@ -53,8 +53,8 @@ public:
 	{
 		RendererManager::setRenderer(name, width, height, fullscreen);
 		InputManager::initInput();
-		AssetsStorage::loadTiles("levels/level1scaled2.tmx");
 		AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
+		AssetsStorage::loadTiles("levels/level1scaled2.tmx");
 		AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
 
 		initComponets();
@@ -62,16 +62,16 @@ public:
 
 	void clear() override
 	{
-		for (int i = 0; i < size(_componets); i++)
+		for (int i = 0; i < _componets.size(); i++)
 		{
 			_componets[i]->clear();
 			_componets[i] = 0;
-			_componets.erase(_componets.begin() + i);
-			i--;
 		}
 		_componets.clear();
 
-		//AssetsStorage::clear();
+		InputManager::clear();
+		AssetsStorage::clear();
+		TimeManager::clear();
 	}
 
 

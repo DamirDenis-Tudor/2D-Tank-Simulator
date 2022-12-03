@@ -93,4 +93,12 @@ public:
 		_timers.erase(id);
 	}
 
+	static void clear()
+	{
+		for (int i = 0; i < _timers.size(); i++)
+		{
+			delete _timers[i];
+			_timers[i] = 0;
+		}
+	}
 };

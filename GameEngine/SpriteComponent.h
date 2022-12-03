@@ -17,7 +17,6 @@
 		-> contructor de copiere : 
 			- folosit la crearea mapei (fac o copie din memorie a sprite-ului)
 			- sau la Animatii si posibil si in alte locuri
-			- sunt smecher
 			
 			!!!Nota : ALOC MEMORIE DOAR PENTRU _DEST PENTRU CA ESTE NECESAR,
 					  IAR PENTRU TEXTURA, _SRC "DOAR" POINTEZ CATRE LOCATIA DIN AssetsStorage

@@ -10,9 +10,9 @@ class AnimationsHandler : public Component
 public:
 	AnimationsHandler () {}
 
-	static void addAnimation(Animation* animation)
+	static void addAnimation(Animation*& animation)
 	{
-		_animations.push_back(animation);
+		_animations.emplace_back(animation);
 	}
 
 	void update() override
@@ -25,6 +25,7 @@ public:
 				TimeManager::removeTimer(_animations[i]->_id);
 				
 				_animations[i]->clear();
+				delete _animations[i];
 				_animations[i] = nullptr;
 				_animations.erase(_animations.begin() + i);
 				i--;
@@ -45,7 +46,6 @@ public:
 		for (int i = 0; i < size(_animations); i++)
 		{
 			_animations[i]->clear();
-			delete _animations[i];
 			_animations[i] = nullptr;
 			_animations.erase(_animations.begin() + i);
 			i--;

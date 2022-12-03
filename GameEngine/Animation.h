@@ -34,7 +34,7 @@ public:
 		for (int i = 0; i < _frames ; i++)
 		{
 			SpriteComponent* sprite = new SpriteComponent(AssetsStorage::_effects[_type][i]);
-			_anim.push_back(sprite);
+			_anim.emplace_back(sprite);
 			sprite = nullptr;
 			_anim[i]->setPosition(position);
 			_anim[i]->setAngle(angle);
@@ -67,7 +67,6 @@ public:
 		for (int i = 0; i < _anim.size(); i++)
 		{
 			_anim[i]->clear();
-			delete _anim[i];
 			_anim[i] = nullptr;
 			_anim.erase(_anim.begin() + i);
 			i--;

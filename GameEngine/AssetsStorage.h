@@ -82,21 +82,21 @@ public:
 
 	static void clear()
 	{
-		for (auto& x : _movebles)
+		for (auto x = _movebles.begin();  x != _movebles.end() ; x++)
 		{
-			_movebles[{x.first}]->finalClear();
-			_movebles[{x.first}]->clear();
-			_movebles[{x.first}] = 0;
-			_movebles.erase(x.first);
+			x->second->finalClear();
+			x->second->clear();
+			x->second = 0;
 		}
 		_movebles.clear();
 
-		for (int i = 0; i < size(_tiles) ; i++)
+		for (int i = 0; i < _tiles.size(); i++)
 		{
 			_tiles[i]->finalClear();
 			_tiles[i]->clear();
 			_tiles[i] = 0;
-			_tiles.erase(_tiles.begin() + i);
+			//i--;
+			//_tiles.erase(_tiles.begin() + i);
 		}
 		_tiles.clear();
 
@@ -107,13 +107,14 @@ public:
 				_effects[x.first][i]->finalClear();
 				_effects[x.first][i]->clear();
 				_effects[x.first][i] = 0;
-				_effects[x.first].erase(_effects[x.first].begin() + i);
 			}
 			_effects[x.first].clear();
 		}
 		_effects.clear();
 
 		delete _rotCenter;
+
+		_mapLayers.clear();
 	}
 
 	static map<set< string >, SpriteComponent* > _movebles; 

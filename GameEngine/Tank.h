@@ -73,8 +73,12 @@ public:
 				-> are acelasi unghi cu al cannon-ului; 
 			*/
 
-			Bullet* bullet = new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle , _id);
-			_bullets.push_back(bullet);
+
+			// AICI 
+			// Ma gandesc ca de la o pratica de genul al aparea memory leakeage
+
+			Bullet* bullet = new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id);
+			_bullets.emplace_back(new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id));
 			bullet = nullptr;
 
 			Animation* anim = new Animation("Shot1", _position + circumference + _cannon->_dest->w / 2, _cannon->_angle);
@@ -114,8 +118,8 @@ public:
 				AnimationsHandler::addAnimation(anim);
 				anim = nullptr;
 				
+				//Aici fac dealocarea
 				_bullets[i]->clear();
-				delete _bullets[i];
 				_bullets[i] = 0;
 				_bullets.erase(_bullets.begin() + i);
 				i--;
