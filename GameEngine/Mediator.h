@@ -92,6 +92,12 @@ public:
 	{
 		return _tanks[_targetId];
 	}
+
+	static Vector2T<int> getPosition(int id)
+	{
+		return _tanks[id];
+	}
+	
 };
 
 //notite

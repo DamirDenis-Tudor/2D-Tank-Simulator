@@ -29,7 +29,43 @@ public:
 
 	void follow()
 	{
+		_moves = { false , false , false, false };
 
+		if (Mediator::getTargetPosition()._x > Mediator::getPosition(_id)._x )
+		{
+			_moves._right = true;
+		}
+		else if (Mediator::getTargetPosition()._x < Mediator::getPosition(_id)._x)
+		{
+			_moves._left = true;
+		}
+
+		if (Mediator::getTargetPosition()._y > Mediator::getPosition(_id)._y)
+		{
+			_moves._down = true;
+		}
+		else if (Mediator::getTargetPosition()._y < Mediator::getPosition(_id)._y)
+		{
+			_moves._up = true;
+		}
+		//std::cout<< Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x <<"\n";
+
+		/*if ( Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x < 500)
+		{
+			_moves._right = false;
+		}
+		if (Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x > -500)
+		{
+			_moves._left = false;
+		}
+		if (Mediator::getTargetPosition()._y - Mediator::getPosition(_id)._y < 500)
+		{
+			_moves._down = false;
+		}
+		if (Mediator::getTargetPosition()._y - Mediator::getPosition(_id)._y > -500)
+		{
+			_moves._up = false;
+		}*/
 	}
 
 	void BrainAi()
@@ -57,8 +93,8 @@ public:
 
 		SyncMoves();
 
-		_moves._down = true;
 		_isShooting = true;
+		_isActivated = true;
 
 		move(position, velocity);
 	}

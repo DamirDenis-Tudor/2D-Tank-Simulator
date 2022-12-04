@@ -1,5 +1,22 @@
 #include "Engine.h"
 
+
+void Engine::draw() 
+{
+	for (auto& i : _componets)
+	{
+		i->draw();
+	}
+}
+
+void Engine::update() 
+{
+	for (auto& i : _componets)
+	{
+		i->update();
+	}
+}
+
 void Engine::run()
 {
 	static bool quitGame = false;

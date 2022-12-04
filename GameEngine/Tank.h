@@ -36,6 +36,8 @@ public:
 	{
 		TimeManager::createTimer(_id, shotingTime);
 
+		Mediator::notifyTanksPosition(_position, _id);
+
 		// behaviorul va fi particular tank-ului
 		_behavior->setId(_id);
 	}

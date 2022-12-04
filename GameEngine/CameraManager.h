@@ -12,6 +12,8 @@ class CameraManager
 {
 private:
 	CameraManager() {}
+
+	static int _gameObjectId;
 public:
 	static Vector2T<int> offset ;
 	static Vector2T<int> pastOffset;

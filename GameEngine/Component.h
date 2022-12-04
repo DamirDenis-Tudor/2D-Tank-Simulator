@@ -37,6 +37,11 @@ public:
 		_counter++;
 	}
 
+	virtual ~Component()
+	{
+
+	}
+
 	//fiecare clasa care mosteneste va implementa 
 	//aceasta medota pentru dealocare
 	

@@ -11,7 +11,7 @@
 		-> clasa abstracta de descrie compotamentul unui tank:
 			> rotatii de doua feluri , miscare 
 
-		Nota: in clasei mostenitoare metoda vrtuala pura movement permite
+		Nota: in clasei mostenitoare metoda vIrtuala pura movement permite
 			  implementarea unui movemnt particular fara a modifica clasa tank
 */
 
@@ -54,7 +54,6 @@ public:
 		potentialPos._x = (position._x + AssetsStorage::_mapTileDim);
 		potentialPos._y = (position._y + AssetsStorage::_mapTileDim);
 
-
 		if (_moves._up)
 		{
 			direction.setY(-1);
@@ -82,20 +81,12 @@ public:
 
 		potentialPos += velocity * direction * TimeManager::getDeltaTime();
 
-		int value = 0;
-
 		int rectDim = 2 * AssetsStorage::_mapTileDim;
 		for(auto &i : Mediator::recieveTanksPosition(_id) )
 		{
 			CollisionManager::circleRectagleCollision(potentialPos, i, rectDim);
 		}
 		CollisionManager::mapCollision(potentialPos);
-
-		//for ( auto &i : Mediator::recieveTanksPosition(_id))
-		//{
-		//	std::cout << _id << " : " << i << '\n';
-		//}
-		//std::cout << "\n\n";
 
 		position._x = static_cast <int>(potentialPos._x) - AssetsStorage::_mapTileDim;
 		position._y = static_cast <int>(potentialPos._y) - AssetsStorage::_mapTileDim;
