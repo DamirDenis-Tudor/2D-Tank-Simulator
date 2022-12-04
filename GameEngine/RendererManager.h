@@ -18,8 +18,8 @@ public:
 	
 	static void clear()
 	{
-	//	SDL_DestroyRenderer(_renderer);
-	//	_renderer = nullptr;
+		SDL_DestroyRenderer(_renderer);
+		_renderer = nullptr;
 	}
 
 	static void setRenderer(const char*& name , const int& width, const int& height , bool fullscreen)

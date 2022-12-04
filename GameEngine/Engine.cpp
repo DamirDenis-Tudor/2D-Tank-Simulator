@@ -1,6 +1,47 @@
 #include "Engine.h"
 
 
+
+void Engine::initComponets()
+{
+	_componets.emplace_back(new Map);
+
+	Director* director = new Director;
+
+	PlayerBuilder* builder = new PlayerBuilder();
+
+	builder->setAtributtes("ColorB", "Type8");
+	director->setBuilder(builder);
+
+	Tank* tank = director->getTank({ 256 , 1080 }, { 0.4 , 0.4 }, 3);
+	Mediator::setPlayerId(tank->_id);
+	_componets.push_back(tank);
+
+	EnemyBuilder* builder1 = new EnemyBuilder();
+	director->setBuilder(builder1);
+
+	builder1->setAtributtes("ColorC", "Type3");
+	Tank* tank1 = director->getTank({ 256 + 128 , 256 + 64 }, { 0.2, 0.2 }, 5);
+	_componets.push_back(tank1);
+
+	builder1->setAtributtes("ColorA", "Type1");
+	Tank* tank2 = director->getTank({ 256 + 256 + 128 , 256 }, { 0.15 , 0.15 }, 0.04);
+	_componets.push_back(tank2);
+
+	builder1->setAtributtes("ColorD", "Type2");
+	Tank* tank3 = director->getTank({ 512 + 256 + 128 , 256 + 64 }, { 0.3 , 0.3 }, 0.05);
+	_componets.push_back(tank3);
+
+	builder1->setAtributtes("ColorB", "Type5");
+	Tank* tank4 = director->getTank({ 512 + 256 + 256 ,  256 }, { 0.2 , 0.2 }, 0.05);
+	_componets.emplace_back(tank4);
+
+	_componets.emplace_back(new AnimationsHandler);
+
+	delete director;
+	director = nullptr;
+}
+
 void Engine::draw() 
 {
 	for (auto& i : _componets)

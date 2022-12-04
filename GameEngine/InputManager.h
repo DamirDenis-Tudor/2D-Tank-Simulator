@@ -52,11 +52,6 @@ public:
 		SDL_GetMouseState(&mousePos._x, &mousePos._y);
 	}
 
-	~InputManager()
-	{
-
-	}
-
 	static void keyPressed(SDL_Event event)
 	{
 		if (event.key.keysym.sym < 256)

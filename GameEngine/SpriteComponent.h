@@ -46,45 +46,14 @@ private:
 public:
 	bool _isOnCameraFocus = false;
 	bool _isAi = false;
-	SpriteComponent(const char* source)
-	{
-		_src = new SDL_Rect;
-		_dest = new SDL_Rect;
-		SDL_Surface* surface = IMG_Load(source);
-		_texture = SDL_CreateTextureFromSurface(RendererManager::getRenderer(), surface);
-		SDL_FreeSurface(surface);
-	}
 
 	SpriteComponent() {}
 
-	SpriteComponent(SpriteComponent*& sprite)
-	{
-		_src = sprite->_src;
+	SpriteComponent(const char* source);
 
-		_dest = new SDL_Rect;
-		*_dest = *sprite->_dest;
+	SpriteComponent(SpriteComponent*& sprite);
 
-		_texture = sprite->_texture;
-	}
-
-	~SpriteComponent()
-	{
-		if (_src != nullptr)
-		{
-			delete(_src);
-			_src = nullptr;
-		}
-		if (_dest != nullptr)
-		{
-			delete(_dest);
-			_dest = nullptr;
-		}	
-		if (_texture != nullptr)
-		{
-			SDL_DestroyTexture(_texture);
-			_texture = nullptr;
-		}	
-	}
+	~SpriteComponent();
 
 	void setNullPointers()
 	{
@@ -103,45 +72,11 @@ public:
 		_dest->y = position.getY();
 	}
 
-	void isOnCamera()
-	{
-		if (_dest->x + _dest->w  < -64 ||
-			_dest->y + _dest->h  < -64 ||
-			_dest->x  > RendererManager::_width + 64 ||
-			_dest->y  > RendererManager::_heigth + 64)
-		{
-			disable();
-		}
-		enable();
-	}
+	void isOnCamera();
 
-	void draw() override
-	{
-		if (isActive())
-		{
-			SDL_RenderCopyEx(RendererManager::_renderer, _texture, _src, _dest ,_angle , &center , SDL_FLIP_NONE);
-			//SDL_RenderDrawRect(RendererManager::_renderer, _dest);
-		}
-	}
+	void draw() override;
 
-	void update() override
-	{
-		if (!_isOnCameraFocus )
-		{
-			isOnCamera();
-
-			if (_isAi)
-			{
-				_dest->x = _dest->x + CameraManager::tileOffset._x;
-				_dest->y = _dest->y + CameraManager::tileOffset._y;
-			}
-			else
-			{
-				_dest->x = _dest->x - CameraManager::tileOffset._x;
-				_dest->y = _dest->y - CameraManager::tileOffset._y;
-			}
-		}
-	}
+	void update() override;
 
 };
 

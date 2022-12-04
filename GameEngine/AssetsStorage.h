@@ -95,38 +95,6 @@ private:
 	AssetsStorage(){}
 
 public:
-
-	static void clear()
-	{
-		for (auto x = _movebles.begin();  x != _movebles.end() ; x++)
-		{
-			delete x->second;
-			x->second = 0;
-		}
-		_movebles.clear();
-
-		for (int i = 0; i < _tiles.size(); i++)
-		{
-			delete _tiles[i];
-			_tiles[i] = 0;
-		}
-		_tiles.clear();
-
-		for (auto& x : _effects)
-		{
-			for (int i = 0; i < size(_effects[x.first] ); i++)
-			{
-				delete _effects[x.first][i];
-				_effects[x.first][i] = 0;
-			}
-			_effects[x.first].clear();
-		}
-		_effects.clear();
-
-		delete _rotCenter;
-
-	}
-
 	static map<set< string >, SpriteComponent* > _movebles; 
 	
 	static int _mapTileDim ;
@@ -140,9 +108,9 @@ public:
 	static SDL_Point* _rotCenter ;
 
 	static void loadMovebles(const char* sourceFile);
-
 	static void loadTiles(const char* sourceFile);
 	static void convertInToMatrix(const char* buffer, vector<vector<int>>& mapLayer);
-
 	static void loadEffects(const char* sourceFile);
+	static void clear();
+
 };

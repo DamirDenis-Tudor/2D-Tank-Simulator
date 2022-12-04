@@ -23,81 +23,14 @@ class AiBehavior : public Behavior
 
 public:
 
-	void patrol()
-	{
-	}
+	void patrol();
 
-	void follow()
-	{
-		_moves = { false , false , false, false };
+	void follow();
 
-		if (Mediator::getTargetPosition()._x > Mediator::getPosition(_id)._x )
-		{
-			_moves._right = true;
-		}
-		else if (Mediator::getTargetPosition()._x < Mediator::getPosition(_id)._x)
-		{
-			_moves._left = true;
-		}
+	void BrainAi();
 
-		if (Mediator::getTargetPosition()._y > Mediator::getPosition(_id)._y)
-		{
-			_moves._down = true;
-		}
-		else if (Mediator::getTargetPosition()._y < Mediator::getPosition(_id)._y)
-		{
-			_moves._up = true;
-		}
-		//std::cout<< Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x <<"\n";
+	void SyncMoves();
 
-		/*if ( Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x < 500)
-		{
-			_moves._right = false;
-		}
-		if (Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x > -500)
-		{
-			_moves._left = false;
-		}
-		if (Mediator::getTargetPosition()._y - Mediator::getPosition(_id)._y < 500)
-		{
-			_moves._down = false;
-		}
-		if (Mediator::getTargetPosition()._y - Mediator::getPosition(_id)._y > -500)
-		{
-			_moves._up = false;
-		}*/
-	}
-
-	void BrainAi()
-	{
-		_target = Mediator::getTargetPosition() + AssetsStorage::_mapTileDim;
-
-		if (_isActivated)
-		{
-			follow();
-		}
-		else
-		{
-			patrol();
-		}
-	}
-
-	void SyncMoves()
-	{
-
-	}
-
-	void movement(Vector2T<int>& position, Vector2T<float> velocity) override
-	{
-		BrainAi();
-
-		SyncMoves();
-
-		_isShooting = true;
-		_isActivated = true;
-
-		move(position, velocity);
-	}
-
+	void movement(Vector2T<int>& position, Vector2T<float> velocity) override;
 };
 

@@ -23,87 +23,13 @@
 class Map :public Component
 {
 private:
-
 	vector<SpriteComponent*> _drawbles;
 
 public:
-	Map()
-	{
-		for (int i = 0; i < AssetsStorage::_layerHeight; i++)
-		{
-			for (int j = 0; j < AssetsStorage::_layerWidth; j++)
-			{
-				if (AssetsStorage::_mapLayers["ground"][i][j] != 0)
-				{
-					SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["ground"][i][j] - 1]);
-					tile->setPosition(Vector2T<int>(j * AssetsStorage::_mapTileDim, i * AssetsStorage::_mapTileDim));
 
-					_drawbles.push_back(tile);
+	Map();
+	~Map();
 
-					tile = nullptr;
-				}
-			}
-		}
-
-		for (int i = 0; i < AssetsStorage::_layerHeight; i++)
-		{
-			for (int j = 0; j < AssetsStorage::_layerWidth; j++)
-			{
-				if (AssetsStorage::_mapLayers["decor"][i][j] != 0)
-				{
-					SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["decor"][i][j] - 1]);
-					tile->setPosition(Vector2T<int>(j * AssetsStorage::_mapTileDim, i * AssetsStorage::_mapTileDim));
-					_drawbles.push_back(tile);
-					tile = nullptr;
-				}
-			}
-		}
-
-		for (int i = 0; i < AssetsStorage::_layerHeight; i++)
-		{
-			for (int j = 0; j < AssetsStorage::_layerWidth; j++)
-			{
-
-				if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
-				{
-					SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1]);
-					tile->setPosition(Vector2T<int>(j * AssetsStorage::_mapTileDim, i * AssetsStorage::_mapTileDim));
-					_drawbles.push_back(tile);
-					tile = nullptr;
-				}
-
-			}
-		}
-
-		//optimization -> reset couter
-		//SpriteComponent c;
-		//c.resetCouter();
-	}
-
-	~Map()
-	{
-		for (auto& i : _drawbles)
-		{
-			i->setNullPointers();
-			delete i;
-			i = 0;
-		}
-		_drawbles.clear();
-	}
-
-	void draw()  override
-	{
-		for (auto& i : _drawbles)
-		{
-			i->draw();
-		}
-	}
-
-	void update() override
-	{
-		for (auto& i : _drawbles)
-		{
-			i->update();
-		}
-	}
+	void draw()  override;
+	void update() override;
 };

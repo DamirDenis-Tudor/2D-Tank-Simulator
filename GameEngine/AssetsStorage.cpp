@@ -397,3 +397,33 @@ void AssetsStorage::loadEffects(const char* sourceFile)
 
 	document.Clear();
 }
+
+void AssetsStorage::clear()
+{
+	for (auto x = _movebles.begin(); x != _movebles.end(); x++)
+	{
+		delete x->second;
+		x->second = 0;
+	}
+	_movebles.clear();
+
+	for (int i = 0; i < _tiles.size(); i++)
+	{
+		delete _tiles[i];
+		_tiles[i] = 0;
+	}
+	_tiles.clear();
+
+	for (auto& x : _effects)
+	{
+		for (int i = 0; i < size(_effects[x.first]); i++)
+		{
+			delete _effects[x.first][i];
+			_effects[x.first][i] = 0;
+		}
+		_effects[x.first].clear();
+	}
+	_effects.clear();
+
+	delete _rotCenter;
+}
