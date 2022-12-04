@@ -24,8 +24,6 @@ protected:
 	const char* _type = nullptr;
 
 public:
-	bool _cameraFocus = false;
-	bool _isAi = false;
 
 	Builder() {}
 	~Builder()
@@ -43,9 +41,6 @@ public:
 	{
 		SpriteComponent* body = new SpriteComponent(AssetsStorage::_movebles[{_color, _type, "body"}]);
 
-		body->_isOnCameraFocus = _cameraFocus;
-		body->_isAi = _isAi;
-
 		return body;
 	}
 
@@ -53,18 +48,12 @@ public:
 	{
 		SpriteComponent* cannon = new SpriteComponent(AssetsStorage::_movebles[{_color, _type, "cannon"}]);
 
-		cannon->_isOnCameraFocus = _cameraFocus;
-		cannon->_isAi = _isAi;
-
 		return cannon;
 	}
 
 	SpriteComponent* getTracks()
 	{
 		SpriteComponent* tracks = new SpriteComponent(AssetsStorage::_movebles[{"tracks"}]);
-
-		tracks->_isOnCameraFocus = _cameraFocus;
-		tracks->_isAi = _isAi;
 
 		return tracks;
 	}

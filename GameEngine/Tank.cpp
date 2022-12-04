@@ -36,6 +36,13 @@ Tank::~Tank()
 	TimeManager::removeTimer(_id);
 }
 
+void Tank::cameraIsFollowing()
+{
+	_tracks->_isFollowed = true;
+	_body->_isFollowed = true;
+	_cannon->_isFollowed = true;
+}
+
 void Tank::syncMovement()
 {
 	Mediator::notifyTanksPosition(_position, _id);
@@ -71,7 +78,6 @@ void Tank::checkForBullets()
 
 		Bullet* bullet = new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id);
 		_bullets.emplace_back(bullet);
-		bullet = nullptr;
 
 		Animation* anim = new Animation("Shot1", _position + circumference + _cannon->_dest->w / 2, _cannon->_angle);
 		AnimationsHandler::addAnimation(anim);

@@ -35,6 +35,8 @@ public:
 
 	~Tank();
 
+	void cameraIsFollowing();
+
 	void syncMovement();
 
 	void checkForBullets();

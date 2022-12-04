@@ -27,27 +27,32 @@ void AiBehavior::follow()
 	}
 	//std::cout<< Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x <<"\n";
 
-	/*if ( Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x < 500)
+	if ( Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x < 300)
 	{
 		_moves._right = false;
 	}
-	if (Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x > -500)
+	if (Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x > -300)
 	{
 		_moves._left = false;
 	}
-	if (Mediator::getTargetPosition()._y - Mediator::getPosition(_id)._y < 500)
+	if (Mediator::getTargetPosition()._y - Mediator::getPosition(_id)._y < 300)
 	{
 		_moves._down = false;
 	}
-	if (Mediator::getTargetPosition()._y - Mediator::getPosition(_id)._y > -500)
+	if (Mediator::getTargetPosition()._y - Mediator::getPosition(_id)._y > -300)
 	{
 		_moves._up = false;
-	}*/
+	}
 }
 
 void AiBehavior::BrainAi()
 {
 	_target = Mediator::getTargetPosition() + AssetsStorage::_mapTileDim;
+
+	if (_id != CameraManager::getFocusId())
+	{
+		_target -= _offset;
+	}
 
 	if (_isActivated)
 	{

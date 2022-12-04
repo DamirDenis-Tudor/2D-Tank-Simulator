@@ -44,8 +44,8 @@ private:
 	float _angle = 0;
 
 public:
-	bool _isOnCameraFocus = false;
-	bool _isAi = false;
+	bool _isFollowed = false;
+	bool _isTile = false;
 
 	SpriteComponent() {}
 

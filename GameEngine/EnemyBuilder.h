@@ -13,9 +13,5 @@ class EnemyBuilder : public Builder
 	}
 
 public:
-	EnemyBuilder()
-	{
-		_isAi = true;
-	}
 };
 

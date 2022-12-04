@@ -16,11 +16,14 @@
 
 class InputBehavior : public Behavior
 {
-	void cameraSync(Vector2T<int>& position);
-
 	void syncInput();
 
 	void movement(Vector2T<int>& position, Vector2T<float> velocity) override;
-	
+
+public:
+	InputBehavior()
+	{
+		//Mediator::setPlayerId(_id);
+	}
 };
 

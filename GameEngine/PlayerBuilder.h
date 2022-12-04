@@ -10,11 +10,6 @@ class PlayerBuilder : public Builder
 
 		return behavior;
 	}
-public:
-	PlayerBuilder()
-	{
-		_cameraFocus = true;
-	}
 
 };
 

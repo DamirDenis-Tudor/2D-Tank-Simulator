@@ -2,6 +2,11 @@
 
 void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 {
+	if (CameraManager::getFocusId() != _id)
+	{
+		_offset = CameraManager::offset;
+	}
+
 	Vector2T<float> direction(0, 0);
 
 	Vector2T<float> potentialPos;
@@ -189,7 +194,6 @@ void Behavior::rotationB(float& _angle, float& _angle1)
 			}
 		}
 	}
-
 
 	if (_angle >= 360 || _angle <= -360)
 	{

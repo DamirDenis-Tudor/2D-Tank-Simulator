@@ -10,7 +10,7 @@ Map::Map()
 			{
 				SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["ground"][i][j] - 1]);
 				tile->setPosition(Vector2T<int>(j * AssetsStorage::_mapTileDim, i * AssetsStorage::_mapTileDim));
-
+				tile->_isTile = true;
 				_drawbles.push_back(tile);
 
 				tile = nullptr;
@@ -26,6 +26,7 @@ Map::Map()
 			{
 				SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["decor"][i][j] - 1]);
 				tile->setPosition(Vector2T<int>(j * AssetsStorage::_mapTileDim, i * AssetsStorage::_mapTileDim));
+				tile->_isTile = true;
 				_drawbles.push_back(tile);
 				tile = nullptr;
 			}
@@ -41,6 +42,7 @@ Map::Map()
 			{
 				SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1]);
 				tile->setPosition(Vector2T<int>(j * AssetsStorage::_mapTileDim, i * AssetsStorage::_mapTileDim));
+				tile->_isTile = true;
 				_drawbles.push_back(tile);
 				tile = nullptr;
 			}

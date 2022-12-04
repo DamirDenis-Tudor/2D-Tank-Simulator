@@ -38,26 +38,6 @@ public:
 
 	void update() override;
 
-	Engine(const char* name, int width, int height, bool fullscreen, float framerate) : _framerate(framerate)
-	{
-		InputManager::initInput();
-		RendererManager::setRenderer(name, width, height, fullscreen);
-		AssetsStorage::loadTiles("levels/level1scaled2.tmx");
-		AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
-		AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
-		initComponets();
-
-	}
-	~Engine()
-	{
-		RendererManager::clear();
-		InputManager::clear();
-		AssetsStorage::clear();
-		TimeManager::clear();
-		for (auto& i : _componets)
-		{
-			delete i;
-			i = nullptr;
-		}
-	}
+	Engine(const char* name, int width, int height, bool fullscreen, float framerate);
+	~Engine();
 };

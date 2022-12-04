@@ -5,25 +5,29 @@ void SpriteComponent::draw()
 	if (isActive())
 	{
 		SDL_RenderCopyEx(RendererManager::_renderer, _texture, _src, _dest, _angle, &center, SDL_FLIP_NONE);
-		//SDL_RenderDrawRect(RendererManager::_renderer, _dest);
+
+		if (_isFollowed)
+		{
+			SDL_RenderDrawRect(RendererManager::_renderer, _dest);
+		}
 	}
 }
 
 void SpriteComponent::update()
 {
-	if (!_isOnCameraFocus)
+	if (!_isFollowed)
 	{
 		isOnCamera();
 
-		if (_isAi)
-		{
-			_dest->x = _dest->x + CameraManager::tileOffset._x;
-			_dest->y = _dest->y + CameraManager::tileOffset._y;
-		}
-		else
+		if(_isTile)
 		{
 			_dest->x = _dest->x - CameraManager::tileOffset._x;
 			_dest->y = _dest->y - CameraManager::tileOffset._y;
+		}
+		else
+		{
+			_dest->x = _dest->x + CameraManager::tileOffset._x;
+			_dest->y = _dest->y + CameraManager::tileOffset._y;
 		}
 	}
 }
