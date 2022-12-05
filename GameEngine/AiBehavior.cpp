@@ -6,44 +6,15 @@ void AiBehavior::patrol()
 
 void AiBehavior::follow()
 {
+	//TODO: 
+	// optimizare fiecare inamic va avea raza lui de actiune
+	// => verica doar pe portiuni de mapa
 
-	_moves = { false , false , false, false };
+	Node* start = MapSpaceManager::getNode((Mediator::getPosition(_id) / AssetsStorage::_mapTileDim));
+	Node * end = MapSpaceManager::getNode((Mediator::getTargetPosition() / AssetsStorage::_mapTileDim));
 
-	if (Mediator::getTargetPosition()._x > Mediator::getPosition(_id)._x)
-	{
-		_moves._right = true;
-	}
-	else if (Mediator::getTargetPosition()._x < Mediator::getPosition(_id)._x)
-	{
-		_moves._left = true;
-	}
+	_moves = MapSpaceManager::aStar(start, end , _id);
 
-	if (Mediator::getTargetPosition()._y > Mediator::getPosition(_id)._y)
-	{
-		_moves._down = true;
-	}
-	else if (Mediator::getTargetPosition()._y < Mediator::getPosition(_id)._y)
-	{
-		_moves._up = true;
-	}
-	//std::cout<< Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x <<"\n";
-
-	if ( Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x < 300)
-	{
-		_moves._right = false;
-	}
-	if (Mediator::getTargetPosition()._x - Mediator::getPosition(_id)._x > -300)
-	{
-		_moves._left = false;
-	}
-	if (Mediator::getTargetPosition()._y - Mediator::getPosition(_id)._y < 300)
-	{
-		_moves._down = false;
-	}
-	if (Mediator::getTargetPosition()._y - Mediator::getPosition(_id)._y > -300)
-	{
-		_moves._up = false;
-	}
 }
 
 void AiBehavior::BrainAi()
@@ -75,7 +46,7 @@ void AiBehavior::movement(Vector2T<int>& position, Vector2T<float> velocity)
 
 	SyncMoves();
 
-	_isShooting = true;
+	//_isShooting = true;
 	_isActivated = true;
 
 	move(position, velocity);

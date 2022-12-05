@@ -24,11 +24,6 @@ void SpriteComponent::update()
 			_dest->x = _dest->x - CameraManager::tileOffset._x;
 			_dest->y = _dest->y - CameraManager::tileOffset._y;
 		}
-		else
-		{
-			_dest->x = _dest->x + CameraManager::tileOffset._x;
-			_dest->y = _dest->y + CameraManager::tileOffset._y;
-		}
 	}
 }
 

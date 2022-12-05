@@ -11,7 +11,7 @@ void Engine::initComponets()
 	builder->setAtributtes("ColorB", "Type5");
 	director->setBuilder(builder);
 
-	Tank* tank = director->getTank({ 256 , 1080 }, { 0.4 , 0.4 }, 1);
+	Tank* tank = director->getTank({ 64,64 }, { 0.4 , 0.4 }, 1);
 	_componets.push_back(tank);
 	Mediator::setPlayerId(tank->_id);
 
@@ -19,19 +19,19 @@ void Engine::initComponets()
 	director->setBuilder(builder1);
 
 	builder1->setAtributtes("ColorC", "Type3");
-	Tank* tank1 = director->getTank({ 256 + 128 , 256 + 64 }, { 0.2, 0.2 }, 0.05);
+	Tank* tank1 = director->getTank({ 256 + 128 , 256 + 64 }, { 0.15, 0.15 }, 2);
 	_componets.push_back(tank1);
 
 	builder1->setAtributtes("ColorA", "Type1");
-	Tank* tank2 = director->getTank({ 256 + 256 + 128 , 256 }, { 0.11 , 0.11 }, 4);
+	Tank* tank2 = director->getTank({ 256 + 256 + 256 , 256 + 256 }, { 0.15 , 0.15 }, 4);
 	_componets.push_back(tank2);
 
 	builder1->setAtributtes("ColorD", "Type2");
-	Tank* tank3 = director->getTank({ 512 + 256 + 128 , 256 + 64 }, { 0.1 , 0.1 }, 0.15);
+	Tank* tank3 = director->getTank({ 512 + 256 + 128 , 256 + 64 }, { 0.15 , 0.15 }, 1);
 	_componets.push_back(tank3);
 
 	builder1->setAtributtes("ColorB", "Type5");
-	Tank* tank4 = director->getTank({ 512 + 256 + 256 ,  256 }, { 0.12 , 0.12 }, 0.043);
+	Tank* tank4 = director->getTank({ 512 + 256 + 256 ,  256 }, { 0.15 , 0.15 }, 4);
 	_componets.emplace_back(tank4);
 
 	_componets.emplace_back(new AnimationsHandler);
@@ -39,8 +39,8 @@ void Engine::initComponets()
 	delete director;
 	director = nullptr;
 
-	CameraManager::setFocusId(tank1->_id);
-	tank1->cameraIsFollowing();
+	CameraManager::setFocusId(tank->_id);
+	tank->cameraIsFollowing();
 }
 
 void Engine::draw() 
@@ -68,10 +68,6 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 	AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
 	AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
 	MapSpaceManager::initNodes();
-
-	//test
-	MapSpaceManager::aStar(MapSpaceManager::getNode({ 1,1 }), MapSpaceManager::getNode({ 1,37 }));
-
 	CameraManager::init(AssetsStorage::_mapTileDim, AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
 	initComponets();
 
@@ -148,6 +144,8 @@ void Engine::run()
 		{
 			delay = 0;
 		}
+
+		std::cout << delay << "\n";
 
 		SDL_Delay(delay);
 

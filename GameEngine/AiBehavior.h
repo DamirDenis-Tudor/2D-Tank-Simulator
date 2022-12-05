@@ -1,6 +1,5 @@
 #pragma once
 #include "Behavior.h"
-#include "MapSpaceManager.h"
 
 
 /*
@@ -18,7 +17,7 @@
 
 class AiBehavior : public Behavior
 {
-	//queue<Moves> _movingOrder;
+	Vector2T<int> _nextPos;
 	bool _isActivated = false;
 
 public:

@@ -3,10 +3,21 @@
 #include"AssetsStorage.h"
 #include<queue>
 #include"Vector2i.h"
+#include"Mediator.h"
+
+struct Moves
+{
+	bool _up = false;
+	bool _down = false;
+	bool _right = false;
+	bool _left = false;
+};
 
 class Node
 {
+public:
 	friend class MapSpaceManager;
+	//friend std::sort();
 	bool _isObstacle = false;
 	bool _isVisited = false;
 	Vector2T<int> _position = { 0 , 0 };
@@ -15,20 +26,16 @@ class Node
 	float _gloabalGoal = 0.f;
 
 	Node* _parent = nullptr;
-	vector<Node*> _neighbors = {};
-public:
+	vector<Node*> _neighbours = {};
 	Node() {};
 	Node(Vector2T<int> position) : _position(position) {}
 	~Node()
 	{
-		delete _parent;
-		_parent = nullptr;
-
-		for (auto &i : _neighbors)
+		for (auto &i : _neighbours)
 		{
 			i = nullptr;
 		}
-		_neighbors.clear();
+		_neighbours.clear();
 	}
 
 };
@@ -36,6 +43,7 @@ public:
 class MapSpaceManager
 {
 	static vector<vector<Node*>> _nodes;
+	static Node* _actualEndNode;
 public:
 
 	static void initNodes();
@@ -46,7 +54,10 @@ public:
 	
 	static Node* getNode(Vector2T<int> position);
 	
-	static void aStar(Node* start, Node* end);
+	static void resetNodes();
+	static void actualizeTemporaryObstacles(int taniId , bool status);
+	static void findAreaPos(Node* start , Node* end);
+	static Moves aStar(Node* start, Node* end , int tankId);
 
 	static void clear();
 };

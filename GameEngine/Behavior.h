@@ -4,6 +4,7 @@
 #include "ColisionManager.h"
 #include"TimeManager.h"
 #include"Mediator.h"
+#include"MapSpaceManager.h"
 
 /*
 	Descriere clasa:
@@ -14,14 +15,6 @@
 		Nota: in clasei mostenitoare metoda vIrtuala pura movement permite
 			  implementarea unui movemnt particular fara a modifica clasa tank
 */
-
-struct Moves
-{
-	bool _up = false;
-	bool _down = false;
-	bool _right = false;
-	bool _left = false;
-};
 
 class Behavior
 {
