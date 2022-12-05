@@ -14,7 +14,7 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 {
 	XMLDocument document;
 
-	document.LoadFile("assets/sTanks/tank.tmx");
+	document.LoadFile(sourceFile);
 
 
 	if (document.Error())

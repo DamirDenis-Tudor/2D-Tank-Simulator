@@ -19,19 +19,19 @@ void Engine::initComponets()
 	director->setBuilder(builder1);
 
 	builder1->setAtributtes("ColorC", "Type3");
-	Tank* tank1 = director->getTank({ 256 + 128 , 256 + 64 }, { 0.2, 0.2 }, 5);
+	Tank* tank1 = director->getTank({ 256 + 128 , 256 + 64 }, { 0.2, 0.2 }, 0.05);
 	_componets.push_back(tank1);
 
 	builder1->setAtributtes("ColorA", "Type1");
-	Tank* tank2 = director->getTank({ 256 + 256 + 128 , 256 }, { 0.15 , 0.15 }, 4);
+	Tank* tank2 = director->getTank({ 256 + 256 + 128 , 256 }, { 0.11 , 0.11 }, 4);
 	_componets.push_back(tank2);
 
 	builder1->setAtributtes("ColorD", "Type2");
-	Tank* tank3 = director->getTank({ 512 + 256 + 128 , 256 + 64 }, { 0.3 , 0.3 }, 5);
+	Tank* tank3 = director->getTank({ 512 + 256 + 128 , 256 + 64 }, { 0.1 , 0.1 }, 0.15);
 	_componets.push_back(tank3);
 
 	builder1->setAtributtes("ColorB", "Type5");
-	Tank* tank4 = director->getTank({ 512 + 256 + 256 ,  256 }, { 0.2 , 0.2 }, 3);
+	Tank* tank4 = director->getTank({ 512 + 256 + 256 ,  256 }, { 0.12 , 0.12 }, 0.043);
 	_componets.emplace_back(tank4);
 
 	_componets.emplace_back(new AnimationsHandler);
@@ -39,8 +39,8 @@ void Engine::initComponets()
 	delete director;
 	director = nullptr;
 
-	CameraManager::setFocusId(tank->_id);
-	tank->cameraIsFollowing();
+	CameraManager::setFocusId(tank1->_id);
+	tank1->cameraIsFollowing();
 }
 
 void Engine::draw() 
@@ -60,13 +60,18 @@ void Engine::update()
 	}
 }
 
-Engine::Engine(const char* name, int width, int height, bool fullscreen, float framerate): _framerate(framerate)
+Engine::Engine(const char* name, int width, int height, bool fullscreen, float framerate) : _framerate(framerate)
 {
 	InputManager::initInput();
 	RendererManager::setRenderer(name, width, height, fullscreen);
 	AssetsStorage::loadTiles("levels/level1scaled2.tmx");
 	AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
 	AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
+	MapSpaceManager::initNodes();
+
+	//test
+	MapSpaceManager::aStar(MapSpaceManager::getNode({ 1,1 }), MapSpaceManager::getNode({ 1,37 }));
+
 	CameraManager::init(AssetsStorage::_mapTileDim, AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
 	initComponets();
 
@@ -78,6 +83,7 @@ Engine::~Engine()
 	InputManager::clear();
 	AssetsStorage::clear();
 	TimeManager::clear();
+	MapSpaceManager::clear();
 	for (auto& i : _componets)
 	{
 		delete i;

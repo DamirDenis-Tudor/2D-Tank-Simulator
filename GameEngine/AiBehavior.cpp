@@ -6,6 +6,7 @@ void AiBehavior::patrol()
 
 void AiBehavior::follow()
 {
+
 	_moves = { false , false , false, false };
 
 	if (Mediator::getTargetPosition()._x > Mediator::getPosition(_id)._x)
@@ -48,7 +49,6 @@ void AiBehavior::follow()
 void AiBehavior::BrainAi()
 {
 	_target = Mediator::getTargetPosition() + AssetsStorage::_mapTileDim;
-
 	if (_id != CameraManager::getFocusId())
 	{
 		_target -= _offset;
