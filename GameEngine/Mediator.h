@@ -46,6 +46,11 @@ public:
 		_targetId = id;
 	}
 
+	static int getPlayerId()
+	{
+		return _targetId;
+	}
+
 	static Vector2T<int> getTargetPosition()
 	{
 		return _tanks[_targetId];

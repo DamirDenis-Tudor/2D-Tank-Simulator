@@ -1,6 +1,5 @@
-#include "MapSpaceManager.h"
+#include"MapSpaceManager.h"
 
-//alocam o matrice intr-o zona continua de memorie
 vector<vector<Node*>> MapSpaceManager::_nodes = {};
 
 void MapSpaceManager::initNodes()
@@ -77,7 +76,7 @@ float MapSpaceManager::manhhatanDistance(Node* a, Node* b)
 
 float MapSpaceManager::heuristic(Node* a, Node* b)
 {
-	return manhhatanDistance(a,b);
+	return eucliadianDistance(a, b);
 }
 
 Node* MapSpaceManager::getNode(Vector2T<int> position)
@@ -100,7 +99,7 @@ void MapSpaceManager::resetNodes()
 	}
 }
 
-void MapSpaceManager::actualizeTemporaryObstacles (int tankId , bool status)
+void MapSpaceManager::actualizeTemporaryObstacles(int tankId, bool status)
 {
 	for (auto& i : Mediator::recieveTanksPosition(tankId))
 	{
@@ -115,13 +114,19 @@ void MapSpaceManager::actualizeTemporaryObstacles (int tankId , bool status)
 	}
 }
 
-void MapSpaceManager::findAreaPos(Node *start , Node* end)
+void MapSpaceManager::findAreaPos(Node* start, Node* end)
 {
-	
+
 }
 
 Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 {
+	//todo:
+	// -> in loc de parinte implemeteaza un copil
+	// -> momentul in care ai un timp de executie mult
+	// prea mare oresti executia si te uiti la prima mutare
+	// adica la copilul nodului start
+
 	//gasete cel mai apropiat punct din aria de
 	//acoperire a targetului
 
@@ -144,15 +149,16 @@ Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 
 	bool hasPath = true;
 
-	while (!unvisitedNodes.empty() && unvisitedNodes.front() != end  )
+	while (!unvisitedNodes.empty() && unvisitedNodes.front() != end)
 	{
+
 		//aici putem face o sortare : list => coada de prioritati
-		unvisitedNodes.sort([](const Node* a, const Node* b) {return a->_gloabalGoal < b->_gloabalGoal; });
+		//unvisitedNodes.sort([](const Node* a, const Node* b) {return a->_gloabalGoal < b->_gloabalGoal; });
 
 		//putem avea eroare daca nu avem nimic in lista
 
 		//daca avem obstacole nu le punem
-		while (!unvisitedNodes.empty() && (unvisitedNodes.front()->_isVisited || unvisitedNodes.front()->_isObstacle))
+		while (!unvisitedNodes.empty() && (unvisitedNodes.front()->_isVisited))
 		{
 			unvisitedNodes.pop_front();
 		}
@@ -176,20 +182,23 @@ Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 					!_nodes[neighbour->_position._x + 1][neighbour->_position._y]->_isObstacle &&
 					!_nodes[neighbour->_position._x][neighbour->_position._y + 1]->_isObstacle &&
 					!_nodes[neighbour->_position._x + 1][neighbour->_position._y + 1]->_isObstacle)
+				{
 					unvisitedNodes.push_back(neighbour);
-			}
 
-			//calculam posibila distanta
-			float possibleLowerGoal = currentNode->_localGoal + heuristic(currentNode, neighbour);
 
-			//daca este o distanta mai mica facem actualizarea
-			if (possibleLowerGoal < neighbour->_localGoal)
-			{
-				neighbour->_localGoal = possibleLowerGoal;
+					//calculam posibila distanta
+					float possibleLowerGoal = currentNode->_localGoal + heuristic(currentNode, neighbour);
 
-				neighbour->_parent = currentNode;
+					//daca este o distanta mai mica facem actualizarea
+					if (possibleLowerGoal < neighbour->_localGoal)
+					{
+						neighbour->_localGoal = possibleLowerGoal;
 
-				neighbour->_gloabalGoal = neighbour->_localGoal + heuristic(currentNode, end);
+						neighbour->_parent = currentNode;
+
+						neighbour->_gloabalGoal = neighbour->_localGoal + heuristic(currentNode, end);
+					}
+				}
 			}
 		}
 	}

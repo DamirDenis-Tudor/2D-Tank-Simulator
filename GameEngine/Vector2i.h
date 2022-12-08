@@ -125,17 +125,17 @@ public:
 	}
 
 	//compare
-	bool operator == (const Vector2T<int>& vector)
+	bool operator == (const Vector2T<T>& vector)
 	{
 		return (this->_x == vector._x && this->_y == vector._y);
 	}
 
-	bool operator != (const Vector2T<int>& vector)
+	bool operator != (const Vector2T<T>& vector)
 	{
 		return (this->_x != vector._x && this->_y != vector._y);
 	}
 
-	bool operator != ( int value)
+	bool operator != ( T value)
 	{
 		return (this->_x != 0 && this->_y != 0);
 	}

@@ -18,7 +18,7 @@ Animation::~Animation()
 {
 	for (auto& i : _anim)
 	{
-		i->setNullPointers();
+		i->setSrcTextNullPtr();
 		delete i;
 		i = nullptr;
 		TimeManager::removeTimer(_id);

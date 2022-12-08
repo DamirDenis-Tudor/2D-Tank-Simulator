@@ -2,6 +2,7 @@
 
 Map::Map()
 {
+	resetCouter();
 	for (int i = 0; i < AssetsStorage::_layerHeight; i++)
 	{
 		for (int j = 0; j < AssetsStorage::_layerWidth; j++)
@@ -40,7 +41,7 @@ Map::Map()
 
 			if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 			{
-				SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1]);
+				SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1 ]);
 				tile->setPosition(Vector2T<int>(j * AssetsStorage::_mapTileDim, i * AssetsStorage::_mapTileDim));
 				tile->_isTile = true;
 				_drawbles.push_back(tile);
@@ -55,7 +56,7 @@ Map::~Map()
 {
 	for (auto& i : _drawbles)
 	{
-		i->setNullPointers();
+		i->setSrcTextNullPtr();
 		delete i;
 		i = 0;
 	}

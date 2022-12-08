@@ -11,17 +11,22 @@ Tank::Tank(SpriteComponent* tracks, SpriteComponent* body, SpriteComponent* cann
 
 	// behaviorul va fi particular tank-ului
 	_behavior->setId(_id);
+
+	if (CameraManager::getFocusId() == _id)
+	{
+		cameraIsFollowing();
+	}
 }
 
 Tank::~Tank()
 {
-	_tracks->setNullPointers();
+	_tracks->setSrcTextNullPtr();
 	delete _tracks; _tracks = nullptr;
 
-	_body->setNullPointers();
+	_body->setSrcTextNullPtr();
 	delete _body; _body = nullptr;
 
-	_cannon->setNullPointers();
+	_cannon->setSrcTextNullPtr();
 	delete _cannon; _cannon = nullptr;
 
 	delete _behavior; _behavior = nullptr;
@@ -45,7 +50,6 @@ void Tank::cameraIsFollowing()
 
 void Tank::syncMovement()
 {
-	Mediator::notifyTanksPosition(_position, _id);
 
 	_tracks->setPosition(_position - CameraManager::offset);
 	_body->setPosition(_position - CameraManager::offset);

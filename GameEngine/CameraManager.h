@@ -27,7 +27,7 @@ public:
 	static void init(int& tileDim, int& mapTilesWidth, int& mapTilesHeight);
 	static void cameraSync();
 	
-	static void setFocusId(int& id)
+	static void setFocusId(int id)
 	{
 		_gameObjectId = id;
 

@@ -46,10 +46,13 @@ void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 	{
 		CollisionManager::circleRectagleCollision(potentialPos, i, rectDim);
 	}
+	
 	CollisionManager::mapCollision(potentialPos);
 
 	position._x = static_cast <int>(potentialPos._x) - AssetsStorage::_mapTileDim;
 	position._y = static_cast <int>(potentialPos._y) - AssetsStorage::_mapTileDim;
+
+	Mediator::notifyTanksPosition(position, _id);
 }
 
 void Behavior::rotationB(float& _angle, float& _angle1)

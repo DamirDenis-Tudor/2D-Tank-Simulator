@@ -39,6 +39,8 @@ public:
 		{
 			//error("renderer uninitialized");
 		}
+
+		SDL_SetRenderDrawColor(_renderer, 120, 10, 50, 3);
 	}
 
 	static SDL_Renderer* getRenderer()

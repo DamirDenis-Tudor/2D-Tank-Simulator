@@ -56,7 +56,7 @@ public:
 
 	~SpriteComponent();
 
-	void setNullPointers()
+	void setSrcTextNullPtr()
 	{
 		_src = nullptr;
 		_texture = nullptr;

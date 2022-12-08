@@ -4,43 +4,23 @@ void Engine::initComponets()
 {
 	_componets.emplace_back(new Map);
 
-	Director* director = new Director;
+	Director::setBuilder(new PlayerTank);
+	
+	Director::setBuilderAttributes("Type1", "ColorA", { 64 * 4,64 * 4 }, { 0.4 , 0.4 }, 0.5);
+	_componets.push_back(Director::getResult());
 
-	PlayerBuilder* builder = new PlayerBuilder();
+	Director::setBuilder(new AiTank);
+	
+	Director::setBuilderAttributes("Type3", "ColorC", { 64 * 1,64 * 7 }, { 0.2 , 0.2 }, 0.5);
+	_componets.push_back(Director::getResult());
 
-	builder->setAtributtes("ColorB", "Type5");
-	director->setBuilder(builder);
+	Director::setBuilderAttributes("Type2", "ColorB", { 64 ,64 }, { 0.3 , 0.3 }, 0.5);
+	_componets.push_back(Director::getResult());
 
-	Tank* tank = director->getTank({ 64,64 }, { 0.4 , 0.4 }, 1);
-	_componets.push_back(tank);
-	Mediator::setPlayerId(tank->_id);
-
-	EnemyBuilder* builder1 = new EnemyBuilder();
-	director->setBuilder(builder1);
-
-	builder1->setAtributtes("ColorC", "Type3");
-	Tank* tank1 = director->getTank({ 256 + 128 , 256 + 64 }, { 0.15, 0.15 }, 2);
-	_componets.push_back(tank1);
-
-	builder1->setAtributtes("ColorA", "Type1");
-	Tank* tank2 = director->getTank({ 256 + 256 + 256 , 256 + 256 }, { 0.15 , 0.15 }, 4);
-	_componets.push_back(tank2);
-
-	builder1->setAtributtes("ColorD", "Type2");
-	Tank* tank3 = director->getTank({ 512 + 256 + 128 , 256 + 64 }, { 0.15 , 0.15 }, 1);
-	_componets.push_back(tank3);
-
-	builder1->setAtributtes("ColorB", "Type5");
-	Tank* tank4 = director->getTank({ 512 + 256 + 256 ,  256 }, { 0.15 , 0.15 }, 4);
-	_componets.emplace_back(tank4);
+	Director::setBuilderAttributes("Type2", "ColorB", { 64 * 4 ,64 }, { 0.3 , 0.3 }, 0.5);
+	_componets.push_back(Director::getResult());
 
 	_componets.emplace_back(new AnimationsHandler);
-
-	delete director;
-	director = nullptr;
-
-	CameraManager::setFocusId(tank->_id);
-	tank->cameraIsFollowing();
 }
 
 void Engine::draw() 
@@ -53,7 +33,6 @@ void Engine::draw()
 
 void Engine::update() 
 {
-	CameraManager::cameraSync();
 	for (auto& i : _componets)
 	{
 		i->update();
@@ -64,7 +43,7 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 {
 	InputManager::initInput();
 	RendererManager::setRenderer(name, width, height, fullscreen);
-	AssetsStorage::loadTiles("levels/level1scaled2.tmx");
+	AssetsStorage::loadTiles("levels/level1scaled2.1.tmx");
 	AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
 	AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
 	MapSpaceManager::initNodes();
@@ -80,6 +59,7 @@ Engine::~Engine()
 	AssetsStorage::clear();
 	TimeManager::clear();
 	MapSpaceManager::clear();
+	Director::clear();
 	for (auto& i : _componets)
 	{
 		delete i;
@@ -130,6 +110,8 @@ void Engine::run()
 
 		InputManager::update();
 
+		CameraManager::cameraSync();
+
 		update();
 
 		draw();
@@ -145,9 +127,8 @@ void Engine::run()
 			delay = 0;
 		}
 
-		std::cout << delay << "\n";
+		//std::cout << delay << "\n";
 
 		SDL_Delay(delay);
-
 	}
 }

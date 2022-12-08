@@ -2,12 +2,8 @@
 
 #include "SDL.h"
 #include"SDL_image.h"
-
-#include"Tank.h"
 #include"Director.h"
-#include"PlayerBuilder.h"
-#include"EnemyBuilder.h"
-#include"AssetsStorage.h"
+#include"TankBuilder.h"
 #include"RendererManager.h"
 #include"ColisionManager.h"
 #include"Map.h"

@@ -1,52 +1,19 @@
 #pragma once
 
-#include"Builder.h"
-#include"Tank.h"
-
-/*
-	Descriere clasa:
-
-		-> modalitatea de creare a tank-ului urmareste 
-		   design pattern-ul Builder.
-		  
-		->Directorul primeste un builder care este specializat pe un anumit 
-		  tip de tank. Directul nu este interesat ce fel de builder este,
-		  el doar "scoate" in productie un tank;
-
-*/
+#include"TankBuilder.h"
 
 class Director
 {
 private:
-	Builder* _builder = nullptr;
+	static Builder* _builder;
 
 public:
 
-	Director() {}
-
-	~Director()
-	{
-		delete _builder;
-		_builder = nullptr;
-	}
-
-	void setBuilder(Builder* builder)
-	{
-		if (_builder != nullptr)
-		{
-			delete _builder;
-			_builder = nullptr;
-		}
-		_builder = builder;
-	}
-
-	Tank* getTank(Vector2T<int> position , Vector2T<float> velocity ,float shotingTime)
-	{
-		Tank* tank = new Tank(_builder->getTracks(), _builder->getBody(), _builder->getCannon() ,
-			_builder->getBehavior() , position, velocity, shotingTime, _builder->_type);
-
-		return tank;
-	}
+	static void setBuilder(Builder* builder);
+	static void setBuilderAttributes(const char* type, const char* color, Vector2T<int> position,
+		Vector2T<float> velocity = { 0 , 0 }, float shootingTime = 0);
+	static Component* getResult();
+	static void clear();
 
 };
 

@@ -10,7 +10,7 @@ Bullet::Bullet(string type, Vector2T<int> position, float angle, int tankId) : _
 
 Bullet::~Bullet()
 {
-	_sprite->setNullPointers();
+	_sprite->setSrcTextNullPtr();
 	delete _sprite;
 	_sprite = nullptr;
 }

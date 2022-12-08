@@ -74,6 +74,7 @@ bool CollisionManager::circleRectagleCollision(Vector2T<float>& potentialPos, Ve
 
 	if (fOverlap > 0)
 	{
+
 		Vector2T<float> normToNearest = rayToNearest / nearestPointDistance;
 
 		//recalibram obiectul 

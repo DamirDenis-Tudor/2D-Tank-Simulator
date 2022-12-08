@@ -11,7 +11,7 @@
 *	-> are rolul de a crea componentele necesare
 *	   pentru obiectul cerut de Director;
 *
-*	Nota : este clasa abstracta => EnemyBuilder , PlayerBuilder
+*	Nota : este clasa abstracta => TankBuilder , MenuBuilder
 *
 */
 
@@ -20,44 +20,21 @@ class Builder
 	friend class Director;
 
 protected:
-	const char* _color = nullptr;
-	const char* _type = nullptr;
+	Component* _result = nullptr;
 
 public:
 
 	Builder() {}
-	~Builder()
-	{
-		_color = nullptr;
-		_type = nullptr;
-	}
+	virtual ~Builder() { }
+	virtual void build() = 0;
 
-	void setAtributtes(const char* color, const char* type)
-	{
-		_color = color;
-		_type = type;
-	}
-	SpriteComponent* getBody()
-	{
-		SpriteComponent* body = new SpriteComponent(AssetsStorage::_movebles[{_color, _type, "body"}]);
+	// parametrii de interes sunt cei fara argumente predefinite
+	// Exemplu: 
+	// ->pentru a creea un tank avem nevoie de toti;
+	// ->dar pentru a crea butoane de meniu , doar de primii 3
+	// TODO:
+	//  -> Implementeaza viteze si shootingTime-uri prestabilite ;
 
-		return body;
-	}
-
-	SpriteComponent* getCannon()
-	{
-		SpriteComponent* cannon = new SpriteComponent(AssetsStorage::_movebles[{_color, _type, "cannon"}]);
-
-		return cannon;
-	}
-
-	SpriteComponent* getTracks()
-	{
-		SpriteComponent* tracks = new SpriteComponent(AssetsStorage::_movebles[{"tracks"}]);
-
-		return tracks;
-	}
-
-	virtual Behavior* getBehavior() = 0;
+	virtual void setAtrributes(const char* type, const char* color, Vector2T<int> position, 
+		Vector2T<float> velocity = { 0 , 0 }, float shootingTime = 0 ) = 0;
 };
-
