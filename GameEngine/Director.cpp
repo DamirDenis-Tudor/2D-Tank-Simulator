@@ -12,9 +12,9 @@ void Director::setBuilder(Builder * builder)
 	_builder = builder;
 }
 
-void Director::setBuilderAttributes(const char* type, const char* color, Vector2T<int> position, Vector2T<float> velocity , float shootingTime )
+void Director::setBuilderAttributes(const char* type, const char* color, Vector2T<int> position )
 {
-	_builder->setAtrributes(type, color, position , velocity , shootingTime);
+	_builder->setAtrributes(type, color, position);
 }
 
 Component* Director::getResult()

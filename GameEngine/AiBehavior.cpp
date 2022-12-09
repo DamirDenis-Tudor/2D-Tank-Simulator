@@ -27,30 +27,31 @@ void AiBehavior::follow()
 	mapPos._x = (int)pos._x;
 	mapPos._y = (int)pos._y;
 
-	if (_moves._left &&  pos._x - (int)pos._x > 0.5)
+	if (_moves._left && pos._x - (int)pos._x > 0.1)
 	{
 		mapPos._x = (int)pos._x + 1;
 	}
-	if (_moves._up && pos._y - (int)pos._y > 0.5)
+	if (_moves._up && pos._y - (int)pos._y > 0.1)
 	{
 		mapPos._y = (int)pos._y + 1;
 	}
-	Node* start = MapSpaceManager::getNode(mapPos);
-	Node * end = MapSpaceManager::getNode(((Mediator::getTargetPosition() + AssetsStorage::_mapTileDim/2) / AssetsStorage::_mapTileDim));
 
-	_moves = MapSpaceManager::aStar(start, end , _id);
+	Node* start = MapSpaceManager::getNode(mapPos);
+	Node* end = MapSpaceManager::getNode(((Mediator::getNearestEnemyPosition(_id, _colorTeam)) / AssetsStorage::_mapTileDim));
+
+	_moves = MapSpaceManager::aStar(start, end, _id);
 
 }
 
 void AiBehavior::BrainAi()
 {
-	_target = Mediator::getTargetPosition() + AssetsStorage::_mapTileDim;
+	_target = Mediator::getNearestEnemyPosition(_id, _colorTeam) + AssetsStorage::_mapTileDim;
 	if (_id != CameraManager::getFocusId())
 	{
 		_target -= _offset;
 	}
 
-	_isActivated = true;	
+	_isActivated = true;
 
 	if (_isActivated)
 	{

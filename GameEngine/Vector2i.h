@@ -23,7 +23,7 @@ public:
 
 	Vector2T operator - (const Vector2T& vector)
 	{
-		return Vector2T(this->_x - vector._x, this->_y - vector._y );
+		return Vector2T(this->_x - vector._x, this->_y - vector._y);
 	}
 
 	Vector2T operator * (const Vector2T& vector)
@@ -135,7 +135,7 @@ public:
 		return (this->_x != vector._x && this->_y != vector._y);
 	}
 
-	bool operator != ( T value)
+	bool operator != (T value)
 	{
 		return (this->_x != 0 && this->_y != 0);
 	}
@@ -174,7 +174,7 @@ public:
 	}
 
 	//formulas
-	const double mag() 
+	const double mag()
 	{
 		return sqrt(this->_x * this->_x + this->_y * this->_y);
 	}
@@ -184,7 +184,22 @@ public:
 		Vector2T newVector = *this;
 		return newVector / newVector.mag();
 	}
-
 };
 
+namespace Distances
+{
+	template <class T>
+	static float eucliadianDistance(Vector2T<T> a, Vector2T<T> b)
+	{
+		return (sqrt((a._x - b._x) * (a._x - b._x)
+			+ (a._y - b._y) * (a._y - b._y)));
+	}
+
+	template <class T>
+	static  float manhhatanDistance(Vector2T<T> a, Vector2T<T> b)
+	{
+		return abs(a._x - b._x) + abs(a._y - b._y);
+	}
+
+}
 

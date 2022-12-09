@@ -23,42 +23,42 @@ using namespace std;
 
 class Mediator
 {
-	static int _targetId;
+	static map<const char*  , vector<int> > _teams;
 	static map<int, Vector2T<int> > _tanks;
 	static map<  pair<int, int>, Vector2T<int> > _bullets;
 
 public:
+	static int _currentEnemyId;
 
-	static vector<Vector2T<int>> recieveBulletsPosition(int tankId, int bulletId);
 
-	static vector<Vector2T<int>> recieveTanksPosition(int tankId);
+	static vector<Vector2T<int>> recieveTanksPosition(int tankId); // pentru coliziunile intre tank-uril
 
 	static void notifyTanksPosition(Vector2T<int> pos, int id);
+	static void removeTanksPosition(int tankId); //cand un tank este distrus
 
 	static 	void notifyBulletsPosition(Vector2T<int> pos, int tankId, int bulletId);
+	static void removeBulletsPosition(int tankId, int bulletId); //cand bullet-ul are coliziune cu ceva
 
-	static void removeBulletsPosition(int tankId, int bulletId);
+	static void notifyTankTeam(int tankId, const char* colorTeam);
+	static void removeTankFromTeam(int tankId , const char* colorTeam);
 
-	static void removeTanksPosition(int tankId);
-
-	static void setPlayerId(int id)
-	{
-		_targetId = id;
-	}
-
-	static int getPlayerId()
-	{
-		return _targetId;
-	}
-
-	static Vector2T<int> getTargetPosition()
-	{
-		return _tanks[_targetId];
-	}
-
+	static Vector2T<int> getNearestEnemyPosition(int  id, const char* colorTeam);
+	
 	static Vector2T<int> getPosition(int id)
 	{
 		return _tanks[id];
+	}
+
+	static int getId(Vector2T<int> position)
+	{
+		for (auto &i : _tanks)
+		{
+			if (i.second == position)
+			{
+				return i.first;
+			}
+		}
+		return 0;
 	}
 	
 };

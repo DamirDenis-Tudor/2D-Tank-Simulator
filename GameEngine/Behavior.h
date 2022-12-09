@@ -20,6 +20,7 @@ class Behavior
 {
 protected:
 	int _id = 0;
+	const char* _colorTeam = nullptr;
 
 	Moves _moves;
 	bool _isShooting = false;
@@ -36,6 +37,11 @@ public:
 	void setId(int id)
 	{
 		_id = id;
+	}
+
+	void setColorTeam(const char* color)
+	{
+		_colorTeam = color;
 	}
 
 	bool isLaunchingBullet()

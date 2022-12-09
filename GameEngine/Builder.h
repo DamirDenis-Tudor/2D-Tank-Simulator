@@ -20,11 +20,12 @@ class Builder
 	friend class Director;
 
 protected:
+	Vector2T<int> _position;
+	const char* _type = nullptr;
+	const char* _color = nullptr;
+
 	Component* _result = nullptr;
 
-public:
-
-	Builder() {}
 	virtual ~Builder() { }
 	virtual void build() = 0;
 
@@ -35,6 +36,10 @@ public:
 	// TODO:
 	//  -> Implementeaza viteze si shootingTime-uri prestabilite ;
 
-	virtual void setAtrributes(const char* type, const char* color, Vector2T<int> position, 
-		Vector2T<float> velocity = { 0 , 0 }, float shootingTime = 0 ) = 0;
+	void setAtrributes(const char* type, const char* color, Vector2T<int> position)
+	{
+		_type = type;
+		_color = color;
+		_position = position;
+	}
 };

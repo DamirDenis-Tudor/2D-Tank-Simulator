@@ -31,24 +31,20 @@ void Bullet::update()
 		hasCollision = true;
 	}
 
-	int rectDim = 2 * AssetsStorage::_mapTileDim - 25;
+
+	/*
+		coliziuni bullet - tank
+	*/
+	int rectDim = 2 * AssetsStorage::_mapTileDim ;
 	for (auto& i : Mediator::recieveTanksPosition(_tankId))
 	{
-		Vector2T<int> rectPos = i + 25;
+		Vector2T<int> rectPos = i ;
 		if (CollisionManager::pointCollisionRectagle(potentialPos, rectPos, rectDim))
 		{
 			hasCollision = true;
+			//daca are coliziune transmite-i tank-ului ca l-ai lovit (->damage )
 		}
-
 	}
-	//for (auto& i : Mediator::recieveBulletsPosition(_tankId, _id))
-	//{
-	////	pentru collisiunile bullet bullet check here
-	//	if (CollisionManager::pointCollisionRectagle(potentialPos , i , rectDim ))
-	//	{
-	//		hasCollision = true;
-	//	}
-	//}
 
 	if (hasCollision)
 	{

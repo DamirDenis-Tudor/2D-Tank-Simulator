@@ -4,20 +4,36 @@ void Engine::initComponets()
 {
 	_componets.emplace_back(new Map);
 
+	//de rezolvat bug-ul cu miscarea si blocajul
+
+	
+	//Director::setBuilderAttributes("Type1", "ColorA", { 64 * 55,64 * 35 });
+	//_componets.push_back(Director::getResult());
+
+	
 	Director::setBuilder(new PlayerTank);
 	
-	Director::setBuilderAttributes("Type1", "ColorA", { 64 * 4,64 * 4 }, { 0.4 , 0.4 }, 0.5);
+	Director::setBuilderAttributes("Type2", "ColorC", { 64 * 1,64 * 7 });
 	_componets.push_back(Director::getResult());
-
-	Director::setBuilder(new AiTank);
 	
-	Director::setBuilderAttributes("Type3", "ColorC", { 64 * 1,64 * 7 }, { 0.2 , 0.2 }, 0.5);
+	Director::setBuilder(new AiTank);
+
+	Director::setBuilderAttributes("Type3", "ColorC", { 64 ,64 });
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type2", "ColorB", { 64 ,64 }, { 0.3 , 0.3 }, 0.5);
+	Director::setBuilderAttributes("Type4", "ColorB", { 64 * 40 ,64*3 });
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type2", "ColorB", { 64 * 4 ,64 }, { 0.3 , 0.3 }, 0.5);
+	//Director::setBuilderAttributes("Type5", "ColorC", {64 * 5,64 * 7});
+	//_componets.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type6", "ColorB", {64 * 40 ,64 * 6});
+	_componets.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type7", "ColorD", { 64 * 54 ,64 * 34});
+	_componets.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type8", "ColorD", { 64 *56,64 * 36 });
 	_componets.push_back(Director::getResult());
 
 	_componets.emplace_back(new AnimationsHandler);
@@ -127,7 +143,6 @@ void Engine::run()
 			delay = 0;
 		}
 
-		//std::cout << delay << "\n";
 
 		SDL_Delay(delay);
 	}

@@ -63,20 +63,9 @@ void MapSpaceManager::initNodes()
 	}
 }
 
-float MapSpaceManager::eucliadianDistance(Node* a, Node* b)
-{
-	return (sqrt((a->_position._x - b->_position._x) * (a->_position._x - b->_position._x)
-		+ (a->_position._y - b->_position._y) * (a->_position._y - b->_position._y)));
-}
-
-float MapSpaceManager::manhhatanDistance(Node* a, Node* b)
-{
-	return abs(a->_position._x - b->_position._x) + abs(a->_position._y - b->_position._y);
-}
-
 float MapSpaceManager::heuristic(Node* a, Node* b)
 {
-	return eucliadianDistance(a, b);
+	return Distances::eucliadianDistance(a->_position, b->_position);
 }
 
 Node* MapSpaceManager::getNode(Vector2T<int> position)
@@ -99,11 +88,11 @@ void MapSpaceManager::resetNodes()
 	}
 }
 
-void MapSpaceManager::actualizeTemporaryObstacles(int tankId, bool status)
+void MapSpaceManager::actualizeTemporaryObstacles(int tankId, bool status) //varibila idEnd este temporara
 {
 	for (auto& i : Mediator::recieveTanksPosition(tankId))
 	{
-		if (i != Mediator::getTargetPosition())
+		if (Mediator::getPosition(Mediator::_currentEnemyId) != i)
 		{
 			Vector2T<int> pos = i / AssetsStorage::_mapTileDim;
 			_nodes[pos._x][pos._y]->_isObstacle = status;
@@ -136,7 +125,7 @@ Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 
 	//instiintarea tank-ului curent asupra 
 	//poziitilor celorlalte tank-uri
-	actualizeTemporaryObstacles(tankId, true);
+	actualizeTemporaryObstacles(tankId ,true);
 
 	//setarea nodului curent
 	Node* currentNode = start;
@@ -153,12 +142,11 @@ Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 	{
 
 		//aici putem face o sortare : list => coada de prioritati
+		// este comentata pentru ca reduce performata => tank-uri nu mai sunt asa de "try hard"
 		//unvisitedNodes.sort([](const Node* a, const Node* b) {return a->_gloabalGoal < b->_gloabalGoal; });
 
-		//putem avea eroare daca nu avem nimic in lista
-
-		//daca avem obstacole nu le punem
-		while (!unvisitedNodes.empty() && (unvisitedNodes.front()->_isVisited))
+		//scoatem nodurile vizitate
+		while (!unvisitedNodes.empty() && (unvisitedNodes.front()->_isVisited || unvisitedNodes.front()->_isObstacle))
 		{
 			unvisitedNodes.pop_front();
 		}
@@ -167,6 +155,7 @@ Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 		{
 			break;
 		}
+
 		//extragem urmatorul nod din coada => il setam ca vizitat
 		currentNode = unvisitedNodes.front();
 		currentNode->_isVisited = true;
@@ -176,8 +165,7 @@ Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 			//putem pun in coada doar un vecin valid
 			if (!neighbour->_isVisited)
 			{
-				// tank-ul nostru este pe 4 tile-uri ->
-				//  trebuie avuta in vederea lor
+				// tank-ul nostru este pe 4 tile-uri
 				if (!neighbour->_isObstacle &&
 					!_nodes[neighbour->_position._x + 1][neighbour->_position._y]->_isObstacle &&
 					!_nodes[neighbour->_position._x][neighbour->_position._y + 1]->_isObstacle &&
@@ -204,14 +192,12 @@ Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 	}
 
 	unvisitedNodes.clear();
-	// drum cel mai scurt este cel determinat de 
-	// parintii tuturor nodurilor incepand cu
-	// nodul end
-
 
 	////resetarea spatiilor ocupate de tank-uri
-	actualizeTemporaryObstacles(tankId, false);
+	actualizeTemporaryObstacles(tankId ,false);
 
+	// drum cel mai scurt este cel determinat de 
+	// parintii tuturor nodurilor incepand cu nodul end
 	Node* copyPtr = nullptr;
 	if (end != nullptr)
 	{

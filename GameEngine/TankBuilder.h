@@ -12,20 +12,17 @@ class TankBuilder : public Builder
 
 protected:
 	bool playerIdentifier = false;
-
-	Vector2T<int> _position;
 	Vector2T<float> _velocity;
-	float _shootingTime = 0;
-	const char* _type = nullptr;
-	const char* _color= nullptr;
-
+	float _shotingTime = 0;
+	const char* _shotingAnim = nullptr;
+	const char* _impactAnim = nullptr;
 	Behavior* _behavior = nullptr;
+
+	void setTankParameters();
 	void build() override;
 
 public:
 	virtual void setBehavior() = 0;
-	void setAtrributes(const char* type, const char* color,
-		Vector2T<int> position, Vector2T<float> velocity , float shootingTime) override;
 };
 
 class AiTank : public TankBuilder

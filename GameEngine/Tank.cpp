@@ -1,16 +1,20 @@
 #include "Tank.h"
 
 Tank::Tank(SpriteComponent* tracks, SpriteComponent* body, SpriteComponent* cannon,
-	Behavior* behavior, Vector2T<int> position, Vector2T<float> velocity, float shotingTime, const char* type)
+	Behavior* behavior, Vector2T<int> position, Vector2T<float> velocity, float shotingTime, const char* type, const char* color,
+	const char* shotingAnim , const char* impactAnim)
 	:_tracks(tracks), _body(body), _cannon(cannon), _position(position),
-	_behavior(behavior), _velocity(velocity), bulletType(type)
+	_behavior(behavior), _velocity(velocity), _shotingTime(shotingTime), _bulletType(type) ,_teamColor(color),
+	_shotingAnim(shotingAnim) , _impactAnim(impactAnim)
 {
-	TimeManager::createTimer(_id, shotingTime);
 
+	TimeManager::createTimer(_id, _shotingTime);
+
+	Mediator::notifyTankTeam(_id, _teamColor);
 	Mediator::notifyTanksPosition(_position, _id);
 
-	// behaviorul va fi particular tank-ului
-	_behavior->setId(_id);
+	_behavior->setId(_id);// behaviorul va fi particular tank-ului
+	_behavior->setColorTeam(_teamColor);
 
 	if (CameraManager::getFocusId() == _id)
 	{
@@ -80,12 +84,8 @@ void Tank::checkForBullets()
 			-> are acelasi unghi cu al cannon-ului;
 		*/
 
-		Bullet* bullet = new Bullet(bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id);
-		_bullets.emplace_back(bullet);
-
-		Animation* anim = new Animation("Shot1", _position + circumference + _cannon->_dest->w / 2, _cannon->_angle);
-		AnimationsHandler::addAnimation(anim);
-		anim = nullptr;
+		_bullets.emplace_back(new Bullet(_bulletType, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id));
+		AnimationsHandler::addAnimation(new Animation(_shotingAnim, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
 	}
 }
 
@@ -117,10 +117,7 @@ void Tank::update()
 
 		if (!_bullets[i]->isActive())
 		{
-			Animation* anim = new Animation("BigExplosion", _bullets[i]->_position, _cannon->_angle);
-			AnimationsHandler::addAnimation(anim);
-			anim = nullptr;
-
+			AnimationsHandler::addAnimation(new Animation(_impactAnim, _bullets[i]->_position, _cannon->_angle));
 			//Aici fac dealocarea
 			delete _bullets[i];
 			_bullets[i] = nullptr;

@@ -12,7 +12,7 @@ public:
 
 	~AnimationsHandler();
 
-	static void addAnimation(Animation*& animation)
+	static void addAnimation(Animation* animation)
 	{
 		_animations.emplace_back(animation);
 	}
