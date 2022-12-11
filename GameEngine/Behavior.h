@@ -10,25 +10,21 @@
 	Descriere clasa:
 
 		-> clasa abstracta de descrie compotamentul unui tank:
-			> rotatii de doua feluri , miscare 
-
-		Nota: in clasei mostenitoare metoda vIrtuala pura movement permite
-			  implementarea unui movemnt particular fara a modifica clasa tank
+			- rotatiile pentru body & cannon (independente) 
+			- miscare (ce trebuie particularizata) 
 */
-
 class Behavior
 {
 protected:
-	int _id = 0;
-	const char* _colorTeam = nullptr;
+	int _id = 0; // indentificator pentru a sti posesorul
+	const char* _colorTeam = nullptr; // indentificator pentru apartenenta posesorului
 
-	Moves _moves;
-	bool _isShooting = false;
+	Moves _moves; 
 
-	//mouse-ul sau un alt tank pentru Ai
+	//mouse-ul sau un tank pentru Ai
 	Vector2T<int> _target = { 0 , 0 };
 
-	// daca este PlayerBehavior _offset-ul va fi cel al camerei
+	// in funtie tank-ul urmarit dde camera
 	Vector2T<int> _offset = { 0 , 0 };
 
 public:
@@ -46,7 +42,7 @@ public:
 
 	bool isLaunchingBullet()
 	{
-		if (_isShooting)
+		if (_moves._shoting)
 		{
 			return true;
 		}

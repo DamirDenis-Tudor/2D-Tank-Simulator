@@ -7,31 +7,36 @@ void Engine::initComponets()
 	//de rezolvat bug-ul cu miscarea si blocajul
 
 	
-	//Director::setBuilderAttributes("Type1", "ColorA", { 64 * 55,64 * 35 });
-	//_componets.push_back(Director::getResult());
-
-	
 	Director::setBuilder(new PlayerTank);
-	
-	Director::setBuilderAttributes("Type2", "ColorC", { 64 * 1,64 * 7 });
+
+	Director::setBuilderAttributes("Type1", "ColorA", { 64 ,64 });
 	_componets.push_back(Director::getResult());
 	
 	Director::setBuilder(new AiTank);
-
-	Director::setBuilderAttributes("Type3", "ColorC", { 64 ,64 });
+	
+	Director::setBuilderAttributes("Type2", "ColorA", { 64 * 1,64 * 7 });
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type4", "ColorB", { 64 * 40 ,64*3 });
+	Director::setBuilderAttributes("Type2", "ColorA", { 64 * 4,64 * 7 });
 	_componets.push_back(Director::getResult());
 
-	//Director::setBuilderAttributes("Type5", "ColorC", {64 * 5,64 * 7});
+	//Director::setBuilderAttributes("Type3", "ColorD", { 64*21,64*19 });
 	//_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type6", "ColorB", {64 * 40 ,64 * 6});
-	_componets.push_back(Director::getResult());
+	//Director::setBuilderAttributes("Type4", "ColorD", { 64 * 40 ,64*3 });
+	//_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type7", "ColorD", { 64 * 54 ,64 * 34});
-	_componets.push_back(Director::getResult());
+	//Director::setBuilderAttributes("Type5", "ColorB", {64 * 15,64 * 35});
+	//_componets.push_back(Director::getResult());
+
+	//Director::setBuilderAttributes("Type5", "ColorB", { 64 * 28,64 * 6 });
+	//_componets.push_back(Director::getResult());
+
+	//Director::setBuilderAttributes("Type6", "ColorD", {64 * 40 ,64 * 6});
+	//_componets.push_back(Director::getResult());
+
+	//Director::setBuilderAttributes("Type7", "ColorD", { 64 * 54 ,64 * 34});
+	//_componets.push_back(Director::getResult());
 
 	Director::setBuilderAttributes("Type8", "ColorD", { 64 *56,64 * 36 });
 	_componets.push_back(Director::getResult());

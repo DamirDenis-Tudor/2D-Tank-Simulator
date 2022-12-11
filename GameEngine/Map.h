@@ -5,11 +5,7 @@
 
 /*
 	Descrierea clasei:
-		
-		-> apeleaza functiilor de draw , update pentru componentele mapei
-
 		-> acceseaza tot ce este legat de un sprite folosind AssetsManager
-
 		-> prin apelul constructorului se incarca tile-urile in vectorul de 
 		   componente folosind constructorul de copiere al clasei SpriteComponent;
 		* acest lucrul este mai optimal ; 

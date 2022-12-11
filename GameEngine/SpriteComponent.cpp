@@ -8,7 +8,7 @@ void SpriteComponent::draw()
 
 		if (!_isTile)
 		{
-		//	SDL_RenderDrawRect(RendererManager::_renderer, _dest);
+			SDL_RenderDrawRect(RendererManager::_renderer, _dest);
 		}
 	}
 }

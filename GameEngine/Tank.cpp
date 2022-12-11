@@ -10,7 +10,7 @@ Tank::Tank(SpriteComponent* tracks, SpriteComponent* body, SpriteComponent* cann
 
 	TimeManager::createTimer(_id, _shotingTime);
 
-	Mediator::notifyTankTeam(_id, _teamColor);
+	Mediator::notifyTeam(_id, _teamColor);
 	Mediator::notifyTanksPosition(_position, _id);
 
 	_behavior->setId(_id);// behaviorul va fi particular tank-ului

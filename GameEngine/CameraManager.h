@@ -5,11 +5,10 @@
 
 /*
 	Descrierea clasei:
-
-		->in viitor va implemeta o metoda statica de sync
-		si una de zoom in  , out
+		-> primeste un obiect de urmarit;
+		-> implemeteaza o metoda de sincronizare
+		-> calculeaza offset-urile 
 */
-
 class CameraManager
 {
 private:
@@ -20,9 +19,9 @@ private:
 	static int _mapTilesHeight;
 	static int _gameObjectId;
 public:
-	static Vector2T<int> offset ;
-	static Vector2T<int> pastOffset;
-	static Vector2T<int> tileOffset;
+	static Vector2T<int> offset ; 
+	static Vector2T<int> pastOffset; 
+	static Vector2T<int> tileOffset; // offset - pastOffset
 
 	static void init(int& tileDim, int& mapTilesWidth, int& mapTilesHeight);
 	static void cameraSync();

@@ -3,12 +3,14 @@
 #include"SDL.h"
 #include"SDL_image.h"
 
-
+/*
+	Descriere:
+		-> creaza un renderer 
+		-> permite acesarea acestuia de oriunde
+*/
 class RendererManager
 {
 private:
-
-
 	RendererManager(){}
 
 public:

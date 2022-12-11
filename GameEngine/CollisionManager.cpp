@@ -2,25 +2,6 @@
 
 void CollisionManager::mapCollision(Vector2T<float>& potentialPos)
 {
-	/*
-	* ->pentru coliziune verific doar 4 tile-uri
-	*
-	* ->functionare
-			-calculam cel mai apropiat punct
-			 de cerc nostru
-
-			-incadram punctul cel mai apropiat
-			in spatiul de coliziune al obiectului
-				  _________________________________
-				  |				                  |
-		  point(*)|<-	  spatiul de coliziune  ->|
-				  |_______________________________|
-
-			-calculam un overlap : daca > 0 => coliziune -> recalibare
-			 -> normalizam vectorul
-			 => pozitie  = pozitie - normVect * overlap
-	*/
-
 	int startCellX = std::max(0, (int)(potentialPos.getX()) / AssetsStorage::_mapTileDim - 1);
 	int endCellX = std::min(AssetsStorage::_layerWidth - 1, (int)(potentialPos.getX()) / AssetsStorage::_mapTileDim + 1);
 

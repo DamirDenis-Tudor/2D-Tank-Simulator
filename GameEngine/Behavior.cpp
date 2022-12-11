@@ -9,10 +9,9 @@ void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 
 	Vector2T<float> direction(0, 0);
 
-	Vector2T<float> potentialPos;
 	//adaug _mapTileDim deoarece vreau punctul de mijloc 
-	potentialPos._x = (position._x + AssetsStorage::_mapTileDim);
-	potentialPos._y = (position._y + AssetsStorage::_mapTileDim);
+	Vector2T<float> potentialPos = { (float)(position._x + AssetsStorage::_mapTileDim),
+									(float)(position._y + AssetsStorage::_mapTileDim) };
 
 	if (_moves._up)
 	{
@@ -31,7 +30,7 @@ void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 	{
 		direction.setX(-1);
 		potentialPos._x += 1;
-	}	//am adaugat 1 la stanga si sus deoarece se realizeaza truchiere
+	}	//am adaugat 1 la stanga si sus deoarece apar erori de truchiere
 
 	// normalizam viteza pe diagonala
 	if (abs(direction._x) != 0 && abs(direction._y) != 0)
@@ -39,8 +38,10 @@ void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 		velocity *= sqrt(velocity._x + velocity._x);
 	}
 
+	// calculam pozitia viitorae
 	potentialPos += velocity * direction * TimeManager::getDeltaTime();
 
+	//verificam coliziunile cu celelalte tank-uri
 	int rectDim = 2 * AssetsStorage::_mapTileDim;
 	for (auto& i : Mediator::recieveTanksPosition(_id))
 	{
@@ -52,17 +53,12 @@ void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 	position._x = static_cast <int>(potentialPos._x) - AssetsStorage::_mapTileDim;
 	position._y = static_cast <int>(potentialPos._y) - AssetsStorage::_mapTileDim;
 
+	//notificam mediator-ul 
 	Mediator::notifyTanksPosition(position, _id);
 }
 
 void Behavior::rotationB(float& _angle, float& _angle1)
 {
-	/*
-	rotatiile au fost strise pe cazuri
-	nu este ceva standardizat => au fost testate unele cazuri, dar nu toate
-	WARNING : DO NOT TRY THIS AT HOME
-
-*/
 	bool oneKeyPressed = true;
 	//directie individuala
 	if (_moves._up && !_moves._right && !_moves._left && _angle != 0)

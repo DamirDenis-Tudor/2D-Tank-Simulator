@@ -125,14 +125,19 @@ public:
 	}
 
 	//compare
-	bool operator == (const Vector2T<T>& vector)
+	bool operator == (const Vector2T<T> vector)
 	{
 		return (this->_x == vector._x && this->_y == vector._y);
 	}
 
-	bool operator != (const Vector2T<T>& vector)
+	bool operator != (const Vector2T<T> vector)
 	{
 		return (this->_x != vector._x && this->_y != vector._y);
+	}
+
+	bool operator >= (const Vector2T<T> vector)
+	{
+		return (abs(this->_x - vector._x) >= 0 || abs(this->_y - vector._y) >= 0);
 	}
 
 	bool operator != (T value)
@@ -169,7 +174,7 @@ public:
 
 	friend std::ostream& operator << (std::ostream& os, const Vector2T& vector)
 	{
-		os << vector.strVector2f() << "\n";
+		os << vector.strVector2f();
 		return os;
 	}
 

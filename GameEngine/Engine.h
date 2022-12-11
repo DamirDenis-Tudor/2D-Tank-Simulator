@@ -15,11 +15,10 @@
 /*
 	Clasa responsabila pentru :
 
-		-> initializarea managerilor(daca este cazul)
-		-> gameloop
-		-> apelul funtiilor de draw , update pentru celelalte componente
+		-> initializarea/actualizarea managerilor(daca este cazul)
+		-> inregistrare event-urilor
+		-> mentinerea framerate-ului
 */
-
 class Engine : public Component
 {
 	float _framerate = 0;

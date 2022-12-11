@@ -6,24 +6,12 @@
 
 /*
 	Descriere clasa:
-		-> 
+		-> implementeaza movement-ul dictat de comezile externe; 
 */
-
-/*
-	TODO:
-		->implement syncCamera in Camera Manager
-*/
-
 class InputBehavior : public Behavior
 {
 	void syncInput();
 
 	void movement(Vector2T<int>& position, Vector2T<float> velocity) override;
-
-public:
-	InputBehavior()
-	{
-		//Mediator::setPlayerId(_id);
-	}
 };
 

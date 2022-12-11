@@ -6,6 +6,11 @@
 #include"Mediator.h"
 #include"CameraManager.h"
 
+
+/*
+	Descriere:
+		-> adauga caracteristici noi specifice unui tank
+*/
 class TankBuilder : public Builder
 {
 	friend class Director;
@@ -25,6 +30,8 @@ public:
 	virtual void setBehavior() = 0;
 };
 
+/*
+*/
 class AiTank : public TankBuilder
 {
 public:

@@ -16,10 +16,11 @@ void AnimationsHandler::update()
 	for (int i = 0; i < _animations.size(); i++)
 	{
 		_animations[i]->update();
+		/*
+			daca o animatia s-a terminat tot ce este eliminata
+		*/
 		if (!_animations[i]->isActive())
 		{
-			TimeManager::removeTimer(_animations[i]->_id);
-
 			delete _animations[i];
 			_animations[i] = nullptr;
 			_animations.erase(_animations.begin() + i);

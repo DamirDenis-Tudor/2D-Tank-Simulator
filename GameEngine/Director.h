@@ -2,6 +2,12 @@
 
 #include"TankBuilder.h"
 
+/*
+	Descriere clasa:
+		-> primeste un builder
+		-> ii comunica niste intructiuni de baza
+		-> returneaza componenta creata de builder
+*/
 class Director
 {
 private:

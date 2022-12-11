@@ -14,15 +14,12 @@
 			   la fiecare desenare a pozitie, astfel daca player-ul se 
 			   misca animatia "ramane pe loc" cum este firesc;
 */
-
-//animation manager va avea un vector de componente
-
 class Animation : public Component
 {
 private:
-	int _frameID = 0;
-	int _frames = 0;
-	vector<SpriteComponent*> _anim;
+	int _frameID = 0; // frame-ul current
+	int _frames = 0; // numarul total de frame-uri
+	vector<SpriteComponent*> _anim; //vector de copii al frame-urilor din AssetsStorage
 	float animationSpeed = 0.03;
 	Vector2T<int> _position;
 

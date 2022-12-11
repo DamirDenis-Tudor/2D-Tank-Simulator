@@ -14,28 +14,19 @@
 		-> constructori cu parametri:
 			- folosit la incarcarea in memorie a sprite-urilor
 			   (folosit doar in AssetsStorage)
-		
-		-> contructor de copiere : 
+		-> contructor de copiere (se aloca memorie dor pentru _dest) :
 			- folosit la crearea mapei (fac o copie din memorie a sprite-ului)
 			- sau la Animatii si posibil si in alte locuri
-			
-			!!!Nota : ALOC MEMORIE DOAR PENTRU _DEST PENTRU CA ESTE NECESAR,
-					  IAR PENTRU TEXTURA, _SRC "DOAR" POINTEZ CATRE LOCATIA DIN AssetsStorage
-
 		-> desenez sprite-ul doar daca este in cadrul camerei
-
 		->indetificator pentru obiectul urmarit de camera (default este player-ul)
-			- ma mai gandesc daca o sa dau posibiliatea de a centra camera pe ce obiect vreau
-			- iuhu!			
 */
-
 class SpriteComponent : public Component
 {
 	friend class AssetsStorage;
 	friend class Map;
 	friend class Tank;
-	friend class Bullet;	
-	friend class Animation; 
+	friend class Bullet;
+	friend class Animation;
 
 private:
 	SDL_Rect* _src = nullptr;
@@ -56,7 +47,8 @@ public:
 
 	~SpriteComponent();
 
-	void setSrcTextNullPtr()
+	void setSrcTextNullPtr() // se apeleaza inaintea stergerii un comonente ce are	
+							 // o copie a unui sprite din AssetsStorage
 	{
 		_src = nullptr;
 		_texture = nullptr;

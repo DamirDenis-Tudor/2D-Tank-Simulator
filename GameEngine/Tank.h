@@ -9,14 +9,6 @@
 #include"AnimationsHandler.h"
 #include "Mediator.h"
 
-/*
-	Descrierea clasei:
-
-		-> behavior partiularizat in funtie de tipul tank-ului
-		   (Player sau Enemy) vezi clasele Director si builder
-*/
-
-
 class Tank : public Component
 {
 	SpriteComponent* _tracks = nullptr;
@@ -26,7 +18,6 @@ class Tank : public Component
 	vector<Bullet*> _bullets;
 
 	Vector2T<int> _position = { 0 , 0 };
-	
 
 	const char* _bulletType = nullptr;
 
@@ -43,10 +34,19 @@ public:
 
 	~Tank();
 
+	/*
+		notifica toate componentele ca sunt urmarite de camera
+	*/
 	void cameraIsFollowing();
 
+	/*
+		instiintam componentele de o modificare de pozitie
+	*/
 	void syncMovement();
 
+	/*
+		
+	*/
 	void checkForBullets();
 
 	void draw() override;

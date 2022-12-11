@@ -24,7 +24,7 @@ void CameraManager::cameraSync()
 	CameraManager::offset.setX(position.getX() + _tileDim - RendererManager::_width / 2);
 	CameraManager::offset.setY(position.getY() + _tileDim- RendererManager::_heigth / 2);
 
-	//borders check
+	// verificam limitele mapei
 	int horizontalBorder = _mapTilesWidth * _tileDim - RendererManager::_width;
 	int verticalBorder = _mapTilesHeight * _tileDim- RendererManager::_heigth;
 	if (CameraManager::offset.getX() < 0)
@@ -43,5 +43,6 @@ void CameraManager::cameraSync()
 	{
 		CameraManager::offset.setY(verticalBorder);
 	}
+
 	CameraManager::tileOffset = CameraManager::offset - CameraManager::pastOffset;
 }
