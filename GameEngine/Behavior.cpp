@@ -10,8 +10,8 @@ void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 	Vector2T<float> direction(0, 0);
 
 	//adaug _mapTileDim deoarece vreau punctul de mijloc 
-	Vector2T<float> potentialPos = { (float)(position._x + AssetsStorage::_mapTileDim),
-									(float)(position._y + AssetsStorage::_mapTileDim) };
+	Vector2T<float> potentialPos = { (float)(position._x + AssetsStorage::_tileDim),
+									(float)(position._y + AssetsStorage::_tileDim) };
 
 	if (_moves._up)
 	{
@@ -42,7 +42,7 @@ void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 	potentialPos += velocity * direction * TimeManager::getDeltaTime();
 
 	//verificam coliziunile cu celelalte tank-uri
-	int rectDim = 2 * AssetsStorage::_mapTileDim;
+	int rectDim = 2 * AssetsStorage::_tileDim;
 	for (auto& i : Mediator::recieveTanksPosition(_id))
 	{
 		CollisionManager::circleRectagleCollision(potentialPos, i, rectDim);
@@ -50,8 +50,8 @@ void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 	
 	CollisionManager::mapCollision(potentialPos);
 
-	position._x = static_cast <int>(potentialPos._x) - AssetsStorage::_mapTileDim;
-	position._y = static_cast <int>(potentialPos._y) - AssetsStorage::_mapTileDim;
+	position._x = static_cast <int>(potentialPos._x) - AssetsStorage::_tileDim;
+	position._y = static_cast <int>(potentialPos._y) - AssetsStorage::_tileDim;
 
 	//notificam mediator-ul 
 	Mediator::notifyTanksPosition(position, _id);

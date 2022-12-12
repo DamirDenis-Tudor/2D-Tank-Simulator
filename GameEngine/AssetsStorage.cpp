@@ -1,8 +1,9 @@
 #include "AssetsStorage.h"
 
-int AssetsStorage::_mapTileDim = 0;
+int AssetsStorage::_tileDim = 0;
 map<set< string >, SpriteComponent* > AssetsStorage::_movebles = {};
 vector<SpriteComponent* > AssetsStorage::_tiles = {};
+map<string, SpriteComponent*> AssetsStorage::_miniMapTiles = {};
 int AssetsStorage::_layerWidth = 0;
 int AssetsStorage::_layerHeight = 0;
 SDL_Point* AssetsStorage::_rotCenter = new SDL_Point;
@@ -149,7 +150,7 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 	tinyxml2::XMLElement* root = document.RootElement(); // map
 
 	//load map info
-	_mapTileDim = atoi(root->FindAttribute("tilewidth")->Value());
+	_tileDim = atoi(root->FindAttribute("tilewidth")->Value());
 
 	tinyxml2::XMLElement* child = root->FirstChildElement("tileset");
 
@@ -199,15 +200,15 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 				for (int j = 0; j < colums; j++)
 				{
 					SpriteComponent* sprite = new SpriteComponent(source);
-					sprite->_src->x = j * _mapTileDim;
-					sprite->_src->y = i * _mapTileDim;
-					sprite->_src->w = _mapTileDim;
-					sprite->_src->h = _mapTileDim;
+					sprite->_src->x = j * _tileDim;
+					sprite->_src->y = i * _tileDim;
+					sprite->_src->w = _tileDim;
+					sprite->_src->h = _tileDim;
 
 					sprite->_dest->x = 0;
 					sprite->_dest->y = 0;
-					sprite->_dest->w = _mapTileDim;
-					sprite->_dest->h = _mapTileDim;
+					sprite->_dest->w = _tileDim;
+					sprite->_dest->h = _tileDim;
 
 					_tiles.push_back(sprite);
 
@@ -250,7 +251,6 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 
 	document.Clear();
 }
-
 void AssetsStorage::convertInToMatrix(const char* buffer, std::vector<std::vector<int>>& mapLayer)
 {
 	//functia are in vedere faptul ca id-ul unui sprite nu poate depasi 999
@@ -286,6 +286,41 @@ void AssetsStorage::convertInToMatrix(const char* buffer, std::vector<std::vecto
 		buffer++;
 	}
 
+}
+
+void AssetsStorage::loadMiniMapTiles(const char* sourceFile)
+{
+	XMLDocument document;
+
+	document.LoadFile(sourceFile);
+
+	if (document.Error())
+	{
+		std::cout << "Eroare : cale inexistenta catre fisierul level !\n";
+		exit(EXIT_FAILURE);
+	}
+
+	XMLElement* root = document.RootElement();
+
+	for (XMLElement *child = root->FirstChildElement("image"); child != root->LastChildElement("image");
+		child = child->NextSiblingElement("image"))
+	{
+
+		SpriteComponent* sprite = new SpriteComponent(child->FindAttribute("source")->Value());
+		sprite->_src->x = 0;
+		sprite->_src->y = 0;
+		sprite->_src->w = atoi(child->FindAttribute("width")->Value());
+		sprite->_src->h = atoi(child->FindAttribute("height")->Value());
+
+		sprite->_dest->x = 0;
+		sprite->_dest->y = 0;
+		sprite->_dest->w = atoi(child->FindAttribute("width")->Value());
+		sprite->_dest->h = atoi(child->FindAttribute("height")->Value());
+
+		_miniMapTiles.insert(pair<string, SpriteComponent*> (child->FindAttribute("color")->Value(), sprite));
+
+		sprite = nullptr;
+	}
 }
 
 void AssetsStorage::loadEffects(const char* sourceFile)
@@ -413,6 +448,13 @@ void AssetsStorage::clear()
 		_tiles[i] = 0;
 	}
 	_tiles.clear();
+
+	for (auto &i : _miniMapTiles)
+	{
+		delete i.second;
+		i.second = nullptr;
+	}
+	_miniMapTiles.clear();
 
 	for (auto& x : _effects)
 	{

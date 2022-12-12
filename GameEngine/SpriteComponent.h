@@ -38,6 +38,7 @@ private:
 public:
 	bool _isFollowed = false;
 	bool _isTile = false;
+	bool _isMiniTile = false;
 
 	SpriteComponent() {}
 
@@ -48,7 +49,7 @@ public:
 	~SpriteComponent();
 
 	void setSrcTextNullPtr() // se apeleaza inaintea stergerii un comonente ce are	
-							 // o copie a unui sprite din AssetsStorage
+							// o copie a unui sprite din AssetsStorage
 	{
 		_src = nullptr;
 		_texture = nullptr;
@@ -63,6 +64,18 @@ public:
 	{
 		_dest->x = position.getX();
 		_dest->y = position.getY();
+	}
+
+	void setScaleDimension(int width , int height)
+	{
+		_dest->w = width;
+		_dest->h = height;
+	}
+
+	void setOpacity(int opacity)
+	{
+		SDL_SetTextureBlendMode(_texture, SDL_BLENDMODE_BLEND);
+		SDL_SetTextureAlphaMod(_texture, opacity);
 	}
 
 	void isOnCamera();

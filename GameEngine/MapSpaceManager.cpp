@@ -107,11 +107,11 @@ bool MapSpaceManager::simulateBulletTrajectory(Vector2T<int> shotter, Vector2T<i
 {
 	float xT = target._x;
 	float yT = target._y;
-	shotter *= AssetsStorage::_mapTileDim;
-	target *= AssetsStorage::_mapTileDim;
+	shotter *= AssetsStorage::_tileDim;
+	target *= AssetsStorage::_tileDim;
 
-	Vector2T<float> scaledShotter = Vector2T<float>{ (float)(shotter._x + AssetsStorage::_mapTileDim/2 ) , (float)(shotter._y + AssetsStorage::_mapTileDim/2 ) } ;
-	Vector2T<float> scaledTarget = Vector2T<float>{ (float)(target._x + AssetsStorage::_mapTileDim/2) ,(float)(target._y + AssetsStorage::_mapTileDim/2) };
+	Vector2T<float> scaledShotter = Vector2T<float>{ (float)(shotter._x + AssetsStorage::_tileDim  ) , (float)(shotter._y + AssetsStorage::_tileDim ) } ;
+	Vector2T<float> scaledTarget = Vector2T<float>{ (float)(target._x + AssetsStorage::_tileDim ) ,(float)(target._y + AssetsStorage::_tileDim ) };
 
 	float angle = (SDL_atan2((double)(scaledShotter._y - scaledTarget._y), (double)(scaledShotter._x - scaledTarget._x)) * 180 / M_PI);
 
@@ -120,22 +120,22 @@ bool MapSpaceManager::simulateBulletTrajectory(Vector2T<int> shotter, Vector2T<i
 	
 	while (true)
 	{
-		scaledShotter._x -= cos * (float)AssetsStorage::_mapTileDim/8.f;
-		scaledShotter._y -= sin * (float)AssetsStorage::_mapTileDim/8.f;
+		scaledShotter._x -= cos * (float)AssetsStorage::_tileDim /8.f;
+		scaledShotter._y -= sin * (float)AssetsStorage::_tileDim /8.f;
 
-		if (scaledShotter._x >= scaledTarget._x - AssetsStorage::_mapTileDim / 2 && scaledShotter._x <= (float)(scaledTarget._x + AssetsStorage::_mapTileDim/2) &&
-			scaledShotter._y >= scaledTarget._y - AssetsStorage::_mapTileDim / 2 && scaledShotter._y <= (float)(scaledTarget._y + AssetsStorage::_mapTileDim/2))
+		if (scaledShotter._x >= scaledTarget._x - AssetsStorage::_tileDim/2  && scaledShotter._x <= (float)(scaledTarget._x + AssetsStorage::_tileDim/2 ) &&
+			scaledShotter._y >= scaledTarget._y - AssetsStorage::_tileDim/2 && scaledShotter._y <= (float)(scaledTarget._y + AssetsStorage::_tileDim/2 ))
 		{
 			break;
 		}
 
-		float y = (scaledShotter._y ) / (float)AssetsStorage::_mapTileDim ;
-		float x = (scaledShotter._x ) / (float)AssetsStorage::_mapTileDim;
+		float y = (scaledShotter._y ) / (float)AssetsStorage::_tileDim;
+		float x = (scaledShotter._x ) / (float)AssetsStorage::_tileDim;
 
-		if (!(scaledShotter._x >= shotter._x && scaledShotter._x <= shotter._x + AssetsStorage::_mapTileDim &&
-			scaledShotter._y >= shotter._y && scaledShotter._y <= shotter._y + AssetsStorage::_mapTileDim))
+		if (!(scaledShotter._x >= shotter._x && scaledShotter._x <= shotter._x + 2*AssetsStorage::_tileDim &&
+			scaledShotter._y >= shotter._y && scaledShotter._y <= shotter._y + 2*AssetsStorage::_tileDim))
 		{
-			if (AssetsStorage::_mapLayers["colidble"][y][x] != 0 &&
+			if (_nodes[x][y]->_isObstacle &&
 				_nodes[x][y] != _nodes[xT ][yT] &&
 				_nodes[x][y] != _nodes[xT+1][yT] &&
 				_nodes[x][y] != _nodes[xT][yT+1] &&
@@ -201,7 +201,7 @@ void MapSpaceManager::actualizeTemporaryObstacles(int tankId, bool status) //var
 {
 	for (auto& i : Mediator::recieveTanksPosition(tankId))
 	{
-			Vector2T<int> pos = i / AssetsStorage::_mapTileDim;
+			Vector2T<int> pos = i / AssetsStorage::_tileDim;
 			_nodes[pos._x][pos._y]->_isObstacle = status;
 			_nodes[pos._x + 1][pos._y]->_isObstacle = status;
 			_nodes[pos._x][pos._y + 1]->_isObstacle = status;

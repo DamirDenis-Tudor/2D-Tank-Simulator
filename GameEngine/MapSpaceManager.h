@@ -4,6 +4,7 @@
 #include<queue>
 #include"Vector2i.h"
 #include"Mediator.h"
+#include"ColisionManager.h"
 
 struct Moves
 {
@@ -81,7 +82,7 @@ public:
 			- obstacolele din range 
 			- posibilitatea de tragere
 	*/
-	static void checkNearestNodeInRange(int tankId , Node* start, Node*& end , int range = 5); 
+	static void checkNearestNodeInRange(int tankId , Node* start, Node*& end , int range = 6); 
 	
 	/*
 		-> activeaza sau dezantiveala pozitiile obstacolelor temporare(tank-urile)

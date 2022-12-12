@@ -21,7 +21,6 @@ class Mediator
 public:
 	static int _currentEnemyId;
 
-
 	static vector<Vector2T<int>> recieveTanksPosition(int tankId); // pentru coliziunile intre tank-uril
 
 	static void notifyTanksPosition(Vector2T<int> pos, int id); // inregistreaza sau actualizeaza pozitia unui tank
@@ -34,7 +33,22 @@ public:
 	static void removeFromTeam(int tankId , const char* colorTeam); 
 
 	static Vector2T<int> getNearestEnemyPosition(int  id, const char* colorTeam); // returneaza pozitia celui mai apropiat tank inamic
-																				  // calculand o distanta euclidiana
+																			  // calculand o distanta euclidiana
+
+	static string getColorTeam(int id)
+	{
+		for ( auto &i : _teams)
+		{
+			vector<int>::iterator it;
+			it = find(i.second.begin(), i.second.end(), id);
+			if (it != i.second.end())
+			{
+				return i.first;
+			}
+		}
+
+		return " ";
+	}
 	
 	static Vector2T<int> getPosition(int id)
 	{
@@ -51,6 +65,11 @@ public:
 			}
 		}
 		return 0;
+	}
+
+	static map<int, Vector2T<int>>getTanksPositions()
+	{
+		return _tanks;
 	}
 	
 };

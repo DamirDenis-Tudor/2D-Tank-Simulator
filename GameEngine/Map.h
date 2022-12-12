@@ -16,16 +16,38 @@
 				  nu pot avea un layer plin de collidere , sau unul plin de decoratiuni.
 */
 
+enum mapType {WorldMap , GuideMap};
+
 class Map :public Component
 {
-private:
+protected:
 	vector<SpriteComponent*> _drawbles;
 
 public:
 
-	Map();
-	~Map();
+	Map(mapType type = WorldMap);
+	virtual ~Map();
 
+	void init();
 	void draw()  override;
 	void update() override;
 };
+
+class MiniMap : public Map
+{
+private:
+	int _scaleDim = 6;
+public:
+	map<int , SpriteComponent*> _movebles;
+
+	MiniMap();
+
+	~MiniMap();
+
+	void init() ;
+
+	void draw() override;
+
+	void update() override;
+};
+

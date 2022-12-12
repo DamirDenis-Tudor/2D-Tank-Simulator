@@ -4,9 +4,6 @@ void Engine::initComponets()
 {
 	_componets.emplace_back(new Map);
 
-	//de rezolvat bug-ul cu miscarea si blocajul
-
-	
 	Director::setBuilder(new PlayerTank);
 
 	Director::setBuilderAttributes("Type1", "ColorA", { 64 ,64 });
@@ -20,28 +17,30 @@ void Engine::initComponets()
 	Director::setBuilderAttributes("Type2", "ColorA", { 64 * 4,64 * 7 });
 	_componets.push_back(Director::getResult());
 
-	//Director::setBuilderAttributes("Type3", "ColorD", { 64*21,64*19 });
-	//_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type3", "ColorB", { 64*21,64*19 });
+	_componets.push_back(Director::getResult());
 
-	//Director::setBuilderAttributes("Type4", "ColorD", { 64 * 40 ,64*3 });
-	//_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type4", "ColorB", { 64 * 40 ,64*3 });
+	_componets.push_back(Director::getResult());
 
-	//Director::setBuilderAttributes("Type5", "ColorB", {64 * 15,64 * 35});
-	//_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type5", "ColorC", {64 * 15,64 * 35});
+	_componets.push_back(Director::getResult());
 
-	//Director::setBuilderAttributes("Type5", "ColorB", { 64 * 28,64 * 6 });
-	//_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type5", "ColorC", { 64 * 28,64 * 6 });
+	_componets.push_back(Director::getResult());
 
-	//Director::setBuilderAttributes("Type6", "ColorD", {64 * 40 ,64 * 6});
-	//_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type6", "ColorD", {64 * 40 ,64 * 6});
+	_componets.push_back(Director::getResult());
 
-	//Director::setBuilderAttributes("Type7", "ColorD", { 64 * 54 ,64 * 34});
-	//_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type7", "ColorD", { 64 * 54 ,64 * 34});
+	_componets.push_back(Director::getResult());
 
 	Director::setBuilderAttributes("Type8", "ColorD", { 64 *56,64 * 36 });
 	_componets.push_back(Director::getResult());
 
 	_componets.emplace_back(new AnimationsHandler);
+	
+	_componets.emplace_back(new MiniMap);
 }
 
 void Engine::draw() 
@@ -65,10 +64,11 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 	InputManager::initInput();
 	RendererManager::setRenderer(name, width, height, fullscreen);
 	AssetsStorage::loadTiles("levels/level1scaled2.1.tmx");
+	AssetsStorage::loadMiniMapTiles("assets/maps/miniMapTiles.tmx");
 	AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
 	AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
 	MapSpaceManager::initNodes();
-	CameraManager::init(AssetsStorage::_mapTileDim, AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
+	CameraManager::init(AssetsStorage::_tileDim, AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
 	initComponets();
 
 }

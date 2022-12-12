@@ -35,7 +35,7 @@ void Bullet::update()
 	/*
 		coliziuni bullet - tank
 	*/
-	int rectDim = 2 * AssetsStorage::_mapTileDim ;
+	int rectDim = 2 * AssetsStorage::_tileDim;
 	for (auto& i : Mediator::recieveTanksPosition(_tankId))
 	{
 		Vector2T<int> rectPos = i ;

@@ -46,6 +46,6 @@ public:
 	/*
 		- verifica aparteneta unui punct intr-un rectagle
 	*/
-	static bool pointCollisionRectagle(Vector2T<float>& potentialPos , Vector2T<int>& rectPos , int& rectDim);
+	static bool pointCollisionRectagle(Vector2T<float> potentialPos , Vector2T<int> rectPos , int rectDim);
 
 };

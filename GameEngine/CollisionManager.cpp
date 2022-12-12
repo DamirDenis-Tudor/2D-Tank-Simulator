@@ -2,11 +2,11 @@
 
 void CollisionManager::mapCollision(Vector2T<float>& potentialPos)
 {
-	int startCellX = std::max(0, (int)(potentialPos.getX()) / AssetsStorage::_mapTileDim - 1);
-	int endCellX = std::min(AssetsStorage::_layerWidth - 1, (int)(potentialPos.getX()) / AssetsStorage::_mapTileDim + 1);
+	int startCellX = std::max(0, (int)(potentialPos.getX()) / AssetsStorage::_tileDim - 1);
+	int endCellX = std::min(AssetsStorage::_layerWidth - 1, (int)(potentialPos.getX()) / AssetsStorage::_tileDim + 1);
 
-	int startCellY = std::max(0, (int)(potentialPos.getY()) / AssetsStorage::_mapTileDim - 1);
-	int endCellY = std::min(AssetsStorage::_layerHeight - 1, (int)(potentialPos.getY()) / AssetsStorage::_mapTileDim + 1);
+	int startCellY = std::max(0, (int)(potentialPos.getY()) / AssetsStorage::_tileDim - 1);
+	int endCellY = std::min(AssetsStorage::_layerHeight - 1, (int)(potentialPos.getY()) / AssetsStorage::_tileDim + 1);
 
 	for (int i = startCellY; i <= endCellY; i++)
 	{
@@ -14,9 +14,9 @@ void CollisionManager::mapCollision(Vector2T<float>& potentialPos)
 		{
 			if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 			{
-				Vector2T<int> rectPos = { j * AssetsStorage::_mapTileDim , i * AssetsStorage::_mapTileDim };
+				Vector2T<int> rectPos = { j * AssetsStorage::_tileDim , i * AssetsStorage::_tileDim };
 
-				circleRectagleCollision(potentialPos, rectPos, AssetsStorage::_mapTileDim);
+				circleRectagleCollision(potentialPos, rectPos, AssetsStorage::_tileDim);
 			}
 		}
 	}
@@ -44,7 +44,7 @@ bool CollisionManager::circleRectagleCollision(Vector2T<float>& potentialPos, Ve
 
 	// "comparam" distanta cu raza cercului
 
-	float fOverlap = AssetsStorage::_mapTileDim - nearestPointDistance;
+	float fOverlap = AssetsStorage::_tileDim - nearestPointDistance;
 
 	if (std::isnan(fOverlap))
 	{
@@ -68,14 +68,14 @@ bool CollisionManager::circleRectagleCollision(Vector2T<float>& potentialPos, Ve
 
 bool CollisionManager::pointCollisionMap(Vector2T<float>& potentialPos)
 {
-	if (AssetsStorage::_mapLayers["colidble"][static_cast<int>(potentialPos._y / AssetsStorage::_mapTileDim)][static_cast<int>(potentialPos._x / AssetsStorage::_mapTileDim)] != 0)
+	if (AssetsStorage::_mapLayers["colidble"][static_cast<int>(potentialPos._y / AssetsStorage::_tileDim)][static_cast<int>(potentialPos._x / AssetsStorage::_tileDim)] != 0)
 	{
 		return true;
 	}
 	return false;
 }
 
-bool CollisionManager::pointCollisionRectagle(Vector2T<float>& potentialPos, Vector2T<int>& rectPos, int &rectDim)
+bool CollisionManager::pointCollisionRectagle(Vector2T<float> potentialPos, Vector2T<int> rectPos, int rectDim)
 {
 	if (potentialPos._x > rectPos._x && potentialPos._y > rectPos._y &&
 		potentialPos._x < rectPos._x + rectDim  && potentialPos._y < rectPos._y + rectDim)

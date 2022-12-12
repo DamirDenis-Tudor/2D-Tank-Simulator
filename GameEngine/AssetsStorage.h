@@ -64,18 +64,20 @@ private:
 public:
 	static map<set< string >, SpriteComponent* > _movebles;//bodies , tracks , cannons , bullets
 
-	static int _mapTileDim; //dimeniunea unui tile de pe mapa
+	static int _tileDim; //dimeniunea unui tile de pe mapa
 	static vector<SpriteComponent* >  _tiles;
+	static map<string, SpriteComponent* > _miniMapTiles;
 
 	static int _layerWidth;
 	static int _layerHeight;
 	static map<string, vector<vector<int>> > _mapLayers;
-
 	static map<string, vector<SpriteComponent*>> _effects;
 	static SDL_Point* _rotCenter; // centrul de rotaie al tank-ului
 
 	static void loadMovebles(const char* sourceFile);
 	static void loadTiles(const char* sourceFile);
+	static void loadMiniMapTiles(const char* sourceFile);
+
 	static void convertInToMatrix(const char* buffer, vector<vector<int>>& mapLayer);
 	static void loadEffects(const char* sourceFile);
 	static void clear();
