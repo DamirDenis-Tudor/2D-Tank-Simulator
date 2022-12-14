@@ -58,7 +58,6 @@ void Map::init()
 	{
 		for (int j = 0; j < AssetsStorage::_layerWidth; j++)
 		{
-
 			if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 			{
 				SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1]);
@@ -125,7 +124,6 @@ void MiniMap::init()
 				tile->_isMiniTile = true;
 				_drawbles.push_back(tile);
 			}
-
 		}
 	}
 

@@ -5,7 +5,7 @@ Bullet::Bullet(string type, Vector2T<int> position, float angle, int tankId) : _
 	_sprite = new SpriteComponent(AssetsStorage::_movebles[{type, "bullet"}]);
 	_sprite->setPosition(position - _sprite->_dest->w / 2);
 	_sprite->_angle = angle;
-	Mediator::notifyBulletsPosition(_position, _tankId, _id);
+	Mediator::notifyBulletPosition(_position, _tankId, _id);
 }
 
 Bullet::~Bullet()
@@ -36,7 +36,7 @@ void Bullet::update()
 		coliziuni bullet - tank
 	*/
 	int rectDim = 2 * AssetsStorage::_tileDim;
-	for (auto& i : Mediator::recieveTanksPosition(_tankId))
+	for (auto& i : Mediator::recieveTanksPositions(_tankId))
 	{
 		Vector2T<int> rectPos = i ;
 		if (CollisionManager::pointCollisionRectagle(potentialPos, rectPos, rectDim))
@@ -49,7 +49,7 @@ void Bullet::update()
 	if (hasCollision)
 	{
 		disable();
-		Mediator::removeBulletsPosition(_tankId, _id);
+		Mediator::removeBulletPosition(_tankId, _id);
 	}
 	else
 	{

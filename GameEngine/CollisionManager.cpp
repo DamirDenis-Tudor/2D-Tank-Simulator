@@ -66,7 +66,7 @@ bool CollisionManager::circleRectagleCollision(Vector2T<float>& potentialPos, Ve
 	return colision;
 }
 
-bool CollisionManager::pointCollisionMap(Vector2T<float>& potentialPos)
+bool CollisionManager::pointCollisionMap(Vector2T<float> potentialPos)
 {
 	if (AssetsStorage::_mapLayers["colidble"][static_cast<int>(potentialPos._y / AssetsStorage::_tileDim)][static_cast<int>(potentialPos._x / AssetsStorage::_tileDim)] != 0)
 	{

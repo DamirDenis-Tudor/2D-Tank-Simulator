@@ -1,7 +1,15 @@
 #include"MapSpaceManager.h"
 
+int MapSpaceManager::_range = 5;
+int MapSpaceManager::_curretTankId = 0;
+const char* MapSpaceManager::_currentColor = nullptr;
 vector<vector<Node*>> MapSpaceManager::_nodes = {};
 Node* MapSpaceManager::_pastEndPos = nullptr;
+void MapSpaceManager::setUser(int id, const char* color)
+{
+	_curretTankId = id;
+	_currentColor = color;
+}
 
 void MapSpaceManager::initNodes()
 {
@@ -11,7 +19,7 @@ void MapSpaceManager::initNodes()
 		for (int j = 0; j < AssetsStorage::_layerHeight; j++)
 		{
 			Node* node = new Node({ i , j });
-			
+
 			if (AssetsStorage::_mapLayers["colidble"][j][i] != 0)
 			{
 				node->_isObstacle = true;
@@ -21,59 +29,45 @@ void MapSpaceManager::initNodes()
 		_nodes.push_back(nodes);
 	}
 
-	//for (int i = 0; i < AssetsStorage::_layerWidth; i++)
-	//{
-	//	for (int j = 0; j < AssetsStorage::_layerHeight; j++)
-	//	{
-	//		if (AssetsStorage::_mapLayers["colidble"][j][i] != 0 || 
-	//			AssetsStorage::_mapLayers["colidble"][j+1][i] != 0 ||
-	//			AssetsStorage::_mapLayers["colidble"][j][i+1] != 0 || 
-	//			AssetsStorage::_mapLayers["colidble"][j+1][i+1] != 0 )
-	//		{
-	//			_nodes[i][j]->_isObstacle = true;
-	//		}
-	//	}
-	//}
-
 	for (int i = 0; i < AssetsStorage::_layerWidth; i++)
 	{
 		for (int j = 0; j < AssetsStorage::_layerHeight; j++)
 		{
 			//nodurile sus jos stanga dreapta
-			if (j > 0 && !_nodes[i][j - 1]->_isObstacle)
+			if (j > 0)
 			{
 				_nodes[i][j]->_neighbours.push_back(_nodes[i][j - 1]);
 			}
-			if (j < AssetsStorage::_layerHeight - 1 && !_nodes[i][j + 1]->_isObstacle)
+			if (j < AssetsStorage::_layerHeight - 1)
 			{
 				_nodes[i][j]->_neighbours.push_back(_nodes[i][j + 1]);
 			}
-			if (i > 0 && !_nodes[i-1][j]->_isObstacle)
+			if (i > 0)
 			{
 				_nodes[i][j]->_neighbours.push_back(_nodes[i - 1][j]);
 			}
-			if (i < AssetsStorage::_layerWidth - 1 && !_nodes[i+1][j]->_isObstacle)
+			if (i < AssetsStorage::_layerWidth - 1)
 			{
 				_nodes[i][j]->_neighbours.push_back(_nodes[i + 1][j]);
 			}
 
-			//vecinii pe diagonala
-			//if (i > 0 && j > 0)
-			//{
-			//	_nodes[i][j]->_neighbours.push_back(_nodes[i - 1][j - 1]);
-			//}
-			//if (i > 0 && j < AssetsStorage::_layerHeight - 1)
-			//{
-			//	_nodes[i][j]->_neighbours.push_back(_nodes[i - 1][j + 1]);
-			//}
-			//if (j > 0 && i < AssetsStorage::_layerWidth - 1)
-			//{
-			//	_nodes[i][j]->_neighbours.push_back(_nodes[i + 1][j - 1]);
-			//}
-			//if (i < AssetsStorage::_layerHeight - 1 && j < AssetsStorage::_layerHeight - 1)
-			//{
-			//	_nodes[i][j]->_neighbours.push_back(_nodes[i + 1][j + 1]);
-			//}
+			////vecinii pe diagonala
+			if (i > 0 && j > 0)
+			{
+				_nodes[i][j]->_neighbours.push_back(_nodes[i - 1][j - 1]);
+			}
+			if (i > 0 && j < AssetsStorage::_layerHeight - 1)
+			{
+				_nodes[i][j]->_neighbours.push_back(_nodes[i - 1][j + 1]);
+			}
+			if (j > 0 && i < AssetsStorage::_layerWidth - 1)
+			{
+				_nodes[i][j]->_neighbours.push_back(_nodes[i + 1][j - 1]);
+			}
+			if (i < AssetsStorage::_layerHeight - 1 && j < AssetsStorage::_layerHeight - 1)
+			{
+				_nodes[i][j]->_neighbours.push_back(_nodes[i + 1][j + 1]);
+			}
 		}
 	}
 }
@@ -86,6 +80,18 @@ float MapSpaceManager::heuristic(Node* a, Node* b)
 Node* MapSpaceManager::getNode(Vector2T<int> position)
 {
 	return _nodes[position._x][position._y];
+}
+
+bool MapSpaceManager::bodyContainsObstacles(Node* body)
+{
+	if (_nodes[body->_position._x][body->_position._y]->_isObstacle ||
+		_nodes[body->_position._x][body->_position._y + 1]->_isObstacle ||
+		_nodes[body->_position._x + 1][body->_position._y]->_isObstacle ||
+		_nodes[body->_position._x + 1][body->_position._y + 1]->_isObstacle)
+	{
+		return true;
+	}
+	return false;
 }
 
 
@@ -103,64 +109,64 @@ void MapSpaceManager::resetNodes()
 	}
 }
 
-bool MapSpaceManager::simulateBulletTrajectory(Vector2T<int> shotter, Vector2T<int>target)
+bool MapSpaceManager::simulateBulletTrajectory(Vector2T<int> shotter)
 {
-	float xT = target._x;
-	float yT = target._y;
 	shotter *= AssetsStorage::_tileDim;
-	target *= AssetsStorage::_tileDim;
 
-	Vector2T<float> scaledShotter = Vector2T<float>{ (float)(shotter._x + AssetsStorage::_tileDim  ) , (float)(shotter._y + AssetsStorage::_tileDim ) } ;
-	Vector2T<float> scaledTarget = Vector2T<float>{ (float)(target._x + AssetsStorage::_tileDim ) ,(float)(target._y + AssetsStorage::_tileDim ) };
+	Node* a = nodeConversion(Mediator::getNearestEnemyPosition(_curretTankId, _currentColor));
+
+	Vector2T<int> target = a->_position * AssetsStorage::_tileDim;
+
+	// atat pentru shotter cat si pentru target, scalam pozitiile 
+	// relative la eram (din pozitia pe map in pozitia pe eran)
+	// acest lucru ajuta la o simulare mai buna
+	Vector2T<float> scaledShotter = Vector2T<float>{ (float)(shotter._x) , (float)(shotter._y) };
+	Vector2T<float> scaledTarget = Vector2T<float>{ (float)(target._x) ,(float)(target._y) };
 
 	float angle = (SDL_atan2((double)(scaledShotter._y - scaledTarget._y), (double)(scaledShotter._x - scaledTarget._x)) * 180 / M_PI);
-
-	float cos = SDL_cos((angle)*M_PI / 180);
 	float sin = SDL_sin((angle)*M_PI / 180);
-	
+	float cos = SDL_cos((angle)*M_PI / 180);
+
 	while (true)
 	{
-		scaledShotter._x -= cos * (float)AssetsStorage::_tileDim /8.f;
-		scaledShotter._y -= sin * (float)AssetsStorage::_tileDim /8.f;
+		scaledShotter._x -= SDL_cos((angle)*M_PI / 180) * AssetsStorage::_tileDim / 2.f;
+		scaledShotter._y -= SDL_sin((angle)*M_PI / 180) * AssetsStorage::_tileDim / 2.f;
 
-		if (scaledShotter._x >= scaledTarget._x - AssetsStorage::_tileDim/2  && scaledShotter._x <= (float)(scaledTarget._x + AssetsStorage::_tileDim/2 ) &&
-			scaledShotter._y >= scaledTarget._y - AssetsStorage::_tileDim/2 && scaledShotter._y <= (float)(scaledTarget._y + AssetsStorage::_tileDim/2 ))
+		// daca bullet-ul loveste targetul 
+		// oprim simularea si returnam true
+		if (CollisionManager::pointCollisionRectagle(scaledShotter + AssetsStorage::_tileDim, target, 2 * AssetsStorage::_tileDim))
 		{
 			break;
 		}
 
-		float y = (scaledShotter._y ) / (float)AssetsStorage::_tileDim;
-		float x = (scaledShotter._x ) / (float)AssetsStorage::_tileDim;
-
-		if (!(scaledShotter._x >= shotter._x && scaledShotter._x <= shotter._x + 2*AssetsStorage::_tileDim &&
-			scaledShotter._y >= shotter._y && scaledShotter._y <= shotter._y + 2*AssetsStorage::_tileDim))
+		// daca bullet-ul nu are intersectie cu
+		// body-ul shootter-ului putem face verificarea 
+		// daca are coliziune cu alte obstacole
+		if (!(CollisionManager::pointCollisionRectagle(scaledShotter + AssetsStorage::_tileDim, shotter, 2 * AssetsStorage::_tileDim)))
 		{
-			if (_nodes[x][y]->_isObstacle &&
-				_nodes[x][y] != _nodes[xT ][yT] &&
-				_nodes[x][y] != _nodes[xT+1][yT] &&
-				_nodes[x][y] != _nodes[xT][yT+1] &&
-				_nodes[x][y] != _nodes[xT+1][yT+1])
+			Vector2T<float> pos = (scaledShotter + AssetsStorage::_tileDim) / AssetsStorage::_tileDim;
+
+			if (_nodes[pos._x][pos._y]->_isObstacle)
 			{
 				return false;
 			}
 		}
-
 	}
 
 	return true;
 }
 
-void MapSpaceManager::checkNearestNodeInRange(int tankId, Node* start, Node*& end, int range)
+void MapSpaceManager::checkNearestNodeInRange(Node* start, Node*& end)
 {
 	// stabilim zona de cautare a pozitie
 	// acesta va fi pe conturul matricei determinate
-	int startCellX = std::max(1, (end->_position._x - range));
-	int endCellX = std::min(AssetsStorage::_layerWidth - 2, (end->_position._x + range));
-	int startCellY = std::max(1, (end->_position._y - range));
-	int endCellY = std::min(AssetsStorage::_layerHeight - 2, (end->_position._y + range));
+	int startCellX = std::max(1, (end->_position._x - _range));
+	int endCellX = std::min(AssetsStorage::_layerWidth - 2, (end->_position._x + _range + 1));
+	int startCellY = std::max(1, (end->_position._y - _range));
+	int endCellY = std::min(AssetsStorage::_layerHeight - 2, (end->_position._y + _range + 1));
 
 	float lowestDistance = INFINITY;
-	
+
 	// in caz de nu gasim o pozitie 
 	// ne rezumam la ultima pozitie gasita
 	// si daca nu vom aveam cale, tank-ul va astepta (hasPath = false)
@@ -170,20 +176,20 @@ void MapSpaceManager::checkNearestNodeInRange(int tankId, Node* start, Node*& en
 	{
 		for (int j = startCellY; j <= endCellY; j++)
 		{
-			if (i == startCellX || i == endCellX  || j == startCellY || j == endCellY )
+			// verificam conturul range-ului
+			if (i == startCellX || i == endCellX || j == startCellY || j == endCellY)
 			{
 				//calculam distanta pana la distanta de pe conturul matricei
 				float distance = Distances::eucliadianDistance(start->_position, _nodes[i][j]->_position);
 
-				//daca este mai mica actualizam lowestDistance si nearestNode
-				if (distance < lowestDistance && 
-					!_nodes[i][j]->_isObstacle&&
-					!_nodes[i][j+1]->_isObstacle&&
-					!_nodes[i+1][j]->_isObstacle&&
-					!_nodes[i+1][j+1]->_isObstacle)
+				// daca gasim o pozitie in range mai apropiata 
+				// verificam daca corpul tank-ului nu va avea 
+				// vreo coliziune in zona respectiva
+				if (distance < lowestDistance && !bodyContainsObstacles(_nodes[i][j]))
 				{
-					// pentru a valida pozitia trebuie sa verificam daca avem posibiliatea de tragere
-					if (simulateBulletTrajectory(_nodes[i][j]->_position, end->_position))
+					// pentru a valida pozitia trebuie 
+					// sa verificam daca avem posibiliatea de tragere
+					//if (simulateBulletTrajectory(_nodes[i][j]->_position))
 					{
 						lowestDistance = distance;
 						nearestNode = _nodes[i][j];
@@ -191,36 +197,70 @@ void MapSpaceManager::checkNearestNodeInRange(int tankId, Node* start, Node*& en
 				}
 			}
 		}
+
+		end = nearestNode;
+		_pastEndPos = end;
 	}
 
-	end = nearestNode;
-	_pastEndPos = end;
 }
 
-void MapSpaceManager::actualizeTemporaryObstacles(int tankId, bool status) //varibila idEnd este temporara
+void MapSpaceManager::actualizeTemporaryObstacles(bool status) //varibila idEnd este temporara
 {
-	for (auto& i : Mediator::recieveTanksPosition(tankId))
+	for (auto& i : Mediator::recieveTanksPositions(_curretTankId))
 	{
-			Vector2T<int> pos = i / AssetsStorage::_tileDim;
-			_nodes[pos._x][pos._y]->_isObstacle = status;
-			_nodes[pos._x + 1][pos._y]->_isObstacle = status;
-			_nodes[pos._x][pos._y + 1]->_isObstacle = status;
-			_nodes[pos._x + 1][pos._y + 1]->_isObstacle = status;
+		if (i != Mediator::getNearestEnemyPosition(_curretTankId, _currentColor))
+		{
+			Node* a = nodeConversion(i);
+			
+			_nodes[a->_position._x][a->_position._y]->_isObstacle = status;
+			_nodes[a->_position._x + 1][a->_position._y]->_isObstacle = status;
+			_nodes[a->_position._x][a->_position._y + 1]->_isObstacle = status;
+			_nodes[a->_position._x + 1][a->_position._y + 1]->_isObstacle = status;
+		}
 	}
 }
 
-Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
+Node*& MapSpaceManager::nodeConversion(Vector2T<int> position)
 {
+	Vector2T<float> floatPos = { (float)position._x / (float)AssetsStorage::_tileDim  , (float)position._y / (float)AssetsStorage::_tileDim };
+	position /= AssetsStorage::_tileDim;
+	if (floatPos._x - position._x >= 0.75)
+	{
+		position._x += 1;
+	}
+	if (floatPos._y - position._y >= 0.75)
+	{
+		position._y += 1;
+	}
+	return _nodes[position._x][position._y];
+}
+
+bool MapSpaceManager::isInRangeOfTarget(Node* start)
+{
+
+	if (CollisionManager::pointCollisionRectagle({ (float)start->_position._x*AssetsStorage::_tileDim  , (float)start->_position._y * AssetsStorage::_tileDim },
+		Mediator::getNearestEnemyPosition(_curretTankId, _currentColor) - (_range+2)* AssetsStorage::_tileDim,
+		2 * (_range+2) * AssetsStorage::_tileDim))
+	{
+		return true;
+	}
+	return false;
+}
+
+Moves MapSpaceManager::aStar(Vector2T<int> startPos, Vector2T<int> endPos)
+{
+	//initial conversion
+	Node* start = nodeConversion(startPos);
+	Node* end = nodeConversion(endPos);
+
 	//resetarea tuturor nodurilor
 	resetNodes();
 
 	//actualizarea pozitiilor tank-urilor
-	actualizeTemporaryObstacles(tankId, true);
+	actualizeTemporaryObstacles(true);
 
-	//facem o copie catre tinta noastra
-	//pentru ca va fi modificata de apelul urmatoarei functii
-	Node* target = end;
-	checkNearestNodeInRange(tankId, start, end);
+	//cautam cea mai optimala poztie in range-ul tank-ului inamic
+	checkNearestNodeInRange(start, end);
 
 	//setarea nodului curent
 	Node* currentNode = start;
@@ -238,7 +278,7 @@ Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 
 		//aici putem face o sortare : list => coada de prioritati
 		// este comentata pentru ca reduce performata => tank-uri nu mai sunt asa de "try hard"
-		
+
 		//unvisitedNodes.sort([](const Node* a, const Node* b) {return a->_gloabalGoal < b->_gloabalGoal; });
 
 		//scoatem nodurile vizitate
@@ -261,34 +301,25 @@ Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 			//putem pun in coada doar un vecin valid
 			if (!neighbour->_isVisited)
 			{
-				// trebuie verificate toate cele 4 tile-uri ale tak-ului
-				if (!neighbour->_isObstacle &&
-					!_nodes[neighbour->_position._x + 1][neighbour->_position._y]->_isObstacle &&
-					!_nodes[neighbour->_position._x][neighbour->_position._y + 1]->_isObstacle &&
-					!_nodes[neighbour->_position._x + 1][neighbour->_position._y + 1]->_isObstacle)
+				if (!bodyContainsObstacles(neighbour))
 				{
 					unvisitedNodes.push_back(neighbour);
-
-
-					//calculam posibila distanta
-					float possibleLowerGoal = currentNode->_localGoal + heuristic(currentNode, neighbour);
-
-					//daca este o distanta mai mica facem actualizarea
-					if (possibleLowerGoal < neighbour->_localGoal)
-					{
-						neighbour->_localGoal = possibleLowerGoal;
-
-						neighbour->_parent = currentNode;
-
-						neighbour->_gloabalGoal = neighbour->_localGoal + heuristic(currentNode, end);
-					}
 				}
+			}
+			//calculam posibila distanta
+			float possibleLowerGoal = currentNode->_localGoal + heuristic(currentNode, neighbour);
+
+			//daca este o distanta mai mica facem actualizarea
+			if (possibleLowerGoal < neighbour->_localGoal)
+			{
+				neighbour->_localGoal = possibleLowerGoal;
+
+				neighbour->_parent = currentNode;
+
+				neighbour->_gloabalGoal = neighbour->_localGoal + heuristic(currentNode, end);
 			}
 		}
 	}
-
-	////resetarea spatiilor ocupate de tank-uri
-	actualizeTemporaryObstacles(tankId, false);
 
 	unvisitedNodes.clear();
 
@@ -339,12 +370,22 @@ Moves MapSpaceManager::aStar(Node* start, Node* end, int tankId)
 			}
 		}
 	}
-	
-	//verificam daca avem posibilitatea de tragere
-	if (simulateBulletTrajectory(start->_position, target->_position ))
+
+
+	if (isInRangeOfTarget(start)) 
 	{
+		// daca este in range, indiferent de obstacolul din fata 
+		// va trage si obstacolul va fi distrus
 		firstMove._shoting = true;
 	}
+	else if (simulateBulletTrajectory(start->_position))
+	{
+		// daca nu este in range se verifica posibilitatea de tragere
+		firstMove._shoting = true;
+	}
+
+	////resetarea spatiilor ocupate de tank-uri
+	actualizeTemporaryObstacles(false);
 
 	return firstMove;
 }

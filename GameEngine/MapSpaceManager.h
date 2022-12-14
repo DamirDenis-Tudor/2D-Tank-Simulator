@@ -51,12 +51,21 @@ public:
 		->responsabila cu gestionarea spatiunlui de pe mapa
 			- trasee de urmat
 			- pozitii de spawn
+			- pozii optimale de tragere
 */
 class MapSpaceManager
 {
+	static int _range; // default 5: shotter-ul va cauta o pozitie la distanta de 5 tile-uri
+	static int _curretTankId;
+	static const char* _currentColor;
 	static vector<vector<Node*>> _nodes;
 	static Node* _pastEndPos;
 public:
+
+	/*
+		-> informeaza managerul despre "utilizatorul" curent
+	*/
+	static void setUser(int id, const char* color);
 
 	/*
 		-> transforma matricea de indici intr-o matrice de noduri
@@ -65,16 +74,25 @@ public:
 	static void initNodes();
 
 	/*
-		-> reseteaza distantele calculate si statusul "_isVisited" pentru diecare nod
+		-> reseteaza distantele calculate si statusul "_isVisited" pentru fiecare nod
 	*/
 	static void resetNodes();
 	
 	static Node* getNode(Vector2T<int> position);
 	
 	/*
-		->simuleaza traseul unui bullet avand sursa: shotter si destinatia: target
+	*	->verifica daca corpul unui tank are vreun obstacol(verifica cele 4 tile-uri)
+	*	-> primeste ca reper nodul din stanga sus
 	*/
-	static bool simulateBulletTrajectory(Vector2T<int> shotter, Vector2T<int>target);
+	static bool bodyContainsObstacles(Node* body);
+
+	/*
+		->simuleaza traseul unui bullet avand sursa: shotter si destinatia: target
+		true : are traseu 
+		false : are un obstacol pe drum
+		-> targetul va fi preluat din Mediator
+	*/
+	static bool simulateBulletTrajectory(Vector2T<int> shotter);
 
 	/*
 		-> cauta in raza nodului end(acesta este modificat sau nu) un nod optimal in functie de:
@@ -82,12 +100,12 @@ public:
 			- obstacolele din range 
 			- posibilitatea de tragere
 	*/
-	static void checkNearestNodeInRange(int tankId , Node* start, Node*& end , int range = 6); 
+	static void checkNearestNodeInRange( Node* start, Node*& end); 
 	
 	/*
 		-> activeaza sau dezantiveala pozitiile obstacolelor temporare(tank-urile)
 	*/
-	static void actualizeTemporaryObstacles(int taniId, bool status); 
+	static void actualizeTemporaryObstacles(bool status); 
 	
 	/*
 		distanta manhhatan sau euclidiana dintre 2 noduri
@@ -95,11 +113,25 @@ public:
 	static float heuristic(Node* a, Node* b);
 
 	/*
-		Descriere aStar:
-		-> true - bulletul isi atinge tinta
-		-> false - in cazul in care intalnim un obstacol pe drum
+	-> converteste o pozitie in spatiu intr-un nod pe mapa
 	*/
-	static Moves aStar(Node* start, Node* end , int tankId);
+	static Node*& nodeConversion(Vector2T<int> position);
+
+	/*
+	
+	*/
+	static bool isInRangeOfTarget(Node* start);
+
+	/*
+		-> returneaza primul set de mutari(shooting sau movement) 
+	*/
+	static Moves aStar(Vector2T<int> start, Vector2T<int> end);
+
+	/*
+		-> alege in funtie de pozitia de tragere cea 
+		   mai optimala tinta, tank-ul fiind pe 4 tile-uri
+		   seteaza ca tinta unul din ele;
+	*/
 
 	static void clear();
 };

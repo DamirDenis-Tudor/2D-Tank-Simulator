@@ -37,8 +37,8 @@ class MiniMap : public Map
 {
 private:
 	int _scaleDim = 6;
-public:
 	map<int , SpriteComponent*> _movebles;
+public:
 
 	MiniMap();
 

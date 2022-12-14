@@ -11,6 +11,8 @@
 
 class Tank : public Component
 {
+	int health = 100;
+
 	SpriteComponent* _tracks = nullptr;
 	SpriteComponent* _body = nullptr;
 	SpriteComponent* _cannon = nullptr;

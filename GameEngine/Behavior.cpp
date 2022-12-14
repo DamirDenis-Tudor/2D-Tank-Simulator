@@ -43,7 +43,7 @@ void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 
 	//verificam coliziunile cu celelalte tank-uri
 	int rectDim = 2 * AssetsStorage::_tileDim;
-	for (auto& i : Mediator::recieveTanksPosition(_id))
+	for (auto& i : Mediator::recieveTanksPositions(_id))
 	{
 		CollisionManager::circleRectagleCollision(potentialPos, i, rectDim);
 	}
@@ -54,7 +54,7 @@ void Behavior::move(Vector2T<int>& position, Vector2T<float> velocity)
 	position._y = static_cast <int>(potentialPos._y) - AssetsStorage::_tileDim;
 
 	//notificam mediator-ul 
-	Mediator::notifyTanksPosition(position, _id);
+	Mediator::notifyTankPosition(position, _id);
 }
 
 void Behavior::rotationB(float& _angle, float& _angle1)

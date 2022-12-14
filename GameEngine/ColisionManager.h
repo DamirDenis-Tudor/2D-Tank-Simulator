@@ -41,7 +41,7 @@ public:
 	/*
 		- verifica coliziunea cu oricare tile din layer-ul cu obiecte colideble
 	*/
-	static bool pointCollisionMap(Vector2T<float>& potentialPos);
+	static bool pointCollisionMap(Vector2T<float> potentialPos);
 
 	/*
 		- verifica aparteneta unui punct intr-un rectagle
