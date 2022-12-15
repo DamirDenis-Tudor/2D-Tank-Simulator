@@ -3,6 +3,7 @@
 #include"Vector2i.h"
 #include<map>
 #include<vector>
+#include<list>
 
 using namespace std;
 
@@ -14,20 +15,38 @@ using namespace std;
 */
 class Mediator
 {
+	static map<int, Vector2T<int>> _walls; // contine toate pozitiile wall-urilor
 	static map<int, Vector2T<int> > _tanks; // contine pozitiile tuturor tank-urilor
-	static map<const char*, vector<int> > _teams; // contine maparea tank-urilor pe echipe
+	static map<const char*, list<int> > _teams; // contine maparea tank-urilor pe echipe
 	static map<  pair<int, int>, Vector2T<int> > _bullets; // contine poziitiile tuturor gloatelor mapate in funtie de un posesor
 	static map<int, int> _incomingHits; // contine id-ul unui obiect si damage-ul sau primit
+
 public:
+
+
+	/*
+		-> inregistreaza un zid
+	*/
+	static void registerWall(int id , Vector2T<int> pos);
+
+	/*
+		-> elimina un zid
+	*/
+	static void removeWall(int id);
 
 	/*
 		-> inregistreaza pozitia unui tank
 	*/
 	static void notifyTankPosition(Vector2T<int> pos, int id);
 	/*
-		-> elimina posibilitatea de a mai actualiza pozitia unui tank
+		-> elimina tot ce este legat de un tank
 	*/
-	static void removeTankPosition(int tankId);
+	static void removeTank(int tankId , const char* team);
+
+	/*
+	*	-> verifica daca un tank mai exista sau nu 
+	*/
+	static bool stillExist(int tankId);
 
 	/*
 		-> inregistreaza pozitia unui bullet
@@ -65,7 +84,7 @@ public:
 	/*
 		-> inregistreaza un damage unui tank
 	*/
-	static void registerTankHit(int tankHitted, int damage);
+	static void registerHit(int tankHitted, int damage);
 	/*
 		-> returneaza damage-ul primit 
 	*/
@@ -75,7 +94,7 @@ public:
 	{
 		for (auto& i : _teams)
 		{
-			vector<int>::iterator it;
+			list<int>::iterator it;
 			it = find(i.second.begin(), i.second.end(), id);
 			if (it != i.second.end())
 			{
@@ -88,7 +107,15 @@ public:
 
 	static Vector2T<int> getPosition(int id)
 	{
-		return _tanks[id];
+		if (_tanks.count(id) != 0)
+		{
+			return _tanks[id];
+		}
+		if (_walls.count(id) != 0)
+		{
+			return _walls[id];
+		}
+		return { -1 , -1 };
 	}
 
 	static int getId(Vector2T<int> position)
@@ -100,6 +127,15 @@ public:
 				return i.first;
 			}
 		}
+
+		for (auto& i : _walls)
+		{
+			if (i.second == position)
+			{
+				return i.first;
+			}
+		}
+
 		return 0;
 	}
 

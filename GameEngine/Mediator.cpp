@@ -1,6 +1,7 @@
 #include "Mediator.h"
 
-map<const char*, vector<int>> Mediator::_teams = {};
+map<int, Vector2T<int>> Mediator::_walls = {};
+map<const char*, list<int>> Mediator::_teams = {};
 map<int, Vector2T<int> > Mediator::_tanks = {};
 map<  pair<int, int>, Vector2T<int> > Mediator::_bullets = {};
 map< int, int > Mediator::_incomingHits = {};
@@ -22,6 +23,24 @@ vector<Vector2T<int>> Mediator::recieveTanksPositions(int tankId)
 	return tanks;
 }
 
+void Mediator::registerWall(int id , Vector2T<int> pos)
+{
+	if (_walls.count(id) == 0)
+	{
+		_walls.insert(pair<int, Vector2T<int>>(id, pos));
+		_incomingHits.insert(pair<int, int>(id, 0)); // inregistram un tank cu damage-ul initial primit 0
+	}
+	else
+	{
+		_walls[id] = pos;
+	}
+}
+
+void Mediator::removeWall(int id)
+{
+	_walls.erase(id);
+}
+
 void Mediator::notifyTankPosition(Vector2T<int> pos, int id)
 {
 	if (_tanks.count(id) == 0)
@@ -34,9 +53,21 @@ void Mediator::notifyTankPosition(Vector2T<int> pos, int id)
 		_tanks[id] = pos;
 	}
 }
-void Mediator::removeTankPosition(int tankId)
+void Mediator::removeTank(int tankId , const char* team)
 {
 	_tanks.erase(tankId);
+	_incomingHits.erase(tankId);
+	_teams[team].remove(tankId);
+	_pastEnemyId.erase(tankId);
+}
+
+bool Mediator::stillExist(int tankId)
+{
+	if (_tanks.count(tankId))
+	{
+		return true;
+	}
+	return false;
 }
 
 
@@ -67,7 +98,7 @@ void Mediator::notifyTeam(int tankId, const char* colorTeam)
 void Mediator::removeFromTeam(int tankId, const char* colorTeam)
 {
 
-	_teams[colorTeam].erase(_teams[colorTeam].begin() + tankId);
+	_teams[colorTeam].remove(tankId);
 }
 
 Vector2T<int> Mediator::getNearestEnemyPosition(int  id, const char* colorTeam)
@@ -102,7 +133,7 @@ Vector2T<int> Mediator::getNearestEnemyPosition(int  id, const char* colorTeam)
 	return getPosition(_currentEnemyId);
 }
 
-void Mediator::registerTankHit(int tankHitted, int damage)
+void Mediator::registerHit(int tankHitted, int damage)
 {
 	_incomingHits[tankHitted] += damage;
 }

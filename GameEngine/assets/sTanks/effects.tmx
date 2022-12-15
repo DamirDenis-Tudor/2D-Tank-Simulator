@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<effects dim ="128">
-	<BigExplosion type ="BigExplosion">
+<effects>
+	<animation type ="BigExplosion" dim ="128">
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_000.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_001.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_002.png" />
@@ -11,9 +11,9 @@
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_007.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Explosion_008.png" />
 		<image></image>
-	</BigExplosion>
+	</animation>
 
-	<Shot type = "Shot1">
+	<animation type = "Shot1" dim ="128">
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_000.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_001.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_A_002.png" />
@@ -22,38 +22,94 @@
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Exhaust_01_001.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Exhaust_01_002.png" />
 		<image></image>
-	</Shot>
+	</animation>
 
-	<Shot type = "Shot2">
+	<animation type = "Shot2" dim ="128">
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_000.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_001.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_002.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Shot_B_003.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Exhaust_01_000.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Exhaust_01_001.png" />
+		<image source="assets/sTanks/tanksScaled0.5/effects/effect2/Sprite_Effects_Exhaust_01_002.png" />
 		<image></image>
 
-	</Shot>
+	</animation>
 
-	<Shot></Shot>
-
-	<Impact type = "Impact1">
+	<animation type = "Impact1" dim ="128">
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_000.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_001.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_002.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_A_003.png" />
 		<image></image>
 
-	</Impact>
+	</animation>
 
-	<Impact type = "Impact2">
+	<animation type = "Impact2" dim ="128">
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_000.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_001.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_002.png" />
 		<image source="assets/sTanks/tanksScaled0.5/effects/effect1/Sprite_Fire_Shots_Impact_B_003.png" />
 		<image></image>
+	</animation>
 
-	</Impact>
+	<animation type = "ColorA" dim ="192">
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_1.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_2.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_3.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_4.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_5.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_6.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_7.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_8.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_9.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_10.png" />
+		<image></image>
+	</animation>
 
-	<Impact></Impact>
+	<animation type = "ColorB" dim ="192">
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_1.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_2.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_3.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_4.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_5.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_6.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_7.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_8.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_9.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_10.png" />
+		<image></image>
+	</animation>
+
+	<animation type = "ColorC" dim ="192">
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_1.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_2.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_3.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_4.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_5.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_6.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_7.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_8.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_9.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_10.png" />
+		<image></image>
+	</animation>
+
+	<animation type = "ColorD" dim ="192">
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_1.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_2.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_3.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_4.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_5.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_6.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_7.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_8.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_9.png" />
+		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_10.png" />
+		<image></image>
+	</animation>
+	
+	<animation></animation>
 
 
 

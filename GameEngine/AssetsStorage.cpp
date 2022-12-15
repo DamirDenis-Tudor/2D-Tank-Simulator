@@ -305,7 +305,6 @@ void AssetsStorage::loadMiniMapTiles(const char* sourceFile)
 	for (XMLElement *child = root->FirstChildElement("image"); child != root->LastChildElement("image");
 		child = child->NextSiblingElement("image"))
 	{
-
 		SpriteComponent* sprite = new SpriteComponent(child->FindAttribute("source")->Value());
 		sprite->_src->x = 0;
 		sprite->_src->y = 0;
@@ -335,100 +334,37 @@ void AssetsStorage::loadEffects(const char* sourceFile)
 		//error printer
 	}
 
-
 	XMLElement* root = document.RootElement();
-
-	int dim = atoi(root->FindAttribute("dim")->Value());
-
-	XMLElement* bigExplosion = root->FirstChildElement("BigExplosion");
-	string type = bigExplosion->FindAttribute("type")->Value();
-	vector<SpriteComponent*> effect;
 	
-	for (auto i = bigExplosion->FirstChildElement("image");
-		i != bigExplosion->LastChildElement(); i = i->NextSiblingElement())
+	for (auto i = root->FirstChildElement("animation"); i != root->LastChildElement(); i = i->NextSiblingElement())
 	{
-		const char* name = i->FindAttribute("source")->Value();
-		SpriteComponent* sprite = new SpriteComponent(name);
+		int dim = atoi(i->FindAttribute("dim")->Value());
+		vector<SpriteComponent*> effect;
+		string type = i->FindAttribute("type")->Value();
+		for (auto j = i->FirstChildElement("image");
+			j != i->LastChildElement(); j = j->NextSiblingElement())
+		{
+			const char* name = j->FindAttribute("source")->Value();
+			SpriteComponent* sprite = new SpriteComponent(name);
 
-		sprite->_src->x = 0;
-		sprite->_src->y = 0;
-		sprite->_src->w = dim;
-		sprite->_src->h = dim;
+			sprite->_src->x = 0;
+			sprite->_src->y = 0;
+			sprite->_src->w = dim;
+			sprite->_src->h = dim;
 
-		sprite->_dest->x = 0;
-		sprite->_dest->y = 0;
-		sprite->_dest->w = dim;
-		sprite->_dest->h = dim;
+			sprite->_dest->x = 0;
+			sprite->_dest->y = 0;
+			sprite->_dest->w = dim;
+			sprite->_dest->h = dim;
 
-		effect.push_back(sprite);
+			effect.push_back(sprite);
 
-		sprite = nullptr;
+			sprite = nullptr;
+		}
+
+		_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
+		effect.clear();
 	}
-
-	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
-	effect.clear();
-
-	XMLElement* impact = root->FirstChildElement("Impact");
-	type = impact->FindAttribute("type")->Value();
-
-	for (auto i = impact->FirstChildElement("image");
-		i != impact->LastChildElement(); i = i->NextSiblingElement())
-	{
-		const char* name = i->FindAttribute("source")->Value();
-		SpriteComponent* sprite = new SpriteComponent(name);
-
-		sprite->_src->x = 0;
-		sprite->_src->y = 0;
-		sprite->_src->w = dim;
-		sprite->_src->h = dim;
-
-		sprite->_dest->x = 0;
-		sprite->_dest->y = 0;
-		sprite->_dest->w = dim;
-		sprite->_dest->h = dim;
-
-		effect.push_back(sprite);
-
-		sprite = nullptr;
-	}
-
-	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
-
-	effect.clear();
-
-	XMLElement* shot = root->FirstChildElement("Shot");
-	type = shot->FindAttribute("type")->Value();
-
-	for (auto i = shot->FirstChildElement("image");
-		i != shot->LastChildElement(); i = i->NextSiblingElement())
-	{
-		const char* name = i->FindAttribute("source")->Value();
-		SpriteComponent* sprite = new SpriteComponent(name);
-
-		sprite->_src->x = 0;
-		sprite->_src->y = 0;
-		sprite->_src->w = dim;
-		sprite->_src->h = dim;
-
-		sprite->_dest->x = 0;
-		sprite->_dest->y = 0;
-		sprite->_dest->w = dim;
-		sprite->_dest->h = dim;
-
-		effect.push_back(sprite);
-
-		sprite = nullptr;
-	}
-
-	_effects.insert(pair<string, vector<SpriteComponent*>>(type, effect));
-	
-	//optimization -> reset couter
-	SpriteComponent c;
-	c.resetCouter();
-
-	shot = nullptr;
-	impact = nullptr;
-	bigExplosion = nullptr;
 
 	document.Clear();
 }

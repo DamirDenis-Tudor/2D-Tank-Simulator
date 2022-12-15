@@ -26,8 +26,10 @@ void Bullet::update()
 
 	bool hasCollision = false;
 
-	if (CollisionManager::pointCollisionMap(potentialPos))
+	Vector2T<int> mapColliderObject;
+	if (CollisionManager::pointCollisionMap(potentialPos , mapColliderObject))
 	{
+		Mediator::registerHit(Mediator::getId(mapColliderObject) , 20);
 		hasCollision = true;
 	}
 
@@ -42,7 +44,7 @@ void Bullet::update()
 		if (CollisionManager::pointCollisionRectagle(potentialPos, rectPos, rectDim))
 		{
 			hasCollision = true;
-			//daca are coliziune transmite-i tank-ului ca l-ai lovit (->damage )
+			Mediator::registerHit(Mediator::getId(i), 10);
 		}
 	}
 

@@ -60,11 +60,11 @@ void Map::init()
 		{
 			if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 			{
-				SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1]);
-				tile->setPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
-				tile->_isTile = true;
-				_drawbles.push_back(tile);
-				tile = nullptr;
+				Wall* wall = new Wall(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1] , Vector2T<int>(j , i ));
+				wall->setPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
+				wall->_isTile = true;
+				_drawbles.push_back(wall);
+				wall = nullptr;
 			}
 
 		}
@@ -81,9 +81,22 @@ void Map::draw()
 
 void Map::update()
 {
-	for (auto& i : _drawbles)
+	for (int i = 0; i < _drawbles.size() ; i++)
 	{
-		i->update();
+		_drawbles[i]->update();
+		if (!_drawbles[i]->isActive())
+		{
+			/*
+				Animatia pentru distrugerea unui zid
+			*/
+
+			AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_drawbles[i]->_id)._y][Mediator::getPosition(_drawbles[i]->_id)._x] = 0;
+			_drawbles[i]->setSrcTextNullPtr();
+			delete _drawbles[i];
+			_drawbles[i] = nullptr;
+			_drawbles.erase(_drawbles.begin() + i);
+			i--;
+		}
 	}
 }
 

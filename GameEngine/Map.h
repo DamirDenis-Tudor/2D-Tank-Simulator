@@ -2,6 +2,7 @@
 #include"RendererManager.h"
 #include"AssetsStorage.h"
 #include <vector>
+#include"Wall.h"
 
 /*
 	Descrierea clasei:

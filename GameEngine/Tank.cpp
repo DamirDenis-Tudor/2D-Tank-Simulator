@@ -7,13 +7,13 @@ Tank::Tank(SpriteComponent* tracks, SpriteComponent* body, SpriteComponent* cann
 	_behavior(behavior), _velocity(velocity), _shotingTime(shotingTime), _bulletType(type) ,_teamColor(color),
 	_shotingAnim(shotingAnim) , _impactAnim(impactAnim)
 {
-
+	_spawnPos = _position;
 	TimeManager::createTimer(_id, _shotingTime);
 
 	Mediator::notifyTeam(_id, _teamColor);
 	Mediator::notifyTankPosition(_position, _id);
 
-	_behavior->setId(_id);// behaviorul va fi particular tank-ului
+	_behavior->setId(_id);
 	_behavior->setColorTeam(_teamColor);
 
 	if (CameraManager::getFocusId() == _id)
@@ -43,6 +43,7 @@ Tank::~Tank()
 	_bullets.clear();
 
 	TimeManager::removeTimer(_id);
+	Mediator::removeTank(_id , _teamColor);
 }
 
 void Tank::cameraIsFollowing()
@@ -54,7 +55,6 @@ void Tank::cameraIsFollowing()
 
 void Tank::syncMovement()
 {
-
 	_tracks->setPosition(_position - CameraManager::offset);
 	_body->setPosition(_position - CameraManager::offset);
 	_cannon->setPosition(_position - CameraManager::offset);
@@ -89,6 +89,18 @@ void Tank::checkForBullets()
 	}
 }
 
+void Tank::checkForHits()
+{
+	health = health - Mediator::checkForDamage(_id);
+
+	if (health <= 0)
+	{
+		health = 100;
+		AnimationsHandler::addAnimation(new Animation(_teamColor, _position + AssetsStorage::_tileDim, 0));
+		_position = _spawnPos;
+	}
+}
+
 void Tank::draw()
 {
 	_tracks->draw();
@@ -103,6 +115,8 @@ void Tank::draw()
 
 void Tank::update()
 {
+	checkForHits();
+
 	_behavior->movement(_position, _velocity);
 	_behavior->rotationC(_position, _cannon->_angle);
 	_behavior->rotationB(_body->_angle, _tracks->_angle);
@@ -117,8 +131,7 @@ void Tank::update()
 
 		if (!_bullets[i]->isActive())
 		{
-			AnimationsHandler::addAnimation(new Animation(_impactAnim, _bullets[i]->_position, _cannon->_angle));
-			//Aici fac dealocarea
+			AnimationsHandler::addAnimation(new Animation(_impactAnim, _bullets[i]->_position , _cannon->_angle));
 			delete _bullets[i];
 			_bullets[i] = nullptr;
 			_bullets.erase(_bullets.begin() + i);

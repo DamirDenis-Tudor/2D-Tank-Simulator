@@ -19,6 +19,7 @@ class Tank : public Component
 	Behavior* _behavior = nullptr;
 	vector<Bullet*> _bullets;
 
+	Vector2T<int> _spawnPos = { 0 , 0 };
 	Vector2T<int> _position = { 0 , 0 };
 
 	const char* _bulletType = nullptr;
@@ -50,6 +51,8 @@ public:
 		
 	*/
 	void checkForBullets();
+
+	void checkForHits();
 
 	void draw() override;
 

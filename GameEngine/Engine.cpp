@@ -6,36 +6,43 @@ void Engine::initComponets()
 
 	Director::setBuilder(new PlayerTank);
 
-	Director::setBuilderAttributes("Type1", "ColorA", { 128 ,64 });
+	Director::setBuilderAttributes("Type1", "ColorA", { 64*3 ,64*6 });
 	_componets.push_back(Director::getResult());
 	
 	Director::setBuilder(new AiTank);
 	
-	Director::setBuilderAttributes("Type2", "ColorA", { 64 * 1,64 * 7 });
+	Director::setBuilderAttributes("Type2", "ColorA", { 64 * 10,64 * 7 });
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type2", "ColorA", { 64 * 4,64 * 12 });
+	Director::setBuilderAttributes("Type2", "ColorA", { 64 * 18,64 * 10 });
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type3", "ColorD", { 64*21,64*19 });
+	Director::setBuilderAttributes("Type3", "ColorB", { 64*45,64*4 });
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type4", "ColorD", { 64 * 40 ,64*3 });
+	Director::setBuilderAttributes("Type4", "ColorB", { 64 * 38 ,64*2 });
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type5", "ColorC", {64 * 15,64 * 35});
+	Director::setBuilderAttributes("Type5", "ColorB", {64 * 41,64 * 6});
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type5", "ColorC", { 64 * 28,64 * 6 });
+	Director::setBuilderAttributes("Type5", "ColorC", { 64 * 12,64 * 27 });
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type6", "ColorB", {64 * 40 ,64 * 6});
+	Director::setBuilderAttributes("Type6", "ColorC", {64 * 25 ,64 * 33});
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type7", "ColorB", { 64 * 54 ,64 * 34});
+	Director::setBuilderAttributes("Type7", "ColorC", { 64 * 23 ,64 * 31});
 	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type8", "ColorB", { 64 *56,64 * 36 });
+
+	Director::setBuilderAttributes("Type8", "ColorD", { 64 *42,64 * 29 });
+	_componets.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type8", "ColorD", { 64 * 47,64 * 36 });
+	_componets.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type8", "ColorD", { 64 * 51,64 * 30 });
 	_componets.push_back(Director::getResult());
 
 	_componets.emplace_back(new AnimationsHandler);
@@ -53,9 +60,17 @@ void Engine::draw()
 
 void Engine::update() 
 {
-	for (auto& i : _componets)
+	for (int i = 0; i < _componets.size(); i++)
 	{
-		i->update();
+		_componets[i]->update();
+
+		if (!_componets[i]->isActive())
+		{
+			delete _componets[i];
+			_componets[i] = nullptr;
+			_componets.erase(_componets.begin() + i);
+			i--;
+		}
 	}
 }
 

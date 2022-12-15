@@ -66,10 +66,14 @@ bool CollisionManager::circleRectagleCollision(Vector2T<float>& potentialPos, Ve
 	return colision;
 }
 
-bool CollisionManager::pointCollisionMap(Vector2T<float> potentialPos)
+bool CollisionManager::pointCollisionMap(Vector2T<float> potentialPos , Vector2T<int>&mapObjectPos)
 {
-	if (AssetsStorage::_mapLayers["colidble"][static_cast<int>(potentialPos._y / AssetsStorage::_tileDim)][static_cast<int>(potentialPos._x / AssetsStorage::_tileDim)] != 0)
+	int i = static_cast<int>(potentialPos._y / AssetsStorage::_tileDim);
+	int j = static_cast<int>(potentialPos._x / AssetsStorage::_tileDim);
+
+	if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 	{
+		mapObjectPos = { j , i };
 		return true;
 	}
 	return false;

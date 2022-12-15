@@ -7,7 +7,7 @@ void SpriteComponent::draw()
 	{
 		SDL_RenderCopyEx(RendererManager::_renderer, _texture, _src, _dest, _angle, &center, SDL_FLIP_NONE);
 
-		if (_isMiniTile)
+		//if (_isMiniTile)
 		{
 			SDL_RenderDrawRect(RendererManager::_renderer, _dest);
 		}

@@ -17,57 +17,57 @@ void TankBuilder::setTankParameters()
 
 	if (_type == "Type1")
 	{
-		_shotingAnim = "Shot1";
+		_shotingAnim = "Shot2";
 		_impactAnim = "BigExplosion";
 		_velocity = { 0.4 , 0.4 };
-		_shotingTime = 0.3;
+		_shotingTime = 0.01;
 	}
 	if (_type == "Type2")
 	{
-		_shotingAnim = "Shot1";
-		_impactAnim = "BigExplosion";
+		_shotingAnim = "Shot2";
+		_impactAnim = "Impact2";
 		_velocity = { 0.2 , 0.2 };
 		_shotingTime = 0.3;
 	}
 	if (_type == "Type3")
 	{
 		_shotingAnim = "Shot1";
-		_impactAnim = "BigExplosion";
+		_impactAnim = "Impact1";
 		_velocity = { 0.24 , 0.24 };
 		_shotingTime = 1.2;
 	}
 	if (_type == "Type4")
 	{
 		_shotingAnim = "Shot1";
-		_impactAnim = "BigExplosion";
+		_impactAnim = "Impact1";
 		_velocity = { 0.22 , 0.22 };
 		_shotingTime = 0.5;
 	}
 	if (_type == "Type5")
 	{
 		_shotingAnim = "Shot1";
-		_impactAnim = "BigExplosion";
+		_impactAnim = "Impact1";
 		_velocity = { 0.355 , 0.355 };
 		_shotingTime = 1.0;
 	}
 	if (_type == "Type6")
 	{
 		_shotingAnim = "Shot1";
-		_impactAnim = "BigExplosion";
+		_impactAnim = "Impact1";
 		_velocity = { 0.267 , 0.267 };
 		_shotingTime = 0.7;
 	}
 	if (_type == "Type7")
 	{
 		_shotingAnim = "Shot1";
-		_impactAnim = "BigExplosion";
+		_impactAnim = "Impact1";
 		_velocity = { 0.345 , 0.345 };
 		_shotingTime = 0.6;
 	}
 	if (_type == "Type8")
 	{
 		_shotingAnim = "Shot1";
-		_impactAnim = "BigExplosion";
+		_impactAnim = "Impact1";
 		_velocity = { 0.35 , 0.35 };
 		_shotingTime = 0.5;
 	}

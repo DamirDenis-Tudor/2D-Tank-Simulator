@@ -12,6 +12,7 @@ void AiBehavior::follow()
 	_moves = MapSpaceManager::aStar(Mediator::getPosition(_id),	Mediator::getNearestEnemyPosition(_id, _colorTeam) ) ;
 
 	_target = Mediator::getNearestEnemyPosition(_id , _colorTeam) + AssetsStorage::_tileDim;
+
 	//std::cout << Mediator::getNearestEnemyPosition(_id , _colorTeam) <<" "<<_target<<'\n';
 }
 
