@@ -19,12 +19,12 @@ class Tank : public Component
 	Behavior* _behavior = nullptr;
 	vector<Bullet*> _bullets;
 
-	Vector2T<int> _spawnPos = { 0 , 0 };
 	Vector2T<int> _position = { 0 , 0 };
 
 	const char* _bulletType = nullptr;
 
 	Vector2T<float> _velocity = { 0 , 0 };
+	int _bulletDamage = 0;
 	float _shotingTime = 0;
 	const char* _shotingAnim = nullptr;
 	const char* _impactAnim = nullptr;
@@ -32,7 +32,7 @@ class Tank : public Component
 
 public:
 	Tank(SpriteComponent* tracks, SpriteComponent* body, SpriteComponent* cannon,
-		Behavior* behavior, Vector2T<int> position, Vector2T<float> velocity, float shotingTime, const char* bulletType ,const char* color ,
+		Behavior* behavior, Vector2T<float> velocity, float shotingTime, int bulletDamage, const char* bulletType, const char* color,
 		const char* shotingAnim, const char* impactAnim);
 
 	~Tank();
@@ -53,6 +53,9 @@ public:
 	void checkForBullets();
 
 	void checkForHits();
+
+	void temporaryDisable();
+	void respawn();
 
 	void draw() override;
 

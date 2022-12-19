@@ -18,6 +18,7 @@ private:
 	static int _mapTilesWidth;
 	static int _mapTilesHeight;
 	static int _gameObjectId;
+
 public:
 	static Vector2T<int> offset ; 
 	static Vector2T<int> pastOffset; 

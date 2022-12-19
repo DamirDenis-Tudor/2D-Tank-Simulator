@@ -7,7 +7,7 @@ void SpriteComponent::draw()
 	{
 		SDL_RenderCopyEx(RendererManager::_renderer, _texture, _src, _dest, _angle, &center, SDL_FLIP_NONE);
 
-		//if (_isMiniTile)
+		if (_isMiniTile)
 		{
 			SDL_RenderDrawRect(RendererManager::_renderer, _dest);
 		}
@@ -18,8 +18,10 @@ void SpriteComponent::update()
 {
 	if (!_isFollowed)
 	{
-		isOnCamera();
-
+		if (!_isTemporaryDeactivated)
+		{
+			isOnCamera();
+		}
 		if(_isTile)
 		{
 			_dest->x = _dest->x - CameraManager::tileOffset._x;
@@ -29,7 +31,7 @@ void SpriteComponent::update()
 }
 
 void SpriteComponent::isOnCamera()
-{
+{	
 	if (_dest->x + _dest->w  < -64 ||
 		_dest->y + _dest->h  < -64 ||
 		_dest->x  > RendererManager::_width + 64 ||

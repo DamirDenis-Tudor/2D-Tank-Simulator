@@ -4,6 +4,7 @@
 #include<map>
 #include<vector>
 #include<list>
+//#include"AssetsStorage.h"
 
 using namespace std;
 
@@ -15,15 +16,28 @@ using namespace std;
 */
 class Mediator
 {
+	#define SpawnRange 10
+
 	static map<int, Vector2T<int>> _walls; // contine toate pozitiile wall-urilor
 	static map<int, Vector2T<int> > _tanks; // contine pozitiile tuturor tank-urilor
+	static map<string, Vector2T<int> > _teamsSpawnZones; // contine pentru fiecare echipa zona in care
+														 // se vor spawna tank-urile
 	static map<const char*, list<int> > _teams; // contine maparea tank-urilor pe echipe
 	static map<  pair<int, int>, Vector2T<int> > _bullets; // contine poziitiile tuturor gloatelor mapate in funtie de un posesor
 	static map<int, int> _incomingHits; // contine id-ul unui obiect si damage-ul sau primit
 
 public:
 
+	/*
+		-> initializeaza pozitiile zonele echipelor ;
+	*/
+	static void initSpawnZones(int maxWidth , int maxHeight);
 
+	static Vector2T<int> getSpawnZone(const char* teamColor)
+	{
+		return _teamsSpawnZones[teamColor];
+	}
+		
 	/*
 		-> inregistreaza un zid
 	*/

@@ -6,41 +6,34 @@ void AiBehavior::patrol()
 
 void AiBehavior::follow()
 {
-	//up down left right shoting
 	MapSpaceManager::setUser(_id, _colorTeam);
 
-	_moves = MapSpaceManager::aStar(Mediator::getPosition(_id),	Mediator::getNearestEnemyPosition(_id, _colorTeam) ) ;
+	_moves = MapSpaceManager::aStar(Mediator::getPosition(_id), Mediator::getNearestEnemyPosition(_id, _colorTeam));
 
-	_target = Mediator::getNearestEnemyPosition(_id , _colorTeam) + AssetsStorage::_tileDim;
-
-	//std::cout << Mediator::getNearestEnemyPosition(_id , _colorTeam) <<" "<<_target<<'\n';
+	_target = Mediator::getNearestEnemyPosition(_id, _colorTeam) + AssetsStorage::_tileDim;
 }
 
 void AiBehavior::BrainAi()
 {
-	_isActivated = true;
+	follow();
 
-	if (_isActivated)
+	if (_id != CameraManager::getFocusId())
 	{
-		follow();
-
-		if (_id != CameraManager::getFocusId())
-		{
-			_target -= _offset;
-		}
-
-	}
-	else
-	{
-		patrol();
+		_target -= _offset;
 	}
 }
 
 void AiBehavior::movement(Vector2T<int>& position, Vector2T<float> velocity)
 {
+	if (Mediator::_pastEnemyId[_id] == _id)
+	{
+		_isActivated = false;
+	}
 
-	BrainAi();
-
-	move(position, velocity);
+	if (_isActivated)
+	{
+		BrainAi();
+		move(position, velocity);
+	}
 
 }

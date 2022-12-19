@@ -30,7 +30,7 @@ protected:
 	/*
 		atributele de baza pentru orice "produs creat"
 	*/
-	void setAtrributes(const char* type, const char* color, Vector2T<int> position)
+	void setAtrributes(const char* type, const char* color, Vector2T<int> position = {0,0})
 	{
 		_type = type;
 		_color = color;

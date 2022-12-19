@@ -19,9 +19,12 @@ class Node
 {
 public:
 	friend class MapSpaceManager;
+
+	bool _isPermanent = false;
 	bool _isObstacle = false;
 	bool _isVisited = false;
 	Vector2T<int> _position = { 0 , 0 };
+
 
 	float _localGoal = 0.f; // distanta efectiva 
 
@@ -62,10 +65,18 @@ class MapSpaceManager
 	static Node* _pastEndPos;
 public:
 
+	static void printMap();
+
 	/*
 		-> informeaza managerul despre "utilizatorul" curent
 	*/
-	static void setUser(int id, const char* color);
+	static void setUser(int id, const char* color = nullptr);
+
+	static void setObstacles(Vector2T<int> position, bool status)
+	{
+		_nodes[position._x][position._y]->_isObstacle = status;
+		_nodes[position._x][position._y]->_isPermanent = status;
+	}
 
 	/*
 		-> transforma matricea de indici intr-o matrice de noduri
@@ -78,13 +89,26 @@ public:
 	*/
 	static void resetNodes();
 	
+	/*
+		->returneaza o poztie de spawn
+	*/
+	static Vector2T<int> getSpawnPosition();
+
+	/*
+		-> primeste o pozitie relativa la mapa si returneaza nodul aferent
+	*/
 	static Node* getNode(Vector2T<int> position);
 	
 	/*
-	*	->verifica daca corpul unui tank are vreun obstacol(verifica cele 4 tile-uri)
+	*	-> verifica daca corpul unui tank are vreun obstacol(verifica cele 4 tile-uri)
 	*	-> primeste ca reper nodul din stanga sus
 	*/
 	static bool bodyContainsObstacles(Node* body);
+
+	/*
+		-> verica daca un nod contine sau nu un obtsacol temporar
+	*/
+	static bool nodeContainsTemporaryObstacles(Node* node);
 
 	/*
 		->simuleaza traseul unui bullet avand sursa: shotter si destinatia: target
@@ -113,7 +137,7 @@ public:
 	static float heuristic(Node* a, Node* b);
 
 	/*
-	-> converteste o pozitie in spatiu intr-un nod pe mapa
+		-> converteste o pozitie in spatiu intr-un nod pe mapa
 	*/
 	static Node*& nodeConversion(Vector2T<int> position);
 
@@ -127,11 +151,6 @@ public:
 	*/
 	static Moves aStar(Vector2T<int> start, Vector2T<int> end);
 
-	/*
-		-> alege in funtie de pozitia de tragere cea 
-		   mai optimala tinta, tank-ul fiind pe 4 tile-uri
-		   seteaza ca tinta unul din ele;
-	*/
 
 	static void clear();
 };

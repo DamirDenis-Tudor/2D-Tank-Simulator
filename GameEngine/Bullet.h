@@ -24,10 +24,11 @@ private:
 	SpriteComponent* _sprite = nullptr;
 	Vector2T<int> _position;
 	Vector2T<float> _velocity = { 1, 1 };
+	int _damage = 0;
 	int _tankId = 0; //specificator pentru posesor
 
 public:
-	Bullet(string type, Vector2T<int> position, float angle, int tankId); 
+	Bullet(string type, int damage,  Vector2T<int> position, float angle, int tankId); 
 
 	~Bullet();
 

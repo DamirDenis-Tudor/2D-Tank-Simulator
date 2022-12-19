@@ -23,6 +23,7 @@ void MapSpaceManager::initNodes()
 			if (AssetsStorage::_mapLayers["colidble"][j][i] != 0)
 			{
 				node->_isObstacle = true;
+				node->_isPermanent = true;
 			}
 			nodes.push_back(node);
 		}
@@ -72,6 +73,25 @@ void MapSpaceManager::initNodes()
 	}
 }
 
+void MapSpaceManager::printMap()
+{
+	for (int i = 0; i < AssetsStorage::_layerHeight; i++)
+	{
+		for (int j = 0; j < AssetsStorage::_layerWidth; j++)
+		{
+			if (!_nodes[j][i]->_isPermanent)
+			{
+				std::cout << _nodes[j][i]->_isObstacle << " ";
+			}
+			else
+			{
+				std::cout << 0 << " ";
+			}
+		}
+		std::cout << "\n";
+	}
+}
+
 float MapSpaceManager::heuristic(Node* a, Node* b)
 {
 	return Distances::eucliadianDistance(a->_position, b->_position);
@@ -80,6 +100,18 @@ float MapSpaceManager::heuristic(Node* a, Node* b)
 Node* MapSpaceManager::getNode(Vector2T<int> position)
 {
 	return _nodes[position._x][position._y];
+}
+
+bool MapSpaceManager::nodeContainsTemporaryObstacles(Node* node)
+{
+	bool intersect = false;
+	actualizeTemporaryObstacles(true);
+	if (node->_isObstacle)
+	{
+		intersect = true;
+	}
+	actualizeTemporaryObstacles(false);
+	return intersect;
 }
 
 bool MapSpaceManager::bodyContainsObstacles(Node* body)
@@ -94,6 +126,21 @@ bool MapSpaceManager::bodyContainsObstacles(Node* body)
 	return false;
 }
 
+Vector2T<int> MapSpaceManager::getSpawnPosition()
+{
+	actualizeTemporaryObstacles(true);
+
+	Vector2T<int> position;
+	do {
+		position._x = rand() % (SpawnRange - 1) + Mediator::getSpawnZone(_currentColor)._x;
+		position._y = rand() % (SpawnRange - 1) + Mediator::getSpawnZone(_currentColor)._y;
+
+	} while (bodyContainsObstacles(getNode(position)));
+
+	actualizeTemporaryObstacles(false);
+
+	return position * AssetsStorage::_tileDim;
+}
 
 void MapSpaceManager::resetNodes()
 {
@@ -189,7 +236,7 @@ void MapSpaceManager::checkNearestNodeInRange(Node* start, Node*& end)
 				{
 					// pentru a valida pozitia trebuie 
 					// sa verificam daca avem posibiliatea de tragere
-					//if (simulateBulletTrajectory(_nodes[i][j]->_position))
+					if (simulateBulletTrajectory(_nodes[i][j]->_position))
 					{
 						lowestDistance = distance;
 						nearestNode = _nodes[i][j];
@@ -208,13 +255,22 @@ void MapSpaceManager::actualizeTemporaryObstacles(bool status) //varibila idEnd 
 {
 	for (auto& i : Mediator::recieveTanksPositions(_curretTankId))
 	{
-		if (i != Mediator::getNearestEnemyPosition(_curretTankId, _currentColor))
+		Node* a = nodeConversion(i);
+
+		if (!_nodes[a->_position._x][a->_position._y]->_isPermanent)
 		{
-			Node* a = nodeConversion(i);
-			
 			_nodes[a->_position._x][a->_position._y]->_isObstacle = status;
+		}
+		if (!_nodes[a->_position._x + 1][a->_position._y]->_isPermanent)
+		{
 			_nodes[a->_position._x + 1][a->_position._y]->_isObstacle = status;
+		}
+		if (!_nodes[a->_position._x][a->_position._y + 1]->_isPermanent)
+		{
 			_nodes[a->_position._x][a->_position._y + 1]->_isObstacle = status;
+		}
+		if (!_nodes[a->_position._x + 1][a->_position._y + 1]->_isPermanent)
+		{
 			_nodes[a->_position._x + 1][a->_position._y + 1]->_isObstacle = status;
 		}
 	}
@@ -238,9 +294,9 @@ Node*& MapSpaceManager::nodeConversion(Vector2T<int> position)
 bool MapSpaceManager::isInRangeOfTarget(Node* start)
 {
 
-	if (CollisionManager::pointCollisionRectagle({ (float)start->_position._x*AssetsStorage::_tileDim  , (float)start->_position._y * AssetsStorage::_tileDim },
-		Mediator::getNearestEnemyPosition(_curretTankId, _currentColor) - (_range+2)* AssetsStorage::_tileDim,
-		2 * (_range+2) * AssetsStorage::_tileDim))
+	if (CollisionManager::pointCollisionRectagle({ (float)start->_position._x * AssetsStorage::_tileDim  , (float)start->_position._y * AssetsStorage::_tileDim },
+		Mediator::getNearestEnemyPosition(_curretTankId, _currentColor) - (2 * _range) * AssetsStorage::_tileDim,
+		2 * (2 * _range) * AssetsStorage::_tileDim))
 	{
 		return true;
 	}
@@ -372,13 +428,15 @@ Moves MapSpaceManager::aStar(Vector2T<int> startPos, Vector2T<int> endPos)
 	}
 
 
-	if (isInRangeOfTarget(start)) 
+	if (simulateBulletTrajectory(start->_position))
 	{
 		// daca este in range, indiferent de obstacolul din fata 
 		// va trage si obstacolul va fi distrus
+
+		// daca nu este in range se verifica posibilitatea de tragere
 		firstMove._shoting = true;
 	}
-	else if (simulateBulletTrajectory(start->_position))
+	else if (isInRangeOfTarget(start))
 	{
 		// daca nu este in range se verifica posibilitatea de tragere
 		firstMove._shoting = true;

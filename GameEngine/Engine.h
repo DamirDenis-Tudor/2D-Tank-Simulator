@@ -22,7 +22,7 @@
 class Engine : public Component
 {
 	float _framerate = 0;
-	vector<Component*> _componets;
+	vector<Component*> _components;
 
 public:	
 

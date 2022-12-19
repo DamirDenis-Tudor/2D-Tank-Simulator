@@ -16,14 +16,15 @@ Animation::Animation(string _type, Vector2T<int> position, float angle):_positio
 
 Animation::~Animation()
 {
+	TimeManager::removeTimer(_id);
 	for (auto& i : _anim)
 	{
 		i->setSrcTextNullPtr();
 		delete i;
 		i = nullptr;
-		TimeManager::removeTimer(_id);
 	}
 	_anim.clear();
+
 }
 
 void Animation::draw()

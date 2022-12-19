@@ -1,6 +1,7 @@
 #include "Mediator.h"
 
 map<int, Vector2T<int>> Mediator::_walls = {};
+map<string, Vector2T<int>> Mediator::_teamsSpawnZones = {};
 map<const char*, list<int>> Mediator::_teams = {};
 map<int, Vector2T<int> > Mediator::_tanks = {};
 map<  pair<int, int>, Vector2T<int> > Mediator::_bullets = {};
@@ -8,9 +9,17 @@ map< int, int > Mediator::_incomingHits = {};
 int Mediator::_currentEnemyId = 0;
 map<int, int> Mediator::_pastEnemyId = {};
 
+void Mediator::initSpawnZones(int maxWidth, int maxHeight)
+{
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("ColorA", { 1 , 1 }));
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("ColorB", { 1 , maxHeight - SpawnRange - 1 }));
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("ColorC", { maxWidth  - SpawnRange - 1 , 1 }));
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("ColorD", { maxWidth - SpawnRange - 1 , maxHeight - SpawnRange - 1}));
+
+}
+
 vector<Vector2T<int>> Mediator::recieveTanksPositions(int tankId)
 {
-
 	vector<Vector2T<int>> tanks;
 
 	for (auto& i : _tanks)
@@ -23,7 +32,7 @@ vector<Vector2T<int>> Mediator::recieveTanksPositions(int tankId)
 	return tanks;
 }
 
-void Mediator::registerWall(int id , Vector2T<int> pos)
+void Mediator::registerWall(int id, Vector2T<int> pos)
 {
 	if (_walls.count(id) == 0)
 	{
@@ -53,7 +62,7 @@ void Mediator::notifyTankPosition(Vector2T<int> pos, int id)
 		_tanks[id] = pos;
 	}
 }
-void Mediator::removeTank(int tankId , const char* team)
+void Mediator::removeTank(int tankId, const char* team)
 {
 	_tanks.erase(tankId);
 	_incomingHits.erase(tankId);
@@ -61,12 +70,17 @@ void Mediator::removeTank(int tankId , const char* team)
 	_pastEnemyId.erase(tankId);
 }
 
-bool Mediator::stillExist(int tankId)
+bool Mediator::stillExist(int id)
 {
-	if (_tanks.count(tankId))
+	if (_tanks.count(id))
 	{
 		return true;
 	}
+	if (_walls.count(id))
+	{
+		return true;
+	}
+
 	return false;
 }
 
@@ -110,10 +124,13 @@ Vector2T<int> Mediator::getNearestEnemyPosition(int  id, const char* colorTeam)
 		{
 			for (auto& j : i.second)
 			{
-				if (Distances::eucliadianDistance(getPosition(id), getPosition(j)) < distance)
+				if (j != id)
 				{
-					distance = Distances::eucliadianDistance(getPosition(id), getPosition(j));
-					_currentEnemyId = j;
+					if (Distances::eucliadianDistance(getPosition(id), getPosition(j)) < distance)
+					{
+						distance = Distances::eucliadianDistance(getPosition(id), getPosition(j));
+						_currentEnemyId = j;
+					}
 				}
 			}
 		}
@@ -129,6 +146,11 @@ Vector2T<int> Mediator::getNearestEnemyPosition(int  id, const char* colorTeam)
 	}
 
 	_pastEnemyId[id] = _currentEnemyId;
+
+	if (_currentEnemyId == id)
+	{
+		return { -1,-1 };
+	}
 
 	return getPosition(_currentEnemyId);
 }

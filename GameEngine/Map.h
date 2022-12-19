@@ -26,19 +26,20 @@ protected:
 
 public:
 
-	Map(mapType type = WorldMap);
-	virtual ~Map();
+	Map();
+	~Map();
 
 	void init();
 	void draw()  override;
 	void update() override;
 };
 
-class MiniMap : public Map
+class MiniMap :public Component
 {
 private:
 	int _scaleDim = 6;
-	map<int , SpriteComponent*> _movebles;
+	vector<SpriteComponent*> _drawbles;
+	vector<SpriteComponent*> _movebles;
 public:
 
 	MiniMap();

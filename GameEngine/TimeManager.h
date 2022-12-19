@@ -10,10 +10,10 @@ class Timer
 private:
 	static float _deltaTime;
 	float _seconds = 0;
-
-public:
 	float _startTime = 0;
 	float _reachTime = 0;
+
+public:
 	Timer(float seconds) : _seconds(seconds) {}
 
 	Timer() {}
@@ -45,6 +45,11 @@ public:
 	{
 		_deltaTime = delta;
 	}
+
+	void setLimit(float time)
+	{
+		_seconds = time;
+	}
 };
 
 /*
@@ -74,6 +79,11 @@ public:
 	static void createTimer(int& id, float seconds)
 	{
 		_timers.insert(pair<int, Timer*>(id,new Timer(seconds)));
+	}
+
+	static void modifyTimer(int& id, float seconds)
+	{
+		_timers[id]->setLimit(seconds);
 	}
 
 	static void removeTimer(int& id)

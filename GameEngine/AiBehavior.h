@@ -12,7 +12,7 @@
 */
 class AiBehavior : public Behavior
 {
-	bool _isActivated = false;
+	bool _isActivated = true;
 
 public:
 

@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(string type, Vector2T<int> position, float angle, int tankId) : _position(position), _tankId(tankId)
+Bullet::Bullet(string type, int damage  ,  Vector2T<int> position, float angle, int tankId) : _position(position), _tankId(tankId) , _damage(damage)
 {
 	_sprite = new SpriteComponent(AssetsStorage::_movebles[{type, "bullet"}]);
 	_sprite->setPosition(position - _sprite->_dest->w / 2);
@@ -29,10 +29,9 @@ void Bullet::update()
 	Vector2T<int> mapColliderObject;
 	if (CollisionManager::pointCollisionMap(potentialPos , mapColliderObject))
 	{
-		Mediator::registerHit(Mediator::getId(mapColliderObject) , 20);
+		Mediator::registerHit(Mediator::getId(mapColliderObject) , _damage);
 		hasCollision = true;
 	}
-
 
 	/*
 		coliziuni bullet - tank
@@ -44,7 +43,7 @@ void Bullet::update()
 		if (CollisionManager::pointCollisionRectagle(potentialPos, rectPos, rectDim))
 		{
 			hasCollision = true;
-			Mediator::registerHit(Mediator::getId(i), 10);
+			Mediator::registerHit(Mediator::getId(i), _damage);
 		}
 	}
 

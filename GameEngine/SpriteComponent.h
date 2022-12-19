@@ -36,6 +36,7 @@ private:
 	float _angle = 0;
 
 public:
+	bool _isTemporaryDeactivated = false;
 	bool _isFollowed = false;
 	bool _isTile = false;
 	bool _isMiniTile = false;
@@ -64,6 +65,11 @@ public:
 	{
 		_dest->x = position.getX();
 		_dest->y = position.getY();
+	}
+
+	Vector2T<int> getPosition()
+	{
+		return Vector2T<int>(_dest->x, _dest->y);
 	}
 
 	void setScaleDimension(int width , int height)

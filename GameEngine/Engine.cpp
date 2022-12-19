@@ -2,75 +2,94 @@
 
 void Engine::initComponets()
 {
-	_componets.emplace_back(new Map);
+	_components.emplace_back(new Map);
+
 
 	Director::setBuilder(new PlayerTank);
 
-	Director::setBuilderAttributes("Type1", "ColorA", { 64*3 ,64*6 });
-	_componets.push_back(Director::getResult());
-	
+	Director::setBuilderAttributes("Type1", "ColorA");
+	_components.push_back(Director::getResult());
+
 	Director::setBuilder(new AiTank);
-	
-	Director::setBuilderAttributes("Type2", "ColorA", { 64 * 10,64 * 7 });
-	_componets.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type2", "ColorA", { 64 * 18,64 * 10 });
-	_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type2", "ColorA");
+	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type3", "ColorB", { 64*45,64*4 });
-	_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type3", "ColorA");
+	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type4", "ColorB", { 64 * 38 ,64*2 });
-	_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type3", "ColorA");
+	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type5", "ColorB", {64 * 41,64 * 6});
-	_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type4", "ColorA");
+	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type5", "ColorC", { 64 * 12,64 * 27 });
-	_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type5", "ColorB");
+	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type6", "ColorC", {64 * 25 ,64 * 33});
-	_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type3", "ColorB");
+	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type7", "ColorC", { 64 * 23 ,64 * 31});
-	_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type6", "ColorB");
+	_components.push_back(Director::getResult());
 
+	Director::setBuilderAttributes("Type7", "ColorB");
+	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type8", "ColorD", { 64 *42,64 * 29 });
-	_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type8", "ColorB");
+	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type8", "ColorD", { 64 * 47,64 * 36 });
-	_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type2", "ColorC");
+	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type8", "ColorD", { 64 * 51,64 * 30 });
-	_componets.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type2", "ColorC");
+	_components.push_back(Director::getResult());
 
-	_componets.emplace_back(new AnimationsHandler);
-	
-	_componets.emplace_back(new MiniMap);
+	Director::setBuilderAttributes("Type4", "ColorC");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type6", "ColorC");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type8", "ColorC");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type5", "ColorC");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type2", "ColorD");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type2", "ColorD");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type7", "ColorD");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type3", "ColorD");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type8", "ColorD");
+	_components.push_back(Director::getResult());
+
+	_components.emplace_back(new AnimationsHandler);
+
+	_components.emplace_back(new MiniMap);
 }
 
-void Engine::draw() 
+void Engine::draw()
 {
-	for (auto& i : _componets)
+	for (auto& i : _components)
 	{
 		i->draw();
 	}
 }
 
-void Engine::update() 
+void Engine::update()
 {
-	for (int i = 0; i < _componets.size(); i++)
+	for (int i = 0; i < _components.size(); i++)
 	{
-		_componets[i]->update();
-
-		if (!_componets[i]->isActive())
-		{
-			delete _componets[i];
-			_componets[i] = nullptr;
-			_componets.erase(_componets.begin() + i);
-			i--;
-		}
+		_components[i]->update();
 	}
 }
 
@@ -82,6 +101,7 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 	AssetsStorage::loadMiniMapTiles("assets/maps/miniMapTiles.tmx");
 	AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
 	AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
+	Mediator::initSpawnZones(AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
 	MapSpaceManager::initNodes();
 	CameraManager::init(AssetsStorage::_tileDim, AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
 	initComponets();
@@ -90,17 +110,17 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 
 Engine::~Engine()
 {
-	RendererManager::clear();
-	InputManager::clear();
-	AssetsStorage::clear();
-	TimeManager::clear();
-	MapSpaceManager::clear();
-	Director::clear();
-	for (auto& i : _componets)
+	for (auto& i : _components)
 	{
 		delete i;
 		i = nullptr;
 	}
+	RendererManager::clear();
+	InputManager::clear();
+	AssetsStorage::clear();
+	TimeManager::clear();
+	Director::clear();
+	MapSpaceManager::clear();
 }
 
 void Engine::run()
@@ -155,10 +175,10 @@ void Engine::run()
 		SDL_RenderPresent(RendererManager::_renderer);
 
 		time2 = SDL_GetTicks64();
-		
+
 		delay = 1 / _framerate * 1000 - time2 + time1;
-		
-		if (delay < 0 )
+
+		if (delay < 0)
 		{
 			delay = 0;
 		}

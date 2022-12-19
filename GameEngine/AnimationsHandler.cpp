@@ -9,6 +9,7 @@ AnimationsHandler::~AnimationsHandler()
 		delete i;
 		i = nullptr;
 	}
+	_animations.clear();
 }
 
 void AnimationsHandler::update()
