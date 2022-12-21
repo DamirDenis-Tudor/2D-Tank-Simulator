@@ -20,15 +20,18 @@ using namespace std;
 class Bullet : public Component
 {
 	friend class Tank;
+	friend class SpecialObjectsManager;
 private:
 	SpriteComponent* _sprite = nullptr;
 	Vector2T<int> _position;
 	Vector2T<float> _velocity = { 1, 1 };
+	float _angle = 0;
 	int _damage = 0;
 	int _tankId = 0; //specificator pentru posesor
+	string _impactAnim;
 
 public:
-	Bullet(string type, int damage,  Vector2T<int> position, float angle, int tankId); 
+	Bullet(string type , string impactAnim , int damage,  Vector2T<int> position , float angle , int tankId); 
 
 	~Bullet();
 

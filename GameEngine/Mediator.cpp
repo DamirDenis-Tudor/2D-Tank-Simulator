@@ -4,7 +4,6 @@ map<int, Vector2T<int>> Mediator::_walls = {};
 map<string, Vector2T<int>> Mediator::_teamsSpawnZones = {};
 map<const char*, list<int>> Mediator::_teams = {};
 map<int, Vector2T<int> > Mediator::_tanks = {};
-map<  pair<int, int>, Vector2T<int> > Mediator::_bullets = {};
 map< int, int > Mediator::_incomingHits = {};
 int Mediator::_currentEnemyId = 0;
 map<int, int> Mediator::_pastEnemyId = {};
@@ -32,7 +31,7 @@ vector<Vector2T<int>> Mediator::recieveTanksPositions(int tankId)
 	return tanks;
 }
 
-void Mediator::registerWall(int id, Vector2T<int> pos)
+void Mediator::registerMapObject(int id, Vector2T<int> pos)
 {
 	if (_walls.count(id) == 0)
 	{
@@ -45,7 +44,7 @@ void Mediator::registerWall(int id, Vector2T<int> pos)
 	}
 }
 
-void Mediator::removeWall(int id)
+void Mediator::removeMapObject(int id)
 {
 	_walls.erase(id);
 }
@@ -84,26 +83,6 @@ bool Mediator::stillExist(int id)
 	return false;
 }
 
-
-void Mediator::notifyBulletPosition(Vector2T<int> pos, int tankId, int bulletId)
-{
-	pair<int, int> idPair = { tankId , bulletId };
-	if (_bullets.count(idPair) == 0)
-	{
-		_bullets.insert(pair<pair<int, int>, Vector2T<int> >(idPair, pos));
-	}
-	else
-	{
-		_bullets[idPair] = pos;
-	}
-}
-
-void Mediator::removeBulletPosition(int tankId, int bulletId)
-{
-	pair<int, int> pairId = { tankId , bulletId };
-	_bullets.erase(pairId);
-}
-
 void Mediator::notifyTeam(int tankId, const char* colorTeam)
 {
 	_teams[colorTeam].push_back(tankId);
@@ -113,6 +92,21 @@ void Mediator::removeFromTeam(int tankId, const char* colorTeam)
 {
 
 	_teams[colorTeam].remove(tankId);
+}
+
+bool Mediator::checkTeammates(int tankId1, int tankId2)
+{
+	bool areTeamMates = false;
+	for (auto &team : _teams)
+	{
+		std::list<int>::iterator it1 = find(team.second.begin(), team.second.end() , tankId1);
+		std::list<int>::iterator it2 = find(team.second.begin(), team.second.end(), tankId2);
+		if (it1 != team.second.end() && it2 != team.second.end())
+		{
+			areTeamMates = true;
+		}
+	}
+	return areTeamMates;
 }
 
 Vector2T<int> Mediator::getNearestEnemyPosition(int  id, const char* colorTeam)
@@ -147,7 +141,7 @@ Vector2T<int> Mediator::getNearestEnemyPosition(int  id, const char* colorTeam)
 
 	_pastEnemyId[id] = _currentEnemyId;
 
-	if (_currentEnemyId == id)
+	if (_pastEnemyId[id] == id)
 	{
 		return { -1,-1 };
 	}

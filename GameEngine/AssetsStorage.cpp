@@ -3,12 +3,15 @@
 int AssetsStorage::_tileDim = 0;
 map<set< string >, SpriteComponent* > AssetsStorage::_movebles = {};
 vector<SpriteComponent* > AssetsStorage::_tiles = {};
+int AssetsStorage::_barrelId = 0;
 map<string, SpriteComponent*> AssetsStorage::_miniMapTiles = {};
 int AssetsStorage::_layerWidth = 0;
 int AssetsStorage::_layerHeight = 0;
 SDL_Point* AssetsStorage::_rotCenter = new SDL_Point;
 map<string, vector<vector<int>> > AssetsStorage::_mapLayers = {};
 map<string, vector<SpriteComponent*>> AssetsStorage::_effects = {};
+
+map<string, SpriteComponent*> AssetsStorage::_items = {};
 
 
 void AssetsStorage::loadMovebles(const char* sourceFile)
@@ -40,18 +43,7 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 	for(auto i = body->FirstChildElement() ; i != body->LastChildElement() ; i = i->NextSiblingElement() )
 	{
 		
-		SpriteComponent* sprite = new SpriteComponent(i->FirstChildElement()->FindAttribute("source")->Value());
-		
-		sprite->_src->x = 0;
-		sprite->_src->y = 0;
-		sprite->_src->w = dim;
-		sprite->_src->h = dim;
-
-		sprite->_dest->x = 0;
-		sprite->_dest->y = 0;
-		sprite->_dest->w = dim;
-		sprite->_dest->h = dim;
-
+		SpriteComponent* sprite = new SpriteComponent(i->FirstChildElement()->FindAttribute("source")->Value() , dim , dim);
 
 		_movebles.insert(pair < set <string >, SpriteComponent* >
 			( { "body" ,i->FindAttribute("type")->Value() , i->FindAttribute("color")->Value() } , sprite));
@@ -66,17 +58,7 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 	for (auto i = cannon->FirstChildElement("tileset"); i != cannon->LastChildElement(); i = i->NextSiblingElement())
 	{
 
-		SpriteComponent* sprite = new SpriteComponent(i->FirstChildElement()->FindAttribute("source")->Value());
-
-		sprite->_src->x = 0;
-		sprite->_src->y = 0;
-		sprite->_src->w = dim;
-		sprite->_src->h = dim;
-
-		sprite->_dest->x = 0;
-		sprite->_dest->y = 0;
-		sprite->_dest->w = dim;
-		sprite->_dest->h = dim;
+		SpriteComponent* sprite = new SpriteComponent(i->FirstChildElement()->FindAttribute("source")->Value() , dim , dim);
 
 		_movebles.insert(pair < set < string >, SpriteComponent* >
 			({ "cannon" ,i->FindAttribute("type")->Value() , i->FindAttribute("color")->Value() }, sprite));
@@ -91,18 +73,7 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 	for (auto i = bullet->FirstChildElement(); i != bullet->LastChildElement(); i = i->NextSiblingElement())
 	{
 
-		SpriteComponent* sprite = new SpriteComponent(i->FirstChildElement()->FindAttribute("source")->Value());
-
-		sprite->_src->x = 0;
-		sprite->_src->y = 0;
-		sprite->_src->w = dim;
-		sprite->_src->h = dim;
-
-		sprite->_dest->x = 0;
-		sprite->_dest->y = 0;
-		sprite->_dest->w = dim;
-		sprite->_dest->h = dim;
-
+		SpriteComponent* sprite = new SpriteComponent(i->FirstChildElement()->FindAttribute("source")->Value() , dim , dim);
 
 		_movebles.insert(pair < set <string >, SpriteComponent* >
 			({ "bullet" ,i->FindAttribute("type")->Value() }, sprite));
@@ -112,18 +83,7 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 	//incarcare sprite-uri tracks
 
 	tinyxml2::XMLElement* tracks = root->FirstChildElement("tracks");
-	SpriteComponent* sprite = new SpriteComponent(tracks->FirstChildElement()->FindAttribute("source")->Value());
-
-	sprite->_src->x = 0;
-	sprite->_src->y = 0;
-	sprite->_src->w = dim;
-	sprite->_src->h = dim;
-
-	sprite->_dest->x = 0;
-	sprite->_dest->y = 0;
-	sprite->_dest->w = dim;
-	sprite->_dest->h = dim;
-
+	SpriteComponent* sprite = new SpriteComponent(tracks->FirstChildElement()->FindAttribute("source")->Value() , dim , dim);
 
 	_movebles.insert(pair < set <string >, SpriteComponent* > ({ "tracks" }, sprite));
 
@@ -133,6 +93,25 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 
 	document.Clear();
 
+}
+
+void AssetsStorage::loadItems(const char* sourceFile)
+{
+	XMLDocument document;
+
+	document.LoadFile(sourceFile);
+
+	if (document.Error())
+	{
+		std::cout << "Eroare : cale inexistenta catre fisierul level !\n";
+		exit(EXIT_FAILURE);
+	}
+
+	tinyxml2::XMLElement* root = document.RootElement(); // items
+
+	for (auto item = root->FirstChildElement("item"); item != root->LastChildElement("item"); item = item->NextSiblingElement("item"))
+	{
+	}
 }
 
 void AssetsStorage::loadTiles(const char* sourceFile)
@@ -158,8 +137,7 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 
 	//daca am sprite-uri mai mare de dimesiunea unui tile 
 	//trebuie sa le incarc in memorie segmentate
-	int tileWidth = 0;
-	int tileHeight = 0;
+	int dim = 0;
 	int tileCount = 0;
 	int colums = 0;
 	int rows = 0;
@@ -167,26 +145,20 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 	for (child; child != root->LastChildElement("tileset");
 		child = child->NextSiblingElement("tileset"))
 	{
-		tileWidth = atoi(child->FindAttribute("tilewidth")->Value());
-		tileHeight = atoi(child->FindAttribute("tileheight")->Value());
+		dim = atoi(child->FindAttribute("tilewidth")->Value());
 		tileCount = atoi(child->FindAttribute("tilecount")->Value());
 		colums = atoi(child->FindAttribute("columns")->Value());
 		source = child->FirstChildElement("image")->FindAttribute("source")->Value();
-
 		source = source + 3; // sursa are formatul cu adresa relativa '../' 
+
+		if (strcmp(child->FindAttribute("name")->Value() , "Barell_02") == 0 )
+		{
+			_barrelId = atoi(child->FindAttribute("firstgid")->Value());
+		}
 
 		if (tileCount == 1) //caz 1
 		{
-			SpriteComponent* sprite = new SpriteComponent(source);
-			sprite->_src->x = 0;
-			sprite->_src->y = 0;
-			sprite->_src->w = tileWidth;
-			sprite->_src->h = tileHeight;
-
-			sprite->_dest->x = 0;
-			sprite->_dest->y = 0;
-			sprite->_dest->w = tileWidth;
-			sprite->_dest->h = tileHeight;
+			SpriteComponent* sprite = new SpriteComponent(source , dim , dim);
 
 			_tiles.push_back(sprite);
 
@@ -199,16 +171,9 @@ void AssetsStorage::loadTiles(const char* sourceFile)
 			{
 				for (int j = 0; j < colums; j++)
 				{
-					SpriteComponent* sprite = new SpriteComponent(source);
+					SpriteComponent* sprite = new SpriteComponent(source , _tileDim , _tileDim);
 					sprite->_src->x = j * _tileDim;
 					sprite->_src->y = i * _tileDim;
-					sprite->_src->w = _tileDim;
-					sprite->_src->h = _tileDim;
-
-					sprite->_dest->x = 0;
-					sprite->_dest->y = 0;
-					sprite->_dest->w = _tileDim;
-					sprite->_dest->h = _tileDim;
 
 					_tiles.push_back(sprite);
 
@@ -345,17 +310,7 @@ void AssetsStorage::loadEffects(const char* sourceFile)
 			j != i->LastChildElement(); j = j->NextSiblingElement())
 		{
 			const char* name = j->FindAttribute("source")->Value();
-			SpriteComponent* sprite = new SpriteComponent(name);
-
-			sprite->_src->x = 0;
-			sprite->_src->y = 0;
-			sprite->_src->w = dim;
-			sprite->_src->h = dim;
-
-			sprite->_dest->x = 0;
-			sprite->_dest->y = 0;
-			sprite->_dest->w = dim;
-			sprite->_dest->h = dim;
+			SpriteComponent* sprite = new SpriteComponent(name , dim , dim);
 
 			effect.push_back(sprite);
 

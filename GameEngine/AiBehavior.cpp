@@ -25,11 +25,6 @@ void AiBehavior::BrainAi()
 
 void AiBehavior::movement(Vector2T<int>& position, Vector2T<float> velocity)
 {
-	if (Mediator::_pastEnemyId[_id] == _id)
-	{
-		_isActivated = false;
-	}
-
 	if (_isActivated)
 	{
 		BrainAi();

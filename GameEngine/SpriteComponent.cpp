@@ -42,10 +42,21 @@ void SpriteComponent::isOnCamera()
 	enable();
 }
 
-SpriteComponent::SpriteComponent(const char* source)
+SpriteComponent::SpriteComponent(const char* source , int sourceDim, int destDim)
 {
 	_src = new SDL_Rect;
 	_dest = new SDL_Rect;
+
+	_src->x = 0;
+	_src->y = 0;
+	_src->w = sourceDim;
+	_src->h = sourceDim;
+
+	_dest->x = 0;
+	_dest->y = 0;
+	_dest->w = destDim;
+	_dest->h = destDim;
+
 	SDL_Surface* surface = IMG_Load(source);
 	_texture = SDL_CreateTextureFromSurface(RendererManager::getRenderer(), surface);
 	SDL_FreeSurface(surface);

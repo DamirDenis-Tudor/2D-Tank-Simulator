@@ -1,6 +1,7 @@
 #include "Animation.h"
 
-Animation::Animation(string _type, Vector2T<int> position, float angle):_position(position)
+Animation::Animation(string _type, Vector2T<int> position, float angle, float timer)
+	:_position(position), animationSpeed(timer)
 {
 	TimeManager::createTimer(_id, animationSpeed);
 	_frames = size(AssetsStorage::_effects[_type]);
@@ -27,6 +28,11 @@ Animation::~Animation()
 
 }
 
+void Animation::setContinuos()
+{
+	_isContinuos = true;
+}
+
 void Animation::draw()
 {
 	_anim[_frameID]->setPosition(_position - CameraManager::offset - _anim[_frameID]->_dest->w / 2);
@@ -40,7 +46,14 @@ void Animation::update()
 		_frameID++;
 		if (_frameID == _frames)
 		{
-			disable();
+			if (_isContinuos)
+			{
+				_frameID = 0;
+			}
+			else
+			{
+				disable();
+			}
 		}
 		TimeManager::_timers[_id]->resetTimer();
 	}

@@ -37,13 +37,6 @@ Tank::~Tank()
 
 	delete _behavior; _behavior = nullptr;
 
-	for (auto& i : _bullets)
-	{
-		delete i;
-		i = nullptr;
-	}
-	_bullets.clear();
-
 	TimeManager::removeTimer(_id);
 	Mediator::removeTank(_id, _teamColor);
 }
@@ -66,7 +59,7 @@ void Tank::syncMovement()
 	_cannon->update();
 }
 
-void Tank::checkForBullets()
+void Tank::launchBullet()
 {
 	// daca timerul nu este in functiune inseamna ca
 		// glotul va fi lansat daca este data "comanda"
@@ -74,20 +67,30 @@ void Tank::checkForBullets()
 	{
 		TimeManager::_timers[_id]->resetTimer();
 
+		/*
+			circumference -> pozitia de inceput a bulletului va fi
+			de pe contului cercului format de rotatia cannonului
+			-> are acelasi unghi cu al cannon-ului;
+		*/
 		Vector2T<int> circumference =
 		{
 			static_cast<int>(SDL_cos((_cannon->_angle - 90) * M_PI / 180) * _cannon->_dest->w / 2) ,
 			static_cast<int>(SDL_sin((_cannon->_angle - 90) * M_PI / 180) * _cannon->_dest->w / 2)
 		};
 
-		/*
-			circumference -> pozitia de inceput a bulletului va fi
-			de pe contului cercului format de rotatia cannonului
-			-> are acelasi unghi cu al cannon-ului;
-		*/
-
-		_bullets.emplace_back(new Bullet(_bulletType, _bulletDamage, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id));
+		SpecialObjectsManager::addBullet(new Bullet(_bulletType, _impactAnim , _bulletDamage, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id));
 		AnimationsHandler::addAnimation(new Animation(_shotingAnim, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
+	}
+}
+
+void Tank::launchMine()
+{
+	// daca timerul nu este in functiune inseamna ca
+	// glotul va fi lansat daca este data "comanda"
+	if (!TimeManager::_timers[_id]->isTimerWorking() && _behavior->isLaunchingMine())
+	{
+		TimeManager::_timers[_id]->resetTimer();
+		SpecialObjectsManager::addMine(new Mine("mineA" , _position + AssetsStorage::_tileDim , _id) );
 	}
 }
 
@@ -116,6 +119,7 @@ void Tank::temporaryDisable()
 
 void Tank::respawn()
 {
+	TimeManager::modifyTimer(_id, _shotingTime);
 	_tracks->_isTemporaryDeactivated = false;
 	_body->_isTemporaryDeactivated = false;
 	_cannon->_isTemporaryDeactivated = false;
@@ -135,11 +139,6 @@ void Tank::draw()
 		_body->draw();
 		_cannon->draw();
 	}
-
-	for (auto& i : _bullets)
-	{
-		i->draw();
-	}
 }
 
 void Tank::update()
@@ -150,30 +149,16 @@ void Tank::update()
 		_behavior->rotationC(_position, _cannon->_angle);
 		_behavior->rotationB(_body->_angle, _tracks->_angle);
 		checkForHits();
-		checkForBullets();
+		launchBullet();
+		launchMine();
 	}
 	else
 	{
 		if (!TimeManager::_timers[_id]->isTimerWorking())
 		{
-			TimeManager::modifyTimer(_id, _shotingTime);
 			respawn();
 		}
 	}
 
 	syncMovement();
-
-	for (int i = 0; i < _bullets.size(); i++)
-	{
-		_bullets[i]->update();
-
-		if (!_bullets[i]->isActive())
-		{
-			AnimationsHandler::addAnimation(new Animation(_impactAnim, _bullets[i]->_position, _cannon->_angle));
-			delete _bullets[i];
-			_bullets[i] = nullptr;
-			_bullets.erase(_bullets.begin() + i);
-			i--;
-		}
-	}
 }

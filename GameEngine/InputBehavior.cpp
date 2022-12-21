@@ -7,6 +7,7 @@ void InputBehavior::syncInput()
 	_moves._left = InputManager::_left;
 	_moves._right = InputManager::_right;
 	_moves._shoting = InputManager::clicked;
+	_moves._releaseMine = InputManager::_m;
 	_target = InputManager::mousePos;
 	
 	// verifica daca posesorul(identifiact dupa id) 

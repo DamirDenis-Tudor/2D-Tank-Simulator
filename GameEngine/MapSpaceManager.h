@@ -13,6 +13,7 @@ struct Moves
 	bool _right = false;
 	bool _left = false;
 	bool _shoting = false;
+	bool _releaseMine = false;
 };
 
 class Node

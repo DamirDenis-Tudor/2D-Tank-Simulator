@@ -19,6 +19,7 @@ public:
 	static bool _down;
 	static bool _left;
 	static bool _right;
+	static bool _m;
 
 	static bool clicked;
 	static Vector2T<int> mousePos;
@@ -48,6 +49,7 @@ public:
 		_down = _keys[SDLK_s];
 		_left = _keys[SDLK_a];
 		_right = _keys[SDLK_d];
+		_m = _keys[SDLK_m];
 
 		SDL_GetMouseState(&mousePos._x, &mousePos._y);
 	}

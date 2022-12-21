@@ -19,33 +19,33 @@ void TankBuilder::setTankParameters()
 	{
 		_shotingAnim = "Shot2";
 		_impactAnim = "Impact2";
-		_velocity = { 0.4 , 0.4 };
-		_shotingTime = 0.05;
+		_velocity = { 0.45 , 0.45 };
+		_shotingTime = 0.5;
 		_bulletDamage = 30;
 	}
 	if (_type == "Type2")
 	{
 		_shotingAnim = "Shot2";
 		_impactAnim = "Impact2";
-		_velocity = { 0.2 , 0.2 };
-		_shotingTime = 0.3;
-		_bulletDamage = 10;
+		_velocity = { 0.35 , 0.35 };
+		_shotingTime = 0.5;
+		_bulletDamage = 5;
 	}
 	if (_type == "Type3")
 	{
 		_shotingAnim = "Shot1";
 		_impactAnim = "Impact1";
-		_velocity = { 0.24 , 0.24 };
+		_velocity = { 0.34 , 0.34 };
 		_shotingTime = 1.2;
-		_bulletDamage = 10;
+		_bulletDamage = 5;
 	}
 	if (_type == "Type4")
 	{
 		_shotingAnim = "Shot1";
 		_impactAnim = "Impact1";
-		_velocity = { 0.22 , 0.22 };
+		_velocity = { 0.32 , 0.32 };
 		_shotingTime = 0.5;
-		_bulletDamage = 10;
+		_bulletDamage = 5;
 	}
 	if (_type == "Type5")
 	{
@@ -53,7 +53,7 @@ void TankBuilder::setTankParameters()
 		_impactAnim = "Impact1";
 		_velocity = { 0.355 , 0.355 };
 		_shotingTime = 1.0;
-		_bulletDamage = 10;
+		_bulletDamage = 5;
 	}
 	if (_type == "Type6")
 	{
@@ -61,7 +61,7 @@ void TankBuilder::setTankParameters()
 		_impactAnim = "Impact1";
 		_velocity = { 0.267 , 0.267 };
 		_shotingTime = 0.7;
-		_bulletDamage = 10;
+		_bulletDamage = 5;
 	}
 	if (_type == "Type7")
 	{
@@ -69,7 +69,7 @@ void TankBuilder::setTankParameters()
 		_impactAnim = "Impact1";
 		_velocity = { 0.345 , 0.345 };
 		_shotingTime = 0.6;
-		_bulletDamage = 10;
+		_bulletDamage = 5;
 	}
 	if (_type == "Type8")
 	{
@@ -77,7 +77,7 @@ void TankBuilder::setTankParameters()
 		_impactAnim = "Impact1";
 		_velocity = { 0.35 , 0.35 };
 		_shotingTime = 0.5;
-		_bulletDamage = 10;
+		_bulletDamage = 5;
 	}
 }
 

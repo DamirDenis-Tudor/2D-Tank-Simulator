@@ -1,41 +1,41 @@
-#include "Wall.h"
+#include "MapDestructibleObject.h"
 
-Wall::Wall(SpriteComponent* sprite, Vector2T<int> position) :SpriteComponent(sprite), _mapPos(position)
+MapDestructibleObject::MapDestructibleObject(SpriteComponent* sprite, Vector2T<int> position) :SpriteComponent(sprite), _mapPos(position)
 {
-	Mediator::registerWall(_id, _mapPos);
-	TimeManager::createTimer(_id, 5);
+	Mediator::registerMapObject(_id, _mapPos);
+	TimeManager::createTimer(_id, rand()%10 + 10);
 	TimeManager::_timers[_id]->resetTimer();
-	_wallType = AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x];
+	_type = AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x];
 }
 
-Wall::~Wall()
+MapDestructibleObject::~MapDestructibleObject()
 {
-	Mediator::removeWall(_id);
+	Mediator::removeMapObject(_id);
 	MapSpaceManager::setObstacles(_mapPos, false);
 	TimeManager::removeTimer(_id);
 }
 
-void Wall::temporaryDestroyed()
+void MapDestructibleObject::temporaryDestroyed()
 {
 	_health = 0;
 	_isTemporaryDeactivated = true;
 	AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x] = 0;
-	Mediator::removeWall(_id);
+	Mediator::removeMapObject(_id);
 	MapSpaceManager::setObstacles(_mapPos, false);
 	disable();
 }
 
-void Wall::respawn()
+void MapDestructibleObject::respawn()
 {
 	_health = 50;
 	_isTemporaryDeactivated = false;
 	MapSpaceManager::setObstacles(_mapPos, true);
-	Mediator::registerWall(_id, _mapPos);
-	AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x] = _wallType;
+	Mediator::registerMapObject(_id, _mapPos);
+	AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x] = _type;
 	enable();
 }
 
-void Wall::update()
+void MapDestructibleObject::update()
 {
 	//creaza un timer pentru fiecare zid pentru a se respwna dupa un anumit timp
 	SpriteComponent::update();

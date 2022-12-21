@@ -1,11 +1,11 @@
 #include "Bullet.h"
 
-Bullet::Bullet(string type, int damage  ,  Vector2T<int> position, float angle, int tankId) : _position(position), _tankId(tankId) , _damage(damage)
+Bullet::Bullet(string type, string impactAnim, int damage, Vector2T<int> position, float angle, int tankId) 
+	: _position(position), _tankId(tankId)  , _angle(angle), _damage(damage) , _impactAnim(impactAnim)
 {
 	_sprite = new SpriteComponent(AssetsStorage::_movebles[{type, "bullet"}]);
-	_sprite->setPosition(position - _sprite->_dest->w / 2);
+	_sprite->setPosition(position - _sprite->_dest->w / 2 - CameraManager::offset);
 	_sprite->_angle = angle;
-	Mediator::notifyBulletPosition(_position, _tankId, _id);
 }
 
 Bullet::~Bullet()
@@ -43,14 +43,16 @@ void Bullet::update()
 		if (CollisionManager::pointCollisionRectagle(potentialPos, rectPos, rectDim))
 		{
 			hasCollision = true;
-			Mediator::registerHit(Mediator::getId(i), _damage);
+			if (!Mediator::checkTeammates(_tankId, Mediator::getId(i)))
+			{
+				Mediator::registerHit(Mediator::getId(i), _damage);
+			}
 		}
 	}
 
 	if (hasCollision)
 	{
 		disable();
-		Mediator::removeBulletPosition(_tankId, _id);
 	}
 	else
 	{

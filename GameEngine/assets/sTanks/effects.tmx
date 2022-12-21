@@ -108,6 +108,89 @@
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_10.png" />
 		<image></image>
 	</animation>
+
+	<animation type = "barrelDestroy" dim ="256">
+		<image source="assets/sTanks/anim/scaledAnim/barrelDestroy/Explosion_1.png" />
+		<image source="assets/sTanks/anim/scaledAnim/barrelDestroy/Explosion_2.png" />
+		<image source="assets/sTanks/anim/scaledAnim/barrelDestroy/Explosion_3.png" />
+		<image source="assets/sTanks/anim/scaledAnim/barrelDestroy/Explosion_4.png" />
+		<image source="assets/sTanks/anim/scaledAnim/barrelDestroy/Explosion_5.png" />
+		<image source="assets/sTanks/anim/scaledAnim/barrelDestroy/Explosion_6.png" />
+		<image source="assets/sTanks/anim/scaledAnim/barrelDestroy/Explosion_7.png" />
+		<image source="assets/sTanks/anim/scaledAnim/barrelDestroy/Explosion_8.png" />
+		<image source="assets/sTanks/anim/scaledAnim/barrelDestroy/Explosion_9.png" />
+		<image source="assets/sTanks/anim/scaledAnim/barrelDestroy/Explosion_10.png" />
+		<image></image>
+	</animation>
+
+	<animation type ="mineExplosionA" dim =" 128">
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_A_004.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_A_005.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_A_006.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_A_007.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_A_008.png"/>
+		<image></image>
+	</animation>
+
+	<animation type ="mineExplosionB" dim =" 128">
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_B_004.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_B_005.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_B_006.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_B_007.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_B_008.png"/>
+		<image></image>
+	</animation>
+
+	<animation type ="mineExplosionC" dim =" 128">
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_C_005.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_C_006.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_C_007.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_C_008.png"/>
+		<image></image>
+	</animation>
+
+	<animation type ="mineA" dim =" 128">
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_A_000.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_A_001.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_A_002.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_A_003.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_A_004.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_A_005.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_A_006.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_A_007.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_A_008.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_A_009.png"/>
+		<image></image>
+	</animation>
+
+	<animation type ="mineB" dim =" 128">
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_000.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_001.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_002.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_003.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_004.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_005.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_006.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_007.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_008.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_009.png"/>
+		<image></image>
+	</animation>
+
+	<animation type ="mineC" dim =" 128">
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_C_000.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_C_001.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_C_002.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_C_003.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_C_004.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_C_005.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_C_006.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_C_007.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_C_008.png"/>
+		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_C_009.png"/>
+		<image></image>
+	</animation>
+	
 	
 	<animation></animation>
 

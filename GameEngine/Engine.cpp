@@ -4,6 +4,7 @@ void Engine::initComponets()
 {
 	_components.emplace_back(new Map);
 
+	_components.emplace_back(new SpecialObjectsManager);
 
 	Director::setBuilder(new PlayerTank);
 
@@ -18,37 +19,16 @@ void Engine::initComponets()
 	Director::setBuilderAttributes("Type3", "ColorA");
 	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type3", "ColorA");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type4", "ColorA");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type5", "ColorB");
-	_components.push_back(Director::getResult());
-
 	Director::setBuilderAttributes("Type3", "ColorB");
 	_components.push_back(Director::getResult());
 
 	Director::setBuilderAttributes("Type6", "ColorB");
 	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type7", "ColorB");
-	_components.push_back(Director::getResult());
-
 	Director::setBuilderAttributes("Type8", "ColorB");
 	_components.push_back(Director::getResult());
 
 	Director::setBuilderAttributes("Type2", "ColorC");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type2", "ColorC");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type4", "ColorC");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type6", "ColorC");
 	_components.push_back(Director::getResult());
 
 	Director::setBuilderAttributes("Type8", "ColorC");
@@ -60,13 +40,7 @@ void Engine::initComponets()
 	Director::setBuilderAttributes("Type2", "ColorD");
 	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type2", "ColorD");
-	_components.push_back(Director::getResult());
-
 	Director::setBuilderAttributes("Type7", "ColorD");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type3", "ColorD");
 	_components.push_back(Director::getResult());
 
 	Director::setBuilderAttributes("Type8", "ColorD");
@@ -87,9 +61,9 @@ void Engine::draw()
 
 void Engine::update()
 {
-	for (int i = 0; i < _components.size(); i++)
+	for (auto& i : _components) 
 	{
-		_components[i]->update();
+		i->update();
 	}
 }
 
@@ -100,6 +74,7 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 	AssetsStorage::loadTiles("levels/level1scaled2.1.tmx");
 	AssetsStorage::loadMiniMapTiles("assets/maps/miniMapTiles.tmx");
 	AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
+	AssetsStorage::loadItems("assets/items/items.tmx");
 	AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
 	Mediator::initSpawnZones(AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
 	MapSpaceManager::initNodes();
@@ -182,7 +157,6 @@ void Engine::run()
 		{
 			delay = 0;
 		}
-
 
 		SDL_Delay(delay);
 	}

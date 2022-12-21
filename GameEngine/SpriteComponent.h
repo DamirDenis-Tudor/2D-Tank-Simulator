@@ -43,7 +43,7 @@ public:
 
 	SpriteComponent() {}
 
-	SpriteComponent(const char* source);
+	SpriteComponent(const char* source , int sourceDim = 0 , int destDim = 0 );
 
 	SpriteComponent(SpriteComponent*& sprite);
 

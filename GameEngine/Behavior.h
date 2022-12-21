@@ -49,6 +49,15 @@ public:
 		return false;
 	}
 
+	bool isLaunchingMine()
+	{
+		if (_moves._releaseMine)
+		{
+			return true;
+		}
+		return false;
+	}
+
 	void move(Vector2T<int>& position, Vector2T<float> velocity);
 
 	void rotationB(float& _angle, float& _angle1);

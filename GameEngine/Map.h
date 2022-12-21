@@ -2,7 +2,8 @@
 #include"RendererManager.h"
 #include"AssetsStorage.h"
 #include <vector>
-#include"Wall.h"
+#include"MapDestructibleObject.h"
+#include"Barrel.h"
 
 /*
 	Descrierea clasei:

@@ -403,7 +403,7 @@ Moves MapSpaceManager::aStar(Vector2T<int> startPos, Vector2T<int> endPos)
 	}
 
 	//daca am gasit un drum valid ne intereseaza prima mutare
-	Moves firstMove = { false , false , false, false , false };
+	Moves firstMove = { false , false , false, false , false , false };
 	if (hasPath)
 	{
 		if (copyPtr != nullptr)

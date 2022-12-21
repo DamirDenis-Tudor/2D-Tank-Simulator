@@ -7,7 +7,9 @@
 #include"Bullet.h"
 #include"Animation.h"
 #include"AnimationsHandler.h"
+#include"SpecialObjectsManager.h"
 #include "Mediator.h"
+#include"Mine.h"
 
 class Tank : public Component
 {
@@ -17,7 +19,6 @@ class Tank : public Component
 	SpriteComponent* _body = nullptr;
 	SpriteComponent* _cannon = nullptr;
 	Behavior* _behavior = nullptr;
-	vector<Bullet*> _bullets;
 
 	Vector2T<int> _position = { 0 , 0 };
 
@@ -50,7 +51,10 @@ public:
 	/*
 		
 	*/
-	void checkForBullets();
+
+	void launchMine();
+	void launchBullet();
+
 
 	void checkForHits();
 

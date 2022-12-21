@@ -4,15 +4,16 @@
 #include"MapSpaceManager.h"
 #include"TimeManager.h"
 
-class Wall : public SpriteComponent
+class MapDestructibleObject : public SpriteComponent
 {
-	int _wallType = 0;
+protected:
+	int _type = 0;
 	int _health = 50;
 	Vector2T<int> _mapPos;
 public:
 	bool _isBorder = false;
-	Wall(SpriteComponent* sprite, Vector2T<int> position);
-	~Wall();
+	MapDestructibleObject(SpriteComponent* sprite, Vector2T<int> position);
+	~MapDestructibleObject();
 
 	void temporaryDestroyed();
 	void respawn();

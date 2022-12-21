@@ -57,15 +57,32 @@ void Map::init()
 		{
 			if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 			{
-				Wall* wall = new Wall(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1], Vector2T<int>(j, i));
-				wall->setPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
-				wall->_isTile = true;
-				if (i == 0 || j == 0 || i == AssetsStorage::_layerHeight - 1 || j == AssetsStorage::_layerWidth - 1)
+		
+				if (AssetsStorage::_mapLayers["colidble"][i][j] == AssetsStorage::_barrelId)
 				{
-					wall->_isBorder = true;
+					Barrel* barrel = new Barrel(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1], Vector2T<int>(j, i));
+					barrel->setPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
+					barrel->_isTile = true;
+					if (i == 0 || j == 0 || i == AssetsStorage::_layerHeight - 1 || j == AssetsStorage::_layerWidth - 1)
+					{
+						barrel->_isBorder = true;
+					}
+					_drawbles.push_back(barrel);
+					barrel = nullptr;
 				}
-				_drawbles.push_back(wall);
-				wall = nullptr;
+				else
+				{
+					MapDestructibleObject* object = new MapDestructibleObject(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1], Vector2T<int>(j, i));
+					object->setPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
+					object->_isTile = true;
+					if (i == 0 || j == 0 || i == AssetsStorage::_layerHeight - 1 || j == AssetsStorage::_layerWidth - 1)
+					{
+						object->_isBorder = true;
+					}
+					_drawbles.push_back(object);
+					object = nullptr;
+				}
+				
 			}
 
 		}
@@ -127,12 +144,12 @@ void MiniMap::init()
 		{
 			if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 			{
-				SpriteComponent* wall = new SpriteComponent(AssetsStorage::_miniMapTiles["blackGray"]);
-				wall->setPosition(Vector2T<int>(j * _scaleDim, i * _scaleDim));
-				wall->setScaleDimension(_scaleDim, _scaleDim);
-				wall->setOpacity(128);
-				wall->_isMiniTile = true;
-				_drawbles.push_back(wall);
+				SpriteComponent* object = new SpriteComponent(AssetsStorage::_miniMapTiles["blackGray"]);
+				object->setPosition(Vector2T<int>(j * _scaleDim, i * _scaleDim));
+				object->setScaleDimension(_scaleDim, _scaleDim);
+				object->setOpacity(128);
+				object->_isMiniTile = true;
+				_drawbles.push_back(object);
 			}
 		}
 	}

@@ -16,15 +16,14 @@ using namespace std;
 */
 class Mediator
 {
-	#define SpawnRange 10
+	#define SpawnRange 15
 
 	static map<int, Vector2T<int>> _walls; // contine toate pozitiile wall-urilor
 	static map<int, Vector2T<int> > _tanks; // contine pozitiile tuturor tank-urilor
 	static map<string, Vector2T<int> > _teamsSpawnZones; // contine pentru fiecare echipa zona in care
 														 // se vor spawna tank-urile
 	static map<const char*, list<int> > _teams; // contine maparea tank-urilor pe echipe
-	static map<  pair<int, int>, Vector2T<int> > _bullets; // contine poziitiile tuturor gloatelor mapate in funtie de un posesor
-	static map<int, int> _incomingHits; // contine id-ul unui obiect si damage-ul sau primit
+	static map<int, int> _incomingHits;			// contine id-ul unui obiect si damage-ul sau primit
 
 public:
 
@@ -41,12 +40,12 @@ public:
 	/*
 		-> inregistreaza un zid
 	*/
-	static void registerWall(int id , Vector2T<int> pos);
+	static void registerMapObject(int id , Vector2T<int> pos);
 
 	/*
 		-> elimina un zid
 	*/
-	static void removeWall(int id);
+	static void removeMapObject(int id);
 
 	/*
 		-> inregistreaza pozitia unui tank
@@ -63,16 +62,6 @@ public:
 	static bool stillExist(int tankId);
 
 	/*
-		-> inregistreaza pozitia unui bullet
-	*/
-	static 	void notifyBulletPosition(Vector2T<int> pos, int tankId, int bulletId);
-
-	/*
-		-> elimina posibilitatea de a mai actualiza pozitia unui bullet
-	*/
-	static void removeBulletPosition(int tankId, int bulletId);
-
-	/*
 		-> inregistreaza un tank intr-o echipa
 	*/
 	static void notifyTeam(int tankId, const char* colorTeam);
@@ -82,6 +71,7 @@ public:
 	*/
 	static void removeFromTeam(int tankId, const char* colorTeam);
 
+	static bool checkTeammates(int tankId1, int tankId2);
 	/*
 		-> calculand distante returneaza pozitia celului mai apropiat enemy
 	*/
@@ -150,7 +140,7 @@ public:
 			}
 		}
 
-		return 0;
+		return -1;
 	}
 
 	static map<int, Vector2T<int>>getTanksPositions()

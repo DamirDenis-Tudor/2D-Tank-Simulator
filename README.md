@@ -1,8 +1,8 @@
 # Tank ++ 
 
 # TODO
-- [ ] spawn position finder
+- [ ] abilities
+- [ ] make it possible to create more than one timer for object
 - [ ] menu
-- [ ] health , shield
-- [ ] gameplay logic
-- [x] fix ai problems
+- [ ] textManager
+- [ ] menuBuilder
