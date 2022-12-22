@@ -5,6 +5,13 @@
 #include"Mine.h"
 #include"AnimationsHandler.h"
 
+/*
+	Descrierea clasei : 
+		-> gestioneaza toate obiecte speciale
+		-> permite salvarea lor de oriunde
+		-> clasa poate fi instantiata pentru 
+		   a putea realiza actualizarea obiectelor
+*/
 class SpecialObjectsManager : public Component
 {
 private:

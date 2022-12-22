@@ -17,30 +17,30 @@
 		-> contructor de copiere (se aloca memorie dor pentru _dest) :
 			- folosit la crearea mapei (fac o copie din memorie a sprite-ului)
 			- sau la Animatii si posibil si in alte locuri
-		-> desenez sprite-ul doar daca este in cadrul camerei
-		->indetificator pentru obiectul urmarit de camera (default este player-ul)
+		-> se deseneaza sprite-ul doar daca este in cadrul camerei
+		-> indetificator pentru obiectul urmarit de camera (default este player-ul)
 */
 class SpriteComponent : public Component
 {
 	friend class AssetsStorage;
 	friend class Map;
+	friend class MiniMap;
 	friend class Tank;
 	friend class Bullet;
 	friend class Animation;
 
-private:
+protected:
 	SDL_Rect* _src = nullptr;
 	SDL_Rect* _dest = nullptr;
 	SDL_Texture* _texture = nullptr;
 	SDL_Point center = { 64 , 74 };
 	float _angle = 0;
 
-public:
-	bool _isTemporaryDeactivated = false;
+	bool _isTemporaryDeactivated = false; 
 	bool _isFollowed = false;
 	bool _isTile = false;
 	bool _isMiniTile = false;
-
+public:
 	SpriteComponent() {}
 
 	SpriteComponent(const char* source , int sourceDim = 0 , int destDim = 0 );
@@ -49,8 +49,10 @@ public:
 
 	~SpriteComponent();
 
-	void setSrcTextNullPtr() // se apeleaza inaintea stergerii un comonente ce are	
-							// o copie a unui sprite din AssetsStorage
+	/*
+		-> functie apelata pentru stergerea unor copii de sprite-uri
+	*/
+	void setSrcTextNullPtr() 
 	{
 		_src = nullptr;
 		_texture = nullptr;

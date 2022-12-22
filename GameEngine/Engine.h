@@ -11,6 +11,7 @@
 #include"InputManager.h"
 #include"AnimationsHandler.h"
 #include"MapSpaceManager.h"
+#include"InfoManager.h"
 
 /*
 	Clasa responsabila pentru :

@@ -19,6 +19,18 @@ void Engine::initComponets()
 	Director::setBuilderAttributes("Type3", "ColorA");
 	_components.push_back(Director::getResult());
 
+	Director::setBuilderAttributes("Type2", "ColorA");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type3", "ColorA");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type3", "ColorB");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type6", "ColorB");
+	_components.push_back(Director::getResult());
+	
 	Director::setBuilderAttributes("Type3", "ColorB");
 	_components.push_back(Director::getResult());
 
@@ -37,6 +49,12 @@ void Engine::initComponets()
 	Director::setBuilderAttributes("Type5", "ColorC");
 	_components.push_back(Director::getResult());
 
+	Director::setBuilderAttributes("Type8", "ColorC");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type5", "ColorC");
+	_components.push_back(Director::getResult());
+
 	Director::setBuilderAttributes("Type2", "ColorD");
 	_components.push_back(Director::getResult());
 
@@ -46,7 +64,15 @@ void Engine::initComponets()
 	Director::setBuilderAttributes("Type8", "ColorD");
 	_components.push_back(Director::getResult());
 
+	Director::setBuilderAttributes("Type7", "ColorD");
+	_components.push_back(Director::getResult());
+
+	Director::setBuilderAttributes("Type8", "ColorD");
+	_components.push_back(Director::getResult());
+
 	_components.emplace_back(new AnimationsHandler);
+
+	_components.emplace_back(new InfoManager);
 
 	_components.emplace_back(new MiniMap);
 }

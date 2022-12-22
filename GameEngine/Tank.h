@@ -13,7 +13,7 @@
 
 class Tank : public Component
 {
-	int health = 100;
+	int health = 200;
 
 	SpriteComponent* _tracks = nullptr;
 	SpriteComponent* _body = nullptr;

@@ -3,7 +3,7 @@
 MapDestructibleObject::MapDestructibleObject(SpriteComponent* sprite, Vector2T<int> position) :SpriteComponent(sprite), _mapPos(position)
 {
 	Mediator::registerMapObject(_id, _mapPos);
-	TimeManager::createTimer(_id, rand()%10 + 10);
+	TimeManager::createTimer(_id, rand()%10 + 20);
 	TimeManager::_timers[_id]->resetTimer();
 	_type = AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x];
 }
@@ -37,9 +37,7 @@ void MapDestructibleObject::respawn()
 
 void MapDestructibleObject::update()
 {
-	//creaza un timer pentru fiecare zid pentru a se respwna dupa un anumit timp
 	SpriteComponent::update();
-
 	if (!_isBorder)
 	{
 		if (isActive())

@@ -16,7 +16,7 @@ using namespace std;
 */
 class Mediator
 {
-	#define SpawnRange 15
+	#define SpawnRange 20
 
 	static map<int, Vector2T<int>> _walls; // contine toate pozitiile wall-urilor
 	static map<int, Vector2T<int> > _tanks; // contine pozitiile tuturor tank-urilor
