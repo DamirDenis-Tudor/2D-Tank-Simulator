@@ -1,7 +1,7 @@
 #pragma once
 
 #include"Component.h"
-#include"Animation.h"
+#include"AnimationComponent.h"
 #include"TimeManager.h"
 
 /*
@@ -12,13 +12,13 @@
 */
 class AnimationsHandler : public Component
 {
-	static vector<Animation*> _animations; 
+	static vector<AnimationComponent*> _animations; 
 public:
 	AnimationsHandler () {}
 
 	~AnimationsHandler();
 
-	static void addAnimation(Animation* animation)
+	static void addAnimation(AnimationComponent* animation)
 	{
 		_animations.emplace_back(animation);
 	}

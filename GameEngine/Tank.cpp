@@ -1,19 +1,22 @@
 #include "Tank.h"
 
-Tank::Tank(SpriteComponent* tracks, SpriteComponent* body, SpriteComponent* cannon,
-	Behavior* behavior, Vector2T<float> velocity, float shotingTime, int bulletDamage, const char* type, const char* color,
-	const char* shotingAnim, const char* impactAnim)
-	:_tracks(tracks), _body(body), _cannon(cannon),
-	_behavior(behavior), _velocity(velocity), _shotingTime(shotingTime), _bulletDamage(bulletDamage), _bulletType(type), _teamColor(color),
-	_shotingAnim(shotingAnim), _impactAnim(impactAnim)
+Tank::Tank(map<string, SpriteComponent*>& parts, Behavior*& behavior, TankAttributes*& attributes, string type, string color)
+	:_parts(parts), _behavior(behavior), _attributes(attributes), _type(type), _teamColor(color)
 {
+	_info = new TextComponent("fonts/open-sans/OpenSans-Bold.ttf");
+
 	MapSpaceManager::setUser(_id, _teamColor);
 	_position = MapSpaceManager::getSpawnPosition();
-
-	TimeManager::createTimer(_id, _shotingTime);
-
 	Mediator::notifyTeam(_id, _teamColor);
-	Mediator::notifyTankPosition(_position, _id);
+	Mediator::registerTank(_position, _id, Health);
+
+	//creez timere individuale pe baza unui id-ului
+	_respawnTimerId = to_string(_id) + "respawn";
+	_launchBulletTimerId = to_string(_id) + "bullet";
+	_launchMineTimerId = to_string(_id) + "mine";
+	TimeManager::createTimer(_respawnTimerId, 20);
+	TimeManager::createTimer(_launchBulletTimerId, _attributes->_shotingTime);
+	TimeManager::createTimer(_launchMineTimerId, 0.2);
 
 	_behavior->setId(_id);
 	_behavior->setColorTeam(_teamColor);
@@ -26,46 +29,50 @@ Tank::Tank(SpriteComponent* tracks, SpriteComponent* body, SpriteComponent* cann
 
 Tank::~Tank()
 {
-	_tracks->setSrcTextNullPtr();
-	delete _tracks; _tracks = nullptr;
-
-	_body->setSrcTextNullPtr();
-	delete _body; _body = nullptr;
-
-	_cannon->setSrcTextNullPtr();
-	delete _cannon; _cannon = nullptr;
+	for (auto& part : _parts)
+	{
+		part.second->setSrcTextNullPtr();
+		delete part.second;
+		part.second = nullptr;
+	}
+	_parts.clear();
 
 	delete _behavior; _behavior = nullptr;
+	delete _info; _info = nullptr;
+	delete _attributes; _attributes = nullptr;
 
-	TimeManager::removeTimer(_id);
+	TimeManager::removeTimer(_launchBulletTimerId);
+	TimeManager::removeTimer(_launchMineTimerId);
+	TimeManager::removeTimer(_respawnTimerId);
 	Mediator::removeTank(_id, _teamColor);
 }
 
 void Tank::cameraIsFollowing()
 {
-	_tracks->_isFollowed = true;
-	_body->_isFollowed = true;
-	_cannon->_isFollowed = true;
+	for (auto& part : _parts)
+	{
+		part.second->_isFollowed = true;
+	}
 }
 
 void Tank::syncMovement()
 {
-	_tracks->setPosition(_position - CameraManager::offset);
-	_body->setPosition(_position - CameraManager::offset);
-	_cannon->setPosition(_position - CameraManager::offset);
-
-	_tracks->update();
-	_body->update();
-	_cannon->update();
+	for (auto& part : _parts)
+	{
+		part.second->setPosition(_position - CameraManager::offset);
+		part.second->update();
+	}
+	_info->setPosition(Vector2T<int>{ _position._x, _position._y - AssetsStorage::_tileDim } + AssetsStorage::_tileDim - _info->getDimension() / 2 - CameraManager::offset);
+	_info->update();
 }
 
 void Tank::launchBullet()
 {
 	// daca timerul nu este in functiune inseamna ca
 		// glotul va fi lansat daca este data "comanda"
-	if (!TimeManager::_timers[_id]->isTimerWorking() && _behavior->isLaunchingBullet())
+	if (!TimeManager::_timers[_launchBulletTimerId]->isTimerWorking() && _behavior->isLaunchingBullet())
 	{
-		TimeManager::_timers[_id]->resetTimer();
+		TimeManager::_timers[_launchBulletTimerId]->resetTimer();
 
 		/*
 			circumference -> pozitia de inceput a bulletului va fi
@@ -74,12 +81,12 @@ void Tank::launchBullet()
 		*/
 		Vector2T<int> circumference =
 		{
-			static_cast<int>(SDL_cos((_cannon->_angle - 90) * M_PI / 180) * _cannon->_dest->w / 2) ,
-			static_cast<int>(SDL_sin((_cannon->_angle - 90) * M_PI / 180) * _cannon->_dest->w / 2)
+			static_cast<int>(SDL_cos((_parts["cannon"]->_angle - 90) * M_PI / 180) * _parts["cannon"]->_dest->w / 2) ,
+			static_cast<int>(SDL_sin((_parts["cannon"]->_angle - 90) * M_PI / 180) * _parts["cannon"]->_dest->w / 2)
 		};
 
-		SpecialObjectsManager::addBullet(new Bullet(_bulletType, _impactAnim , _bulletDamage, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle, _id));
-		AnimationsHandler::addAnimation(new Animation(_shotingAnim, _position + circumference + _cannon->_dest->w / 2, _cannon->_angle));
+		SpecialObjectsManager::addBullet(new Bullet(_type, _attributes->_impactAnim, _attributes->_bulletDamage, _position + circumference + _parts["cannon"]->_dest->w / 2, _parts["cannon"]->_angle, _id));
+		AnimationsHandler::addAnimation(new AnimationComponent(_attributes->_shotingAnim, _position + circumference + _parts["cannon"]->_dest->w / 2, _parts["cannon"]->_angle));
 	}
 }
 
@@ -87,57 +94,58 @@ void Tank::launchMine()
 {
 	// daca timerul nu este in functiune inseamna ca
 	// glotul va fi lansat daca este data "comanda"
-	if (!TimeManager::_timers[_id]->isTimerWorking() && _behavior->isLaunchingMine())
+	if (!TimeManager::_timers[_launchMineTimerId]->isTimerWorking() &&
+		_behavior->isLaunchingMine() &&
+		SpecialObjectsManager::getMinesNumber(_id) < MaxMinesNumber )
 	{
-		TimeManager::_timers[_id]->resetTimer();
-		SpecialObjectsManager::addMine(new Mine("mineA" , _position + AssetsStorage::_tileDim , _id) );
+		TimeManager::_timers[_launchMineTimerId]->resetTimer();
+		SpecialObjectsManager::addMine(new Mine(_teamColor + "mine" , _position + AssetsStorage::_tileDim, _id));
 	}
 }
 
 void Tank::checkForHits()
 {
-	health = health - Mediator::checkForDamage(_id);
-
-	if (health <= 0)
+	if (Mediator::getHealth(_id) <= 0)
 	{
-		AnimationsHandler::addAnimation(new Animation(_teamColor, _position + AssetsStorage::_tileDim, 0));
+		AnimationsHandler::addAnimation(new AnimationComponent(_teamColor, _position + AssetsStorage::_tileDim, 0));
 		temporaryDisable();
 	}
+
+	_info->setText("HP " + to_string(Mediator::getHealth(_id)));
 }
 
 void Tank::temporaryDisable()
 {
-	_tracks->_isTemporaryDeactivated = true;
-	_body->_isTemporaryDeactivated = true;
-	_cannon->_isTemporaryDeactivated = true;
+	for (auto& part : _parts)
+	{
+		part.second->_isTemporaryDeactivated = true;
+	}
 	disable();
-	health = 0;
-	TimeManager::modifyTimer(_id, 10);
-	TimeManager::_timers[_id]->resetTimer();
+	TimeManager::_timers[_respawnTimerId]->resetTimer();
 	Mediator::removeTank(_id, _teamColor);
 }
 
 void Tank::respawn()
 {
-	TimeManager::modifyTimer(_id, _shotingTime);
-	_tracks->_isTemporaryDeactivated = false;
-	_body->_isTemporaryDeactivated = false;
-	_cannon->_isTemporaryDeactivated = false;
+	for (auto& part : _parts)
+	{
+		part.second->_isTemporaryDeactivated = false;
+	}
 	enable();
-	health = 100;
 	MapSpaceManager::setUser(_id, _teamColor);
 	_position = MapSpaceManager::getSpawnPosition();
-	Mediator::notifyTankPosition(_position, _id);
-	Mediator::notifyTeam(_id, _teamColor);
+	Mediator::registerTank(_position, _id, Health);
 }
 
 void Tank::draw()
 {
 	if (isActive())
 	{
-		_tracks->draw();
-		_body->draw();
-		_cannon->draw();
+		for (auto& part : _parts)
+		{
+			part.second->draw();
+		}
+		_info->draw();
 	}
 }
 
@@ -145,16 +153,16 @@ void Tank::update()
 {
 	if (isActive())
 	{
-		_behavior->movement(_position, _velocity);
-		_behavior->rotationC(_position, _cannon->_angle);
-		_behavior->rotationB(_body->_angle, _tracks->_angle);
+		_behavior->movement(_position, _attributes->_velocity);
+		_behavior->rotationC(_position, _parts["cannon"]->_angle);
+		_behavior->rotationB(_parts["body"]->_angle, _parts["atracks"]->_angle);
 		checkForHits();
 		launchBullet();
 		launchMine();
 	}
 	else
 	{
-		if (!TimeManager::_timers[_id]->isTimerWorking())
+		if (!TimeManager::_timers[_respawnTimerId]->isTimerWorking())
 		{
 			respawn();
 		}

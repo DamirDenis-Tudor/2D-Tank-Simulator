@@ -24,6 +24,8 @@ public:
 	static void addBullet(Bullet *);
 	static void addMine(Mine * );
 
+	static int getMinesNumber(int id);
+
 	void update() override;
 	void draw() override;
 

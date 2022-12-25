@@ -2,7 +2,7 @@
 
 Barrel::Barrel(SpriteComponent* sprite, Vector2T<int> position) : MapDestructibleObject(sprite, position)
 {
-	_health = 10;
+	//_health = 10;
 }
 
 void Barrel::update()
@@ -12,7 +12,7 @@ void Barrel::update()
 	if (!isActive() && !explosion)
 	{
 		explosion = true;
-		AnimationsHandler::addAnimation(new Animation("barrelDestroy",
+		AnimationsHandler::addAnimation(new AnimationComponent("barrelDestroy",
 			{ _mapPos._x * AssetsStorage::_tileDim + AssetsStorage::_tileDim / 2, _mapPos._y * AssetsStorage::_tileDim - AssetsStorage::_tileDim }, 0));
 		/*
 		*  -> in momentul in care un butoi explodeaza

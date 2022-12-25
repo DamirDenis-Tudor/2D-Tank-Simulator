@@ -17,7 +17,7 @@ class Behavior
 {
 protected:
 	int _id = 0; // indentificator pentru a sti posesorul
-	const char* _colorTeam = nullptr; // indentificator pentru apartenenta posesorului
+	string _colorTeam ; // indentificator pentru apartenenta posesorului
 
 	Moves _moves; 
 
@@ -35,7 +35,7 @@ public:
 		_id = id;
 	}
 
-	void setColorTeam(const char* color)
+	void setColorTeam(string color)
 	{
 		_colorTeam = color;
 	}

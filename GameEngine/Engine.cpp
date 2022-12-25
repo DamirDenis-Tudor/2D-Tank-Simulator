@@ -6,18 +6,18 @@ void Engine::initComponets()
 
 	_components.emplace_back(new SpecialObjectsManager);
 
-	Director::setBuilder(new PlayerTank);
-
-	Director::setBuilderAttributes("Type1", "ColorA");
-	_components.push_back(Director::getResult());
-
+	//Director::setBuilder(new PlayerTank);
 	Director::setBuilder(new AiTank);
+
+	Director::setBuilderAttributes("Type1", "ColorD");
+	_components.push_back(Director::getResult());
 
 	Director::setBuilderAttributes("Type2", "ColorA");
 	_components.push_back(Director::getResult());
 
 	Director::setBuilderAttributes("Type3", "ColorA");
 	_components.push_back(Director::getResult());
+
 
 	Director::setBuilderAttributes("Type2", "ColorA");
 	_components.push_back(Director::getResult());
@@ -67,8 +67,10 @@ void Engine::initComponets()
 	Director::setBuilderAttributes("Type7", "ColorD");
 	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type8", "ColorD");
+	Director::setBuilderAttributes("Type8", "ColorA");
 	_components.push_back(Director::getResult());
+
+	CameraManager::setFocusId(_components[2]->_id);
 
 	_components.emplace_back(new AnimationsHandler);
 
@@ -97,7 +99,7 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 {
 	InputManager::initInput();
 	RendererManager::setRenderer(name, width, height, fullscreen);
-	AssetsStorage::loadTiles("levels/level1scaled2.1.tmx");
+	AssetsStorage::loadTiles("levels/desert.tmx");
 	AssetsStorage::loadMiniMapTiles("assets/maps/miniMapTiles.tmx");
 	AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
 	AssetsStorage::loadItems("assets/items/items.tmx");

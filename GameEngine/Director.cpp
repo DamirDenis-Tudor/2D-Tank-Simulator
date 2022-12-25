@@ -12,7 +12,7 @@ void Director::setBuilder(Builder * builder)
 	_builder = builder;
 }
 
-void Director::setBuilderAttributes(const char* type, const char* color, Vector2T<int> position )
+void Director::setBuilderAttributes(string type, string color, Vector2T<int> position )
 {
 	_builder->setAtrributes(type, color, position);
 }

@@ -2,6 +2,7 @@
 
 #include"SDL.h"
 #include"SDL_image.h"
+#include"SDL_ttf.h"
 #include"Vector2i.h"
 #include<list>
 #include<map>

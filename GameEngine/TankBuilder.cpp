@@ -17,67 +17,35 @@ void TankBuilder::setTankParameters()
 
 	if (_type == "Type1")
 	{
-		_shotingAnim = "Shot2";
-		_impactAnim = "Impact2";
-		_velocity = { 0.45 , 0.45 };
-		_shotingTime = 0.5;
-		_bulletDamage = 30;
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.1 ,5 };
 	}
 	if (_type == "Type2")
 	{
-		_shotingAnim = "Shot2";
-		_impactAnim = "Impact2";
-		_velocity = { 0.35 , 0.35 };
-		_shotingTime = 1;
-		_bulletDamage = 5;
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
 	}
 	if (_type == "Type3")
 	{
-		_shotingAnim = "Shot1";
-		_impactAnim = "Impact1";
-		_velocity = { 0.34 , 0.34 };
-		_shotingTime = 1.2;
-		_bulletDamage = 5;
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
 	}
 	if (_type == "Type4")
 	{
-		_shotingAnim = "Shot1";
-		_impactAnim = "Impact1";
-		_velocity = { 0.32 , 0.32 };
-		_shotingTime = 1.4;
-		_bulletDamage = 5;
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
 	}
 	if (_type == "Type5")
 	{
-		_shotingAnim = "Shot1";
-		_impactAnim = "Impact1";
-		_velocity = { 0.355 , 0.355 };
-		_shotingTime = 1.5;
-		_bulletDamage = 5;
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
 	}
 	if (_type == "Type6")
 	{
-		_shotingAnim = "Shot1";
-		_impactAnim = "Impact1";
-		_velocity = { 0.267 , 0.267 };
-		_shotingTime = 1.3;
-		_bulletDamage = 5;
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
 	}
 	if (_type == "Type7")
 	{
-		_shotingAnim = "Shot1";
-		_impactAnim = "Impact1";
-		_velocity = { 0.345 , 0.345 };
-		_shotingTime = 1.4;
-		_bulletDamage = 5;
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
 	}
 	if (_type == "Type8")
 	{
-		_shotingAnim = "Shot1";
-		_impactAnim = "Impact1";
-		_velocity = { 0.35 , 0.35 };
-		_shotingTime = 0.8;
-		_bulletDamage = 5;
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
 	}
 }
 
@@ -85,14 +53,14 @@ void TankBuilder::build()
 {
 	setBehavior();
 
-	SpriteComponent* tracks = new SpriteComponent(AssetsStorage::_movebles[{"tracks"}]);
-	SpriteComponent* body = new SpriteComponent(AssetsStorage::_movebles[{_color, _type, "body"}]);
-	SpriteComponent* cannon = new SpriteComponent(AssetsStorage::_movebles[{_color, _type, "cannon"}]);
+	map<string, SpriteComponent*> parts;
+	parts.insert(pair<string, SpriteComponent* >("atracks", new SpriteComponent(AssetsStorage::_movebles[{"atracks"}])));
+	parts.insert(pair<string, SpriteComponent* >("body", new SpriteComponent(AssetsStorage::_movebles[{_color, _type, "body"}])));
+	parts.insert(pair<string, SpriteComponent* >("cannon", new SpriteComponent(AssetsStorage::_movebles[{_color, _type, "cannon"}])));
 
 	setTankParameters();
 
-	_result = new Tank(tracks, body, cannon, _behavior , _velocity 
-		,_shotingTime, _bulletDamage , _type , _color , _shotingAnim , _impactAnim);
+	_result = new Tank(parts, _behavior, _attributes, _type, _color);
 
 	if (playerIdentifier)
 	{

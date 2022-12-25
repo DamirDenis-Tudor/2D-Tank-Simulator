@@ -55,6 +55,7 @@ public:
 /*
 	Descrire clase:
 		-> clasa de baza TimeManager are metode ce-i permit sa creeze/elimine timere pe baza unui id
+		-> pentru a crea mai multe timere pentru acelasi obiect id-ul este de tip strind
 
 */
 class TimeManager
@@ -64,7 +65,7 @@ private:
 
 	TimeManager() {}
 public:
-	static map<int, Timer*> _timers;
+	static map<string, Timer*> _timers;
 
 	static float getDeltaTime()
 	{
@@ -76,17 +77,17 @@ public:
 		_deltaTime = delta;
 	}
 
-	static void createTimer(int& id, float seconds)
+	static void createTimer(string id, float seconds)
 	{
-		_timers.insert(pair<int, Timer*>(id,new Timer(seconds)));
+		_timers.insert(pair<string, Timer*>(id,new Timer(seconds)));
 	}
 
-	static void modifyTimer(int& id, float seconds)
+	static void modifyTimer(string id, float seconds)
 	{
 		_timers[id]->setLimit(seconds);
 	}
 
-	static void removeTimer(int& id)
+	static void removeTimer(string id)
 	{
 		delete _timers[id];
 		_timers[id] = nullptr;

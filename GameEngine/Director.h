@@ -16,7 +16,7 @@ private:
 public:
 
 	static void setBuilder(Builder* builder);
-	static void setBuilderAttributes(const char* type, const char* color, Vector2T<int> position = {0,0});
+	static void setBuilderAttributes(string type, string color, Vector2T<int> position = {0,0});
 	static Component* getResult();
 	static void clear();
 

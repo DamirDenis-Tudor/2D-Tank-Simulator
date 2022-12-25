@@ -9,8 +9,7 @@
 
 
 /*
-	Descriere clasa:
-
+	Descriere classei:
 		-> constructori cu parametri:
 			- folosit la incarcarea in memorie a sprite-urilor
 			   (folosit doar in AssetsStorage)
@@ -27,7 +26,7 @@ class SpriteComponent : public Component
 	friend class MiniMap;
 	friend class Tank;
 	friend class Bullet;
-	friend class Animation;
+	friend class AnimationComponent;
 
 protected:
 	SDL_Rect* _src = nullptr;

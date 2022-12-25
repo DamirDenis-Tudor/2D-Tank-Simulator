@@ -85,9 +85,22 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 	tinyxml2::XMLElement* tracks = root->FirstChildElement("tracks");
 	SpriteComponent* sprite = new SpriteComponent(tracks->FirstChildElement()->FindAttribute("source")->Value() , dim , dim);
 
-	_movebles.insert(pair < set <string >, SpriteComponent* > ({ "tracks" }, sprite));
+	_movebles.insert(pair < set <string >, SpriteComponent* > ({ "atracks"}, sprite));
 
 	tracks = nullptr;
+
+	//incarcare sprite-uri pentru infortiile legate de tank
+	tinyxml2::XMLElement* tankInfo = root->FirstChildElement("tankInfo");
+	int width = atoi(tankInfo->FindAttribute("width")->Value());
+	int heigth = atoi(tankInfo->FindAttribute("heigth")->Value());
+	for (auto i = tankInfo->FirstChildElement(); i != tankInfo->LastChildElement(); i = i->NextSiblingElement())
+	{
+		SpriteComponent* sprite = new SpriteComponent(i->FindAttribute("source")->Value(), width, heigth);
+
+		_movebles.insert(pair < set <string >, SpriteComponent* >
+			({ "info" ,i->FindAttribute("type")->Value() }, sprite));
+
+	}
 
 	root = nullptr;
 

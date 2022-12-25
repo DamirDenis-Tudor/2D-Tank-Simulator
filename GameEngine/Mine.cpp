@@ -1,20 +1,20 @@
 
 #include "Mine.h"
 
-Mine::Mine(string type, Vector2T<int> position , int tankId) : _position(position) , _tankId(tankId)
+Mine::Mine(string type, Vector2T<int> position , int tankId) : _type(type), _position(position), _tankId(tankId)
 {
-	_idle = new Animation(type , position , 0 , 0.05 );
+	_idle = new AnimationComponent(type , position , 0 , 0.05 );
 	_idle->setContinuos(); // setam animatia continua
 
-	TimeManager::createTimer(_id , 30);
-	TimeManager::_timers[_id]->resetTimer();
+	TimeManager::createTimer(to_string(_id), 30);
+	TimeManager::_timers[to_string(_id)]->resetTimer();
 }
 
 Mine::~Mine()
 {
 	delete _idle;
 	_idle = nullptr;
-	TimeManager::removeTimer(_id);
+	TimeManager::removeTimer(to_string(_id));
 }
 
 void Mine::draw()
@@ -44,13 +44,14 @@ void Mine::update()
 				  si mai are mine active, nu va mai fi vizibil in mediator
 				  astfel minele vor fi activare de tank-urile prietene
 		*/
-		if (!Mediator::checkTeammates(_tankId, Mediator::getId(i)) 
-			&& Mediator::stillExist(_tankId) )
+
+		//mai este un caz aici -> cand nu sunt in echipa si tank-ul nu exista
+		if ((!Mediator::checkTeammates(_tankId, Mediator::getId(i)) ))
 		{
 			if (CollisionManager::pointCollisionRectagle(floatPos, rectPos, rectDim))
 			{
 				hasCollision = true;
-				Mediator::registerHit(Mediator::getId(i), 50);
+				Mediator::registerHit(Mediator::getId(i), 25);
 			}
 		}
 	}
@@ -58,7 +59,7 @@ void Mine::update()
 	/*
 		-> mina este dezactivata dupa un anumit timp
 	*/
-	if (!TimeManager::_timers[_id]->isTimerWorking() || hasCollision)
+	if (!TimeManager::_timers[to_string(_id)]->isTimerWorking() || hasCollision)
 	{
 		disable();
 	}

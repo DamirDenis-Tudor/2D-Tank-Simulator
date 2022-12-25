@@ -6,11 +6,28 @@ void AiBehavior::patrol()
 
 void AiBehavior::follow()
 {
-	MapSpaceManager::setUser(_id, _colorTeam);
 
-	_moves = MapSpaceManager::aStar(Mediator::getPosition(_id), Mediator::getNearestEnemyPosition(_id, _colorTeam));
+	if (Mediator::checkForEnemies(_id , _colorTeam))
+	{
+		Vector2T<int> target;
 
-	_target = Mediator::getNearestEnemyPosition(_id, _colorTeam) + AssetsStorage::_tileDim;
+		target = Mediator::getNearestEnemyPosition(_id, _colorTeam);
+	
+		MapSpaceManager::setUser(_id, _colorTeam);
+		_moves = MapSpaceManager::aStar(Mediator::getPosition(_id), target);
+		
+		//pentru depunearea minelor
+		if (rand() % 500 == 0)
+		{
+			_moves._releaseMine = true;
+		}
+
+		_target = target + AssetsStorage::_tileDim; // consideram mijlocul
+	}
+	else
+	{
+		_moves = { false, false , false , false, false };
+	}
 }
 
 void AiBehavior::BrainAi()
@@ -25,7 +42,7 @@ void AiBehavior::BrainAi()
 
 void AiBehavior::movement(Vector2T<int>& position, Vector2T<float> velocity)
 {
-	if (_isActivated)
+	//	if (_isActivated)
 	{
 		BrainAi();
 		move(position, velocity);

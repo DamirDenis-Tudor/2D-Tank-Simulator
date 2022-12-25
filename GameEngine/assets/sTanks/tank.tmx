@@ -238,6 +238,20 @@
 		<image source="assets/sTanks/tanksScaled0.5/tracks/tracks1.png"/>
 	</tracks>
 
+	<tankInfo width ="128" heigth ="24">
+		<image type ="CenterPlate" source="assets/sTanks/tankInfo/scaled0.5Aligned/Center_top.png"/>
+		<image type ="HealthBarLeft" source="assets/sTanks/tankInfo/scaled0.5Aligned/Health_left.png"/>
+		<image type ="HealthBarRight" source="assets/sTanks/tankInfo/scaled0.5Aligned/Health_Right.png"/>
+		<image type ="BackPlate" source="assets/sTanks/tankInfo/scaled0.5Aligned/HUD_Sharp_backplate.png"/>
+		<image type ="BackPlateShadow" source="assets/sTanks/tankInfo/scaled0.5Aligned/HUD_Sharp_backplate_noshadow.png"/>
+		<image type ="ManaLeft" source="assets/sTanks/tankInfo/scaled0.5Aligned/Mana_left.png"/>
+		<image type ="ManaRight" source="assets/sTanks/tankInfo/scaled0.5Aligned/Mana_right.png"/>
+		<image type ="Stamina" source="assets/sTanks/tankInfo/scaled0.5Aligned/Stamina.png"/>
+		<image type ="StaminaBackPlate" source="assets/sTanks/tankInfo/scaled0.5Aligned/Stamina_backplate.png"/>
+		<image></image>
+	</tankInfo>
+		
+
 
 
 </tank>

@@ -11,20 +11,15 @@
 	Descriere:
 		-> adauga caracteristici noi specifice unui tank
 */
+
 class TankBuilder : public Builder
 {
 	friend class Director;
 
 protected:
 	bool playerIdentifier = false;
-	Vector2T<float> _velocity;
-
-	int _bulletDamage = 0;
-	float _shotingTime = 0;
-	const char* _shotingAnim = nullptr;
-	const char* _impactAnim = nullptr;
-
 	
+	TankAttributes* _attributes = nullptr;
 	Behavior* _behavior = nullptr;
 
 	void setTankParameters();

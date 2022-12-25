@@ -18,8 +18,8 @@ class Builder
 
 protected:
 	Vector2T<int> _position;
-	const char* _type = nullptr;
-	const char* _color = nullptr;
+	string _type ;
+	string _color ;
 
 
 	Component* _result = nullptr;
@@ -30,7 +30,7 @@ protected:
 	/*
 		atributele de baza pentru orice "produs creat"
 	*/
-	void setAtrributes(const char* type, const char* color, Vector2T<int> position = {0,0})
+	void setAtrributes(string type, string color, Vector2T<int> position = {0,0})
 	{
 		_type = type;
 		_color = color;

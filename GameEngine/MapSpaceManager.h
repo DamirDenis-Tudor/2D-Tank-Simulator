@@ -61,7 +61,7 @@ class MapSpaceManager
 {
 	static int _range; // default 5: shotter-ul va cauta o pozitie la distanta de 5 tile-uri
 	static int _curretTankId;
-	static const char* _currentColor;
+	static string _currentColor;
 	static vector<vector<Node*>> _nodes;
 	static Node* _pastEndPos;
 public:
@@ -71,7 +71,7 @@ public:
 	/*
 		-> informeaza managerul despre "utilizatorul" curent
 	*/
-	static void setUser(int id, const char* color = nullptr);
+	static void setUser(int id, string color = "");
 
 	static void setObstacles(Vector2T<int> position, bool status)
 	{

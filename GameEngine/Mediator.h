@@ -16,13 +16,13 @@ using namespace std;
 */
 class Mediator
 {
-	#define SpawnRange 20
+	#define SpawnRange 10
 
 	static map<int, Vector2T<int>> _walls; // contine toate pozitiile wall-urilor
 	static map<int, Vector2T<int> > _tanks; // contine pozitiile tuturor tank-urilor
 	static map<string, Vector2T<int> > _teamsSpawnZones; // contine pentru fiecare echipa zona in care
 														 // se vor spawna tank-urile
-	static map<const char*, list<int> > _teams; // contine maparea tank-urilor pe echipe
+	static map<string, list<int> > _teams; // contine maparea tank-urilor pe echipe
 	static map<int, int> _incomingHits;			// contine id-ul unui obiect si damage-ul sau primit
 
 public:
@@ -32,7 +32,7 @@ public:
 	*/
 	static void initSpawnZones(int maxWidth , int maxHeight);
 
-	static Vector2T<int> getSpawnZone(const char* teamColor)
+	static Vector2T<int> getSpawnZone(string teamColor)
 	{
 		return _teamsSpawnZones[teamColor];
 	}
@@ -40,7 +40,7 @@ public:
 	/*
 		-> inregistreaza un zid
 	*/
-	static void registerMapObject(int id , Vector2T<int> pos);
+	static void registerMapObject(int id , Vector2T<int> pos , int health = 0);
 
 	/*
 		-> elimina un zid
@@ -50,11 +50,11 @@ public:
 	/*
 		-> inregistreaza pozitia unui tank
 	*/
-	static void notifyTankPosition(Vector2T<int> pos, int id);
+	static void registerTank(Vector2T<int> pos, int id , int health = 0);
 	/*
 		-> elimina tot ce este legat de un tank
 	*/
-	static void removeTank(int tankId , const char* team);
+	static void removeTank(int tankId , string team);
 
 	/*
 	*	-> verifica daca un tank mai exista sau nu 
@@ -64,18 +64,22 @@ public:
 	/*
 		-> inregistreaza un tank intr-o echipa
 	*/
-	static void notifyTeam(int tankId, const char* colorTeam);
+	static void notifyTeam(int tankId, string colorTeam);
 
 	/*
 		-> elimina un tank dintr-o echipa
 	*/
-	static void removeFromTeam(int tankId, const char* colorTeam);
+	static void removeFromTeam(int tankId, string colorTeam);
 
 	static bool checkTeammates(int tankId1, int tankId2);
 	/*
 		-> calculand distante returneaza pozitia celului mai apropiat enemy
 	*/
-	static Vector2T<int> getNearestEnemyPosition(int  id, const char* colorTeam);
+	static Vector2T<int> getNearestEnemyPosition(int  id, string colorTeam);
+	/*
+		-> verifica daca mai este sau nu vreun inamic 
+	*/
+	static bool checkForEnemies(int id, string colorTeam);
 	static int _currentEnemyId;
 	static map<int, int> _pastEnemyId;
 
@@ -92,7 +96,7 @@ public:
 	/*
 		-> returneaza damage-ul primit 
 	*/
-	static int checkForDamage(int tankId);
+	static int getHealth(int tankId);
 
 	static string getColorTeam(int id)
 	{

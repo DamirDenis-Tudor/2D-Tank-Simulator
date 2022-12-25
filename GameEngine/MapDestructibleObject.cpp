@@ -2,9 +2,9 @@
 
 MapDestructibleObject::MapDestructibleObject(SpriteComponent* sprite, Vector2T<int> position) :SpriteComponent(sprite), _mapPos(position)
 {
-	Mediator::registerMapObject(_id, _mapPos);
-	TimeManager::createTimer(_id, rand()%10 + 20);
-	TimeManager::_timers[_id]->resetTimer();
+	Mediator::registerMapObject(_id, _mapPos , Health);
+	TimeManager::createTimer(to_string(_id), rand() % 10 + 20);
+	TimeManager::_timers[to_string(_id)]->resetTimer();
 	_type = AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x];
 }
 
@@ -12,12 +12,11 @@ MapDestructibleObject::~MapDestructibleObject()
 {
 	Mediator::removeMapObject(_id);
 	MapSpaceManager::setObstacles(_mapPos, false);
-	TimeManager::removeTimer(_id);
+	TimeManager::removeTimer(to_string(_id));
 }
 
 void MapDestructibleObject::temporaryDestroyed()
 {
-	_health = 0;
 	_isTemporaryDeactivated = true;
 	AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x] = 0;
 	Mediator::removeMapObject(_id);
@@ -27,10 +26,9 @@ void MapDestructibleObject::temporaryDestroyed()
 
 void MapDestructibleObject::respawn()
 {
-	_health = 50;
 	_isTemporaryDeactivated = false;
 	MapSpaceManager::setObstacles(_mapPos, true);
-	Mediator::registerMapObject(_id, _mapPos);
+	Mediator::registerMapObject(_id, _mapPos , Health);
 	AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x] = _type;
 	enable();
 }
@@ -42,8 +40,7 @@ void MapDestructibleObject::update()
 	{
 		if (isActive())
 		{
-			_health = _health - Mediator::checkForDamage(_id);
-			if (_health <= 0)
+			if (Mediator::getHealth(_id) <= 0)
 			{
 				temporaryDestroyed();
 			}
@@ -51,9 +48,9 @@ void MapDestructibleObject::update()
 		else
 		{
 			MapSpaceManager::setUser(_id);
-			if (!TimeManager::_timers[_id]->isTimerWorking() && !MapSpaceManager::nodeContainsTemporaryObstacles(MapSpaceManager::getNode(_mapPos)))
+			if (!TimeManager::_timers[to_string(_id)]->isTimerWorking() && !MapSpaceManager::nodeContainsTemporaryObstacles(MapSpaceManager::getNode(_mapPos)))
 			{
-				TimeManager::_timers[_id]->resetTimer();
+				TimeManager::_timers[to_string(_id)]->resetTimer();
 				respawn();
 			}
 

@@ -33,6 +33,20 @@ void SpecialObjectsManager::addMine(Mine* mine)
 	_mines.emplace_back(mine);
 }
 
+int SpecialObjectsManager::getMinesNumber(int id)
+{
+	int counter = 0;
+
+	for (auto &mine : _mines )
+	{
+		if (id == mine->_tankId)
+		{
+			counter++;
+		}
+	}
+	return counter;
+}
+
 void SpecialObjectsManager::update()
 {
 	for (int i = 0; i < _bullets.size(); i++)
@@ -41,7 +55,7 @@ void SpecialObjectsManager::update()
 
 		if (!_bullets[i]->isActive())
 		{
-			AnimationsHandler::addAnimation(new Animation(_bullets[i]->_impactAnim, _bullets[i]->_position, _bullets[i]->_angle));
+			AnimationsHandler::addAnimation(new AnimationComponent(_bullets[i]->_impactAnim, _bullets[i]->_position, _bullets[i]->_angle));
 			delete _bullets[i];
 			_bullets[i] = nullptr;
 			_bullets.erase(_bullets.begin() + i);
@@ -55,7 +69,7 @@ void SpecialObjectsManager::update()
 
 		if (!_mines[i]->isActive())
 		{
-			AnimationsHandler::addAnimation(new Animation("BigExplosion", _mines[i]->_position, 0));
+			AnimationsHandler::addAnimation(new AnimationComponent(_mines[i]->_type + "Explosion", _mines[i]->_position, 0, 0.05));
 			delete _mines[i];
 			_mines[i] = nullptr;
 			_mines.erase(_mines.begin() + i);

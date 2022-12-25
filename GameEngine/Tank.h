@@ -5,36 +5,45 @@
 #include"AiBehavior.h"
 #include"Behavior.h"
 #include"Bullet.h"
-#include"Animation.h"
+#include"AnimationComponent.h"
 #include"AnimationsHandler.h"
 #include"SpecialObjectsManager.h"
 #include "Mediator.h"
 #include"Mine.h"
+#include"TextComponent.h"
+
+#define Health 100
+#define MaxMinesNumber 3
+
+struct TankAttributes
+{
+	const char* _shotingAnim = nullptr;
+	const char* _impactAnim = nullptr;
+	Vector2T<float> _velocity;
+	float _shotingTime = 0;
+	int _bulletDamage = 0;
+};
 
 class Tank : public Component
 {
-	int health = 200;
+	TextComponent* _info = nullptr;
+	map<string, SpriteComponent*> _parts;
+	TankAttributes* _attributes = nullptr;
 
-	SpriteComponent* _tracks = nullptr;
-	SpriteComponent* _body = nullptr;
-	SpriteComponent* _cannon = nullptr;
 	Behavior* _behavior = nullptr;
 
 	Vector2T<int> _position = { 0 , 0 };
+	string _type ;
+	string _teamColor;
 
-	const char* _bulletType = nullptr;
-
-	Vector2T<float> _velocity = { 0 , 0 };
-	int _bulletDamage = 0;
-	float _shotingTime = 0;
-	const char* _shotingAnim = nullptr;
-	const char* _impactAnim = nullptr;
-	const char* _teamColor = nullptr;
+	//timers
+	string _launchBulletTimerId;
+	string _launchMineTimerId;
+	string _restoreLifeTimerId;
+	string _respawnTimerId;
 
 public:
-	Tank(SpriteComponent* tracks, SpriteComponent* body, SpriteComponent* cannon,
-		Behavior* behavior, Vector2T<float> velocity, float shotingTime, int bulletDamage, const char* bulletType, const char* color,
-		const char* shotingAnim, const char* impactAnim);
+	Tank(map<string, SpriteComponent*>& parts, Behavior*& behavior, TankAttributes*& attributes, string type, string color);
 
 	~Tank();
 
@@ -49,7 +58,7 @@ public:
 	void syncMovement();
 
 	/*
-		
+
 	*/
 
 	void launchMine();

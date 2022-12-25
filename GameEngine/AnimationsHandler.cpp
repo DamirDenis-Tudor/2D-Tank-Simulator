@@ -1,6 +1,6 @@
 #include "AnimationsHandler.h"
 
-vector<Animation*> AnimationsHandler::_animations = {};
+vector<AnimationComponent*> AnimationsHandler::_animations = {};
 
 AnimationsHandler::~AnimationsHandler()
 {

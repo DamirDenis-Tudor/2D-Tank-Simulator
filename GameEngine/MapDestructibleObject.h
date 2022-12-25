@@ -4,6 +4,8 @@
 #include"MapSpaceManager.h"
 #include"TimeManager.h"
 
+#define Health 10
+
 /*
 	Descrierea clasei:
 		-> caracterizeaza obiecte ce pot fi distruse 
@@ -13,7 +15,6 @@ class MapDestructibleObject : public SpriteComponent
 {
 protected:
 	int _type = 0; // id-ul de pe mapa
-	int _health = 15;
 	Vector2T<int> _mapPos; // faciliteaza comunicarea cu mediatorul
 public:
 	bool _isBorder = false; // daca face parte din delimitarile mapei

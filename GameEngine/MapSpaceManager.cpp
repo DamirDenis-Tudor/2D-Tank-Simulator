@@ -2,10 +2,10 @@
 
 int MapSpaceManager::_range = 5;
 int MapSpaceManager::_curretTankId = 0;
-const char* MapSpaceManager::_currentColor = nullptr;
+string MapSpaceManager::_currentColor = "";
 vector<vector<Node*>> MapSpaceManager::_nodes = {};
 Node* MapSpaceManager::_pastEndPos = nullptr;
-void MapSpaceManager::setUser(int id, const char* color)
+void MapSpaceManager::setUser(int id, string color)
 {
 	_curretTankId = id;
 	_currentColor = color;
