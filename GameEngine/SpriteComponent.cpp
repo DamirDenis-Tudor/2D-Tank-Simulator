@@ -16,22 +16,21 @@ void SpriteComponent::draw()
 
 void SpriteComponent::update()
 {
-	if (!_isFollowed)
+	if (_isFollowed) return;
+
+	if (isActive())
 	{
-		if (!_isTemporaryDeactivated)
-		{
-			isOnCamera();
-		}
-		if(_isTile)
-		{
-			_dest->x = _dest->x - CameraManager::tileOffset._x;
-			_dest->y = _dest->y - CameraManager::tileOffset._y;
-		}
+		isOnCamera();
+	}
+	if (_isTile)
+	{
+		_dest->x = _dest->x - CameraManager::tileOffset._x;
+		_dest->y = _dest->y - CameraManager::tileOffset._y;
 	}
 }
 
 void SpriteComponent::isOnCamera()
-{	
+{
 	if (_dest->x + _dest->w  < -64 ||
 		_dest->y + _dest->h  < -64 ||
 		_dest->x  > RendererManager::_width + 64 ||
@@ -42,7 +41,7 @@ void SpriteComponent::isOnCamera()
 	enable();
 }
 
-SpriteComponent::SpriteComponent(const char* source , int sourceDim, int destDim)
+SpriteComponent::SpriteComponent(const char* source, int sourceDim, int destDim)
 {
 	_src = new SDL_Rect;
 	_dest = new SDL_Rect;

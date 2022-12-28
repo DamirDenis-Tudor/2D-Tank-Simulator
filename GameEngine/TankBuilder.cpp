@@ -17,36 +17,91 @@ void TankBuilder::setTankParameters()
 
 	if (_type == "Type1")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.1 ,5 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.5 , 0.5 } ,1 ,10 };
 	}
 	if (_type == "Type2")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.4 ,3 };
 	}
 	if (_type == "Type3")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.35 , 0.35 } ,0.3 ,2 };
 	}
 	if (_type == "Type4")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.55 , 0.55 } ,0.2 ,1 };
 	}
 	if (_type == "Type5")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.7 ,4 };
 	}
 	if (_type == "Type6")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.4 ,2 };
 	}
 	if (_type == "Type7")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.5 ,2 };
 	}
 	if (_type == "Type8")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.2 ,2 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.7 , 0.7 } ,0.2 ,1 };
 	}
+
+	Vector2T<int> scorePosition;
+	if (_color == "Yellow")
+	{
+		InfoManager::addInfo(_color,
+			new TextComponent(YELLOW , TextScoreBoardHeight 
+				, _color + "Team:  ", YellowTeamScorePosition));
+
+		scorePosition = YellowTeamScorePosition;
+		scorePosition += Vector2T<int>{InfoManager::getDimension(_color)._x, 0};
+
+		InfoManager::addInfo(_color + "Points",
+			new TextComponent(YELLOW, TextScoreBoardHeight
+				, "0" ,scorePosition ));
+	}
+	if (_color == "Green")
+	{
+		InfoManager::addInfo(_color,
+			new TextComponent(GREEN, TextScoreBoardHeight
+				, _color + "Team:  ", GreenTeamScorePosition));
+
+		scorePosition = GreenTeamScorePosition;
+		scorePosition += Vector2T<int>{InfoManager::getDimension(_color)._x, 0};
+
+		InfoManager::addInfo(_color + "Points",
+			new TextComponent(GREEN, TextScoreBoardHeight
+				, "0", scorePosition));
+	}
+	if (_color == "Blue")
+	{
+		InfoManager::addInfo(_color,
+			new TextComponent(BLUE, TextScoreBoardHeight
+				, _color + "Team:  ", BlueTeamScorePosition));
+
+		scorePosition = BlueTeamScorePosition;
+		scorePosition += Vector2T<int>{InfoManager::getDimension(_color)._x, 0};
+
+		InfoManager::addInfo(_color + "Points",
+			new TextComponent(BLUE, TextScoreBoardHeight
+				, "0", scorePosition));
+	}
+	if (_color == "Brown")
+	{
+		InfoManager::addInfo(_color,
+			new TextComponent(BROWN, TextScoreBoardHeight
+				, _color + "Team:  ", BrownTeamScorePosition));
+
+		scorePosition = BrownTeamScorePosition;
+		scorePosition += Vector2T<int>{InfoManager::getDimension(_color)._x, 0};
+
+		InfoManager::addInfo(_color + "Points",
+			new TextComponent(BROWN, TextScoreBoardHeight
+				, "0", scorePosition));
+	}
+
 }
 
 void TankBuilder::build()
@@ -65,5 +120,7 @@ void TankBuilder::build()
 	if (playerIdentifier)
 	{
 		CameraManager::setFocusId(_result->_id);
+		CameraManager::setSpectatorMode(false);
+		Mediator::setMainPlayerId(_result->_id);
 	}
 }

@@ -56,6 +56,7 @@ public:
 	}
 	void setBehavior() override
 	{
+		CameraManager::setSpectatorMode(false);
 		_behavior = nullptr;
 		_behavior = new InputBehavior;
 	}

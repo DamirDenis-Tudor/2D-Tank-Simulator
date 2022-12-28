@@ -35,7 +35,6 @@ protected:
 	SDL_Point center = { 64 , 74 };
 	float _angle = 0;
 
-	bool _isTemporaryDeactivated = false; 
 	bool _isFollowed = false;
 	bool _isTile = false;
 	bool _isMiniTile = false;

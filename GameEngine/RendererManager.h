@@ -36,7 +36,7 @@ public:
 		//	error("window uninitialized");
 		}
 
-		_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+		_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
 		if (_renderer == nullptr)
 		{
 			//error("renderer uninitialized");

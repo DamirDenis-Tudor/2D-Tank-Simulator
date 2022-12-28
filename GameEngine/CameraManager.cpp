@@ -4,6 +4,9 @@ int CameraManager::_tileDim = 0;
 int CameraManager::_mapTilesWidth = 0;
 int CameraManager::_mapTilesHeight = 0;
 int CameraManager::_gameObjectId = 0;
+
+Vector2T<int> CameraManager::_position = { 0,0 };
+bool CameraManager::_spectatorMode = true;
 Vector2T<int> CameraManager::offset = { 0,0 };
 Vector2T<int> CameraManager::pastOffset = { 0,0 };
 Vector2T<int> CameraManager::tileOffset = { 0,0 };
@@ -18,15 +21,63 @@ void CameraManager::init(int& tileDim, int& mapTilesWidth, int& mapTilesHeight)
 
 void CameraManager::cameraSync()
 {
-	Vector2T<int> position = Mediator::getPosition(_gameObjectId);
+
 	CameraManager::pastOffset = CameraManager::offset;
-
-	CameraManager::offset.setX(position.getX() + _tileDim - RendererManager::_width / 2);
-	CameraManager::offset.setY(position.getY() + _tileDim- RendererManager::_heigth / 2);
-
 	// verificam limitele mapei
 	int horizontalBorder = _mapTilesWidth * _tileDim - RendererManager::_width;
 	int verticalBorder = _mapTilesHeight * _tileDim- RendererManager::_heigth;
+
+	Vector2T<int> position;
+	if (_spectatorMode)
+	{
+		Vector2T<float> potentialPos = { (float)_position._x, (float)_position._y };
+		Vector2T<float> direction(0, 0);
+
+		if (InputManager::_up)
+		{
+			direction.setY(-1);
+		}
+		if (InputManager::_down)
+		{
+			direction.setY(1);
+		}
+		if (InputManager::_right)
+		{
+			direction.setX(1);
+		}
+		if (InputManager::_left)
+		{
+			direction.setX(-1);
+		}
+
+		// calculam pozitia viitoare
+		potentialPos += Vector2T<float>{1, 1} *direction* TimeManager::getDeltaTime();
+		position = { (int)potentialPos._x ,(int)potentialPos._y };
+		if (position._x < RendererManager::_width / 2 - _tileDim)
+		{
+			position._x = RendererManager::_width / 2 - _tileDim;
+		}
+		if (position._y < RendererManager::_heigth / 2 -_tileDim)
+		{
+			position._y = RendererManager::_heigth / 2 - _tileDim;
+		}
+
+		if (position._x > horizontalBorder + RendererManager::_width / 2)
+		{
+			position._x = horizontalBorder + RendererManager::_width / 2;
+		}
+		if (position._y > verticalBorder + RendererManager::_heigth / 2)
+		{
+			position._y = verticalBorder + RendererManager::_heigth / 2;
+		}
+	}
+	else
+	{
+		position = Mediator::getPosition(_gameObjectId);
+	}
+
+	CameraManager::offset.setX(position.getX() + _tileDim  - RendererManager::_width / 2);
+	CameraManager::offset.setY(position.getY() + _tileDim - RendererManager::_heigth / 2);
 	if (CameraManager::offset.getX() < 0)
 	{
 		CameraManager::offset.setX(0);
@@ -45,4 +96,7 @@ void CameraManager::cameraSync()
 	}
 
 	CameraManager::tileOffset = CameraManager::offset - CameraManager::pastOffset;
+
+	_position = position;
+
 }

@@ -53,7 +53,7 @@
 		<image></image>
 	</animation>
 
-	<animation type = "ColorA" dim ="192">
+	<animation type = "Yellow" dim ="192">
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_1.png" />
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_2.png" />
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_3.png" />
@@ -67,7 +67,7 @@
 		<image></image>
 	</animation>
 
-	<animation type = "ColorB" dim ="192">
+	<animation type = "Green" dim ="192">
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_1.png" />
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_2.png" />
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionB/Explosion_3.png" />
@@ -81,7 +81,7 @@
 		<image></image>
 	</animation>
 
-	<animation type = "ColorC" dim ="192">
+	<animation type = "Blue" dim ="192">
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_1.png" />
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_2.png" />
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionC/Explosion_3.png" />
@@ -95,7 +95,7 @@
 		<image></image>
 	</animation>
 
-	<animation type = "ColorD" dim ="192">
+	<animation type = "Brown" dim ="192">
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_1.png" />
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_2.png" />
 		<image source="assets/sTanks/anim/scaledAnim/destroyExplosionD/Explosion_3.png" />
@@ -123,7 +123,7 @@
 		<image></image>
 	</animation>
 
-	<animation type ="ColorAmineExplosion" dim =" 128">
+	<animation type ="YellowmineExplosion" dim =" 128">
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_C_005.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_C_006.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionA/Bomb_Explosion_C_007.png"/>
@@ -131,7 +131,7 @@
 		<image></image>
 	</animation>
 
-	<animation type ="ColorBmineExplosion" dim =" 128">
+	<animation type ="GreenmineExplosion" dim =" 128">
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionB/Bomb_Explosion_B_004.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionB/Bomb_Explosion_B_005.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionB/Bomb_Explosion_B_006.png"/>
@@ -140,7 +140,7 @@
 		<image></image>
 	</animation>
 
-	<animation type ="ColorCmineExplosion" dim =" 128">
+	<animation type ="BluemineExplosion" dim =" 128">
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionC/Bomb_Explosion_D_004.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionC/Bomb_Explosion_D_005.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionC/Bomb_Explosion_D_006.png"/>
@@ -149,7 +149,7 @@
 		<image></image>
 	</animation>
 
-	<animation type ="ColorDmineExplosion" dim =" 128">
+	<animation type ="BrownmineExplosion" dim =" 128">
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionD/Bomb_Explosion_A_004.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionD/Bomb_Explosion_A_005.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineExplosionD/Bomb_Explosion_A_006.png"/>
@@ -158,7 +158,7 @@
 		<image></image>
 	</animation>
 
-	<animation type ="ColorAmine" dim =" 128">
+	<animation type ="Yellowmine" dim =" 128">
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_C_000.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_C_001.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleA/Bomb_Idle_C_002.png"/>
@@ -172,7 +172,7 @@
 		<image></image>
 	</animation>
 
-	<animation type ="ColorBmine" dim =" 128">
+	<animation type ="Greenmine" dim =" 128">
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_000.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_001.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleB/Bomb_Idle_B_002.png"/>
@@ -186,7 +186,7 @@
 		<image></image>
 	</animation>
 
-	<animation type ="ColorCmine" dim =" 128">
+	<animation type ="Bluemine" dim =" 128">
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_B_000.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_B_001.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleC/Bomb_Idle_B_002.png"/>
@@ -200,7 +200,7 @@
 		<image></image>
 	</animation>
 
-	<animation type ="ColorDmine" dim =" 128">
+	<animation type ="Brownmine" dim =" 128">
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleD/Bomb_Idle_A_000.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleD/Bomb_Idle_A_001.png"/>
 		<image source="assets/sTanks/anim/scaledAnim/mineIdleD/Bomb_Idle_A_002.png"/>

@@ -5,6 +5,7 @@
 #include"ColisionManager.h"
 #include<string>
 #include"Mediator.h"
+#include"InfoManager.h"
 
 using namespace std;
 

@@ -6,77 +6,47 @@ void Engine::initComponets()
 
 	_components.emplace_back(new SpecialObjectsManager);
 
-	//Director::setBuilder(new PlayerTank);
+	Director::setBuilder(new PlayerTank);
+
 	Director::setBuilder(new AiTank);
 
-	Director::setBuilderAttributes("Type1", "ColorD");
+	Director::setBuilderAttributes("Type1", "Yellow");
 	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type2", "ColorA");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type3", "ColorA");
-	_components.push_back(Director::getResult());
-
-
-	Director::setBuilderAttributes("Type2", "ColorA");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type3", "ColorA");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type3", "ColorB");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type6", "ColorB");
-	_components.push_back(Director::getResult());
 	
-	Director::setBuilderAttributes("Type3", "ColorB");
+	Director::setBuilderAttributes("Type4", "Yellow");
+	_components.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type2", "Yellow");
 	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type6", "ColorB");
+	Director::setBuilderAttributes("Type3", "Blue");
 	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type8", "ColorB");
+	Director::setBuilderAttributes("Type5", "Blue");
 	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type2", "ColorC");
+	Director::setBuilderAttributes("Type7", "Blue");
 	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type8", "ColorC");
+	Director::setBuilderAttributes("Type8", "Green");
+	_components.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type7", "Green");
+	_components.push_back(Director::getResult());
+	Director::setBuilderAttributes("Type2", "Green");
 	_components.push_back(Director::getResult());
 
-	Director::setBuilderAttributes("Type5", "ColorC");
+	Director::setBuilderAttributes("Type7", "Brown");
 	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type8", "ColorC");
+	Director::setBuilderAttributes("Type1", "Brown");
 	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type5", "ColorC");
+	Director::setBuilderAttributes("Type4", "Brown");
 	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type2", "ColorD");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type7", "ColorD");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type8", "ColorD");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type7", "ColorD");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type8", "ColorA");
-	_components.push_back(Director::getResult());
-
-	CameraManager::setFocusId(_components[2]->_id);
 
 	_components.emplace_back(new AnimationsHandler);
 
-	_components.emplace_back(new InfoManager);
-
 	_components.emplace_back(new MiniMap);
+
+	_components.emplace_back(new InfoManager);
 }
 
 void Engine::draw()
@@ -99,14 +69,21 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 {
 	InputManager::initInput();
 	RendererManager::setRenderer(name, width, height, fullscreen);
-	AssetsStorage::loadTiles("levels/desert.tmx");
+
+	AssetsStorage::loadTiles("levels/football.tmx");
 	AssetsStorage::loadMiniMapTiles("assets/maps/miniMapTiles.tmx");
 	AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
 	AssetsStorage::loadItems("assets/items/items.tmx");
 	AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
-	Mediator::initSpawnZones(AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
+	
+	Mediator::init(AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
+	
 	MapSpaceManager::initNodes();
+	
 	CameraManager::init(AssetsStorage::_tileDim, AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
+	
+	TextComponent::setFont("fonts/open-sans/OpenSans-Bold.ttf");
+	
 	initComponets();
 
 }

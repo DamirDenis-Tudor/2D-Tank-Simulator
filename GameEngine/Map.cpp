@@ -57,7 +57,7 @@ void Map::init()
 		{
 			if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 			{
-		
+
 				if (AssetsStorage::_mapLayers["colidble"][i][j] == AssetsStorage::_barrelId)
 				{
 					Barrel* barrel = new Barrel(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1], Vector2T<int>(j, i));
@@ -82,7 +82,7 @@ void Map::init()
 					_drawbles.push_back(object);
 					object = nullptr;
 				}
-				
+
 			}
 
 		}
@@ -93,10 +93,7 @@ void Map::draw()
 {
 	for (auto& i : _drawbles)
 	{
-		if (i->isActive())
-		{
-			i->draw();
-		}
+		i->draw();
 	}
 }
 
@@ -168,17 +165,11 @@ void MiniMap::draw()
 {
 	for (auto& i : _drawbles)
 	{
-		if (isActive())
-		{
-			i->draw();
-		}
+		i->draw();
 	}
 	for (auto& i : _movebles)
 	{
-		if (isActive())
-		{
-			i->draw();
-		}
+		i->draw();
 	}
 }
 
@@ -186,13 +177,13 @@ void MiniMap::update()
 {
 	for (int i = 0; i < _drawbles.size(); i++)
 	{
-		if (!Mediator::stillExist(Mediator::getId({ _drawbles[i]->getPosition() / _scaleDim })))
+		if (Mediator::stillExist(Mediator::getId({ _drawbles[i]->getPosition() / _scaleDim })))
 		{
-			_drawbles[i]->disable();
+			_drawbles[i]->enable();
 		}
 		else
 		{
-			_drawbles[i]->enable();
+			_drawbles[i]->disable();
 		}
 	}
 

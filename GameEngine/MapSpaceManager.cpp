@@ -53,22 +53,23 @@ void MapSpaceManager::initNodes()
 			}
 
 			////vecinii pe diagonala
-			if (i > 0 && j > 0)
-			{
-				_nodes[i][j]->_neighbours.push_back(_nodes[i - 1][j - 1]);
-			}
-			if (i > 0 && j < AssetsStorage::_layerHeight - 1)
-			{
-				_nodes[i][j]->_neighbours.push_back(_nodes[i - 1][j + 1]);
-			}
-			if (j > 0 && i < AssetsStorage::_layerWidth - 1)
-			{
-				_nodes[i][j]->_neighbours.push_back(_nodes[i + 1][j - 1]);
-			}
-			if (i < AssetsStorage::_layerHeight - 1 && j < AssetsStorage::_layerHeight - 1)
-			{
-				_nodes[i][j]->_neighbours.push_back(_nodes[i + 1][j + 1]);
-			}
+
+			//if (i > 0 && j > 0)
+			//{
+			//	_nodes[i][j]->_neighbours.push_back(_nodes[i - 1][j - 1]);
+			//}
+			//if (i > 0 && j < AssetsStorage::_layerHeight - 1)
+			//{
+			//	_nodes[i][j]->_neighbours.push_back(_nodes[i - 1][j + 1]);
+			//}
+			//if (j > 0 && i < AssetsStorage::_layerWidth - 1)
+			//{
+			//	_nodes[i][j]->_neighbours.push_back(_nodes[i + 1][j - 1]);
+			//}
+			//if (i < AssetsStorage::_layerHeight - 1 && j < AssetsStorage::_layerHeight - 1)
+			//{
+			//	_nodes[i][j]->_neighbours.push_back(_nodes[i + 1][j + 1]);
+			//}
 		}
 	}
 }

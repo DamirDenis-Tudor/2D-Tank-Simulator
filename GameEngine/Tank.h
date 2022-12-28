@@ -11,6 +11,7 @@
 #include "Mediator.h"
 #include"Mine.h"
 #include"TextComponent.h"
+#include"InfoManager.h"
 
 #define Health 100
 #define MaxMinesNumber 3
@@ -26,7 +27,7 @@ struct TankAttributes
 
 class Tank : public Component
 {
-	TextComponent* _info = nullptr;
+//	TextComponent* _info = nullptr;
 	map<string, SpriteComponent*> _parts;
 	TankAttributes* _attributes = nullptr;
 

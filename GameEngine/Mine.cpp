@@ -52,6 +52,12 @@ void Mine::update()
 			{
 				hasCollision = true;
 				Mediator::registerHit(Mediator::getId(i), 25);
+				if (Mediator::getHealth(Mediator::getId(i)) <= 0)
+				{
+					Mediator::addPoint(Mediator::getColorTeam(_tankId));
+					InfoManager::setText(Mediator::getColorTeam(_tankId) + "Points",
+						to_string(Mediator::getTeamScore(Mediator::getColorTeam(_tankId))));
+				}
 			}
 		}
 	}

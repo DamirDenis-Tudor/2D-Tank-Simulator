@@ -1,19 +1,86 @@
 #include "Mediator.h"
 
+int Mediator::_mainPlayerId = 0;
 map<int, Vector2T<int>> Mediator::_walls = {};
 map<string, Vector2T<int>> Mediator::_teamsSpawnZones = {};
 map<string, list<int>> Mediator::_teams = {};
+map<string, int> Mediator::_teamsPoints = {};
 map<int, Vector2T<int> > Mediator::_tanks = {};
+map<int, int> Mediator::_killers = {};
 map< int, int > Mediator::_incomingHits = {};
 int Mediator::_currentEnemyId = 0;
 map<int, int> Mediator::_pastEnemyId = {};
 
-void Mediator::initSpawnZones(int maxWidth, int maxHeight)
+int Mediator::getId(Vector2T<int> position)
 {
-	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("ColorA", { 1 , 1 }));
-	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("ColorB", { 1 , maxHeight - SpawnRange - 1 }));
-	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("ColorC", { maxWidth - SpawnRange - 1 , 1 }));
-	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("ColorD", { maxWidth - SpawnRange - 1 , maxHeight - SpawnRange - 1 }));
+	for (auto& i : _tanks)
+	{
+		if (i.second == position)
+		{
+			return i.first;
+		}
+	}
+
+	for (auto& i : _walls)
+	{
+		if (i.second == position)
+		{
+			return i.first;
+		}
+	}
+
+	return -1;
+}
+
+string Mediator::getColorTeam(int id)
+{
+	for (auto& i : _teams)
+	{
+		list<int>::iterator it;
+		it = find(i.second.begin(), i.second.end(), id);
+		if (it != i.second.end())
+		{
+			return i.first;
+		}
+	}
+
+	return " ";
+}
+
+Vector2T<int> Mediator::getPosition(int id)
+{
+	if (_tanks.count(id) != 0)
+	{
+		return _tanks[id];
+	}
+	if (_walls.count(id) != 0)
+	{
+		return _walls[id];
+	}
+	return { -11111 , -11111 };
+}
+
+void Mediator::setMainPlayerId(int id)
+{
+	_mainPlayerId = id;
+}
+
+bool Mediator::isMainPlayer(int id)
+{
+	return id == _mainPlayerId ? true : false;
+}
+
+void Mediator::init(int maxWidth, int maxHeight)
+{
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Yellow", { 1 , 1 }));
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Green", { 1 , maxHeight - SpawnRange - 1 }));
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Blue", { maxWidth - SpawnRange - 1 , 1 }));
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Brown", { maxWidth - SpawnRange - 1 , maxHeight - SpawnRange - 1 }));
+
+	_teamsPoints.insert(pair<string, int>("Yellow", 0));
+	_teamsPoints.insert(pair<string, int>("Green", 0));
+	_teamsPoints.insert(pair<string, int>("Blue", 0));
+	_teamsPoints.insert(pair<string, int>("Brown", 0));
 
 }
 
@@ -168,6 +235,26 @@ void Mediator::registerHit(int tankHitted, int damage)
 	_incomingHits[tankHitted] -= damage;
 }
 
+void Mediator::registerKiller(int id, int killer)
+{
+	if (_killers.count(id) == 0)
+	{
+		_killers.insert(pair<int, int>(id, killer));
+		return;
+	}
+	_killers[id] = killer;
+}
+
+int Mediator::getKiller(int id)
+{
+	return _killers[id];
+}
+
+bool Mediator::hasKiller(int id)
+{
+	return _killers.count(id) != 0 ? true : false;
+}
+
 int Mediator::getHealth(int id)
 {
 	int health = _incomingHits[id];
@@ -178,4 +265,14 @@ int Mediator::getHealth(int id)
 	}
 
 	return health;
+}
+
+void Mediator::addPoint(string team)
+{
+	_teamsPoints[team]++;
+}
+
+int Mediator::getTeamScore(string team)
+{
+	return _teamsPoints[team];
 }

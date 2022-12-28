@@ -17,7 +17,6 @@ MapDestructibleObject::~MapDestructibleObject()
 
 void MapDestructibleObject::temporaryDestroyed()
 {
-	_isTemporaryDeactivated = true;
 	AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x] = 0;
 	Mediator::removeMapObject(_id);
 	MapSpaceManager::setObstacles(_mapPos, false);
@@ -26,7 +25,6 @@ void MapDestructibleObject::temporaryDestroyed()
 
 void MapDestructibleObject::respawn()
 {
-	_isTemporaryDeactivated = false;
 	MapSpaceManager::setObstacles(_mapPos, true);
 	Mediator::registerMapObject(_id, _mapPos , Health);
 	AssetsStorage::_mapLayers["colidble"][Mediator::getPosition(_id)._y][Mediator::getPosition(_id)._x] = _type;

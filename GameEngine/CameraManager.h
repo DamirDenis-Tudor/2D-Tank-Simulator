@@ -2,6 +2,8 @@
 #include"Vector2i.h"
 #include"RendererManager.h"
 #include"Mediator.h"
+#include"InputManager.h"
+#include"TimeManager.h"
 
 /*
 	Descrierea clasei:
@@ -17,7 +19,11 @@ private:
 	static int _tileDim;
 	static int _mapTilesWidth;
 	static int _mapTilesHeight;
+
 	static int _gameObjectId;
+
+	static Vector2T<int> _position;
+	static bool _spectatorMode;
 
 public:
 	static Vector2T<int> offset ; 
@@ -30,8 +36,12 @@ public:
 	static void setFocusId(int id)
 	{
 		_gameObjectId = id;
-
 	}
+	static void setSpectatorMode(bool val)
+	{
+		_spectatorMode = val;
+	}
+
 	static int getFocusId()
 	{
 		return _gameObjectId;

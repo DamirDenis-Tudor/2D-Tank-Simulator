@@ -3,6 +3,7 @@
 #include"AnimationsHandler.h"
 #include"TimeManager.h"
 #include"ColisionManager.h"
+#include"InfoManager.h"
 
 
 class Mine : public Component

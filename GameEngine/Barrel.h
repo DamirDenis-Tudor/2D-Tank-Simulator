@@ -1,6 +1,7 @@
 #pragma once
 #include"MapDestructibleObject.h"
 #include"AnimationsHandler.h"
+#include"InfoManager.h"
 
 /*
 	Descriere clasa:

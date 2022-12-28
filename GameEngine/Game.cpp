@@ -1,7 +1,5 @@
 #include"Engine.h"
 
-//MARK : MAMA
-
 int main(int argc, char* argv[])
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -10,7 +8,7 @@ int main(int argc, char* argv[])
 	IMG_Init(IMG_INIT_PNG);
 	TTF_Init();
 
-	Engine game("Tank++" , 1920 , 1080 , false , 60);
+	Engine game("Tank++" , 1920 , 1080 , false , 50);
 
 	game.run();
 

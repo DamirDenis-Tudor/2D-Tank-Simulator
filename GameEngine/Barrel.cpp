@@ -32,8 +32,6 @@ void Barrel::update()
 		{
 			for (int j = startCellY; j <= endCellY; j++)
 			{
-
-				
 				int id = Mediator::getId({ i , j});
 				if (id != -1)
 				{
@@ -50,6 +48,15 @@ void Barrel::update()
 			if (CollisionManager::pointCollisionRectagle(floatPos , rectPos , 6 * AssetsStorage::_tileDim))
 			{
 				Mediator::registerHit(Mediator::getId(i.second), 100);
+
+				if (!Mediator::hasKiller(_id)) return;
+
+				if (Mediator::checkTeammates(Mediator::getKiller(_id), Mediator::getId(i.second))) return;
+
+				Mediator::addPoint(Mediator::getColorTeam(Mediator::getKiller(_id)));
+
+				InfoManager::setText(Mediator::getColorTeam(Mediator::getKiller(_id)) + "Points",
+					to_string(Mediator::getTeamScore(Mediator::getColorTeam(Mediator::getKiller(_id)))));
 			}
 		}
 	}

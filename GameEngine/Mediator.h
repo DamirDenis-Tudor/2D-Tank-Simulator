@@ -4,9 +4,10 @@
 #include<map>
 #include<vector>
 #include<list>
-//#include"AssetsStorage.h"
 
 using namespace std;
+
+#define SpawnRange 20
 
 /*Destriere clasa
 	 -> clasa ce are ca scop managementul interactiunilor dintre obiecte;
@@ -16,21 +17,33 @@ using namespace std;
 */
 class Mediator
 {
-	#define SpawnRange 10
+
+	static int _mainPlayerId;
 
 	static map<int, Vector2T<int>> _walls; // contine toate pozitiile wall-urilor
 	static map<int, Vector2T<int> > _tanks; // contine pozitiile tuturor tank-urilor
 	static map<string, Vector2T<int> > _teamsSpawnZones; // contine pentru fiecare echipa zona in care
 														 // se vor spawna tank-urile
 	static map<string, list<int> > _teams; // contine maparea tank-urilor pe echipe
-	static map<int, int> _incomingHits;			// contine id-ul unui obiect si damage-ul sau primit
+	static map<string, int> _teamsPoints;  //contine toate puntele cumulate de echipa
+	static map<int, int> _incomingHits;	   // contine id-ul unui obiect si damage-ul sau primit
+	static map<int, int> _killers; // fiecare obiect va avea un killer
 
 public:
+
+	static int getId(Vector2T<int> position);
+
+	/*
+		
+	*/
+	static void setMainPlayerId(int id);
+
+	static bool isMainPlayer(int id);
 
 	/*
 		-> initializeaza pozitiile zonele echipelor ;
 	*/
-	static void initSpawnZones(int maxWidth , int maxHeight);
+	static void init(int maxWidth , int maxHeight);
 
 	static Vector2T<int> getSpawnZone(string teamColor)
 	{
@@ -98,59 +111,25 @@ public:
 	*/
 	static int getHealth(int tankId);
 
-	static string getColorTeam(int id)
-	{
-		for (auto& i : _teams)
-		{
-			list<int>::iterator it;
-			it = find(i.second.begin(), i.second.end(), id);
-			if (it != i.second.end())
-			{
-				return i.first;
-			}
-		}
+	/*
+		-> inregistreaza un killer
+	*/
+	static void registerKiller(int id, int killer);
 
-		return " ";
-	}
+	static int getKiller(int id);
 
-	static Vector2T<int> getPosition(int id)
-	{
-		if (_tanks.count(id) != 0)
-		{
-			return _tanks[id];
-		}
-		if (_walls.count(id) != 0)
-		{
-			return _walls[id];
-		}
-		return { -1 , -1 };
-	}
+	static bool hasKiller(int);
 
-	static int getId(Vector2T<int> position)
-	{
-		for (auto& i : _tanks)
-		{
-			if (i.second == position)
-			{
-				return i.first;
-			}
-		}
+	static string getColorTeam(int id);
 
-		for (auto& i : _walls)
-		{
-			if (i.second == position)
-			{
-				return i.first;
-			}
-		}
-
-		return -1;
-	}
+	static Vector2T<int> getPosition(int id);
 
 	static map<int, Vector2T<int>>getTanksPositions()
 	{
 		return _tanks;
 	}
 
+	static void addPoint(string color);
+	static int getTeamScore(string);
 };
 

@@ -30,6 +30,11 @@ void Bullet::update()
 	if (CollisionManager::pointCollisionMap(potentialPos , mapColliderObject))
 	{
 		Mediator::registerHit(Mediator::getId(mapColliderObject) , _damage);
+		//aici stabilim cine a distrus obiectul
+		if (Mediator::getHealth(Mediator::getId(mapColliderObject)) <= 0)
+		{
+			Mediator::registerKiller(Mediator::getId(mapColliderObject) , _tankId);
+		}
 		hasCollision = true;
 	}
 
@@ -46,6 +51,12 @@ void Bullet::update()
 			if (!Mediator::checkTeammates(_tankId, Mediator::getId(i)))
 			{
 				Mediator::registerHit(Mediator::getId(i), _damage);
+				if (Mediator::getHealth(Mediator::getId(i)) <= 0)
+				{
+					Mediator::addPoint(Mediator::getColorTeam(_tankId));
+					InfoManager::setText(Mediator::getColorTeam(_tankId) + "Points",
+						to_string(Mediator::getTeamScore(Mediator::getColorTeam(_tankId))));
+				}
 			}
 		}
 	}
