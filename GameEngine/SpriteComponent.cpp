@@ -1,6 +1,8 @@
 #include "SpriteComponent.h"
 #include "Map.h"
 
+SDL_Point SpriteComponent::center = {};
+
 void SpriteComponent::draw()
 {
 	if (isActive())
@@ -22,7 +24,7 @@ void SpriteComponent::update()
 	{
 		isOnCamera();
 	}
-	if (_isTile)
+	if (_isMapObject)
 	{
 		_dest->x = _dest->x - CameraManager::tileOffset._x;
 		_dest->y = _dest->y - CameraManager::tileOffset._y;

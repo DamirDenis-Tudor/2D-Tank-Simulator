@@ -32,11 +32,11 @@ protected:
 	SDL_Rect* _src = nullptr;
 	SDL_Rect* _dest = nullptr;
 	SDL_Texture* _texture = nullptr;
-	SDL_Point center = { 64 , 74 };
+	static SDL_Point center;
 	float _angle = 0;
 
 	bool _isFollowed = false;
-	bool _isTile = false;
+	bool _isMapObject = false;
 	bool _isMiniTile = false;
 public:
 	SpriteComponent() {}
@@ -61,7 +61,7 @@ public:
 		_angle = angle;
 	}
 
-	void setPosition(Vector2T<int> position)
+	void setCameraPosition(Vector2T<int> position)
 	{
 		_dest->x = position.getX();
 		_dest->y = position.getY();

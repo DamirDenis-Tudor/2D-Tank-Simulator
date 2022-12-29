@@ -10,7 +10,7 @@ AnimationComponent::AnimationComponent(string _type, Vector2T<int> position, flo
 		SpriteComponent* sprite = new SpriteComponent(AssetsStorage::_effects[_type][i]);
 		_anim.emplace_back(sprite);
 		sprite = nullptr;
-		_anim[i]->setPosition(position);
+		_anim[i]->setCameraPosition(position);
 		_anim[i]->setAngle(angle);
 	}
 }
@@ -35,7 +35,7 @@ void AnimationComponent::setContinuos()
 
 void AnimationComponent::draw()
 {
-	_anim[_frameID]->setPosition(_position - CameraManager::offset - _anim[_frameID]->_dest->w / 2);
+	_anim[_frameID]->setCameraPosition(_position - CameraManager::offset - _anim[_frameID]->_dest->w / 2);
 	_anim[_frameID]->draw();
 }
 

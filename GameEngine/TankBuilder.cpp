@@ -17,35 +17,35 @@ void TankBuilder::setTankParameters()
 
 	if (_type == "Type1")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.5 , 0.5 } ,0.7 ,10 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.32 , 0.32 } ,0.5 ,10 };
 	}
 	if (_type == "Type2")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.4 ,5 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.38 , 0.38 } ,0.4 ,8 };
 	}
 	if (_type == "Type3")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.35 , 0.35 } ,0.3 ,5 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.35 , 0.35 } ,0.3 ,6 };
 	}
 	if (_type == "Type4")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.55 , 0.55 } ,0.1 , 7};
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.42 , 0.42 } ,0.35 , 7};
 	}
 	if (_type == "Type5")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.7 ,3 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.32 , 0.32 } ,0.38 ,6 };
 	}
 	if (_type == "Type6")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.4 ,4 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.38 , 0.38 } ,0.29 , 4 };
 	}
 	if (_type == "Type7")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.5 ,5 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.3 , 0.3 } , 0.6 , 12 };
 	}
 	if (_type == "Type8")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.4 , 0.4 } ,0.2 ,3 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.42 , 0.42 } ,0.4 , 6 };
 	}
 
 	Vector2T<int> scorePosition;
@@ -122,5 +122,9 @@ void TankBuilder::build()
 		CameraManager::setFocusId(_result->_id);
 		CameraManager::setSpectatorMode(false);
 		Mediator::setMainPlayerId(_result->_id);
+
+		// TextComponentul pentru afisare timpui de respawnare
+		InfoManager::addInfo(to_string(_result->_id) + "respawn", new TextComponent(WHITE, 52, "", { RendererManager::_width / 2 , 0 } ));
+		InfoManager::addInfo(to_string(_result->_id) + "abilityTimer", new TextComponent(WHITE, 42, "", { RendererManager::_width / 2 , 0 }));
 	}
 }

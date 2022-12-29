@@ -4,7 +4,7 @@ Bullet::Bullet(string type, string impactAnim, int damage, Vector2T<int> positio
 	: _position(position), _tankId(tankId)  , _angle(angle), _damage(damage) , _impactAnim(impactAnim)
 {
 	_sprite = new SpriteComponent(AssetsStorage::_movebles[{type, "bullet"}]);
-	_sprite->setPosition(position - _sprite->_dest->w / 2 - CameraManager::offset);
+	_sprite->setCameraPosition(position - _sprite->_dest->w / 2 - CameraManager::offset);
 	_sprite->_angle = angle;
 }
 
@@ -71,7 +71,7 @@ void Bullet::update()
 		_position._y = static_cast<int>(potentialPos._y);
 
 	}
-	_sprite->setPosition(_position - CameraManager::offset - _sprite->_dest->w / 2);
+	_sprite->setCameraPosition(_position - CameraManager::offset - _sprite->_dest->w / 2);
 }
 
 void Bullet::draw()

@@ -147,6 +147,9 @@
     <ClCompile Include="TextComponent.cpp">
       <Filter>Source Files\Componets</Filter>
     </ClCompile>
+    <ClCompile Include="AbilityComponent.cpp">
+      <Filter>Source Files\Componets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -246,6 +249,9 @@
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="TextComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AbilityComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

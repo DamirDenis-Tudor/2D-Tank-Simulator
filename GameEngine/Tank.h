@@ -43,6 +43,10 @@ class Tank : public Component
 	string _healingTimerId;
 	string _respawnTimerId;
 
+	//varibile pentru abilitati
+	Vector2T<float> _normalVelocity;
+	bool _invincible = false;
+
 public:
 	Tank(map<string, SpriteComponent*>& parts, Behavior*& behavior, TankAttributes*& attributes, string type, string color);
 
@@ -65,8 +69,9 @@ public:
 	void launchMine();
 	void launchBullet();
 
-	void checkForHits();
-	void checkForHealing();
+	void checkOfHits();
+	void checkOfHealing();
+	void checkOfAbilities();
 
 	void temporaryDisable();
 	void respawn();

@@ -3,20 +3,21 @@
 Tank::Tank(map<string, SpriteComponent*>& parts, Behavior*& behavior, TankAttributes*& attributes, string type, string color)
 	:_parts(parts), _behavior(behavior), _attributes(attributes), _type(type), _teamColor(color)
 {
+
+	_normalVelocity = _attributes->_velocity;
+
 	InfoManager::addInfo( to_string(_id), new TextComponent(RED, 24));
 
+	InfoManager::addInfo(to_string(_id) + "ability", new TextComponent(GOLD, 20));
+	InfoManager::disable(to_string(_id) + "ability");
+
 	MapSpaceManager::setUser(_id, _teamColor);
-	_position = MapSpaceManager::getSpawnPosition();
+	_position = MapSpaceManager::getTankSpawnPosition();
 	Mediator::notifyTeam(_id, _teamColor);
 	Mediator::registerTank(_position, _id, Health);
 
 	_behavior->setId(_id);
 	_behavior->setColorTeam(_teamColor);
-
-	if (CameraManager::getFocusId() == _id)
-	{
-		cameraIsFollowing();
-	}
 
 	//creez timere individuale pe baza unui id-ului
 	_respawnTimerId = to_string(_id) + "respawn";
@@ -31,6 +32,15 @@ Tank::Tank(map<string, SpriteComponent*>& parts, Behavior*& behavior, TankAttrib
 	_healingTimerId = to_string(_id) + "healing";
 	TimeManager::createTimer(_healingTimerId, 0.2);
 
+	// timere pentru posibilele abilitati
+	TimeManager::createTimer(to_string(_id) + "HealthBoost", 10); // "terminatorul"
+	TimeManager::_timers[to_string(_id) + "HealthBoost"]->resetTimer();
+
+	TimeManager::createTimer(to_string(_id) + "ShootingBoost", 10); // "furtuna de gloante"
+	TimeManager::_timers[to_string(_id) + "ShootingBoost"]->resetTimer();
+
+	TimeManager::createTimer(to_string(_id) + "SpeedBoost", 10); // "Speedy Gonzalez"
+	TimeManager::_timers[to_string(_id) + "SpeedBoost"]->resetTimer();
 }
 
 Tank::~Tank()
@@ -64,12 +74,12 @@ void Tank::syncMovement()
 {
 	for (auto& part : _parts)
 	{
-		part.second->setPosition(_position - CameraManager::offset);
+		part.second->setCameraPosition(_position - CameraManager::offset);
 		part.second->update();
 	}
 
 
-	InfoManager::setPosition(to_string(_id),
+	InfoManager::setCameraPosition(to_string(_id),
 		Vector2T<int>{ _position._x, _position._y - AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id))._y/2 } +
 		AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id)) / 2 - CameraManager::offset);
 }
@@ -111,18 +121,23 @@ void Tank::launchMine()
 	}
 }
 
-void Tank::checkForHits()
+void Tank::checkOfHits()
 {
+	if (_invincible)
+	{
+		Mediator::modifyHealth(_id, 100);
+		InfoManager::setText(to_string(_id), to_string(Mediator::getHealth(_id)) + "HP");
+		return;
+	}
 	if (Mediator::getHealth(_id) <= 0)
 	{
 		AnimationsHandler::addAnimation(new AnimationComponent(_teamColor, _position + AssetsStorage::_tileDim, 0));
 		temporaryDisable();
 	}
 	InfoManager::setText(to_string(_id), to_string(Mediator::getHealth(_id)) + "HP");
-
 }
 
-void Tank::checkForHealing()
+void Tank::checkOfHealing()
 {
 	InfoManager::setColor(to_string(_id), RED);
 	
@@ -139,6 +154,64 @@ void Tank::checkForHealing()
 	TimeManager::_timers[_healingTimerId]->resetTimer();
 }
 
+void Tank::checkOfAbilities()
+{
+	if (!Mediator::hasActiveAbility(_id)) return;
+
+	string abilityType = Mediator::getAbility(_id);
+
+	if (abilityType == "ShootingBoost")
+	{
+		TimeManager::_timers[_launchBulletTimerId]->setLimit(_attributes->_shotingTime / 8);
+		InfoManager::enable(to_string(_id) + "ability");
+		InfoManager::setText(to_string(_id) + "ability", "MACHINE GUN");
+		InfoManager::enable(to_string(_id) + "abilityTimer");
+	}
+	if (abilityType == "HealthBoost")
+	{
+		_invincible = true;
+		InfoManager::enable(to_string(_id) + "ability");
+		InfoManager::setText(to_string(_id) + "ability", "INVINCIBLE");
+		InfoManager::enable(to_string(_id) + "abilityTimer");
+	}
+	if (abilityType == "SpeedBoost")
+	{
+		_attributes->_velocity = _normalVelocity * 1.5;
+		InfoManager::enable(to_string(_id) + "ability");
+		InfoManager::setText(to_string(_id) + "ability", "SPEED");
+		InfoManager::enable(to_string(_id) + "abilityTimer");
+	}
+
+	InfoManager::setText(to_string(_id) + "abilityTimer", "Ability expires in  " + to_string(TimeManager::_timers[to_string(_id) + abilityType]->getRemainingTime()));
+	
+	InfoManager::setCameraPosition(to_string(_id) + "abilityTimer"
+		, { RendererManager::_width / 2 - InfoManager::getDimension(to_string(_id) + "abilityTimer")._x / 2
+			, 64 });
+
+	InfoManager::setCameraPosition(to_string(_id) + "ability",
+		Vector2T<int>{ _position._x + AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id) + "ability")._x/2, _position._y - AssetsStorage::_tileDim + 20 } - CameraManager::offset);
+
+	if (TimeManager::_timers[to_string(_id) + abilityType]->isTimerWorking()) return;
+	
+	Mediator::eraseAbility(_id);
+
+	if (abilityType == "ShootingBoost")
+	{
+		TimeManager::_timers[_launchBulletTimerId]->setLimit(_attributes->_shotingTime);
+	}
+	if (abilityType == "HealthBoost")
+	{
+		_invincible = false;
+	}
+	if (abilityType == "SpeedBoost")
+	{
+		_attributes->_velocity = _normalVelocity;
+	}
+
+	InfoManager::disable(to_string(_id) + "ability");
+	InfoManager::disable(to_string(_id) + "abilityTimer");
+}
+
 void Tank::temporaryDisable()
 {
 	for (auto& part : _parts)
@@ -146,9 +219,25 @@ void Tank::temporaryDisable()
 		part.second->disable();
 	}
 	disable();
+	
 	TimeManager::_timers[_respawnTimerId]->resetTimer();
+	
 	Mediator::removeTank(_id, _teamColor);
+	Mediator::eraseAbility(_id);
+
+	InfoManager::disable(to_string(_id) + "ability");
 	InfoManager::disable(to_string(_id));
+
+	TimeManager::_timers[to_string(_id) + "HealthBoost"]->resetTimer();
+	TimeManager::_timers[to_string(_id) + "ShootingBoost"]->resetTimer();
+	TimeManager::_timers[to_string(_id) + "SpeedBoost"]->resetTimer();
+
+	InfoManager::disable(to_string(_id) + "abilityTimer");
+
+	// pentru oric eventualitate restabilim caraccteriticile initiale
+	TimeManager::_timers[_launchBulletTimerId]->setLimit(_attributes->_shotingTime);
+	_attributes->_velocity = _normalVelocity;
+
 	if (_id == CameraManager::getFocusId())
 	{
 		CameraManager::setSpectatorMode(true);
@@ -163,7 +252,7 @@ void Tank::respawn()
 	}
 	enable();
 	MapSpaceManager::setUser(_id, _teamColor);
-	_position = MapSpaceManager::getSpawnPosition();
+	_position = MapSpaceManager::getTankSpawnPosition();
 	Mediator::registerTank(_position, _id, Health);
 	InfoManager::enable(to_string(_id));
 
@@ -191,16 +280,23 @@ void Tank::update()
 		_behavior->movement(_position, _attributes->_velocity);
 		_behavior->rotationC(_position, _parts["cannon"]->_angle);
 		_behavior->rotationB(_parts["body"]->_angle, _parts["atracks"]->_angle);
-		checkForHits();
-		checkForHealing();
+		checkOfHits();
+		checkOfHealing();
+		checkOfAbilities();
 		launchBullet();
 		launchMine();
 	}
 	else
 	{
+		InfoManager::enable(to_string(_id) + "respawn");
+		InfoManager::setText(to_string(_id) + "respawn", "Respawn in " + to_string(TimeManager::_timers[_respawnTimerId]->getRemainingTime()));
+		InfoManager::setCameraPosition(to_string(_id) + "respawn"
+			, { RendererManager::_width / 2 - InfoManager::getDimension(to_string(_id) + "respawn")._x/2 
+			, RendererManager::_heigth / 2 });
 		if (!TimeManager::_timers[_respawnTimerId]->isTimerWorking())
 		{
 			respawn();
+			InfoManager::disable(to_string(_id) + "respawn");
 		}
 	}
 

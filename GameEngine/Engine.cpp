@@ -11,7 +11,6 @@ void Engine::initComponets()
 
 	Director::setBuilderAttributes("Type1", "Yellow");
 	_components.push_back(Director::getResult());
-
 	Director::setBuilder(new AiTank);
 	
 	Director::setBuilderAttributes("Type4", "Yellow");
@@ -70,11 +69,13 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 {
 	InputManager::initInput();
 	RendererManager::setRenderer(name, width, height, fullscreen);
+	
+	TextComponent::setFont("fonts/open-sans/OpenSans-Bold.ttf");
 
 	AssetsStorage::loadTiles("levels/desert.tmx");
-	AssetsStorage::loadMiniMapTiles("assets/maps/miniMapTiles.tmx");
-	AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
-	AssetsStorage::loadItems("assets/items/items.tmx");
+	AssetsStorage::loadMiniTiles("assets/maps/miniMapTiles.tmx");
+	AssetsStorage::loadSprites("assets/sTanks/tank.tmx");
+	AssetsStorage::loadAbilities("assets/sTanks/abilities/abilities.tmx");
 	AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
 	
 	Mediator::init(AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
@@ -83,7 +84,6 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 	
 	CameraManager::init(AssetsStorage::_tileDim, AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
 	
-	TextComponent::setFont("fonts/open-sans/OpenSans-Bold.ttf");
 	
 	initComponets();
 
@@ -163,7 +163,7 @@ void Engine::run()
 		{
 			delay = 0;
 		}
-
+	
 		SDL_Delay(delay);
 	}
 }

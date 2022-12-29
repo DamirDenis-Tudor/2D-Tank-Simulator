@@ -127,7 +127,7 @@ bool MapSpaceManager::bodyContainsObstacles(Node* body)
 	return false;
 }
 
-Vector2T<int> MapSpaceManager::getSpawnPosition()
+Vector2T<int> MapSpaceManager::getTankSpawnPosition()
 {
 	actualizeTemporaryObstacles(true);
 
@@ -139,6 +139,17 @@ Vector2T<int> MapSpaceManager::getSpawnPosition()
 	} while (bodyContainsObstacles(getNode(position)));
 
 	actualizeTemporaryObstacles(false);
+
+	return position * AssetsStorage::_tileDim;
+}
+
+Vector2T<int> MapSpaceManager::getObjectSpawnPosition()
+{
+	Vector2T<int> position;
+	do {
+		position._x = rand() % (AssetsStorage::_layerWidth - 6) + 3;
+		position._y = rand() % (AssetsStorage::_layerHeight - 6) + 3;
+	} while (nodeContainsTemporaryObstacles(getNode(position)));
 
 	return position * AssetsStorage::_tileDim;
 }

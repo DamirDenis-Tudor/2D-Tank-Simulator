@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbilityComponent.cpp" />
     <ClCompile Include="AiBehavior.cpp" />
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AnimationsHandler.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="MapDestructibleObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbilityComponent.h" />
     <ClInclude Include="AiBehavior.h" />
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AnimationsHandler.h" />

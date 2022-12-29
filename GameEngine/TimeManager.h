@@ -36,6 +36,11 @@ public:
 		_startTime = 0;
 	}
 
+	int getRemainingTime()
+	{
+		return static_cast<int>(_reachTime - _startTime);
+	}
+
 	static float getDeltaTime()
 	{
 		return _deltaTime;

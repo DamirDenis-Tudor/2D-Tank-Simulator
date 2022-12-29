@@ -9,8 +9,8 @@ public:
 	~InfoManager();
 
 	static void addInfo(string , TextComponent*);
-	static void setPosition(string, Vector2T<int>);
-	static void setText(string , string );
+	static void setCameraPosition(string, Vector2T<int>);
+	static void setText(string id, string text);
 	static void setColor(string id, SDL_Color);
 	static void disable(string);
 	static void enable(string);

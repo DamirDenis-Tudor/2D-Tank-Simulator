@@ -6,7 +6,7 @@ Mine::Mine(string type, Vector2T<int> position , int tankId) : _type(type), _pos
 	_idle = new AnimationComponent(type , position , 0 , 0.05 );
 	_idle->setContinuos(); // setam animatia continua
 
-	TimeManager::createTimer(to_string(_id), 30);
+	TimeManager::createTimer(to_string(_id), 15);
 	TimeManager::_timers[to_string(_id)]->resetTimer();
 }
 
@@ -40,12 +40,11 @@ void Mine::update()
 		/*
 			-> se verifica daca posesorul minei si tank-ul 
 			   sunt in aceeasi echipa si daca posesorul exista
-			Node: daca nu se verifica a doua condtitie posesorul daca moare
-				  si mai are mine active, nu va mai fi vizibil in mediator
-				  astfel minele vor fi activare de tank-urile prietene
-		*/
 
-		//mai este un caz aici -> cand nu sunt in echipa si tank-ul nu exista
+			Node: daca nu se verifica a doua condtitie, posesorul daca moare
+				  si mai are mine active, nu va mai fi vizibil in mediator
+				  astfel minele vor fi activate de tank-urile prietene
+		*/
 		if ((!Mediator::checkTeammates(_tankId, Mediator::getId(i)) ))
 		{
 			if (CollisionManager::pointCollisionRectagle(floatPos, rectPos, rectDim))
@@ -68,5 +67,28 @@ void Mine::update()
 	if (!TimeManager::_timers[to_string(_id)]->isTimerWorking() || hasCollision)
 	{
 		disable();
+	
+		/*
+			-> se verifica coliziunile cu obiectele de pe mapa in momentul in care mina explodeaza
+		*/
+		Vector2T<int> mapPos = _position / AssetsStorage::_tileDim ;
+
+		int startCellX = std::max(0, mapPos._x - 2);
+		int endCellX = std::min(AssetsStorage::_layerWidth - 2, mapPos._x + 2);
+
+		int startCellY = std::max(0, mapPos._y - 2);
+		int endCellY = std::min(AssetsStorage::_layerHeight - 2, mapPos._y + 2);
+
+		for (int i = startCellX; i <= endCellX; i++)
+		{
+			for (int j = startCellY; j <= endCellY; j++)
+			{
+				int id = Mediator::getId({ i , j });
+				if (id != -1)
+				{
+					Mediator::modifyHealth(id, -100);
+				}
+			}
+		}
 	}
 }

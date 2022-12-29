@@ -11,7 +11,7 @@ TextComponent::TextComponent(SDL_Color color, int heigth ,string text , Vector2T
 	_dest->h = heigth;
 	_dest->w = _dest->h * text.length() - 20;
 
-	setPosition(position);
+	setCameraPosition(position);
 	setText(text);
 
 }

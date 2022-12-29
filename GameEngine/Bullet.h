@@ -25,7 +25,7 @@ class Bullet : public Component
 private:
 	SpriteComponent* _sprite = nullptr;
 	Vector2T<int> _position;
-	Vector2T<float> _velocity = { 1, 1 };
+	Vector2T<float> _velocity = { 1.2, 1.2 };
 	float _angle = 0;
 	int _damage = 0;
 	int _tankId = 0; //specificator pentru posesor

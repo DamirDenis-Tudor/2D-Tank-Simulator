@@ -28,33 +28,45 @@ void InfoManager::addInfo(string id, TextComponent* info)
 	_aditionalInfo.insert(pair<string, TextComponent*>(id, info));
 }
 
-void InfoManager::setPosition(string id, Vector2T<int> position)
+void InfoManager::setCameraPosition(string id, Vector2T<int> position)
 {
-	_aditionalInfo[id]->setPosition(position);
+	if (_aditionalInfo.count(id) == 0) return;
+
+	_aditionalInfo[id]->setCameraPosition(position);
 }
 
 void InfoManager::setText(string id, string text)
 {
+	if (_aditionalInfo.count(id) == 0) return;
+
 	_aditionalInfo[id]->setText(text);
 }
 
 void InfoManager::setColor(string id , SDL_Color color)
 {
+	if (_aditionalInfo.count(id) == 0) return;
+
 	_aditionalInfo[id]->_textColor = color;
 }
 
 Vector2T<int> InfoManager::getDimension(string id)
 {
+	if (_aditionalInfo.count(id) == 0) return {-1,-1};
+
 	return _aditionalInfo[id]->getDimension();
 }
 
 void InfoManager::disable(string id)
 {
+	if (_aditionalInfo.count(id) == 0) return;
+	
 	_aditionalInfo[id]->disable();
 }
 
 void InfoManager::enable(string id)
 {
+	if (_aditionalInfo.count(id) == 0) return;
+
 	_aditionalInfo[id]->enable();
 }
 

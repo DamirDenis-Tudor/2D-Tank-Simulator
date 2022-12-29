@@ -79,12 +79,12 @@ public:
 	static map<string, vector<SpriteComponent*>> _effects;
 	static SDL_Point* _rotCenter; // centrul de rotaie al tank-ului
 
-	static map<string, SpriteComponent*> _items;
+	static map<string, SpriteComponent*> _abilities;
 
-	static void loadMovebles(const char* sourceFile);
-	static void loadItems(const char* sourceFile); 
+	static void loadSprites(const char* sourceFile);
+	static void loadAbilities(const char* sourceFile); 
 	static void loadTiles(const char* sourceFile);
-	static void loadMiniMapTiles(const char* sourceFile);
+	static void loadMiniTiles(const char* sourceFile);
 
 	static void convertInToMatrix(const char* buffer, vector<vector<int>>& mapLayer);
 	static void loadEffects(const char* sourceFile);

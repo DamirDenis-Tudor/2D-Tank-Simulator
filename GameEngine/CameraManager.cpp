@@ -1,4 +1,5 @@
 #include "CameraManager.h"
+#include "InfoManager.h"
 
 int CameraManager::_tileDim = 0;
 int CameraManager::_mapTilesWidth = 0;
@@ -14,6 +15,9 @@ Vector2T<int> CameraManager::tileOffset = { 0,0 };
 
 void CameraManager::init(int& tileDim, int& mapTilesWidth, int& mapTilesHeight)
 {
+	InfoManager::addInfo("cam", new TextComponent(WHITE, 52, "SPECTATOR MODE"));
+	InfoManager::setCameraPosition("cam", { RendererManager::_width / 2 - InfoManager::getDimension("cam")._x/2 , 64 });
+	InfoManager::disable("cam");
 	_tileDim = tileDim;
 	_mapTilesHeight = mapTilesHeight;
 	_mapTilesWidth = mapTilesWidth;
@@ -30,6 +34,7 @@ void CameraManager::cameraSync()
 	Vector2T<int> position;
 	if (_spectatorMode)
 	{
+		InfoManager::enable("cam");
 		Vector2T<float> potentialPos = { (float)_position._x, (float)_position._y };
 		Vector2T<float> direction(0, 0);
 
@@ -73,6 +78,7 @@ void CameraManager::cameraSync()
 	}
 	else
 	{
+		InfoManager::disable("cam");
 		position = Mediator::getPosition(_gameObjectId);
 	}
 

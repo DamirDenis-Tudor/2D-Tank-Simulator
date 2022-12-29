@@ -4,6 +4,7 @@
 #include<map>
 #include<vector>
 #include<list>
+#include"TimeManager.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ class Mediator
 
 	static int _mainPlayerId;
 
-	static map<int, Vector2T<int>> _walls; // contine toate pozitiile wall-urilor
+	static map<int, Vector2T<int>> _objects; // contine toate pozitiile wall-urilor
 	static map<int, Vector2T<int> > _tanks; // contine pozitiile tuturor tank-urilor
 	static map<string, Vector2T<int> > _teamsSpawnZones; // contine pentru fiecare echipa zona in care
 														 // se vor spawna tank-urile
@@ -28,6 +29,7 @@ class Mediator
 	static map<string, int> _teamsPoints;  //contine toate puntele cumulate de echipa
 	static map<int, int> _objectsHealth;	   // contine id-ul unui obiect si damage-ul sau primit
 	static map<int, int> _killers; // fiecare obiect va avea un killer
+	static map<int, string> _activeAbilities; // fiecare tankPoate avea O abilitate activa
 
 public:
 
@@ -131,5 +133,22 @@ public:
 
 	static void addPoint(string color);
 	static int getTeamScore(string);
+
+
+	/*
+	* 
+	*/
+	static bool hasActiveAbility(int id);
+	/*
+	 
+	*/
+	static void addAbility(int id, string ability);
+
+	/*
+		
+	*/
+	static string getAbility(int id);
+
+	static void eraseAbility(int id);
 };
 

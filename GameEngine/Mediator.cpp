@@ -1,13 +1,14 @@
 #include "Mediator.h"
 
 int Mediator::_mainPlayerId = 0;
-map<int, Vector2T<int>> Mediator::_walls = {};
+map<int, Vector2T<int>> Mediator::_objects = {};
 map<string, Vector2T<int>> Mediator::_teamsSpawnZones = {};
 map<string, list<int>> Mediator::_teams = {};
 map<string, int> Mediator::_teamsPoints = {};
 map<int, Vector2T<int> > Mediator::_tanks = {};
 map<int, int> Mediator::_killers = {};
 map< int, int > Mediator::_objectsHealth = {};
+map<int, string> Mediator::_activeAbilities = {};
 int Mediator::_currentEnemyId = 0;
 map<int, int> Mediator::_pastEnemyId = {};
 
@@ -21,7 +22,7 @@ int Mediator::getId(Vector2T<int> position)
 		}
 	}
 
-	for (auto& i : _walls)
+	for (auto& i : _objects)
 	{
 		if (i.second == position)
 		{
@@ -53,9 +54,9 @@ Vector2T<int> Mediator::getPosition(int id)
 	{
 		return _tanks[id];
 	}
-	if (_walls.count(id) != 0)
+	if (_objects.count(id) != 0)
 	{
-		return _walls[id];
+		return _objects[id];
 	}
 	return { -11111 , -11111 };
 }
@@ -100,20 +101,20 @@ vector<Vector2T<int>> Mediator::recieveTanksPositions(int tankId)
 
 void Mediator::registerMapObject(int id, Vector2T<int> pos, int health)
 {
-	if (_walls.count(id) == 0)
+	if (_objects.count(id) == 0)
 	{
-		_walls.insert(pair<int, Vector2T<int>>(id, pos));
+		_objects.insert(pair<int, Vector2T<int>>(id, pos));
 		_objectsHealth.insert(pair<int, int>(id, health)); // inregistram un tank cu damage-ul initial primit 0
 	}
 	else
 	{
-		_walls[id] = pos;
+		_objects[id] = pos;
 	}
 }
 
 void Mediator::removeMapObject(int id)
 {
-	_walls.erase(id);
+	_objects.erase(id);
 	_objectsHealth.erase(id);
 }
 
@@ -142,7 +143,7 @@ bool Mediator::stillExist(int id)
 	{
 		return true;
 	}
-	if (_walls.count(id))
+	if (_objects.count(id))
 	{
 		return true;
 	}
@@ -283,4 +284,28 @@ void Mediator::addPoint(string team)
 int Mediator::getTeamScore(string team)
 {
 	return _teamsPoints[team];
+}
+
+
+bool Mediator::hasActiveAbility(int id)
+{
+	return _activeAbilities.count(id) != 0 ? true : false;
+}
+
+void Mediator::addAbility(int id, string ability)
+{
+	_activeAbilities.insert(pair<int, string>(id, ability));
+}
+
+string Mediator::getAbility(int id)
+{
+	return _activeAbilities[id];;
+}
+
+void Mediator::eraseAbility(int id)
+{
+	if (_activeAbilities.count(id) == 0) return;
+
+	TimeManager::_timers[to_string(id) + _activeAbilities[id]]->resetTimer();
+	_activeAbilities.erase(id);
 }

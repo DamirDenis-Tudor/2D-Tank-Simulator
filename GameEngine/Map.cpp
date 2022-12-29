@@ -27,8 +27,8 @@ void Map::init()
 			if (AssetsStorage::_mapLayers["ground"][i][j] != 0)
 			{
 				SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["ground"][i][j] - 1]);
-				tile->setPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
-				tile->_isTile = true;
+				tile->setCameraPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
+				tile->_isMapObject = true;
 				_drawbles.push_back(tile);
 
 				tile = nullptr;
@@ -43,8 +43,8 @@ void Map::init()
 			if (AssetsStorage::_mapLayers["decor"][i][j] != 0)
 			{
 				SpriteComponent* tile = new SpriteComponent(AssetsStorage::_tiles[AssetsStorage::_mapLayers["decor"][i][j] - 1]);
-				tile->setPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
-				tile->_isTile = true;
+				tile->setCameraPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
+				tile->_isMapObject = true;
 				_drawbles.push_back(tile);
 				tile = nullptr;
 			}
@@ -61,8 +61,8 @@ void Map::init()
 				if (AssetsStorage::_mapLayers["colidble"][i][j] == AssetsStorage::_barrelId)
 				{
 					Barrel* barrel = new Barrel(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1], Vector2T<int>(j, i));
-					barrel->setPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
-					barrel->_isTile = true;
+					barrel->setCameraPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
+					barrel->_isMapObject = true;
 					if (i == 0 || j == 0 || i == AssetsStorage::_layerHeight - 1 || j == AssetsStorage::_layerWidth - 1)
 					{
 						barrel->_isBorder = true;
@@ -73,8 +73,8 @@ void Map::init()
 				else
 				{
 					MapDestructibleObject* object = new MapDestructibleObject(AssetsStorage::_tiles[AssetsStorage::_mapLayers["colidble"][i][j] - 1], Vector2T<int>(j, i));
-					object->setPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
-					object->_isTile = true;
+					object->setCameraPosition(Vector2T<int>(j * AssetsStorage::_tileDim, i * AssetsStorage::_tileDim));
+					object->_isMapObject = true;
 					if (i == 0 || j == 0 || i == AssetsStorage::_layerHeight - 1 || j == AssetsStorage::_layerWidth - 1)
 					{
 						object->_isBorder = true;
@@ -142,7 +142,7 @@ void MiniMap::init()
 			if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 			{
 				SpriteComponent* object = new SpriteComponent(AssetsStorage::_miniMapTiles["blackGray"]);
-				object->setPosition(Vector2T<int>(j * _scaleDim, i * _scaleDim));
+				object->setCameraPosition(Vector2T<int>(j * _scaleDim, i * _scaleDim));
 				object->setScaleDimension(_scaleDim, _scaleDim);
 				object->setOpacity(128);
 				object->_isMiniTile = true;
@@ -154,7 +154,7 @@ void MiniMap::init()
 	for (auto& i : Mediator::getTanksPositions())
 	{
 		SpriteComponent* sprite = new SpriteComponent(AssetsStorage::_miniMapTiles[Mediator::getColorTeam(i.first)]);
-		sprite->setPosition(i.second / AssetsStorage::_tileDim * _scaleDim);
+		sprite->setCameraPosition(i.second / AssetsStorage::_tileDim * _scaleDim);
 		sprite->setScaleDimension(2 * _scaleDim, 2 * _scaleDim);
 		sprite->_id = i.first;
 		sprite->_isMiniTile = true;
@@ -192,13 +192,15 @@ void MiniMap::update()
 		if (Mediator::stillExist(_movebles[i]->_id))
 		{
 			_movebles[i]->enable();
-			_movebles[i]->setPosition(Mediator::getPosition(_movebles[i]->_id) / AssetsStorage::_tileDim * _scaleDim);
+			_movebles[i]->setCameraPosition(Mediator::getPosition(_movebles[i]->_id) / AssetsStorage::_tileDim * _scaleDim);
 		}
 		else
 		{
 			_movebles[i]->disable();
 		}
 	}
+
+	//spawnam abilitary si le inregistram in SpecialObjectsManager 
 
 }
 

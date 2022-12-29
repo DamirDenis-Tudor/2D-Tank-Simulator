@@ -91,9 +91,14 @@ public:
 	static void resetNodes();
 	
 	/*
-		->returneaza o poztie de spawn
+		->returneaza o pozitie de spawn pentru un tank
 	*/
-	static Vector2T<int> getSpawnPosition();
+	static Vector2T<int> getTankSpawnPosition();
+	
+	/*
+		->returneaza  poztie de spawn pentru un obiect
+	*/
+	static Vector2T<int> getObjectSpawnPosition();
 
 	/*
 		-> primeste o pozitie relativa la mapa si returneaza nodul aferent
@@ -152,6 +157,9 @@ public:
 	*/
 	static Moves aStar(Vector2T<int> start, Vector2T<int> end , bool healing = false);
 
+	/*
+		-> are rolul de a spawna abilitay pe mapa
+	*/
 
 	static void clear();
 };

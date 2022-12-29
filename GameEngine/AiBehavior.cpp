@@ -13,7 +13,7 @@ void AiBehavior::follow()
 	{
 		if (!_isHealing)
 		{
-			_healingPosition = MapSpaceManager::getSpawnPosition();
+			_healingPosition = MapSpaceManager::getTankSpawnPosition();
 
 		}
 		_isHealing = true;

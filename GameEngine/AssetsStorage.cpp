@@ -11,10 +11,10 @@ SDL_Point* AssetsStorage::_rotCenter = new SDL_Point;
 map<string, vector<vector<int>> > AssetsStorage::_mapLayers = {};
 map<string, vector<SpriteComponent*>> AssetsStorage::_effects = {};
 
-map<string, SpriteComponent*> AssetsStorage::_items = {};
+map<string, SpriteComponent*> AssetsStorage::_abilities = {};
 
 
-void AssetsStorage::loadMovebles(const char* sourceFile)
+void AssetsStorage::loadSprites(const char* sourceFile)
 {
 	XMLDocument document;
 
@@ -35,6 +35,7 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 	_rotCenter->x = (atoi(root->FindAttribute("rotationX")->Value()));
 	_rotCenter->y = (atoi(root->FindAttribute("rotationY")->Value()));
 	
+	SpriteComponent::center = *_rotCenter;
 
 	//incarcare sprite-uri bodies
 
@@ -89,26 +90,13 @@ void AssetsStorage::loadMovebles(const char* sourceFile)
 
 	tracks = nullptr;
 
-	//incarcare sprite-uri pentru infortiile legate de tank
-	tinyxml2::XMLElement* tankInfo = root->FirstChildElement("tankInfo");
-	int width = atoi(tankInfo->FindAttribute("width")->Value());
-	int heigth = atoi(tankInfo->FindAttribute("heigth")->Value());
-	for (auto i = tankInfo->FirstChildElement(); i != tankInfo->LastChildElement(); i = i->NextSiblingElement())
-	{
-		SpriteComponent* sprite = new SpriteComponent(i->FindAttribute("source")->Value(), width, heigth);
-
-		_movebles.insert(pair < set <string >, SpriteComponent* >
-			({ "info" ,i->FindAttribute("type")->Value() }, sprite));
-
-	}
-
 	root = nullptr;
 
 	document.Clear();
 
 }
 
-void AssetsStorage::loadItems(const char* sourceFile)
+void AssetsStorage::loadAbilities(const char* sourceFile)
 {
 	XMLDocument document;
 
@@ -122,8 +110,13 @@ void AssetsStorage::loadItems(const char* sourceFile)
 
 	tinyxml2::XMLElement* root = document.RootElement(); // items
 
-	for (auto item = root->FirstChildElement("item"); item != root->LastChildElement("item"); item = item->NextSiblingElement("item"))
+	for (auto ability = root->FirstChildElement("ability"); ability != root->LastChildElement("ability"); ability = ability->NextSiblingElement("ability"))
 	{
+		int dim = atoi(root->FindAttribute("dim")->Value());
+		_abilities.insert(pair<string, SpriteComponent*>
+			(ability->FindAttribute("name")->Value(),
+				new SpriteComponent(ability->FirstChildElement()->FindAttribute("source")->Value(),
+					dim , dim)));
 	}
 }
 
@@ -266,7 +259,7 @@ void AssetsStorage::convertInToMatrix(const char* buffer, std::vector<std::vecto
 
 }
 
-void AssetsStorage::loadMiniMapTiles(const char* sourceFile)
+void AssetsStorage::loadMiniTiles(const char* sourceFile)
 {
 	XMLDocument document;
 
@@ -370,6 +363,13 @@ void AssetsStorage::clear()
 		_effects[x.first].clear();
 	}
 	_effects.clear();
+
+	for (auto& i : _abilities)
+	{
+		delete i.second;
+		i.second = nullptr;
+	}
+	_abilities.clear();
 
 	delete _rotCenter;
 }

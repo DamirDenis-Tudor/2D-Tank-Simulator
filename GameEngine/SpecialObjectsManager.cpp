@@ -2,11 +2,11 @@
 
 vector<Bullet*> SpecialObjectsManager::_bullets = {};
 vector<Mine*> SpecialObjectsManager::_mines = {};
+vector<AbilityComponent*> SpecialObjectsManager::_abilities = {};
 
 
 SpecialObjectsManager::SpecialObjectsManager() 
 {
-
 }
 
 SpecialObjectsManager::~SpecialObjectsManager()
@@ -17,6 +17,11 @@ SpecialObjectsManager::~SpecialObjectsManager()
 		i = nullptr;
 	}
 	for (auto& i : _mines)
+	{
+		delete i;
+		i = nullptr;
+	}
+	for (auto& i : _abilities)
 	{
 		delete i;
 		i = nullptr;
@@ -47,8 +52,42 @@ int SpecialObjectsManager::getMinesNumber(int id)
 	return counter;
 }
 
+void SpecialObjectsManager::spawnAbilities()
+{
+	if (_abilities.size() >= MaxAbilitiesNumber ) return;
+
+	AbilityComponent* ability = nullptr;
+	switch (rand() % 200)
+	{
+	case ShootingBoost:
+		ability = new AbilityComponent("ShootingBoost" , AssetsStorage::_abilities["ShootingBoost"]);
+		ability->_position = MapSpaceManager::getObjectSpawnPosition();
+		ability->setCameraPosition(ability->_position - CameraManager::offset);
+		_abilities.push_back(ability);
+		break;
+
+	case HealthBoost:
+		ability = new AbilityComponent("HealthBoost" , AssetsStorage::_abilities["HealthBoost"]);
+		ability->_position = MapSpaceManager::getObjectSpawnPosition();
+		ability->setCameraPosition(ability->_position - CameraManager::offset);
+		_abilities.push_back(ability);
+		break;
+
+	case SpeedBoost:
+		ability = new AbilityComponent("SpeedBoost" , AssetsStorage::_abilities["SpeedBoost"]);
+		ability->_position = MapSpaceManager::getObjectSpawnPosition();
+		ability->setCameraPosition(ability->_position - CameraManager::offset);
+		_abilities.push_back(ability);
+		break;
+	default:
+		break;
+	}
+}
+
 void SpecialObjectsManager::update()
 {
+	spawnAbilities();
+
 	for (int i = 0; i < _bullets.size(); i++)
 	{
 		_bullets[i]->update();
@@ -76,16 +115,34 @@ void SpecialObjectsManager::update()
 			i--;
 		}
 	}
+
+	for (int i = 0; i < _abilities.size(); i++)
+	{
+		_abilities[i]->update();
+
+		if (!_abilities[i]->isActive())
+		{
+			//aici poti adauga o animatie
+			delete _abilities[i];
+			_abilities[i] = nullptr;
+			_abilities.erase(_abilities.begin() + i);
+			i--;
+		}
+	}
 }
 
 void SpecialObjectsManager::draw()
 {
-	for (auto &i : _bullets )
+	for (auto & bullet : _bullets )
 	{
-		i->draw();
+		bullet->draw();
 	}
-	for (auto& i : _mines)
+	for (auto& mine : _mines)
 	{
-		i->draw();
+		mine->draw();
+	}
+	for (auto& ability : _abilities)
+	{
+		ability->draw();
 	}
 }

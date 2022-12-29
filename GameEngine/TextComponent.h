@@ -8,8 +8,9 @@
 
 #define GREEN {0, 255 ,0 , 0 }
 #define BLUE {0, 0 , 128 }
-#define BROWN {102, 51 , 0}
+#define BROWN {101,56,24}
 #define YELLOW {255 , 255 , 0}
+#define GOLD {255,223,0}
 
 //gaseste o solutie pt pozitii
 #define TextScoreBoardHeight 42
@@ -26,7 +27,7 @@ private:
 	static TTF_Font* _font;
 public:
 
-	TextComponent(SDL_Color color, int heigth ,string text = " ", Vector2T<int> position = {0,0});
+	TextComponent(SDL_Color color, int heigth, string text = " ", Vector2T<int> position = { 0,0 });
 	~TextComponent();
 
 	static void setFont(const char*);
