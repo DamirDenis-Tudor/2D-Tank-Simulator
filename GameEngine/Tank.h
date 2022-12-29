@@ -40,7 +40,7 @@ class Tank : public Component
 	//timers
 	string _launchBulletTimerId;
 	string _launchMineTimerId;
-	string _restoreLifeTimerId;
+	string _healingTimerId;
 	string _respawnTimerId;
 
 public:
@@ -65,8 +65,8 @@ public:
 	void launchMine();
 	void launchBullet();
 
-
 	void checkForHits();
+	void checkForHealing();
 
 	void temporaryDisable();
 	void respawn();

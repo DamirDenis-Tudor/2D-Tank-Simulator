@@ -29,7 +29,7 @@ void Bullet::update()
 	Vector2T<int> mapColliderObject;
 	if (CollisionManager::pointCollisionMap(potentialPos , mapColliderObject))
 	{
-		Mediator::registerHit(Mediator::getId(mapColliderObject) , _damage);
+		Mediator::modifyHealth(Mediator::getId(mapColliderObject) , -_damage);
 		//aici stabilim cine a distrus obiectul
 		if (Mediator::getHealth(Mediator::getId(mapColliderObject)) <= 0)
 		{
@@ -50,7 +50,7 @@ void Bullet::update()
 			hasCollision = true;
 			if (!Mediator::checkTeammates(_tankId, Mediator::getId(i)))
 			{
-				Mediator::registerHit(Mediator::getId(i), _damage);
+				Mediator::modifyHealth(Mediator::getId(i), -_damage);
 				if (Mediator::getHealth(Mediator::getId(i)) <= 0)
 				{
 					Mediator::addPoint(Mediator::getColorTeam(_tankId));

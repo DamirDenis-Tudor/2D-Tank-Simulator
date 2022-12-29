@@ -2,7 +2,6 @@
 
 Barrel::Barrel(SpriteComponent* sprite, Vector2T<int> position) : MapDestructibleObject(sprite, position)
 {
-	//_health = 10;
 }
 
 void Barrel::update()
@@ -35,7 +34,7 @@ void Barrel::update()
 				int id = Mediator::getId({ i , j});
 				if (id != -1)
 				{
-					Mediator::registerHit(id, 100);
+					Mediator::modifyHealth(id, -100);
 				}
 			}
 		}
@@ -47,7 +46,7 @@ void Barrel::update()
 			Vector2T<int> rectPos = _mapPos * AssetsStorage::_tileDim - 3 * AssetsStorage::_tileDim;
 			if (CollisionManager::pointCollisionRectagle(floatPos , rectPos , 6 * AssetsStorage::_tileDim))
 			{
-				Mediator::registerHit(Mediator::getId(i.second), 100);
+				Mediator::modifyHealth(Mediator::getId(i.second), -50);
 
 				if (!Mediator::hasKiller(_id)) return;
 

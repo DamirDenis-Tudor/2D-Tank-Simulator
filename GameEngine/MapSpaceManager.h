@@ -150,7 +150,7 @@ public:
 	/*
 		-> returneaza primul set de mutari(shooting sau movement) 
 	*/
-	static Moves aStar(Vector2T<int> start, Vector2T<int> end);
+	static Moves aStar(Vector2T<int> start, Vector2T<int> end , bool healing = false);
 
 
 	static void clear();

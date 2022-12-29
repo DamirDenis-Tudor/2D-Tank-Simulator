@@ -17,35 +17,35 @@ void TankBuilder::setTankParameters()
 
 	if (_type == "Type1")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.5 , 0.5 } ,1 ,10 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.5 , 0.5 } ,0.7 ,10 };
 	}
 	if (_type == "Type2")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.4 ,3 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.4 ,5 };
 	}
 	if (_type == "Type3")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.35 , 0.35 } ,0.3 ,2 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.35 , 0.35 } ,0.3 ,5 };
 	}
 	if (_type == "Type4")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.55 , 0.55 } ,0.2 ,1 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.55 , 0.55 } ,0.1 , 7};
 	}
 	if (_type == "Type5")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.7 ,4 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.7 ,3 };
 	}
 	if (_type == "Type6")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.4 ,2 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.4 ,4 };
 	}
 	if (_type == "Type7")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.5 ,2 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.45 , 0.45 } ,0.5 ,5 };
 	}
 	if (_type == "Type8")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.7 , 0.7 } ,0.2 ,1 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.4 , 0.4 } ,0.2 ,3 };
 	}
 
 	Vector2T<int> scorePosition;

@@ -20,11 +20,16 @@ Tank::Tank(map<string, SpriteComponent*>& parts, Behavior*& behavior, TankAttrib
 
 	//creez timere individuale pe baza unui id-ului
 	_respawnTimerId = to_string(_id) + "respawn";
-	_launchBulletTimerId = to_string(_id) + "bullet";
-	_launchMineTimerId = to_string(_id) + "mine";
 	TimeManager::createTimer(_respawnTimerId, rand()%5 + 10);
+	
+	_launchBulletTimerId = to_string(_id) + "bullet";
 	TimeManager::createTimer(_launchBulletTimerId, _attributes->_shotingTime);
+	
+	_launchMineTimerId = to_string(_id) + "mine";
 	TimeManager::createTimer(_launchMineTimerId, 0.2);
+
+	_healingTimerId = to_string(_id) + "healing";
+	TimeManager::createTimer(_healingTimerId, 0.2);
 
 }
 
@@ -117,6 +122,23 @@ void Tank::checkForHits()
 
 }
 
+void Tank::checkForHealing()
+{
+	InfoManager::setColor(to_string(_id), RED);
+	
+	Vector2T<float> floatPos = { (float)_position._x + AssetsStorage::_tileDim , (float)_position._y + AssetsStorage::_tileDim };
+	if (!CollisionManager::pointCollisionRectagle(floatPos,
+		(Mediator::getSpawnZone(_teamColor) - 1) * AssetsStorage::_tileDim,
+		(SpawnRange + 1)*AssetsStorage::_tileDim)) return;
+	
+	InfoManager::setColor(to_string(_id), GREEN);
+	
+	if (TimeManager::_timers[_healingTimerId]->isTimerWorking()) return;
+
+	Mediator::modifyHealth(_id, 4);
+	TimeManager::_timers[_healingTimerId]->resetTimer();
+}
+
 void Tank::temporaryDisable()
 {
 	for (auto& part : _parts)
@@ -170,6 +192,7 @@ void Tank::update()
 		_behavior->rotationC(_position, _parts["cannon"]->_angle);
 		_behavior->rotationB(_parts["body"]->_angle, _parts["atracks"]->_angle);
 		checkForHits();
+		checkForHealing();
 		launchBullet();
 		launchMine();
 	}

@@ -51,7 +51,7 @@ void Mine::update()
 			if (CollisionManager::pointCollisionRectagle(floatPos, rectPos, rectDim))
 			{
 				hasCollision = true;
-				Mediator::registerHit(Mediator::getId(i), 25);
+				Mediator::modifyHealth(Mediator::getId(i), -25);
 				if (Mediator::getHealth(Mediator::getId(i)) <= 0)
 				{
 					Mediator::addPoint(Mediator::getColorTeam(_tankId));

@@ -13,6 +13,8 @@
 class AiBehavior : public Behavior
 {
 	bool _isActivated = true;
+	bool _isHealing = false;
+	Vector2T<int> _healingPosition;
 
 public:
 

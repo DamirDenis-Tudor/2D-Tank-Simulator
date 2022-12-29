@@ -6,27 +6,55 @@ void AiBehavior::patrol()
 
 void AiBehavior::follow()
 {
+	_moves = { false, false , false , false, false };
+	MapSpaceManager::setUser(_id, _colorTeam);
 
-	if (Mediator::checkForEnemies(_id , _colorTeam))
+	if (Mediator::getHealth(_id) < 20)
+	{
+		if (!_isHealing)
+		{
+			_healingPosition = MapSpaceManager::getSpawnPosition();
+
+		}
+		_isHealing = true;
+	}
+	else if(Mediator::getHealth(_id) > 80 )
+	{
+		_isHealing = false;
+	}
+
+	if (Mediator::checkForEnemies(_id, _colorTeam) || _isHealing)
 	{
 		Vector2T<int> target;
+		if (!_isHealing)
+		{
+			//are un nivel de viata suficient entru a ataca
+			target = Mediator::getNearestEnemyPosition(_id, _colorTeam);
+		}
+		else
+		{
+			target = _healingPosition;
+		}
 
-		target = Mediator::getNearestEnemyPosition(_id, _colorTeam);
-	
-		MapSpaceManager::setUser(_id, _colorTeam);
-		_moves = MapSpaceManager::aStar(Mediator::getPosition(_id), target);
-		
+		// cauta prima mutare
+		_moves = MapSpaceManager::aStar(Mediator::getPosition(_id), target , _isHealing);
+
 		//pentru depunearea minelor
 		if (rand() % 500 == 0)
 		{
 			_moves._releaseMine = true;
 		}
 
-		_target = target + AssetsStorage::_tileDim; // consideram mijlocul
-	}
-	else
-	{
-		_moves = { false, false , false , false, false };
+		if (Mediator::checkForEnemies(_id, _colorTeam))
+		{
+			// are un _target daca exista cel putin un inamic
+			_target = Mediator::getNearestEnemyPosition(_id, _colorTeam) + AssetsStorage::_tileDim;
+		}
+		else
+		{
+			// daca nu este clar ca nu va trage
+			_moves._shoting = false;
+		}
 	}
 }
 

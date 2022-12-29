@@ -38,6 +38,11 @@ void InfoManager::setText(string id, string text)
 	_aditionalInfo[id]->setText(text);
 }
 
+void InfoManager::setColor(string id , SDL_Color color)
+{
+	_aditionalInfo[id]->_textColor = color;
+}
+
 Vector2T<int> InfoManager::getDimension(string id)
 {
 	return _aditionalInfo[id]->getDimension();

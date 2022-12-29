@@ -133,8 +133,8 @@ Vector2T<int> MapSpaceManager::getSpawnPosition()
 
 	Vector2T<int> position;
 	do {
-		position._x = rand() % (SpawnRange - 1) + Mediator::getSpawnZone(_currentColor)._x;
-		position._y = rand() % (SpawnRange - 1) + Mediator::getSpawnZone(_currentColor)._y;
+		position._x = rand() % (SpawnRange-2 ) + Mediator::getSpawnZone(_currentColor)._x;
+		position._y = rand() % (SpawnRange-2 ) + Mediator::getSpawnZone(_currentColor)._y;
 
 	} while (bodyContainsObstacles(getNode(position)));
 
@@ -304,7 +304,7 @@ bool MapSpaceManager::isInRangeOfTarget(Node* start)
 	return false;
 }
 
-Moves MapSpaceManager::aStar(Vector2T<int> startPos, Vector2T<int> endPos)
+Moves MapSpaceManager::aStar(Vector2T<int> startPos, Vector2T<int> endPos , bool healing)
 {
 	//initial conversion
 	Node* start = nodeConversion(startPos);
@@ -317,7 +317,10 @@ Moves MapSpaceManager::aStar(Vector2T<int> startPos, Vector2T<int> endPos)
 	actualizeTemporaryObstacles(true);
 
 	//cautam cea mai optimala poztie in range-ul tank-ului inamic
-	checkNearestNodeInRange(start, end);
+	if (!healing)
+	{
+		checkNearestNodeInRange(start, end);
+	}
 
 	//setarea nodului curent
 	Node* currentNode = start;

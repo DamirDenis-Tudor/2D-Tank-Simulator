@@ -8,14 +8,15 @@ void Engine::initComponets()
 
 	Director::setBuilder(new PlayerTank);
 
-	Director::setBuilder(new AiTank);
 
 	Director::setBuilderAttributes("Type1", "Yellow");
 	_components.push_back(Director::getResult());
 
+	Director::setBuilder(new AiTank);
 	
 	Director::setBuilderAttributes("Type4", "Yellow");
 	_components.push_back(Director::getResult());
+	
 	Director::setBuilderAttributes("Type2", "Yellow");
 	_components.push_back(Director::getResult());
 
@@ -39,7 +40,7 @@ void Engine::initComponets()
 	_components.push_back(Director::getResult());
 	Director::setBuilderAttributes("Type1", "Brown");
 	_components.push_back(Director::getResult());
-	Director::setBuilderAttributes("Type4", "Brown");
+	Director::setBuilderAttributes("Type6", "Brown");
 	_components.push_back(Director::getResult());
 
 	_components.emplace_back(new AnimationsHandler);
@@ -70,7 +71,7 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 	InputManager::initInput();
 	RendererManager::setRenderer(name, width, height, fullscreen);
 
-	AssetsStorage::loadTiles("levels/football.tmx");
+	AssetsStorage::loadTiles("levels/desert.tmx");
 	AssetsStorage::loadMiniMapTiles("assets/maps/miniMapTiles.tmx");
 	AssetsStorage::loadMovebles("assets/sTanks/tank.tmx");
 	AssetsStorage::loadItems("assets/items/items.tmx");

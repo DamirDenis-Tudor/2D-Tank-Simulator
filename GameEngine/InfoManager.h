@@ -11,6 +11,7 @@ public:
 	static void addInfo(string , TextComponent*);
 	static void setPosition(string, Vector2T<int>);
 	static void setText(string , string );
+	static void setColor(string id, SDL_Color);
 	static void disable(string);
 	static void enable(string);
 	static Vector2T<int> getDimension(string);

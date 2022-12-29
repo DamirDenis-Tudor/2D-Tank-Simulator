@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define SpawnRange 20
+#define SpawnRange	8
 
 /*Destriere clasa
 	 -> clasa ce are ca scop managementul interactiunilor dintre obiecte;
@@ -26,7 +26,7 @@ class Mediator
 														 // se vor spawna tank-urile
 	static map<string, list<int> > _teams; // contine maparea tank-urilor pe echipe
 	static map<string, int> _teamsPoints;  //contine toate puntele cumulate de echipa
-	static map<int, int> _incomingHits;	   // contine id-ul unui obiect si damage-ul sau primit
+	static map<int, int> _objectsHealth;	   // contine id-ul unui obiect si damage-ul sau primit
 	static map<int, int> _killers; // fiecare obiect va avea un killer
 
 public:
@@ -105,7 +105,7 @@ public:
 	/*
 		-> inregistreaza un damage unui tank
 	*/
-	static void registerHit(int tankHitted, int damage);
+	static void modifyHealth(int id, int value);
 	/*
 		-> returneaza damage-ul primit 
 	*/

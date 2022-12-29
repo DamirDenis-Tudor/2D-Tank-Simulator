@@ -7,7 +7,7 @@ map<string, list<int>> Mediator::_teams = {};
 map<string, int> Mediator::_teamsPoints = {};
 map<int, Vector2T<int> > Mediator::_tanks = {};
 map<int, int> Mediator::_killers = {};
-map< int, int > Mediator::_incomingHits = {};
+map< int, int > Mediator::_objectsHealth = {};
 int Mediator::_currentEnemyId = 0;
 map<int, int> Mediator::_pastEnemyId = {};
 
@@ -73,9 +73,9 @@ bool Mediator::isMainPlayer(int id)
 void Mediator::init(int maxWidth, int maxHeight)
 {
 	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Yellow", { 1 , 1 }));
-	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Green", { 1 , maxHeight - SpawnRange - 1 }));
-	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Blue", { maxWidth - SpawnRange - 1 , 1 }));
-	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Brown", { maxWidth - SpawnRange - 1 , maxHeight - SpawnRange - 1 }));
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Green", { 1 , maxHeight - 1 - SpawnRange }));
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Blue", { maxWidth - 1 - SpawnRange  , 1 }));
+	_teamsSpawnZones.insert(pair<string, Vector2T<int>>("Brown", { maxWidth - 1 - SpawnRange  , maxHeight - 1 - SpawnRange }));
 
 	_teamsPoints.insert(pair<string, int>("Yellow", 0));
 	_teamsPoints.insert(pair<string, int>("Green", 0));
@@ -103,7 +103,7 @@ void Mediator::registerMapObject(int id, Vector2T<int> pos, int health)
 	if (_walls.count(id) == 0)
 	{
 		_walls.insert(pair<int, Vector2T<int>>(id, pos));
-		_incomingHits.insert(pair<int, int>(id, health)); // inregistram un tank cu damage-ul initial primit 0
+		_objectsHealth.insert(pair<int, int>(id, health)); // inregistram un tank cu damage-ul initial primit 0
 	}
 	else
 	{
@@ -114,7 +114,7 @@ void Mediator::registerMapObject(int id, Vector2T<int> pos, int health)
 void Mediator::removeMapObject(int id)
 {
 	_walls.erase(id);
-	_incomingHits.erase(id);
+	_objectsHealth.erase(id);
 }
 
 void Mediator::registerTank(Vector2T<int> pos, int id, int health)
@@ -122,7 +122,7 @@ void Mediator::registerTank(Vector2T<int> pos, int id, int health)
 	if (_tanks.count(id) == 0)
 	{
 		_tanks.insert(pair<int, Vector2T<int>>(id, pos));
-		_incomingHits.insert(pair<int, int>(id, health)); // inregistram un tank cu damage-ul initial primit 0
+		_objectsHealth.insert(pair<int, int>(id, health)); // inregistram un tank cu damage-ul initial primit 0
 	}
 	else
 	{
@@ -132,7 +132,7 @@ void Mediator::registerTank(Vector2T<int> pos, int id, int health)
 void Mediator::removeTank(int tankId, string team)
 {
 	_tanks.erase(tankId);
-	_incomingHits.erase(tankId);
+	_objectsHealth.erase(tankId);
 	_pastEnemyId.erase(tankId);
 }
 
@@ -230,9 +230,17 @@ bool Mediator::checkForEnemies(int id, string colorTeam)
 	return false;
 }
 
-void Mediator::registerHit(int tankHitted, int damage)
+void Mediator::modifyHealth(int id, int value)
 {
-	_incomingHits[tankHitted] -= damage;
+	_objectsHealth[id] += value;
+	if (_objectsHealth[id] < 0)
+	{
+		_objectsHealth[id] = 0;
+	}
+	if (_objectsHealth[id] > 100)
+	{
+		_objectsHealth[id] = 100;
+	}
 }
 
 void Mediator::registerKiller(int id, int killer)
@@ -257,11 +265,11 @@ bool Mediator::hasKiller(int id)
 
 int Mediator::getHealth(int id)
 {
-	int health = _incomingHits[id];
+	int health = _objectsHealth[id];
 
 	if (health <= 0)
 	{
-		_incomingHits.erase(id);
+		_objectsHealth.erase(id);
 	}
 
 	return health;
