@@ -17,7 +17,7 @@ void TankBuilder::setTankParameters()
 
 	if (_type == "Type1")
 	{
-		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.32 , 0.32 } ,0.5 ,10 };
+		_attributes = new TankAttributes{ "Shot2","Impact2", { 0.42 , 0.42 } ,0.5 ,10 };
 	}
 	if (_type == "Type2")
 	{

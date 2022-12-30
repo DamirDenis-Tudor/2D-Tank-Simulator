@@ -5,7 +5,7 @@ SDL_Point SpriteComponent::center = {};
 
 void SpriteComponent::draw()
 {
-	if (isActive())
+	if (_isObjectDrawble && isActive() )
 	{
 		SDL_RenderCopyEx(RendererManager::_renderer, _texture, _src, _dest, _angle, &center, SDL_FLIP_NONE);
 
@@ -20,10 +20,8 @@ void SpriteComponent::update()
 {
 	if (_isFollowed) return;
 
-	if (isActive())
-	{
-		isOnCamera();
-	}
+	isOnCamera();
+
 	if (_isMapObject)
 	{
 		_dest->x = _dest->x - CameraManager::tileOffset._x;
@@ -35,12 +33,19 @@ void SpriteComponent::isOnCamera()
 {
 	if (_dest->x + _dest->w  < -64 ||
 		_dest->y + _dest->h  < -64 ||
-		_dest->x  > RendererManager::_width + 64 ||
-		_dest->y  > RendererManager::_heigth + 64)
+		_dest->x  > RendererManager::_width + 64  ||
+		_dest->y  > RendererManager::_heigth + 64 )
 	{
-		disable();
+		_isObjectDrawble = false;
+
 	}
-	enable();
+	else
+	{
+		if (!(_isSpawnble && !isActive()))
+		{
+			_isObjectDrawble = true;
+		}
+	}
 }
 
 SpriteComponent::SpriteComponent(const char* source, int sourceDim, int destDim)

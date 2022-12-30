@@ -38,6 +38,8 @@ protected:
 	bool _isFollowed = false;
 	bool _isMapObject = false;
 	bool _isMiniTile = false;
+	bool _isSpawnble = false;
+	bool _isObjectDrawble = true;
 public:
 	SpriteComponent() {}
 

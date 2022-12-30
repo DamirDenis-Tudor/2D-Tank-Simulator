@@ -42,7 +42,7 @@ void InfoManager::setText(string id, string text)
 	_aditionalInfo[id]->setText(text);
 }
 
-void InfoManager::setColor(string id , SDL_Color color)
+void InfoManager::setColor(string id, SDL_Color color)
 {
 	if (_aditionalInfo.count(id) == 0) return;
 
@@ -51,7 +51,7 @@ void InfoManager::setColor(string id , SDL_Color color)
 
 Vector2T<int> InfoManager::getDimension(string id)
 {
-	if (_aditionalInfo.count(id) == 0) return {-1,-1};
+	if (_aditionalInfo.count(id) == 0) return { -1,-1 };
 
 	return _aditionalInfo[id]->getDimension();
 }
@@ -59,7 +59,7 @@ Vector2T<int> InfoManager::getDimension(string id)
 void InfoManager::disable(string id)
 {
 	if (_aditionalInfo.count(id) == 0) return;
-	
+
 	_aditionalInfo[id]->disable();
 }
 
@@ -74,10 +74,7 @@ void InfoManager::update()
 {
 	for (auto& info : _aditionalInfo)
 	{
-		if (isActive())
-		{
-			info.second->update();
-		}
+		info.second->update();
 	}
 }
 
@@ -85,9 +82,6 @@ void InfoManager::draw()
 {
 	for (auto& info : _aditionalInfo)
 	{
-		if (isActive())
-		{
-			info.second->draw();
-		}
+		info.second->draw();
 	}
 }

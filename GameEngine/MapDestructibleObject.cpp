@@ -2,6 +2,7 @@
 
 MapDestructibleObject::MapDestructibleObject(SpriteComponent* sprite, Vector2T<int> position) :SpriteComponent(sprite), _mapPos(position)
 {
+	_isSpawnble = true;
 	Mediator::registerMapObject(_id, _mapPos , Health);
 	TimeManager::createTimer(to_string(_id), rand() % 10 + 20);
 	TimeManager::_timers[to_string(_id)]->resetTimer();

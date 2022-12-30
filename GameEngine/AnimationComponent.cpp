@@ -43,6 +43,7 @@ void AnimationComponent::update()
 {
 	if (!TimeManager::_timers[to_string(_id)]->isTimerWorking())
 	{
+		_anim[_frameID]->update();
 		_frameID++;
 		if (_frameID == _frames)
 		{
