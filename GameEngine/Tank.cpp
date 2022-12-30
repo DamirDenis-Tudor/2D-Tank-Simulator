@@ -6,7 +6,7 @@ Tank::Tank(map<string, SpriteComponent*>& parts, Behavior*& behavior, TankAttrib
 
 	_normalVelocity = _attributes->_velocity;
 
-	InfoManager::addInfo( to_string(_id), new TextComponent(RED, 24));
+	InfoManager::addInfo(to_string(_id), new TextComponent(RED, 24));
 
 	InfoManager::addInfo(to_string(_id) + "ability", new TextComponent(GOLD, 20));
 	InfoManager::disable(to_string(_id) + "ability");
@@ -21,11 +21,11 @@ Tank::Tank(map<string, SpriteComponent*>& parts, Behavior*& behavior, TankAttrib
 
 	//creez timere individuale pe baza unui id-ului
 	_respawnTimerId = to_string(_id) + "respawn";
-	TimeManager::createTimer(_respawnTimerId, rand()%5 + 10);
-	
+	TimeManager::createTimer(_respawnTimerId, rand() % 5 + 10);
+
 	_launchBulletTimerId = to_string(_id) + "bullet";
 	TimeManager::createTimer(_launchBulletTimerId, _attributes->_shotingTime);
-	
+
 	_launchMineTimerId = to_string(_id) + "mine";
 	TimeManager::createTimer(_launchMineTimerId, 0.2);
 
@@ -80,7 +80,7 @@ void Tank::syncMovement()
 
 
 	InfoManager::setCameraPosition(to_string(_id),
-		Vector2T<int>{ _position._x, _position._y - AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id))._y/2 } +
+		Vector2T<int>{ _position._x, _position._y - AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id))._y / 2 } +
 		AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id)) / 2 - CameraManager::offset);
 }
 
@@ -114,10 +114,10 @@ void Tank::launchMine()
 	// glotul va fi lansat daca este data "comanda"
 	if (!TimeManager::_timers[_launchMineTimerId]->isTimerWorking() &&
 		_behavior->isLaunchingMine() &&
-		SpecialObjectsManager::getMinesNumber(_id) < MaxMinesNumber )
+		SpecialObjectsManager::getMinesNumber(_id) < MaxMinesNumber)
 	{
 		TimeManager::_timers[_launchMineTimerId]->resetTimer();
-		SpecialObjectsManager::addMine(new Mine(_teamColor + "mine" , _position + AssetsStorage::_tileDim, _id));
+		SpecialObjectsManager::addMine(new Mine(_teamColor + "mine", _position + AssetsStorage::_tileDim, _id));
 	}
 }
 
@@ -140,14 +140,14 @@ void Tank::checkOfHits()
 void Tank::checkOfHealing()
 {
 	InfoManager::setColor(to_string(_id), RED);
-	
+
 	Vector2T<float> floatPos = { (float)_position._x + AssetsStorage::_tileDim , (float)_position._y + AssetsStorage::_tileDim };
 	if (!CollisionManager::pointCollisionRectagle(floatPos,
 		(Mediator::getSpawnZone(_teamColor) - 1) * AssetsStorage::_tileDim,
-		(SpawnRange + 1)*AssetsStorage::_tileDim)) return;
-	
+		(SpawnRange + 1) * AssetsStorage::_tileDim)) return;
+
 	InfoManager::setColor(to_string(_id), GREEN);
-	
+
 	if (TimeManager::_timers[_healingTimerId]->isTimerWorking()) return;
 
 	Mediator::modifyHealth(_id, 4);
@@ -167,14 +167,15 @@ void Tank::checkOfAbilities()
 		InfoManager::setText(to_string(_id) + "ability", "MACHINE GUN");
 		InfoManager::enable(to_string(_id) + "abilityTimer");
 	}
-	if (abilityType == "HealthBoost")
+	else if (abilityType == "HealthBoost")
 	{
+
 		_invincible = true;
 		InfoManager::enable(to_string(_id) + "ability");
 		InfoManager::setText(to_string(_id) + "ability", "INVINCIBLE");
 		InfoManager::enable(to_string(_id) + "abilityTimer");
 	}
-	if (abilityType == "SpeedBoost")
+	else if (abilityType == "SpeedBoost")
 	{
 		_attributes->_velocity = _normalVelocity * 1.5;
 		InfoManager::enable(to_string(_id) + "ability");
@@ -182,28 +183,29 @@ void Tank::checkOfAbilities()
 		InfoManager::enable(to_string(_id) + "abilityTimer");
 	}
 
+
 	InfoManager::setText(to_string(_id) + "abilityTimer", "Ability expires in  " + to_string(TimeManager::_timers[to_string(_id) + abilityType]->getRemainingTime()));
-	
+
 	InfoManager::setCameraPosition(to_string(_id) + "abilityTimer"
 		, { RendererManager::_width / 2 - InfoManager::getDimension(to_string(_id) + "abilityTimer")._x / 2
 			, 64 });
 
 	InfoManager::setCameraPosition(to_string(_id) + "ability",
-		Vector2T<int>{ _position._x + AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id) + "ability")._x/2, _position._y - AssetsStorage::_tileDim + 20 } - CameraManager::offset);
+		Vector2T<int>{ _position._x + AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id) + "ability")._x / 2, _position._y - AssetsStorage::_tileDim + 20 } - CameraManager::offset);
 
 	if (TimeManager::_timers[to_string(_id) + abilityType]->isTimerWorking()) return;
-	
+
 	Mediator::eraseAbility(_id);
 
 	if (abilityType == "ShootingBoost")
 	{
 		TimeManager::_timers[_launchBulletTimerId]->setLimit(_attributes->_shotingTime);
 	}
-	if (abilityType == "HealthBoost")
+	else if (abilityType == "HealthBoost")
 	{
 		_invincible = false;
 	}
-	if (abilityType == "SpeedBoost")
+	else if (abilityType == "SpeedBoost")
 	{
 		_attributes->_velocity = _normalVelocity;
 	}
@@ -219,9 +221,9 @@ void Tank::temporaryDisable()
 		part.second->disable();
 	}
 	disable();
-	
+
 	TimeManager::_timers[_respawnTimerId]->resetTimer();
-	
+
 	Mediator::removeTank(_id, _teamColor);
 	Mediator::eraseAbility(_id);
 
@@ -291,7 +293,7 @@ void Tank::update()
 		InfoManager::enable(to_string(_id) + "respawn");
 		InfoManager::setText(to_string(_id) + "respawn", "Respawn in " + to_string(TimeManager::_timers[_respawnTimerId]->getRemainingTime()));
 		InfoManager::setCameraPosition(to_string(_id) + "respawn"
-			, { RendererManager::_width / 2 - InfoManager::getDimension(to_string(_id) + "respawn")._x/2 
+			, { RendererManager::_width / 2 - InfoManager::getDimension(to_string(_id) + "respawn")._x / 2
 			, RendererManager::_heigth / 2 });
 		if (!TimeManager::_timers[_respawnTimerId]->isTimerWorking())
 		{

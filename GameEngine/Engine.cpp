@@ -11,20 +11,18 @@ void Engine::initComponets()
 
 	Director::setBuilderAttributes("Type1", "Yellow");
 	_components.push_back(Director::getResult());
+	
 	Director::setBuilder(new AiTank);
 	
 	Director::setBuilderAttributes("Type4", "Yellow");
 	_components.push_back(Director::getResult());
-	
 	Director::setBuilderAttributes("Type2", "Yellow");
 	_components.push_back(Director::getResult());
 
 	Director::setBuilderAttributes("Type3", "Blue");
 	_components.push_back(Director::getResult());
-
 	Director::setBuilderAttributes("Type5", "Blue");
 	_components.push_back(Director::getResult());
-
 	Director::setBuilderAttributes("Type7", "Blue");
 	_components.push_back(Director::getResult());
 
@@ -165,5 +163,7 @@ void Engine::run()
 		}
 	
 		SDL_Delay(delay);
+
+		std::cout << delay/1000 << " -> " << 1 / _framerate << "\n";
 	}
 }

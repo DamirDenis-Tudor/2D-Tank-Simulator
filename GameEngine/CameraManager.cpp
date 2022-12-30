@@ -56,7 +56,7 @@ void CameraManager::cameraSync()
 		}
 
 		// calculam pozitia viitoare
-		potentialPos += Vector2T<float>{1, 1} * direction * TimeManager::getDeltaTime();
+		potentialPos += Vector2T<float>{0.7, 0.7} * direction * TimeManager::getDeltaTime();
 		position = { (int)potentialPos._x ,(int)potentialPos._y };
 		if (position._x < RendererManager::_width / 2 - _tileDim)
 		{

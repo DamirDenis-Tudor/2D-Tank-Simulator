@@ -22,7 +22,7 @@ TextComponent::~TextComponent()
 
 void TextComponent::setFont(const char* source)
 {
-	_font = TTF_OpenFont(source, 256);
+	_font = TTF_OpenFont(source, 32);
 }
 
 Vector2T<int> TextComponent::getDimension()

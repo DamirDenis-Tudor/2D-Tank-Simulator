@@ -93,7 +93,10 @@ void Map::draw()
 {
 	for (auto& i : _drawbles)
 	{
-		i->draw();
+		if (isActive())
+		{
+			i->draw();
+		}
 	}
 }
 

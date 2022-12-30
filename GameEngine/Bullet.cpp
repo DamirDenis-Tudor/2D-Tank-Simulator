@@ -17,6 +17,8 @@ Bullet::~Bullet()
 
 void Bullet::update()
 {
+	_sprite->update();
+
 	Vector2T<float> potentialPos;
 	potentialPos._x = _position._x;
 	potentialPos._y = _position._y;
