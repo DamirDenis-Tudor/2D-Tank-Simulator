@@ -1,15 +1,17 @@
-﻿  Tank.cpp
-D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Bullet.h(28,42): warning C4305: 'argument': truncation from 'double' to 'T'
+﻿  Engine.cpp
+D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Bullet.h(24,42): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Bullet.h(28,42): warning C4305: 'argument': truncation from 'double' to 'const T'
+D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Bullet.h(24,42): warning C4305: 'argument': truncation from 'double' to 'const T'
           with
           [
               T=float
           ]
-D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Tank.cpp(24,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Tank.cpp(30,50): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Tank.cpp(33,47): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\MapDestructibleObject.h(7,1): warning C4005: 'Health': macro redefinition
+D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Tank.h(16): message : see previous definition of 'Health'
+D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Engine.cpp(170,25): warning C4244: '=': conversion from 'Uint64' to 'double', possible loss of data
+D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Engine.cpp(205,25): warning C4244: '=': conversion from 'Uint64' to 'double', possible loss of data
+D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\GameEngine\Engine.cpp(214,13): warning C4244: 'argument': conversion from 'double' to 'Uint32', possible loss of data
   GameEngine.vcxproj -> D:\Facultate an II\Semestrul 1\Programre Orientata Obiect\tank++\x64\Debug\Game.exe

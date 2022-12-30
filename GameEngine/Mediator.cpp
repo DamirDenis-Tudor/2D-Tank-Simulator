@@ -180,6 +180,9 @@ bool Mediator::checkTeammates(int tankId1, int tankId2)
 Vector2T<int> Mediator::getNearestEnemyPosition(int  id, string colorTeam)
 {
 	float distance = INFINITY;
+	/*
+	* se cauta cel mai apropia inamic in range
+	*/
 	for (auto& i : _teams)
 	{
 		if (i.first != colorTeam)
@@ -198,7 +201,12 @@ Vector2T<int> Mediator::getNearestEnemyPosition(int  id, string colorTeam)
 		}
 	}
 
-
+	/*
+	* daca am gasit un inamic se verifica 
+	* cu cel precendent(daca mai exista) =>
+	* in functie de o toleranta se stabileste 
+	* inamicul de urmarit
+	*/
 	if (!_pastEnemyId.empty() && _currentEnemyId != _pastEnemyId[id])
 	{
 		if (abs(Distances::eucliadianDistance(getPosition(_currentEnemyId), getPosition(id))

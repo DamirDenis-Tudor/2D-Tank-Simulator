@@ -27,273 +27,194 @@
  <tileset firstgid="12" name="Well" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Well.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="13" name="A" tilewidth="64" tileheight="64" tilecount="4" columns="2">
-  <image source="../assets/maps/0.5_scaledTiles/A.png" width="128" height="128"/>
- </tileset>
- <tileset firstgid="17" name="Artifact" tilewidth="64" tileheight="64" tilecount="4" columns="2">
-  <image source="../assets/maps/0.5_scaledTiles/Artifact.png" width="128" height="128"/>
- </tileset>
- <tileset firstgid="21" name="B" tilewidth="64" tileheight="64" tilecount="4" columns="2">
-  <image source="../assets/maps/0.5_scaledTiles/B.png" width="128" height="128"/>
- </tileset>
- <tileset firstgid="25" name="Ball" tilewidth="64" tileheight="64" tilecount="4" columns="2">
-  <image source="../assets/maps/0.5_scaledTiles/Ball.png" width="128" height="128"/>
- </tileset>
- <tileset firstgid="29" name="Block_A_01" tilewidth="64" tileheight="64" tilecount="2" columns="2">
-  <image source="../assets/maps/0.5_scaledTiles/Block_A_01.png" width="128" height="64"/>
- </tileset>
- <tileset firstgid="31" name="Block_A_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Block_A_02.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="32" name="Block_B_01" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+ <tileset firstgid="13" name="Block_B_01" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Block_B_01.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="34" name="Block_B_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="15" name="Block_B_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Block_B_02.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="35" name="Block_C_01" tilewidth="64" tileheight="64" tilecount="2" columns="2">
-  <image source="../assets/maps/0.5_scaledTiles/Block_C_01.png" width="128" height="64"/>
- </tileset>
- <tileset firstgid="37" name="Block_C_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Block_C_02.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="38" name="Building_A_01" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="../assets/maps/0.5_scaledTiles/Building_A_01.png" width="256" height="256"/>
- </tileset>
- <tileset firstgid="54" name="Building_A_02" tilewidth="64" tileheight="64" tilecount="8" columns="4">
-  <image source="../assets/maps/0.5_scaledTiles/Building_A_02.png" width="256" height="128"/>
- </tileset>
- <tileset firstgid="62" name="Building_B_01" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="../assets/maps/0.5_scaledTiles/Building_B_01.png" width="256" height="256"/>
- </tileset>
- <tileset firstgid="78" name="Building_B_02" tilewidth="64" tileheight="64" tilecount="8" columns="4">
-  <image source="../assets/maps/0.5_scaledTiles/Building_B_02.png" width="256" height="128"/>
- </tileset>
- <tileset firstgid="86" name="Cactus_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Cactus_01.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="87" name="Cactus_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Cactus_02.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="88" name="Cactus_03" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Cactus_03.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="89" name="Decor_Tile_A_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_A_01.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="90" name="Decor_Tile_A_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_A_02.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="91" name="Decor_Tile_A_03" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_A_03.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="92" name="Decor_Tile_A_04" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_A_04.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="93" name="Decor_Tile_A_05" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_A_05.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="94" name="Decor_Tile_A_06" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_A_06.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="95" name="Decor_Tile_A_07" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_A_07.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="96" name="Decor_Tile_A_08" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_A_08.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="97" name="Decor_Tile_A_09" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_A_09.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="98" name="Decor_Tile_B_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="16" name="Decor_Tile_B_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_B_01.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="99" name="Decor_Tile_B_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="17" name="Decor_Tile_B_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_B_02.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="100" name="Decor_Tile_B_03" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="18" name="Decor_Tile_B_03" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_B_03.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="101" name="Decor_Tile_B_04" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="19" name="Decor_Tile_B_04" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_B_04.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="102" name="Decor_Tile_B_05" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="20" name="Decor_Tile_B_05" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_B_05.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="103" name="Decor_Tile_B_06" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="21" name="Decor_Tile_B_06" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_B_06.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="104" name="Decor_Tile_B_07" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="22" name="Decor_Tile_B_07" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_B_07.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="105" name="Decor_Tile_B_08" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="23" name="Decor_Tile_B_08" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_B_08.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="106" name="Decor_Tile_B_09" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="24" name="Decor_Tile_B_09" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Decor_Tile_B_09.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="107" name="Dot_A" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="25" name="Dot_A" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Dot_A.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="111" name="Dot_B" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="29" name="Dot_B" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Dot_B.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="115" name="Dot_C" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="33" name="Dot_C" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Dot_C.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="119" name="Flag_A" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="37" name="Flag_A" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Flag_A.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="123" name="Flag_B" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="41" name="Flag_B" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Flag_B.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="127" name="Football_Goals_A" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+ <tileset firstgid="45" name="Football_Goals_A" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Football_Goals_A.png" width="128" height="72"/>
  </tileset>
- <tileset firstgid="129" name="Football_Goals_B" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+ <tileset firstgid="47" name="Football_Goals_B" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Football_Goals_B.png" width="128" height="72"/>
  </tileset>
- <tileset firstgid="131" name="Ground_Tile_01_A" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="49" name="Ground_Tile_01_A" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Ground_Tile_01_A.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="135" name="Ground_Tile_01_B" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="53" name="Ground_Tile_01_B" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Ground_Tile_01_B.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="139" name="Ground_Tile_01_C" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="57" name="Ground_Tile_01_C" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Ground_Tile_01_C.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="143" name="Ground_Tile_02_A" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="61" name="Ground_Tile_02_A" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Ground_Tile_02_A.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="147" name="Ground_Tile_02_B" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="65" name="Ground_Tile_02_B" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Ground_Tile_02_B.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="151" name="Ground_Tile_02_C" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="69" name="Ground_Tile_02_C" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Ground_Tile_02_C.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="155" name="Log" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="73" name="Log" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Log.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="159" name="Markup_01" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="77" name="Markup_01" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Markup_01.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="163" name="Markup_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="81" name="Markup_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Markup_02.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="164" name="Markup_03" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="82" name="Markup_03" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Markup_03.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="165" name="Platform" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="83" name="Platform" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Platform.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="169" name="Rock_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="87" name="Rock_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Rock_01.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="170" name="Rock_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="88" name="Rock_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Rock_02.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="171" name="Rock_03" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="89" name="Rock_03" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Rock_03.png" width="65" height="64"/>
  </tileset>
- <tileset firstgid="172" name="Stump" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="90" name="Stump" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Stump.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="173" name="Tire_01" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="91" name="Tire_01" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Tire_01.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="177" name="Tire_02" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="95" name="Tire_02" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Tire_02.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="181" name="Tire_03" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="99" name="Tire_03" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Tire_03.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="185" name="Tree_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="103" name="Tree_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Tree_01.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="186" name="Tree_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="104" name="Tree_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Tree_02.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="187" name="Decor_Pipe_B" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+ <tileset firstgid="105" name="Decor_Pipe_B" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../assets/maps/aditionalItems/objects/Decor_Pipe_B.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="189" name="Decor_Pipe_C_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="107" name="Decor_Pipe_C_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/aditionalItems/objects/Decor_Pipe_C_01.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="190" name="Border_A" tilewidth="64" tileheight="64" tilecount="2" columns="1">
-  <image source="../assets/maps/aditionalItems/objects/Border_A.png" width="64" height="128"/>
- </tileset>
- <tileset firstgid="192" name="Border_B" tilewidth="64" tileheight="64" tilecount="4" columns="2">
-  <image source="../assets/maps/aditionalItems/objects/Border_B.png" width="128" height="128"/>
- </tileset>
- <tileset firstgid="196" name="Border_C" tilewidth="64" tileheight="64" tilecount="4" columns="2">
-  <image source="../assets/maps/aditionalItems/objects/Border_C.png" width="128" height="128"/>
- </tileset>
- <tileset firstgid="200" name="Container_A" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+ <tileset firstgid="108" name="Container_A" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../assets/maps/aditionalItems/objects/Container_A.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="202" name="Container_B" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+ <tileset firstgid="110" name="Container_B" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../assets/maps/aditionalItems/objects/Container_B.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="204" name="Container_C" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+ <tileset firstgid="112" name="Container_C" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../assets/maps/aditionalItems/objects/Container_C.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="206" name="Container_D" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+ <tileset firstgid="114" name="Container_D" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../assets/maps/aditionalItems/objects/Container_D.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="208" name="Czech_Hdgehog_A" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="116" name="Czech_Hdgehog_A" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/aditionalItems/objects/Czech_Hdgehog_A.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="209" name="Czech_Hdgehog_B" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="117" name="Czech_Hdgehog_B" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/aditionalItems/objects/Czech_Hdgehog_B.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="210" name="Decor_Pipe_A_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="118" name="Decor_Pipe_A_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/aditionalItems/objects/Decor_Pipe_A_01.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="211" name="Border_AR" tilewidth="64" tileheight="64" tilecount="2" columns="2">
-  <image source="../assets/maps/aditionalItems/objects/Border_AR.png" width="128" height="64"/>
- </tileset>
- <tileset firstgid="213" name="Container_AR" tilewidth="64" tileheight="64" tilecount="2" columns="1">
+ <tileset firstgid="119" name="Container_AR" tilewidth="64" tileheight="64" tilecount="2" columns="1">
   <image source="../assets/maps/aditionalItems/objects/Container_AR.png" width="64" height="128"/>
  </tileset>
- <tileset firstgid="215" name="Container_BR" tilewidth="64" tileheight="64" tilecount="2" columns="1">
+ <tileset firstgid="121" name="Container_BR" tilewidth="64" tileheight="64" tilecount="2" columns="1">
   <image source="../assets/maps/aditionalItems/objects/Container_BR.png" width="64" height="128"/>
  </tileset>
- <tileset firstgid="217" name="Container_CR" tilewidth="64" tileheight="64" tilecount="2" columns="1">
+ <tileset firstgid="123" name="Container_CR" tilewidth="64" tileheight="64" tilecount="2" columns="1">
   <image source="../assets/maps/aditionalItems/objects/Container_CR.png" width="64" height="128"/>
  </tileset>
- <tileset firstgid="219" name="Container_DR" tilewidth="64" tileheight="64" tilecount="2" columns="1">
+ <tileset firstgid="125" name="Container_DR" tilewidth="64" tileheight="64" tilecount="2" columns="1">
   <image source="../assets/maps/aditionalItems/objects/Container_DR.png" width="64" height="128"/>
  </tileset>
- <tileset firstgid="221" name="Puddle_01" tilewidth="64" tileheight="64" tilecount="4" columns="2">
-  <image source="../assets/maps/aditionalItems/objects/Puddle_01.png" width="128" height="128"/>
+ <tileset firstgid="127" name="Puddle_01" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+  <image source="../assets/maps/aditionalItems/objects/Puddle_01.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="225" name="Barell_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="129" name="Barell_02" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Barell_02.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="226" name="Barell_03" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Barell_03.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="227" name="Barell_01" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="../assets/maps/0.5_scaledTiles/Barell_01.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="228" name="Markup_02R" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="130" name="Markup_02R" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Markup_02R.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="229" name="Markup_03R3" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="131" name="Markup_03R3" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Markup_03R3.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="230" name="Markup_03R1" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="132" name="Markup_03R1" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Markup_03R1.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="231" name="Markup_03R2" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="133" name="Markup_03R2" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="../assets/maps/0.5_scaledTiles/Markup_03R2.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="232" name="Log" tilewidth="64" tileheight="64" tilecount="4" columns="2">
+ <tileset firstgid="134" name="Log" tilewidth="64" tileheight="64" tilecount="4" columns="2">
   <image source="../assets/maps/0.5_scaledTiles/Log.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="138" name="Border_A" tilewidth="64" tileheight="64" tilecount="2" columns="1">
+  <image source="../assets/maps/aditionalItems/objects/Border_A.png" width="64" height="128"/>
  </tileset>
  <layer id="1" name="ground" width="60" height="40">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,16,17,17,17,17,17,17,18,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,17,17,17,17,17,17,18,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,22,23,23,23,23,23,23,24,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,22,23,23,23,23,23,23,24,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -316,48 +237,40 @@
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,16,17,17,17,17,17,17,18,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,17,17,17,17,17,17,18,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,19,20,20,20,20,20,20,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,19,20,20,20,20,20,20,21,1,
+1,22,23,23,23,23,23,23,24,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,22,23,23,23,23,23,23,24,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 </data>
  </layer>
  <layer id="3" name="decor" width="60" height="40">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,231,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,164,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-230,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,229,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,230,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,231,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,82,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+132,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,131,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,132,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,133,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,159,160,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,161,162,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,77,78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,80,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -365,62 +278,62 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-164,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,231,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,164,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,231,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,230,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,230,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+82,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,82,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,133,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,132,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,132,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer id="2" name="colidble" width="60" height="40">
   <data encoding="csv">
-164,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,200,201,200,201,200,163,163,163,163,163,163,163,163,163,163,200,201,163,163,163,163,163,163,163,214,231,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,213,200,201,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,32,33,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,0,0,0,34,0,0,0,0,0,0,0,0,0,0,0,32,33,0,0,0,0,0,210,187,188,187,188,189,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,32,33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,225,0,0,0,225,0,0,0,200,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,210,187,188,187,188,189,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,213,200,201,0,228,
-228,0,0,32,33,0,0,0,0,0,200,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,200,201,200,201,200,0,0,0,225,0,0,0,0,0,0,200,201,0,0,0,0,0,0,0,214,0,0,0,228,
-228,0,0,0,0,0,0,0,213,200,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,34,225,0,0,0,0,0,0,0,0,0,0,0,213,200,201,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,213,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,200,201,200,201,200,0,0,0,0,0,0,0,0,0,0,200,201,0,0,0,0,0,0,0,214,0,0,34,0,0,0,0,0,210,187,188,187,188,189,225,0,0,0,0,0,0,0,0,32,33,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,225,0,0,0,0,0,0,213,200,201,0,0,0,0,0,0,0,0,0,0,0,34,225,225,0,0,0,0,0,0,0,0,0,0,0,0,0,32,33,0,0,0,0,0,0,0,0,0,0,32,33,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,0,0,0,0,34,32,33,34,0,0,0,0,0,0,0,0,0,225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,225,0,0,0,0,0,0,0,0,0,228,
-228,34,0,0,34,34,34,0,0,34,32,33,34,34,32,33,34,34,0,0,0,0,34,34,32,33,0,0,0,0,0,0,225,0,34,0,0,0,0,0,0,32,33,0,0,0,0,34,34,34,34,34,34,34,0,0,34,34,34,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,34,0,225,0,0,0,0,0,0,34,225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,34,0,0,0,0,0,0,0,0,34,225,0,0,0,0,0,0,0,0,225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,34,34,34,34,0,0,34,34,34,34,34,34,34,34,0,0,34,34,34,34,0,0,0,0,0,0,0,0,0,0,0,0,0,32,33,0,0,34,34,0,0,34,34,34,34,34,34,225,0,34,34,34,34,0,0,34,34,34,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,32,33,0,0,0,0,0,32,33,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,225,0,0,0,0,228,
-228,0,0,225,0,0,0,0,0,0,0,0,0,210,187,188,187,189,0,0,0,0,0,0,0,0,0,0,0,225,225,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,210,187,188,187,188,189,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,225,200,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,210,187,188,187,188,189,0,0,0,0,0,0,0,0,0,225,225,0,0,0,213,200,201,0,0,0,0,225,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,225,0,0,0,0,200,201,0,0,0,0,225,0,0,0,0,0,0,0,0,0,0,0,34,0,0,34,0,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,213,200,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,213,200,201,
-228,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,225,0,0,34,0,0,0,0,200,201,200,201,200,0,0,0,0,32,33,0,0,0,225,200,201,0,0,0,0,0,0,0,214,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,213,200,201,34,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,213,200,201,0,0,0,0,0,0,0,0,0,0,228,
-228,200,201,200,201,200,0,0,0,0,0,0,0,0,0,0,200,201,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,213,200,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,214,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-228,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,
-230,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,163,229
+82,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,108,109,108,109,108,81,81,81,81,81,81,81,81,81,81,108,109,81,81,81,81,81,81,81,120,133,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,108,109,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,120,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,13,14,0,0,0,0,0,0,0,0,0,0,0,0,116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,13,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,13,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,129,0,0,0,129,0,0,0,108,109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,118,105,106,105,106,107,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,13,14,0,0,0,0,0,108,109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,108,109,108,109,108,0,0,0,129,0,0,0,0,0,0,108,109,0,0,0,0,108,109,108,109,108,0,0,130,
+130,0,0,0,0,0,0,0,119,108,109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,15,129,0,0,0,0,0,0,0,0,0,0,0,119,108,109,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,108,109,108,109,108,0,0,0,0,0,0,0,0,0,0,108,109,0,0,0,0,0,0,0,116,0,0,15,0,0,0,0,0,118,105,106,105,106,107,129,0,0,0,0,0,0,0,0,13,14,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,129,0,0,0,0,0,0,119,108,109,0,0,0,0,0,0,0,0,0,0,0,15,129,129,0,0,0,0,0,0,0,0,0,0,0,0,0,116,116,0,0,0,0,0,0,0,0,0,0,116,116,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,120,0,0,0,0,0,0,0,0,0,0,0,0,0,15,13,14,15,0,0,0,0,0,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,129,0,0,0,0,0,0,0,0,0,130,
+130,15,0,0,15,15,15,0,0,15,13,14,15,15,13,14,15,15,0,0,0,0,15,15,13,14,0,0,0,0,0,0,129,0,15,0,0,0,0,0,0,13,14,0,0,0,0,116,116,116,116,15,15,15,0,0,15,15,15,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,15,0,129,0,0,0,0,0,0,15,129,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,15,0,0,0,0,0,0,0,0,15,129,0,0,0,0,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,15,15,15,15,0,0,15,15,15,116,116,116,116,15,0,0,15,15,15,15,0,0,0,0,0,0,0,0,0,0,0,0,0,13,14,0,0,15,15,0,0,116,116,116,15,15,15,129,0,0,0,15,15,0,0,15,15,15,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,0,0,116,116,0,0,0,0,0,13,14,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,129,0,0,0,0,130,
+130,0,0,129,0,0,0,0,0,0,0,0,0,118,105,106,105,107,0,0,0,0,0,0,0,0,0,0,0,129,129,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,118,105,106,105,106,107,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,129,108,109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,108,109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,118,105,106,105,106,107,0,0,0,0,0,0,0,0,0,129,129,0,0,0,119,108,109,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,129,0,0,0,0,108,109,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,116,0,0,15,0,0,0,0,0,0,0,0,120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,119,108,109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,108,109,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,116,0,0,0,0,108,109,108,109,108,0,0,0,0,13,14,0,0,0,129,108,109,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,0,0,119,108,109,116,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,108,109,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,108,109,0,0,0,0,0,0,0,120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,120,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,119,108,109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,120,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,0,0,0,0,0,0,0,0,0,15,0,0,15,0,0,0,0,0,0,116,0,0,0,0,0,0,0,0,116,0,0,0,0,0,0,0,0,0,0,0,130,
+130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,120,0,0,0,0,0,0,0,0,0,15,0,0,15,0,0,0,0,0,0,116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,
+132,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,131
 </data>
  </layer>
 </map>

@@ -8,7 +8,8 @@
 #include"MapSpaceManager.h"
 
 #define MaxAbilitiesNumber 10
-enum Abilities { ShootingBoost=0 , HealthBoost=99 , SpeedBoost = 199};
+
+enum Abilities { ShootingBoost=0 , HealthBoost=199 , SpeedBoost = 399};
 
 /*
 	Descrierea clasei : 
@@ -16,6 +17,7 @@ enum Abilities { ShootingBoost=0 , HealthBoost=99 , SpeedBoost = 199};
 		-> permite salvarea lor de oriunde
 		-> clasa poate fi instantiata pentru 
 		   a putea realiza actualizarea obiectelor
+		-> are rolul de a spawna abilitati pe mapa
 */
 class SpecialObjectsManager : public Component
 {

@@ -147,6 +147,7 @@
     <ClCompile Include="Barrel.cpp" />
     <ClCompile Include="Behavior.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -159,7 +160,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapSpaceManager.cpp" />
     <ClCompile Include="Mediator.cpp" />
-    <ClCompile Include="MenuBuilder.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="Builder.cpp" />
     <ClCompile Include="RendererManager.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="AssetsStorage.h" />
     <ClInclude Include="Barrel.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="ColisionManager.h" />
     <ClInclude Include="Component.h" />
@@ -193,7 +195,7 @@
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="MapSpaceManager.h" />
     <ClInclude Include="Mediator.h" />
-    <ClInclude Include="MenuBuilder.h" />
+    <ClInclude Include="MenuScene.h" />
     <ClInclude Include="Mine.h" />
     <ClInclude Include="RendererManager.h" />
     <ClInclude Include="SoundManager.h" />

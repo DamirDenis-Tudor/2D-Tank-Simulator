@@ -11,12 +11,8 @@ using namespace std;
 
 /*
 * Descrierea clasei:
-*
-	-> pentru coliziunea obiectului de tip bullet se
-	   considera punctul de mijloc al acestuia
-
-	*Nota : desenarea sprite-ul este relativa la camera insa
-			 pozitia fizica nu este (trebuie tinut cont de Camera offset)
+*	-> descreire comportamentul unui bullet
+*	-> acesta este un obiect special => inregistare in SpecialObjectManager
 */
 class Bullet : public Component
 {
@@ -25,11 +21,11 @@ class Bullet : public Component
 private:
 	SpriteComponent* _sprite = nullptr;
 	Vector2T<int> _position;
-	Vector2T<float> _velocity = { 1.2, 1.2 };
+	Vector2T<float> _velocity = { 1.2, 1.2 }; // viteza este defoult pentru toate gloantele
 	float _angle = 0;
 	int _damage = 0;
 	int _tankId = 0; //specificator pentru posesor
-	string _impactAnim;
+	string _impactAnim; // animatia de impact este specifica fiecarui bulet
 
 public:
 	Bullet(string type , string impactAnim , int damage,  Vector2T<int> position , float angle , int tankId); 

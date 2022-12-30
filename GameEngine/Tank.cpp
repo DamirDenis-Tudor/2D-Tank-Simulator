@@ -3,19 +3,38 @@
 Tank::Tank(map<string, SpriteComponent*>& parts, Behavior*& behavior, TankAttributes*& attributes, string type, string color)
 	:_parts(parts), _behavior(behavior), _attributes(attributes), _type(type), _teamColor(color)
 {
-
+	/*
+	* viteza poate fi modificata de abilitatea de SpeedBoost
+	*/
 	_normalVelocity = _attributes->_velocity;
 
+	/*
+	* informatie text depre viata
+	*/
 	InfoManager::addInfo(to_string(_id), new TextComponent(RED, 24));
 
+	/*
+	* inforamtie text despre abilitatea activa
+	*/
 	InfoManager::addInfo(to_string(_id) + "ability", new TextComponent(GOLD, 20));
 	InfoManager::disable(to_string(_id) + "ability");
 
+	/*
+	* primeste o pozitie de spawn
+	*/
 	MapSpaceManager::setUser(_id, _teamColor);
 	_position = MapSpaceManager::getTankSpawnPosition();
+
+	/*
+	* il inregistram in mediator
+	*/
 	Mediator::notifyTeam(_id, _teamColor);
 	Mediator::registerTank(_position, _id, Health);
 
+	/*
+	* behaviorul trebuie instiitat de posesorul
+	* (clasa behavior cominica si ea la randul ei cu celelalte obiecte)
+	*/
 	_behavior->setId(_id);
 	_behavior->setColorTeam(_teamColor);
 
@@ -78,7 +97,9 @@ void Tank::syncMovement()
 		part.second->update();
 	}
 
-
+	/*
+	* actualizam pozitia textului pentru viata
+	*/
 	InfoManager::setCameraPosition(to_string(_id),
 		Vector2T<int>{ _position._x, _position._y - AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id))._y / 2 } +
 		AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id)) / 2 - CameraManager::offset);
@@ -111,7 +132,7 @@ void Tank::launchBullet()
 void Tank::launchMine()
 {
 	// daca timerul nu este in functiune inseamna ca
-	// glotul va fi lansat daca este data "comanda"
+	// mina va fi lansata daca este data "comanda"
 	if (!TimeManager::_timers[_launchMineTimerId]->isTimerWorking() &&
 		_behavior->isLaunchingMine() &&
 		SpecialObjectsManager::getMinesNumber(_id) < MaxMinesNumber)
@@ -134,11 +155,19 @@ void Tank::checkOfHits()
 		AnimationsHandler::addAnimation(new AnimationComponent(_teamColor, _position + AssetsStorage::_tileDim, 0));
 		temporaryDisable();
 	}
+
+	/*
+	* 
+	*/
 	InfoManager::setText(to_string(_id), to_string(Mediator::getHealth(_id)) + "HP");
 }
 
 void Tank::checkOfHealing()
 {
+	/*
+	* daca este in zona de spawn isi va reface viata
+	* in functie de un timer
+	*/
 	InfoManager::setColor(to_string(_id), RED);
 
 	Vector2T<float> floatPos = { (float)_position._x + AssetsStorage::_tileDim , (float)_position._y + AssetsStorage::_tileDim };
@@ -162,7 +191,7 @@ void Tank::checkOfAbilities()
 
 	if (abilityType == "ShootingBoost")
 	{
-		TimeManager::_timers[_launchBulletTimerId]->setLimit(_attributes->_shotingTime / 8);
+		TimeManager::_timers[_launchBulletTimerId]->setLimit(_attributes->_shotingTime / 4);
 		InfoManager::enable(to_string(_id) + "ability");
 		InfoManager::setText(to_string(_id) + "ability", "MACHINE GUN");
 		InfoManager::enable(to_string(_id) + "abilityTimer");
@@ -183,7 +212,10 @@ void Tank::checkOfAbilities()
 		InfoManager::enable(to_string(_id) + "abilityTimer");
 	}
 
-
+	/*
+	* actualizari pentru textul ce notifica 
+	* utilizatorul de timpul ramas al abilitatii
+	*/
 	InfoManager::setText(to_string(_id) + "abilityTimer", "Ability expires in  " + to_string(TimeManager::_timers[to_string(_id) + abilityType]->getRemainingTime()));
 
 	InfoManager::setCameraPosition(to_string(_id) + "abilityTimer"
@@ -194,6 +226,10 @@ void Tank::checkOfAbilities()
 		Vector2T<int>{ _position._x + AssetsStorage::_tileDim - InfoManager::getDimension(to_string(_id) + "ability")._x / 2, _position._y - AssetsStorage::_tileDim + 20 } - CameraManager::offset);
 
 	if (TimeManager::_timers[to_string(_id) + abilityType]->isTimerWorking()) return;
+	/*
+	* daca timpul a expirat dezactivam animatia
+	* si aducem totul la normal
+	*/
 
 	Mediator::eraseAbility(_id);
 
@@ -236,7 +272,7 @@ void Tank::temporaryDisable()
 
 	InfoManager::disable(to_string(_id) + "abilityTimer");
 
-	// pentru oric eventualitate restabilim caraccteriticile initiale
+	// pentru orice eventualitate restabilim caracteriticile initiale
 	TimeManager::_timers[_launchBulletTimerId]->setLimit(_attributes->_shotingTime);
 	_attributes->_velocity = _normalVelocity;
 

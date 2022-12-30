@@ -19,6 +19,9 @@ void Bullet::update()
 {
 	_sprite->update();
 
+	/*
+	* calculam pozitia viitoare
+	*/
 	Vector2T<float> potentialPos;
 	potentialPos._x = _position._x;
 	potentialPos._y = _position._y;
@@ -27,14 +30,23 @@ void Bullet::update()
 	potentialPos._y += _velocity._y * SDL_sin((_sprite->_angle - 90) * M_PI / 180) * TimeManager::getDeltaTime();
 
 	bool hasCollision = false;
-
+	
+	
+	/*
+	* veriifcam coliziunea cu un obiect de pe mapa
+	*/
 	Vector2T<int> mapColliderObject;
 	if (CollisionManager::pointCollisionMap(potentialPos , mapColliderObject))
 	{
 		Mediator::modifyHealth(Mediator::getId(mapColliderObject) , -_damage);
-		//aici stabilim cine a distrus obiectul
+		
 		if (Mediator::getHealth(Mediator::getId(mapColliderObject)) <= 0)
 		{
+			/*
+			* daca obiectul este distrus inregistram cine l-a distrus
+			* in cazul in care obiectul la randul lui distruge un tank 
+			* echipa "ucigasusului" va primi un punct
+			*/
 			Mediator::registerKiller(Mediator::getId(mapColliderObject) , _tankId);
 		}
 		hasCollision = true;
@@ -52,9 +64,16 @@ void Bullet::update()
 			hasCollision = true;
 			if (!Mediator::checkTeammates(_tankId, Mediator::getId(i)))
 			{
+				/*
+				* daca nu sunt in aceeiasi echipa se poate
+				* inregistra damage-ul
+				*/
 				Mediator::modifyHealth(Mediator::getId(i), -_damage);
 				if (Mediator::getHealth(Mediator::getId(i)) <= 0)
 				{
+					/*
+					* daca a avut loc decesul => punct
+					*/
 					Mediator::addPoint(Mediator::getColorTeam(_tankId));
 					InfoManager::setText(Mediator::getColorTeam(_tankId) + "Points",
 						to_string(Mediator::getTeamScore(Mediator::getColorTeam(_tankId))));
@@ -73,6 +92,7 @@ void Bullet::update()
 		_position._y = static_cast<int>(potentialPos._y);
 
 	}
+
 	_sprite->setCameraPosition(_position - CameraManager::offset - _sprite->_dest->w / 2);
 }
 

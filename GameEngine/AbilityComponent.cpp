@@ -14,6 +14,9 @@ void AbilityComponent::update()
 {
 	SpriteComponent::update();
 
+	/*
+		vereifcam daca este colectata de un tank
+	*/
 	int rectDim = 2 * AssetsStorage::_tileDim;
 	for (auto& tank : Mediator::getTanksPositions())
 	{
@@ -23,6 +26,10 @@ void AbilityComponent::update()
 
 		if (CollisionManager::pointCollisionRectagle(floatPos, rectPos, rectDim))
 		{
+			/*
+				in cazul in care tank-ul are o abilitate activa 
+				colectarea nu va maia vea loc
+			*/
 			if (Mediator::hasActiveAbility(tank.first)) return;
 
 			Mediator::addAbility(tank.first, _type);

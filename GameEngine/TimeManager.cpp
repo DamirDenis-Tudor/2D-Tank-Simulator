@@ -1,3 +1,4 @@
+
 #include"TimeManager.h"
 
 float TimeManager::_deltaTime = 0;

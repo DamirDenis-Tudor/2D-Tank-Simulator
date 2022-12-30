@@ -25,9 +25,17 @@ struct TankAttributes
 	int _bulletDamage = 0;
 };
 
+/*
+* Descrierea clasa:
+*	-> creaza obiecte speciale : mine , gloante
+*	-> este format din partie(Sprtite-uri suprapuse)
+*	-> miscarile body-ului/ cannon-ului sunt independete 
+*      tank-ul fiind controlat in functie de behavior
+*   -> prezita o serie de timere pentru durata diferitelor animatii
+*      precum si pentru shooting , respawn si depuenre a minelor
+*/
 class Tank : public Component
 {
-//	TextComponent* _info = nullptr;
 	map<string, SpriteComponent*> _parts;
 	TankAttributes* _attributes = nullptr;
 
@@ -61,10 +69,6 @@ public:
 		instiintam componentele de o modificare de pozitie
 	*/
 	void syncMovement();
-
-	/*
-
-	*/
 
 	void launchMine();
 	void launchBullet();

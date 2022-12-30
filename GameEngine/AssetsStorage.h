@@ -46,14 +46,16 @@ using namespace tinyxml2;
 				> layer = _mapLayers["ground"]
 			- _effects = map cu id-ul effectului ca indetificator si continutul un vector de Sprite-uri
 				> effect = _effects["BigExplosion"]
+			etc.
 
 	Nota:
 		Tipurile au formatul : "Type1" , ... , "Type8"
 		Culorile au formatul : "ColorA" , ... , "ColorD"
 		Layerele au formatul : "ground" , "decor" , "colidble"
 		Effectele au formatul : "BigExplosion" , "Shot1" , "Impact1"
-
-
+		Abilitatile au formatul : "ShootingBoost" , "HealthBoost , "SpeedBoost"
+		Minele au formatul: "Yellowmine" etc
+		Exploziile minelor au formatul : BluemineExplosion etc
 */
 class AssetsStorage
 {
@@ -68,8 +70,6 @@ public:
 	static vector<SpriteComponent* > _tiles;
 	static int _barrelId ; // identificator de id pentru barrel
 						   // simplifica cu mult crearea unui obiect de tip barrel 
-						   // aceste va mosteni MapDestructibleObject si va
-						   // adauga explzie si damage
 
 	static map<string, SpriteComponent* > _miniMapTiles;
 

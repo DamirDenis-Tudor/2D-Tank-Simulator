@@ -29,8 +29,13 @@ public:
 	virtual void setBehavior() = 0;
 };
 
+
 /*
+* Descriere clase:
+*	-> specifica explicit comportamentul  
 */
+
+
 class AiTank : public TankBuilder
 {
 public:
@@ -40,7 +45,6 @@ public:
 
 	void setBehavior() override 
 	{
-
 		_behavior = nullptr;
 		_behavior = new AiBehavior;
 	}
@@ -56,7 +60,6 @@ public:
 	}
 	void setBehavior() override
 	{
-		CameraManager::setSpectatorMode(false);
 		_behavior = nullptr;
 		_behavior = new InputBehavior;
 	}

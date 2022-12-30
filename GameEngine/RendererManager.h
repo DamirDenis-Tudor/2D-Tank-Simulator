@@ -5,8 +5,7 @@
 
 /*
 	Descriere:
-		-> creaza un renderer 
-		-> permite acesarea acestuia de oriunde
+		-> creeeaza fereastra si renderer-ul 
 */
 class RendererManager
 {

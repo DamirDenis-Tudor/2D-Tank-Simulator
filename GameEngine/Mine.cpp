@@ -50,10 +50,21 @@ void Mine::update()
 			if (CollisionManager::pointCollisionRectagle(floatPos, rectPos, rectDim))
 			{
 				hasCollision = true;
+				/*
+				* daca este activata => damage
+				*/
 				Mediator::modifyHealth(Mediator::getId(i), -25);
 				if (Mediator::getHealth(Mediator::getId(i)) <= 0)
 				{
+					/*
+					* daca a cauzat moartea inamicului
+					* se inregistreaza in punctul
+					*/
 					Mediator::addPoint(Mediator::getColorTeam(_tankId));
+
+					/*
+					* se actualizeaza tabela
+					*/
 					InfoManager::setText(Mediator::getColorTeam(_tankId) + "Points",
 						to_string(Mediator::getTeamScore(Mediator::getColorTeam(_tankId))));
 				}
@@ -86,7 +97,13 @@ void Mine::update()
 				int id = Mediator::getId({ i , j });
 				if (id != -1)
 				{
+					/*
+					* in cazul in care a distrus un obiectsi
+					* acesta la randul lui distruge un tank,
+					* echipa celui care a distrus tank-ul va primi un punct
+					*/
 					Mediator::modifyHealth(id, -100);
+					Mediator::registerKiller(id , _tankId);
 				}
 			}
 		}

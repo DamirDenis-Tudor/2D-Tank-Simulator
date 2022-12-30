@@ -10,14 +10,8 @@
 
 /*
 	Descriere classei:
-		-> constructori cu parametri:
-			- folosit la incarcarea in memorie a sprite-urilor
-			   (folosit doar in AssetsStorage)
-		-> contructor de copiere (se aloca memorie dor pentru _dest) :
-			- folosit la crearea mapei (fac o copie din memorie a sprite-ului)
-			- sau la Animatii si posibil si in alte locuri
-		-> se deseneaza sprite-ul doar daca este in cadrul camerei
-		-> indetificator pentru obiectul urmarit de camera (default este player-ul)
+		-> reprezinta entitate de baza pentru 
+		   un obiect desenabil pe ecran
 */
 class SpriteComponent : public Component
 {
@@ -35,11 +29,11 @@ protected:
 	static SDL_Point center;
 	float _angle = 0;
 
-	bool _isFollowed = false;
-	bool _isMapObject = false;
-	bool _isMiniTile = false;
-	bool _isSpawnble = false;
-	bool _isObjectDrawble = true;
+	bool _isFollowed = false; // poate sau nu sa fie urmarit de camera
+	bool _isMapObject = false; // 
+	bool _isMiniTile = false; //
+	bool _isSpawnble = false; // poate un obiect de pe mapa spawnabil
+	bool _isObjectDrawble = true; // 
 public:
 	SpriteComponent() {}
 

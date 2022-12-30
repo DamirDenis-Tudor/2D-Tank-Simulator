@@ -6,7 +6,7 @@
 	Descriere clasa:
 		-> primeste un builder
 		-> ii comunica niste intructiuni de baza
-		-> returneaza componenta creata de builder
+		-> afera clientului componenta creata de builder
 */
 class Director
 {
@@ -16,7 +16,7 @@ private:
 public:
 
 	static void setBuilder(Builder* builder);
-	static void setBuilderAttributes(string type, string color, Vector2T<int> position = {0,0});
+	static void setBuilderAttributes(string type, string color);
 	static Component* getResult();
 	static void clear();
 

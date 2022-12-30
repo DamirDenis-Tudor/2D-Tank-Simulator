@@ -12,9 +12,9 @@ void Director::setBuilder(Builder * builder)
 	_builder = builder;
 }
 
-void Director::setBuilderAttributes(string type, string color, Vector2T<int> position )
+void Director::setBuilderAttributes(string type, string color)
 {
-	_builder->setAtrributes(type, color, position);
+	_builder->setAtrributes(type, color);
 }
 
 Component* Director::getResult()

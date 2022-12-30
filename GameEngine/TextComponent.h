@@ -19,18 +19,27 @@
 #define BlueTeamScorePosition {1600 , 84}
 #define BrownTeamScorePosition {1600, 126}
 
+/*
+	Descriere clasa:
+		-> clasa responsabila pentru gestionare entitailor de tip text
+*/
+
 class TextComponent : public SpriteComponent
 {
 	friend class InfoManager;
 private:
-	SDL_Color _textColor;
+	SDL_Color _textColor = {};
 	static TTF_Font* _font;
+	string _text;
 public:
 
-	TextComponent(SDL_Color color, int heigth, string text = " ", Vector2T<int> position = { 0,0 });
+	TextComponent(){}
+	TextComponent(SDL_Color color , int heigth , string text = " ", Vector2T<int> position = {0,0});
 	~TextComponent();
 
 	static void setFont(const char*);
+	
+	void setColor(SDL_Color color);
 	Vector2T<int> getDimension();
 	void setText(string text);
 };

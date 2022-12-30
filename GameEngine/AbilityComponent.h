@@ -4,6 +4,10 @@
 #include"TimeManager.h"
 #include"ColisionManager.h"
 
+/*
+	Descriere clasa:
+		-> clasa responsabila pentru abilitaile coletabile de pe mapa
+*/
 class AbilityComponent : public SpriteComponent
 {
 	friend class SpecialObjectsManager;

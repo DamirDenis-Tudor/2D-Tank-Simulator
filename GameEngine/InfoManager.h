@@ -1,5 +1,11 @@
 #pragma once
 #include"TextComponent.h"
+
+/*
+* Descriere clasa:
+*	-> colecteaza toate obiectele de tip 
+*	text si le deseneaza pe ecran cursiv
+*/
 class InfoManager : public Component
 {
 private:

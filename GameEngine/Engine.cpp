@@ -2,43 +2,18 @@
 
 void Engine::initComponets()
 {
+	_menu = new MenuScene;
+
 	_components.emplace_back(new Map);
 
 	_components.emplace_back(new SpecialObjectsManager);
 
-	Director::setBuilder(new PlayerTank);
+	// numar maxim de membri 8
+	// Type1 , Type2 ... Type8
+	// Yellow , Blue , Green, Brown
+	initTanks(4, "Type1", "Brown");
+	//initTanks(4);
 
-
-	Director::setBuilderAttributes("Type1", "Yellow");
-	_components.push_back(Director::getResult());
-	
-	Director::setBuilder(new AiTank);
-	
-	Director::setBuilderAttributes("Type4", "Yellow");
-	_components.push_back(Director::getResult());
-	Director::setBuilderAttributes("Type2", "Yellow");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type3", "Blue");
-	_components.push_back(Director::getResult());
-	Director::setBuilderAttributes("Type5", "Blue");
-	_components.push_back(Director::getResult());
-	Director::setBuilderAttributes("Type7", "Blue");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type8", "Green");
-	_components.push_back(Director::getResult());
-	Director::setBuilderAttributes("Type7", "Green");
-	_components.push_back(Director::getResult());
-	Director::setBuilderAttributes("Type2", "Green");
-	_components.push_back(Director::getResult());
-
-	Director::setBuilderAttributes("Type7", "Brown");
-	_components.push_back(Director::getResult());
-	Director::setBuilderAttributes("Type1", "Brown");
-	_components.push_back(Director::getResult());
-	Director::setBuilderAttributes("Type6", "Brown");
-	_components.push_back(Director::getResult());
 
 	_components.emplace_back(new AnimationsHandler);
 
@@ -47,8 +22,64 @@ void Engine::initComponets()
 	_components.emplace_back(new InfoManager);
 }
 
+void Engine::initTanks(int teamMembers, string playerType, string playerTeam)
+{
+	if (playerType != "NONE")
+	{
+		Director::setBuilder(new PlayerTank);
+		Director::setBuilderAttributes(playerType, playerTeam);
+		_components.push_back(Director::getResult());
+	}
+
+	Director::setBuilder(new AiTank);
+	for (int i = 0; i < teamMembers; i++)
+	{
+		Director::setBuilderAttributes("Type" + to_string(rand() % 8 + 1), "Yellow");
+		_components.push_back(Director::getResult());
+		if (playerTeam == "Yellow" && i == teamMembers - 2)
+		{
+			break;
+		}
+	}
+
+	for (int i = 0; i < teamMembers; i++)
+	{
+		Director::setBuilderAttributes("Type" + to_string(rand() % 8 + 1), "Blue");
+		_components.push_back(Director::getResult());
+		if (playerTeam == "Blue" && i == teamMembers - 2)
+		{
+			break;
+		}
+	}
+
+	for (int i = 0; i < teamMembers; i++)
+	{
+		Director::setBuilderAttributes("Type" + to_string(rand() % 8 + 1), "Green");
+		_components.push_back(Director::getResult());
+		if (playerTeam == "Green" && i == teamMembers - 2)
+		{
+			break;
+		}
+	}
+
+	for (int i = 0; i < teamMembers; i++)
+	{
+		Director::setBuilderAttributes("Type" + to_string(rand() % 8 + 1), "Brown");
+		_components.push_back(Director::getResult());
+		if (playerTeam == "Brown" && i == teamMembers - 2)
+		{
+			break;
+		}
+	}
+}
+
 void Engine::draw()
 {
+	if (_menu->isActive())
+	{
+		_menu->draw();
+		return;
+	}
 	for (auto& i : _components)
 	{
 		i->draw();
@@ -57,7 +88,17 @@ void Engine::draw()
 
 void Engine::update()
 {
-	for (auto& i : _components) 
+	if (InputManager::_escape && !_menu->isActive())
+	{
+		_menu->enable();
+	}
+	if (_menu->isActive())
+	{
+		_menu->update();
+		return;
+	}
+	CameraManager::cameraSync();
+	for (auto& i : _components)
 	{
 		i->update();
 	}
@@ -67,33 +108,44 @@ Engine::Engine(const char* name, int width, int height, bool fullscreen, float f
 {
 	InputManager::initInput();
 	RendererManager::setRenderer(name, width, height, fullscreen);
-	
+
 	TextComponent::setFont("fonts/open-sans/OpenSans-Bold.ttf");
 
+
+
+	/*
+	*   mai este si mapa asta
+		AssetsStorage::loadTiles("levels/football.tmx");
+	*/
 	AssetsStorage::loadTiles("levels/desert.tmx");
+
 	AssetsStorage::loadMiniTiles("assets/maps/miniMapTiles.tmx");
 	AssetsStorage::loadSprites("assets/sTanks/tank.tmx");
 	AssetsStorage::loadAbilities("assets/sTanks/abilities/abilities.tmx");
 	AssetsStorage::loadEffects("assets/sTanks/effects.tmx");
-	
+
 	Mediator::init(AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
-	
+
 	MapSpaceManager::initNodes();
-	
+
 	CameraManager::init(AssetsStorage::_tileDim, AssetsStorage::_layerWidth, AssetsStorage::_layerHeight);
-	
-	
+
+
 	initComponets();
 
 }
 
 Engine::~Engine()
 {
+	delete _menu;
+	_menu = nullptr;
+
 	for (auto& i : _components)
 	{
 		delete i;
 		i = nullptr;
 	}
+
 	RendererManager::clear();
 	InputManager::clear();
 	AssetsStorage::clear();
@@ -115,11 +167,10 @@ void Engine::run()
 
 	while (false == quitGame)
 	{
-
 		time1 = SDL_GetTicks64();
 		while (SDL_PollEvent(&event) != 0)
 		{
-			if (SDLK_ESCAPE == event.key.keysym.sym)
+			if (MenuScene::endGame)
 			{
 				quitGame = true;
 			}
@@ -145,8 +196,6 @@ void Engine::run()
 
 		InputManager::update();
 
-		CameraManager::cameraSync();
-
 		update();
 
 		draw();
@@ -161,9 +210,8 @@ void Engine::run()
 		{
 			delay = 0;
 		}
-	
+
 		SDL_Delay(delay);
 
-		std::cout << delay/1000 << " -> " << 1 / _framerate << "\n";
 	}
 }

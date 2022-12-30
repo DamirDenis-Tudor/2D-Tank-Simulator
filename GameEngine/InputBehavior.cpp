@@ -10,8 +10,6 @@ void InputBehavior::syncInput()
 	_moves._releaseMine = InputManager::_m;
 	_target = InputManager::mousePos;
 	
-	// verifica daca posesorul(identifiact dupa id) 
-	// este sau nu urmarit de camera
 	if (_id == CameraManager::getFocusId())
 	{
 		_offset = CameraManager::offset;

@@ -15,9 +15,13 @@ Vector2T<int> CameraManager::tileOffset = { 0,0 };
 
 void CameraManager::init(int& tileDim, int& mapTilesWidth, int& mapTilesHeight)
 {
+	/*
+	* text -> "Spectator Mode"
+	*/
 	InfoManager::addInfo("cam", new TextComponent(WHITE, 52, "SPECTATOR MODE"));
 	InfoManager::setCameraPosition("cam", { RendererManager::_width / 2 - InfoManager::getDimension("cam")._x/2 , 64 });
 	InfoManager::disable("cam");
+	
 	_tileDim = tileDim;
 	_mapTilesHeight = mapTilesHeight;
 	_mapTilesWidth = mapTilesWidth;
@@ -25,7 +29,6 @@ void CameraManager::init(int& tileDim, int& mapTilesWidth, int& mapTilesHeight)
 
 void CameraManager::cameraSync()
 {
-
 	CameraManager::pastOffset = CameraManager::offset;
 	// verificam limitele mapei
 	int horizontalBorder = _mapTilesWidth * _tileDim - RendererManager::_width;
@@ -34,6 +37,9 @@ void CameraManager::cameraSync()
 	Vector2T<int> position;
 	if (_spectatorMode)
 	{
+		/*
+		* daca suntem in modul spectator carema va putea fi miscata
+		*/
 		InfoManager::enable("cam");
 		Vector2T<float> potentialPos = { (float)_position._x, (float)_position._y };
 		Vector2T<float> direction(0, 0);

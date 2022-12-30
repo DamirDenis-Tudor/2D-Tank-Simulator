@@ -8,8 +8,8 @@
 
 /*
 	Descrierea clasei:
-		-> caracterizeaza obiecte ce pot fi distruse 
-		   si reapar dupa un anumit timp
+		-> reprezinta totalitatea obiectelor 
+		   ce pot fi distruse si reapar dupa un anumit timp
 */
 class MapDestructibleObject : public SpriteComponent
 {

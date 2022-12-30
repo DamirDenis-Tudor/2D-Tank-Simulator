@@ -7,7 +7,6 @@
 
 /*
 	Descrierea clasei:
-		-> acceseaza tot ce este legat de un sprite folosind AssetsManager
 		-> prin apelul constructorului se incarca tile-urile in vectorul de 
 		   componente folosind constructorul de copiere al clasei SpriteComponent;
 		* acest lucrul este mai optimal ; 
@@ -17,9 +16,6 @@
 			      a reprezenta mapa , dar acest caz este putin probabil;
 				  nu pot avea un layer plin de collidere , sau unul plin de decoratiuni.
 */
-
-enum mapType {WorldMap , GuideMap};
-
 class Map :public Component
 {
 protected:
@@ -35,6 +31,11 @@ public:
 	void update() override;
 };
 
+/*
+* Descriere clasa:
+*	-> scaleaza obiectele pricipala de pe mapa
+*	intr-o maniera mai superficiala 
+*/
 class MiniMap :public Component
 {
 private:

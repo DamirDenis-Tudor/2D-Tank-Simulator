@@ -60,7 +60,7 @@ public:
 /*
 	Descrire clase:
 		-> clasa de baza TimeManager are metode ce-i permit sa creeze/elimine timere pe baza unui id
-		-> pentru a crea mai multe timere pentru acelasi obiect id-ul este de tip strind
+		-> pentru a crea mai multe timere pentru acelasi obiect id-ul este de tip string
 
 */
 class TimeManager

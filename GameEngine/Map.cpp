@@ -19,7 +19,9 @@ Map::~Map()
 
 void Map::init()
 {
-	resetCouter();
+	/*
+	* sunt incarcate obiectele de ce pot di desenabile
+	*/
 	for (int i = 0; i < AssetsStorage::_layerHeight; i++)
 	{
 		for (int j = 0; j < AssetsStorage::_layerWidth; j++)
@@ -51,12 +53,17 @@ void Map::init()
 		}
 	}
 
+
 	for (int i = 0; i < AssetsStorage::_layerHeight; i++)
 	{
 		for (int j = 0; j < AssetsStorage::_layerWidth; j++)
 		{
 			if (AssetsStorage::_mapLayers["colidble"][i][j] != 0)
 			{
+				/*
+				*  trebuie indetificat tipul obiectului colidble
+				*  in functie de tipul obiectului comportamentul este diferit
+				*/
 
 				if (AssetsStorage::_mapLayers["colidble"][i][j] == AssetsStorage::_barrelId)
 				{
@@ -93,10 +100,7 @@ void Map::draw()
 {
 	for (auto& i : _drawbles)
 	{
-		if (isActive())
-		{
-			i->draw();
-		}
+		i->draw();
 	}
 }
 
@@ -201,9 +205,7 @@ void MiniMap::update()
 		{
 			_movebles[i]->disable();
 		}
-	}
-
-	//spawnam abilitary si le inregistram in SpecialObjectsManager 
+	} 
 
 }
 

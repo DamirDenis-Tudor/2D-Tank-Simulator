@@ -12,6 +12,7 @@
 #include"AnimationsHandler.h"
 #include"MapSpaceManager.h"
 #include"InfoManager.h"
+#include"MenuScene.h"
 
 /*
 	Clasa responsabila pentru :
@@ -23,11 +24,14 @@
 class Engine : public Component
 {
 	float _framerate = 0;
+	Component* _menu = nullptr;
 	vector<Component*> _components;
 
 public:	
 
 	void initComponets();
+
+	void initTanks(int teamMembersNumber , string playerType = "NONE", string playerTeam = "NONE");
 
 	void run();
 

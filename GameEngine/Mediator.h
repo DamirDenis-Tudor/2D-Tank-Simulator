@@ -8,13 +8,11 @@
 
 using namespace std;
 
-#define SpawnRange	8
+#define SpawnRange 8
 
 /*Destriere clasa
-	 -> clasa ce are ca scop managementul interactiunilor dintre obiecte;
-	-> tank-urile sunt identificate dupa _id si o echipa
-	-> gloatele fiecarui tank sunt identificate tank id si bullet id
-	-> de asemenea se trimit notificari legate de lovituri
+	-> clasa ce are ca scop managementul interactiunilor dintre obiecte;
+	-> inregistreaza obiecte dupa anumite caracteristi comune
 */
 class Mediator
 {
@@ -87,10 +85,12 @@ public:
 	static void removeFromTeam(int tankId, string colorTeam);
 
 	static bool checkTeammates(int tankId1, int tankId2);
+	
 	/*
 		-> calculand distante returneaza pozitia celului mai apropiat enemy
 	*/
 	static Vector2T<int> getNearestEnemyPosition(int  id, string colorTeam);
+	
 	/*
 		-> verifica daca mai este sau nu vreun inamic 
 	*/
@@ -122,6 +122,7 @@ public:
 
 	static bool hasKiller(int);
 
+
 	static string getColorTeam(int id);
 
 	static Vector2T<int> getPosition(int id);
@@ -130,6 +131,8 @@ public:
 	{
 		return _tanks;
 	}
+
+
 
 	static void addPoint(string color);
 	static int getTeamScore(string);

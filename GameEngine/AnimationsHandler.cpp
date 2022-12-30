@@ -18,7 +18,7 @@ void AnimationsHandler::update()
 	{
 		_animations[i]->update();
 		/*
-			daca o animatia s-a terminat tot ce este eliminata
+			daca o animatia s-a terminat este eliminata
 		*/
 		if (!_animations[i]->isActive())
 		{

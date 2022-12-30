@@ -9,10 +9,13 @@ void AiBehavior::follow()
 	_moves = { false, false , false , false, false };
 	MapSpaceManager::setUser(_id, _colorTeam);
 
-	if (Mediator::getHealth(_id) < 20)
+	if (Mediator::getHealth(_id) < 30)
 	{
 		if (!_isHealing)
 		{
+		/*
+		* daca nu este in zona spwn nu mai are nevoie de alta pozitie
+		*/
 			_healingPosition = MapSpaceManager::getTankSpawnPosition();
 
 		}
@@ -70,10 +73,6 @@ void AiBehavior::BrainAi()
 
 void AiBehavior::movement(Vector2T<int>& position, Vector2T<float> velocity)
 {
-	//	if (_isActivated)
-	{
 		BrainAi();
 		move(position, velocity);
-	}
-
 }

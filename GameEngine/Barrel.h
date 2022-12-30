@@ -6,7 +6,7 @@
 /*
 	Descriere clasa:
 		-> suplimentar clasei MapDestructibleObject adauga 
-		    animatie de distrugere si damage obiectelor di jurul sau
+		    animatie de distrugere si damage obiectelor din jurul sau
 */
 class Barrel : public MapDestructibleObject
 {

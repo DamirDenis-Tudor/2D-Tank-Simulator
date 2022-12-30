@@ -5,7 +5,7 @@
 
 /*
 	Descriere clasa:
-		->implemeteaza utilitare pentru diferite tipuri de collisiuni;
+		->implemeteaza utilitare pentru diferite tipuri de colliziuni;
 */
 class CollisionManager
 {

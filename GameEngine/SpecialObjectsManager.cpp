@@ -57,7 +57,10 @@ void SpecialObjectsManager::spawnAbilities()
 	if (_abilities.size() >= MaxAbilitiesNumber ) return;
 
 	AbilityComponent* ability = nullptr;
-	switch (rand() % 200)
+	/*
+	* abilitatile sunt spawnate in functie de o probabilitate
+	*/
+	switch (rand() % 400)
 	{
 	case ShootingBoost:
 		ability = new AbilityComponent("ShootingBoost" , AssetsStorage::_abilities["ShootingBoost"]);

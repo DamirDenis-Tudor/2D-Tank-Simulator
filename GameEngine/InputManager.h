@@ -5,7 +5,7 @@
 
 /*
 	Descriere clasa:
-		-> 
+		-> destionare imputului de la tastatura
 */
 
 class InputManager
@@ -20,6 +20,7 @@ public:
 	static bool _left;
 	static bool _right;
 	static bool _m;
+	static bool _enter;
 
 	static bool clicked;
 	static Vector2T<int> mousePos;
@@ -50,6 +51,8 @@ public:
 		_left = _keys[SDLK_a];
 		_right = _keys[SDLK_d];
 		_m = _keys[SDLK_m];
+		_enter = _keys[SDLK_SPACE];
+		
 
 		SDL_GetMouseState(&mousePos._x, &mousePos._y);
 	}

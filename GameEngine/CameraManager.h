@@ -7,7 +7,7 @@
 
 /*
 	Descrierea clasei:
-		-> primeste un obiect de urmarit;
+		-> primeste un obiect de urmarit sau nu
 		-> implemeteaza o metoda de sincronizare
 		-> calculeaza offset-urile 
 */

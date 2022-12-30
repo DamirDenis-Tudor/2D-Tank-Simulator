@@ -34,7 +34,7 @@ void Barrel::update()
 				int id = Mediator::getId({ i , j});
 				if (id != -1)
 				{
-					Mediator::modifyHealth(id, -100);
+					Mediator::modifyHealth(id, -25);
 				}
 			}
 		}
@@ -46,14 +46,34 @@ void Barrel::update()
 			Vector2T<int> rectPos = _mapPos * AssetsStorage::_tileDim - 3 * AssetsStorage::_tileDim;
 			if (CollisionManager::pointCollisionRectagle(floatPos , rectPos , 6 * AssetsStorage::_tileDim))
 			{
-				Mediator::modifyHealth(Mediator::getId(i.second), -50);
-
+				Mediator::modifyHealth(Mediator::getId(i.second), -25);
+				/*
+				* daca butoiul are un "ucigas" 
+				* inseamna ca exista de a inregistra in dreptul 
+				* echipei ucigasului un punct
+				*/
 				if (!Mediator::hasKiller(_id)) return;
 
+				/*
+				* totusi daca sunt in aceeiasi echipa
+				* a fost un accident..ghinion
+				*/
 				if (Mediator::checkTeammates(Mediator::getKiller(_id), Mediator::getId(i.second))) return;
 
+				/*
+				* daca explozia nu a fost cauzatoare de moarte
+				* ...noroc
+				*/
+				if (Mediator::getHealth(Mediator::getId(i.second)) > 0) return;
+
+				/*
+				* inregistram punctul
+				*/
 				Mediator::addPoint(Mediator::getColorTeam(Mediator::getKiller(_id)));
 
+				/*
+				* actualizam tabela
+				*/
 				InfoManager::setText(Mediator::getColorTeam(Mediator::getKiller(_id)) + "Points",
 					to_string(Mediator::getTeamScore(Mediator::getColorTeam(Mediator::getKiller(_id)))));
 			}

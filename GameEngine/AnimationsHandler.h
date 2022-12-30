@@ -6,9 +6,8 @@
 
 /*
 	Descriere clasa:
-		-> animatiile vor fi prezentate pe ecran in "ultima instanta";
-		-> are un vector static de animatii ce este acutualizat de oriunde
-		-> poate fi instatiaata, dar cu conditia sa fie ultima componenta instatiata;
+		-> colecteaza animatiile din orice moment
+		   al jocului si le prezita pe ercran in ultima instanta
 */
 class AnimationsHandler : public Component
 {

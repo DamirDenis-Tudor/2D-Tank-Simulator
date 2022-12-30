@@ -4,6 +4,10 @@ AnimationComponent::AnimationComponent(string _type, Vector2T<int> position, flo
 	:_position(position), animationSpeed(timer)
 {
 	TimeManager::createTimer(to_string(_id), animationSpeed);
+
+	/*
+		preluam animatia din AssetsStorage
+	*/
 	_frames = size(AssetsStorage::_effects[_type]);
 	for (int i = 0; i < _frames; i++)
 	{
