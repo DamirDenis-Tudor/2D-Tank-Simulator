@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<miniMap>
+	<image source="assets/maps/miniMap/gray.png" width="1920" height="1080" color="gray"/>
+	<image source="assets/maps/miniMap/blackGray.png" width="32" height="32" color="blackGray"/>
+	<image source="assets/maps/miniMap/blue.png" width="32" height="32" color="Blue"/>
+	<image source="assets/maps/miniMap/brown.png" width="32" height="32" color="Brown"/>
+	<image source="assets/maps/miniMap/green.png" width="32" height="32" color="Green"/>
+	<image source="assets/maps/miniMap/yellow.png" width="32" height="32" color="Yellow"/>
+	
+	<image source="assets/maps/miniMap/gray.jpg" width="128" height="128"/>
+</miniMap>
