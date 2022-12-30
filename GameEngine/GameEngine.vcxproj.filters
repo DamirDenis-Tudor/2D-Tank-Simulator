@@ -52,6 +52,12 @@
     <Filter Include="Header Files\Factory">
       <UniqueIdentifier>{cef0f700-362c-4b66-a724-813320a33282}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Menu">
+      <UniqueIdentifier>{dfb48b31-3d95-4a36-8fef-c870b9e55ded}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menu">
+      <UniqueIdentifier>{b53ee963-94d1-49fa-a221-647c1b71d3a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -97,9 +103,6 @@
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
     <ClCompile Include="Director.cpp">
-      <Filter>Source Files\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuBuilder.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
     <ClCompile Include="MapDestructibleObject.cpp">
@@ -150,6 +153,12 @@
     <ClCompile Include="AbilityComponent.cpp">
       <Filter>Source Files\Componets</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -198,9 +207,6 @@
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
     <ClInclude Include="Director.h">
-      <Filter>Header Files\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuBuilder.h">
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
     <ClInclude Include="MapDestructibleObject.h">
@@ -253,6 +259,12 @@
     </ClInclude>
     <ClInclude Include="AbilityComponent.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
