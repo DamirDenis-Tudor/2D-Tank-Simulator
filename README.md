@@ -1,12 +1,12 @@
 # Tanc(++)erman - SDL game made for an academic task
-![plot](./gitReadMEPhotos/menu.png)
 
+## Please download releaseVisualStudioProject.zip . 
 
 # Caracteristics :
 - [x] polymorphism implemented through the interface inherited by all objects
 - [x] ai altgorithm -> based on the algorithm A*
 - [x] dedicated class for space managing
-- [x] dedicated class for objects interations 
+- [x] dedicated class for objects interactions 
 - [x] dedicated class for game timing
 - [x] dedicated class for animations
 - [x] dedicated class for assets storage
@@ -18,6 +18,9 @@
 - [x] factory - basically there is a class called director that takes a builder,
 		    instruct him and return the result
 
+#  Controls: 
+## Menu : W/S - choose, SPACE - select
+## Game : W/A/S/D - movement , Mouse/Click - shooting , M - release mines
 
 # Preview
-![plot](./gitReadMEPhotos/gameplay1.png)
+![Video](./gitReadMEPhotos/preview.mp4)
