@@ -1,4 +1,4 @@
-# Tanc(++)erman - SDL game made for an academic task
+# SDL game made for an academic task
 
 ## Please download releaseVisualStudioProject.zip for fully access to code. 
 
@@ -19,8 +19,8 @@
 		    instruct him and return the result
 
 #  Controls: 
-Menu : W/S - choose, SPACE - select
-Game : W/A/S/D - movement , Mouse/Click - shooting , M - release mines
+- Menu : W/S - choose, SPACE - select
+- Game : W/A/S/D - movement , Mouse/Click - shooting , M - release mines
 
 # Preview
 
