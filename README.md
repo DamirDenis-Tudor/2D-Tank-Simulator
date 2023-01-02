@@ -1,6 +1,6 @@
 # Tanc(++)erman - SDL game made for an academic task
 
-## Please download releaseVisualStudioProject.zip . 
+## Please download releaseVisualStudioProject.zip for fully access to code. 
 
 # Caracteristics :
 - [x] polymorphism implemented through the interface inherited by all objects
@@ -19,8 +19,8 @@
 		    instruct him and return the result
 
 #  Controls: 
-## Menu : W/S - choose, SPACE - select
-## Game : W/A/S/D - movement , Mouse/Click - shooting , M - release mines
+Menu : W/S - choose, SPACE - select
+Game : W/A/S/D - movement , Mouse/Click - shooting , M - release mines
 
 # Preview
-![Video](./gitReadMEPhotos/preview.mp4)
+![github-large](./gitReadMEPhotos/preview.mp4)
