@@ -2,7 +2,7 @@
 
 This project consists of several classes that implement the `Component` interface. Each class serves a specific purpose in the game engine, as described below:
 
-## AnimationHandler
+## 1. AnimationHandler
 - This class has a static method that allows it to take over an animation at any moment in the game.
 - It can be stored in the **Engine** components.
 
@@ -13,22 +13,22 @@ This project consists of several classes that implement the `Component` interfac
 _components.emplace_back(new AnimationHandler);
 ```
 
-## 1. AssetsStorage
+## 2. AssetsStorage
 - This class is responsible for loading assets such as tanks, map and minimap tiles, effects, and abilities from xml files using the tinyXML library.
 
-## 2. CameraManager
+## 3. CameraManager
 - This class implements two modes:
   - Spectator mode: allows the player to observe the gameplay.
   - Focus mode: allows the player to track any object on the map.
 
-## 3. CollisionManager
+## 4. CollisionManager
 - This class offers a series of collision checks, including:
   - `static void mapCollision(...)`
   - `static bool circleRectangleCollision(...)`
   - `static bool pointMapCollision(...)`
   - `static bool pointRectangleCollision(...)`
 
-## 4. InfoManager
+## 5. InfoManager
 - This class has a static method that allows it to take over a text at any moment in the game.
 - It can be stored in the **Engine** components.
 ```cpp
@@ -38,10 +38,10 @@ _components.emplace_back(new AnimationHandler);
 _components.emplace_back(new InfoManager);
 ```
 
-## 5. InputManager
+## 6. InputManager
 - This class handles input.
 
-## 6. MapSpaceManager
+## 7. MapSpaceManager
 - This class manages spawn positions and implements an optimized pathfinding algorithm (A*).
 - For tanks, it helps to avoid traveling on a road already traveled by another tank (which will be seen as a temporary obstacle) and generates the best shooting position (by simulating bullet trajectory).
 - Before interacting with the class, it must be informed with the `MapSpaceManager::setUser(_id, _colorTeam)` method. Example usage:
@@ -52,7 +52,7 @@ _components.emplace_back(new InfoManager);
   MapSpaceManager::setUser(_id, _colorTeam);
   _moves = MapSpaceManager::aStar(Mediator::getPosition(_id), target, _isHealing);
 
-## 7. Mediator
+## 8. Mediator
 
 - The Mediator class is responsible for managing the interaction between objects. 
 - It can group objects according to certain characteristics, store information related to objects, and recognize objects by an id.
@@ -74,11 +74,11 @@ for (auto& i : Mediator::recieveTanksPositions(_id))
     CollisionManager::circleRectagleCollision(potentialPos, i, rectDim);
 }
 ```
-## 8. RendererManager
+## 9. RendererManager
 
 The class creates a window and provides a renderer (specific SDL variable).
 
-## 9. SpecialObjectsManager
+## 10. SpecialObjectsManager
 
 - These are static methods that allow them to collect special objects (bullets, mines, abilities) at any moment in the game.
 - It can be stored in the **Engine** components.
@@ -90,7 +90,7 @@ The class creates a window and provides a renderer (specific SDL variable).
 _components.emplace_back(new SpecialObjectsManager);
 ```
 
-## 10. TimersManager
+## 11. TimersManager
 
 The class deals with the management of timers in the game. Timers are identified by a string id.
 
