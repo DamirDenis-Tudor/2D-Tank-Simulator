@@ -11,6 +11,9 @@ Characteristics:
 *   AI algorithm based on the A\* algorithm
 *   Dedicated class for space management
 *   Dedicated class for object interactions
+*   Dedicated class for game timing
+*   Dedicated class for animations
+*   Dedicated class for asset storage
 
 
 Implemented Design Patterns
