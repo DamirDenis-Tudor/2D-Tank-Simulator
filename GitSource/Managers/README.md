@@ -43,7 +43,7 @@ _components.emplace_back(new InfoManager);
 
 ## 7. MapSpaceManager
 - This class manages spawn positions and implements an optimized pathfinding algorithm (A*).
-- For tanks, it helps to avoid traveling on a road already traveled by another tank (which will be seen as a temporary obstacle) and generates the best shooting position (by simulating bullet trajectory).
+- For tanks, it helps to avoid collision with another tank (which will be seen as a temporary obstacle) and generates the best shooting position (by simulating bullet trajectory).
 - Before interacting with the class, it must be informed with the `MapSpaceManager::setUser(_id, _colorTeam)` method. Example usage:
   ```cpp
   /*
@@ -55,7 +55,7 @@ _components.emplace_back(new InfoManager);
 ## 8. Mediator
 
 - The Mediator class is responsible for managing the interaction between objects. 
-- It can group objects according to certain characteristics, store information related to objects, and recognize objects by an id.
+- It can group objects according to certain characteristics, store information related to objects and recognize objects by an id.
 
 ### Usage example
 
