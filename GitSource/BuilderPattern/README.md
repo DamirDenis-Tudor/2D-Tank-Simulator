@@ -1,4 +1,3 @@
-# Description
 # Builder
 - An abstract class that provides a blueprint for a general builder could be called an "Abstract Builder" class
 ```cpp
