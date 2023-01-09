@@ -1,28 +1,24 @@
-# SDL game made for an academic task
+# Description
 
-## Please download releaseVisualStudioProject.zip for fully access to code. 
+# 1. Map
+- Loaded from AssetsStorage . 
 
-# Caracteristics :
--  polymorphism implemented through the interface inherited by all objects
--  ai altgorithm -> based on the algorithm A*
--  dedicated class for space managing
--  dedicated class for objects interactions 
--  dedicated class for game timing
--  dedicated class for animations
--  dedicated class for assets storage
+# 2. MapDestructibleObject
+- Inherited from SpriteComponets, also it adds health and respawn timer.
 
+# 3. Barrel
+- Inherited from MapDestructibleObject, also it adds explosion animation and damage in his area.
 
-# Implemented design patterns 
--  obsever - mechanism for frame by frame updating&drawing 
--  mediator - work as an "traffic intersection"
--  factory - basically there is a class called director that takes a builder,
-		    instruct him and return the result
+# 4. Tank
+- 3 parts : tracks , body , cannon .
+- multple TextComponets .
+- multimple timers .
+- multiple abilities : lauching bullets/mines and to activate special abilities.  
 
-#  Controls: 
-- Menu : W/S - choose, SPACE - select
-- Game : W/A/S/D - movement , Mouse/Click - shooting , M - release mines
+# 5. Bullet 
+- Implements Component Interface (also could been inherited from SpriteComponent) . 
+- It belongs to a tank.
 
-# Preview
-
-https://user-images.githubusercontent.com/101417927/210213098-1ac9fcb4-df7e-4d0a-8dc3-1bc7eaba8f44.mp4
-
+# 6. Mine
+- Implements Component Interface (also could been inherited from AnimationComponent) . 
+- It belongs to a tank.
