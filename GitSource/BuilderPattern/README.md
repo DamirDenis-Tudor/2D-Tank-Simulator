@@ -29,5 +29,5 @@ _components.push_back(Director::getResult());
 ```
 
 
-### Note
-Please visit https://refactoring.guru/design-patterns/builder/cpp/example#:~:text=Builder%20in%20C%2B%2B,using%20the%20same%20construction%20process to see how Builder Pattern Works
+# Note
+Please <a href="https://www.google.com/](https://refactoring.guru/design-patterns/builder/cpp/example#:~:text=Builder%20in%20C%2B%2B,using%20the%20same%20construction%20process" target="_blank">visit</a>  to see how Builder Pattern Works
