@@ -1,28 +1,25 @@
-# SDL game made for an academic task
+# Builder :
+- An abstract class that characterizes the behavior of a tank. 
+  - `void move(...);`
+  - `void rotationB(...);`
+  - `void rotationC(...);`
+- It has a struct of moves : 
 
-## Please download releaseVisualStudioProject.zip for fully access to code. 
+`struct Moves`</br>
+`{`</br>
+	`bool _up = false;`</br>
+	`bool _down = false;`</br>
+	`bool _right = false;`</br>
+	`bool _left = false;`</br>
+	`bool _shoting = false;`</br>
+	`bool _releaseMine = false;`</br>
+`};`</br>
+- Additionally, it has `virtual void movement(...) = 0;` that serves as a placeholder for how the behavior is enacted.
 
-# Caracteristics :
--  polymorphism implemented through the interface inherited by all objects
--  ai altgorithm -> based on the algorithm A*
--  dedicated class for space managing
--  dedicated class for objects interactions 
--  dedicated class for game timing
--  dedicated class for animations
--  dedicated class for assets storage
+# PlayerBuhavior 
 
+- It implements `virtual void movement(...) = 0;` through Input. 
 
-# Implemented design patterns 
--  obsever - mechanism for frame by frame updating&drawing 
--  mediator - work as an "traffic intersection"
--  factory - basically there is a class called director that takes a builder,
-		    instruct him and return the result
+# AIBehavior 
 
-#  Controls: 
-- Menu : W/S - choose, SPACE - select
-- Game : W/A/S/D - movement , Mouse/Click - shooting , M - release mines
-
-# Preview
-
-https://user-images.githubusercontent.com/101417927/210213098-1ac9fcb4-df7e-4d0a-8dc3-1bc7eaba8f44.mp4
-
+- It implements `virtual void movement(...) = 0;` through Ai Algorithm. 
