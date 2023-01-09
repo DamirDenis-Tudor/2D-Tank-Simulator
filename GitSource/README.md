@@ -1,0 +1,10 @@
+Project structure : 
+===================
+
+- Game arhiteture is based on **Obsever Pattern**. 
+- Frame by frame, each component updates and draws its member components, which in turn do the same and so on.
+- This is possible through the implementation of a **Component Interface** and, of course, through **polymorphism**.
+
+Note:
+-------
+Please visit https://en.wikipedia.org/wiki/Observer_pattern#/media/File:Observer_w_update.svg to see how Observer Pattern works.
