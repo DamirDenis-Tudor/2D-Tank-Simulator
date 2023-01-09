@@ -7,4 +7,4 @@ Project structure :
 
 Note:
 -------
-Please visit https://en.wikipedia.org/wiki/Observer_pattern#/media/File:Observer_w_update.svg to see how Observer Pattern works.
+Please <a href="https://en.wikipedia.org/wiki/Observer_pattern#/media/File:Observer_w_update.svg" target="_blank">visit</a> to see how Observer Pattern works.
