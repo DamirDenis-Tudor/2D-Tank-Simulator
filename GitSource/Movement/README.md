@@ -1,4 +1,4 @@
-# Builder :
+# Behavior :
 - An abstract class that characterizes the behavior of a tank. 
   - `void move(...);`
   - `void rotationB(...);`
@@ -16,7 +16,7 @@
 `};`</br>
 - Additionally, it has `virtual void movement(...) = 0;` that serves as a placeholder for how the behavior is enacted.
 
-# PlayerBuhavior 
+# PlayerBehavior 
 
 - It implements `virtual void movement(...) = 0;` through Input. 
 
