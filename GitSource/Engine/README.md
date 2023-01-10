@@ -1,10 +1,12 @@
 # Overview 
 
+</br></br>
+
 # Responsible for : 
 - Running the gameloop .
 - Actualizing game components .
 - Handling events .
-- Also for layering : 
+- Also establishes the drawing order : 
    - Menu (if is active)
    - Map
    - SpecialObjects
