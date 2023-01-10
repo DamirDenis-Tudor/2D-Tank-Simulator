@@ -2,7 +2,7 @@
 
  </br></br>
 
-> # 1. Component  
+> ## 1. Component  
 - An abstract class that has a specific ID.
 - The ability to enable and disable.
 - Pure virtual functions : 
@@ -13,7 +13,7 @@ virtual void update() = 0 ;
 
  </br></br>
 
-> # 2. SpriteComponent
+> ## 2. SpriteComponent
  - Implements the **Component** interface. 
  - Has a series of statuses such as : 
    - **followed** : set the camera focus on him .
@@ -46,20 +46,20 @@ void setSrcTextNullPtr()
 
  </br></br>
 
-> # 3. TextComponent  
+> ## 3. TextComponent  
 - Inherits from the SpriteComponent class.
 - Adds additional font, color, and size options.
 
  </br></br>
 
-> # 4. AbilityComponent  
+> ## 4. AbilityComponent  
 - Inherits from the SpriteComponent class.
 - Has a type specifier.
 - Implements the collectible status. 
 
  </br></br>
 
-> # 5. AnimationComponent 
+> ## 5. AnimationComponent 
  - Implements the **Component** interface. 
  - Based on a specifier makes a copy of an animation from **AssetsStorage** class . 
  - It has a continuity specifier .
