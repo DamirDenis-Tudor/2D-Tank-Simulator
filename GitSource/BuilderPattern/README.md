@@ -1,4 +1,6 @@
-# Builder
+# Overview </br></br>
+
+> # Builder
 - An abstract class that provides a blueprint for a general builder could be called an "Abstract Builder" class
 ```cpp
 /*
@@ -8,16 +10,56 @@ Component* _result = nullptr;
 virtual void build() = 0;
 void setAtrributes(string type, string color);
 ```
-# TankBuilder
+ </br></br>
+ 
+> # TankBuilder
 - Implements Builder interface. 
 - This is the base class for PlayerTank and AiTank, which also has a virtual function `virtual void setBehavior() = 0;`
 
-# Director
+```cpp
+/*
+*Belogs to AiTank class
+/*
+void setBehavior() override 
+{
+	_behavior = nullptr;
+	_behavior = new AiBehavior;
+}
+  
+/*
+*Belogs to PlayerTank class
+/*
+void setBehavior() override 
+{
+	_behavior = nullptr;
+	_behavior = new PlayerBehavior;
+}
+
+```
+
+ </br></br>
+
+> # Director
 - Receives a builder, gives him some instructions and provides the client with the result.
+```cpp
+/*
+*Director.cpp
+*/
+void Director::setBuilderAttributes(string type, string color)
+{
+	_builder->setAtrributes(type, color);
+}
 
+Component* Director::getResult()
+{
+	_builder->build();
+	return _builder->_result;
+}
+```
 
+ </br></br>
 
-# Usage example: 
+> # Usage example: 
 ```cpp
 /*
 *Engine.cpp
