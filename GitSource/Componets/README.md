@@ -60,6 +60,6 @@ void setSrcTextNullPtr()
  </br></br>
 
 > # 5. AnimationComponent 
-> - Implements the **Component** interface. 
-> - Based on a specifier makes a copy of an animation from **AssetsStorage** class . 
-> - It has a continuity specifier .
+ - Implements the **Component** interface. 
+ - Based on a specifier makes a copy of an animation from **AssetsStorage** class . 
+ - It has a continuity specifier .
