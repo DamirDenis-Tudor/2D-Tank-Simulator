@@ -1,4 +1,4 @@
-##Vector2T
+## Vector2T
 
 Vector2T is a C++ class template that represents a 2D vector with component type specified by the template parameter.
 It has two public member variables, x and y, which represent the components of the vector.
