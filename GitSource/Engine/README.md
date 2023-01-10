@@ -2,7 +2,7 @@
 
 </br></br>
 
-# Responsible for : 
+> ## Responsible for : 
 - Running the gameloop .
 - Actualizing game components .
 - Handling events .
