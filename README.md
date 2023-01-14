@@ -31,7 +31,7 @@
 
  </br></br>
 
-> # Preview:
+> # Preview
 
 https://user-images.githubusercontent.com/101417927/210213098-1ac9fcb4-df7e-4d0a-8dc3-1bc7eaba8f44.mp4
 
