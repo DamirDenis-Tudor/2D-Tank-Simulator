@@ -3,6 +3,8 @@
 
 Please Download : releaseVisualStudioProject.zip for Full Access to Code
 ----------------------------------------------------------------------
+Notes: For additional information, please access the GitSources folders.
+----------------------------------------------------------------------
 
 Short description:
 ============
@@ -19,9 +21,7 @@ Controls:
 *   Menu: W/S - choose, SPACE - select
 *   Game: W/A/S/D - movement, CLICK LEFT - shooting, CLICK RIGHT - release mines
 
-Notes:
-======
-- For additional information, please access the GitSources folders.
+
 
 Preview(please enable the sound) : 
 ======================================================================================================
