@@ -1,4 +1,4 @@
-# Project Description
+# Overview
 
 This project consists of several classes that implement the `Component` interface. Each class serves a specific purpose in the game engine, as described below:
 
@@ -14,7 +14,12 @@ _components.emplace_back(new AnimationHandler);
 ```
 
 ## 2. AssetsStorage
-- This class is responsible for loading assets such as tanks, map and minimap tiles, effects, and abilities from xml files using the tinyXML library.
+- This class is responsible for loading assets such as : 
+	- tanks
+	- map and minimap tiles
+	- effects and abilities 
+	- menu items
+- These informations are loaded from XML files.
 
 ## 3. CameraManager
 - This class implements two modes:
