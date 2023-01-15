@@ -1,6 +1,20 @@
-# Project Description
+# Overview
 
-This project consists of several classes that implement the `Component` interface. Each class serves a specific purpose in the game engine, as described below:
+- I preferred to work with static variables and methods instead of the Singleton Design Pattern. It was just a matter of preference.
+	- Example : 
+	```cpp
+	/*
+	* without Sigleton, here aStart is a static method
+	*/
+	_moves = MapSpaceManager::aStar(Mediator::getPosition(_id), target , _isHealing);
+	
+	/*
+	* with Sigletonm here aStar in a non-static method
+	*/
+	MapSpaceManager * _mapSpaceManager = MapSpaceManager::getInstance();
+	_moves =  _mapSpaceManager->aStar(Mediator::getPosition(_id), target , _isHealing);
+	```
+- This project consists of several classes that implement the `Component` interface. Each class serves a specific purpose in the game engine, as described below:
 
 ## 1. AnimationHandler
 - This class has a static method that allows it to take over an animation at any moment in the game.
@@ -14,7 +28,12 @@ _components.emplace_back(new AnimationHandler);
 ```
 
 ## 2. AssetsStorage
-- This class is responsible for loading assets such as tanks, map and minimap tiles, effects, and abilities from xml files using the tinyXML library.
+- This class is responsible for loading assets such as : 
+	- tanks
+	- map and minimap tiles
+	- effects and abilities 
+	- menu items
+- These informations are loaded from XML files.
 
 ## 3. CameraManager
 - This class implements two modes:
