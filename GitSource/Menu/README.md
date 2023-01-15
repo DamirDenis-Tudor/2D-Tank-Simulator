@@ -4,7 +4,7 @@
 
 ## 1.TextButton 
 - This class is inherited from `TextComponent`. 
-- It has specific properties such as `hovered` , `pressed` and "order".
+- It has specific properties such as `hovered` , `pressed` and `order`.
 - Class intantiation example: 
 ```cpp
 /*
