@@ -1,4 +1,7 @@
-# Builder
+# Overview
+</br>
+
+## 1.Builder
 - An abstract class that provides a blueprint for a general builder could be called an "Abstract Builder" class
 ```cpp
 /*
@@ -8,11 +11,11 @@ Component* _result = nullptr;
 virtual void build() = 0;
 void setAtrributes(string type, string color);
 ```
-# TankBuilder
+## 2.TankBuilder
 - Implements Builder interface. 
 - This is the base class for PlayerTank and AiTank, which also has a virtual function `virtual void setBehavior() = 0;`
 
-# Director
+## 3.Director
 - Receives a builder, gives him some instructions and provides the client with the result.
 
 
