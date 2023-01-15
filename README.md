@@ -3,7 +3,6 @@
 
 - Please Download : releaseVisualStudioProject.zip for Full Access to Code
 - For additional information, please access the GitSources folders.
-----------------------------------------------------------------------
 
 # Short description:
 
