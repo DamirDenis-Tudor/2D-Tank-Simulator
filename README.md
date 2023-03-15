@@ -4,6 +4,10 @@
 - Please Download : releaseVisualStudioProject.zip for Full Access to Code
 - For additional information, please access the GitSources folders.
 
+## Preview(please enable the sound) : 
+
+https://user-images.githubusercontent.com/101417927/212483927-1f549018-dffe-46b0-8ce6-4d0088f0ef1e.mp4
+
 # Short description:
 
 - A simple game that simulates a 2D battle between tanks. The tanks are divided into 4 teams, with each team having its own score.
@@ -19,6 +23,4 @@
 
 
 
-## Preview(please enable the sound) : 
 
-https://user-images.githubusercontent.com/101417927/212483927-1f549018-dffe-46b0-8ce6-4d0088f0ef1e.mp4
